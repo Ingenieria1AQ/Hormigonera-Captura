@@ -38,6 +38,7 @@ Partial Class frmFormulas
         Me.Btt_Env_AgregFormulas = New System.Windows.Forms.Button()
         Me.btnsalir = New System.Windows.Forms.Button()
         Me.btnGuardar = New System.Windows.Forms.Button()
+        Me.Btt_GuardarFormula = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -167,25 +168,27 @@ Partial Class frmFormulas
         '
         Me.Btt_Env_ReempFormulas.Image = Global.CM_Construcciones.My.Resources.Resources.application_form_delete
         Me.Btt_Env_ReempFormulas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_Env_ReempFormulas.Location = New System.Drawing.Point(193, 342)
+        Me.Btt_Env_ReempFormulas.Location = New System.Drawing.Point(201, 168)
         Me.Btt_Env_ReempFormulas.Name = "Btt_Env_ReempFormulas"
         Me.Btt_Env_ReempFormulas.Size = New System.Drawing.Size(169, 44)
         Me.Btt_Env_ReempFormulas.TabIndex = 33
         Me.Btt_Env_ReempFormulas.Text = "Reemplazar Formulas " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Borra las Anteriores)"
         Me.Btt_Env_ReempFormulas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Btt_Env_ReempFormulas.UseVisualStyleBackColor = True
+        Me.Btt_Env_ReempFormulas.Visible = False
         '
         'Btt_Env_AgregFormulas
         '
         Me.Btt_Env_AgregFormulas.Image = Global.CM_Construcciones.My.Resources.Resources.application_form_add
         Me.Btt_Env_AgregFormulas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_Env_AgregFormulas.Location = New System.Drawing.Point(16, 342)
+        Me.Btt_Env_AgregFormulas.Location = New System.Drawing.Point(26, 168)
         Me.Btt_Env_AgregFormulas.Name = "Btt_Env_AgregFormulas"
         Me.Btt_Env_AgregFormulas.Size = New System.Drawing.Size(169, 44)
         Me.Btt_Env_AgregFormulas.TabIndex = 32
         Me.Btt_Env_AgregFormulas.Text = "Añadir fórmulas " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Anteriores se mantienen)"
         Me.Btt_Env_AgregFormulas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Btt_Env_AgregFormulas.UseVisualStyleBackColor = True
+        Me.Btt_Env_AgregFormulas.Visible = False
         '
         'btnsalir
         '
@@ -210,12 +213,26 @@ Partial Class frmFormulas
         Me.btnGuardar.Text = "Guardar Ingredientes" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "en tolvas "
         Me.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnGuardar.UseVisualStyleBackColor = True
+        Me.btnGuardar.Visible = False
+        '
+        'Btt_GuardarFormula
+        '
+        Me.Btt_GuardarFormula.Image = Global.CM_Construcciones.My.Resources.Resources.application_put
+        Me.Btt_GuardarFormula.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Btt_GuardarFormula.Location = New System.Drawing.Point(16, 342)
+        Me.Btt_GuardarFormula.Name = "Btt_GuardarFormula"
+        Me.Btt_GuardarFormula.Size = New System.Drawing.Size(144, 44)
+        Me.Btt_GuardarFormula.TabIndex = 36
+        Me.Btt_GuardarFormula.Text = "Guardar Fórmula"
+        Me.Btt_GuardarFormula.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btt_GuardarFormula.UseVisualStyleBackColor = True
         '
         'frmFormulas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(639, 539)
+        Me.Controls.Add(Me.Btt_GuardarFormula)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Txt_Estado)
         Me.Controls.Add(Me.Btt_Env_ReempFormulas)
@@ -259,4 +276,5 @@ Partial Class frmFormulas
     Friend WithEvents Btt_Env_ReempFormulas As Button
     Friend WithEvents Label5 As Label
     Friend WithEvents Txt_Estado As TextBox
+    Friend WithEvents Btt_GuardarFormula As Button
 End Class

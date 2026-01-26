@@ -7,28 +7,27 @@ Public Class frmFormulas
     Dim ds As New DataSet
     Private bindingSource1 As New BindingSource()
     Private AdaptadorDeDatos As New OleDb.OleDbDataAdapter
-    Dim registros As Integer
+    Private registros As Integer
+    Private numsol1, numsol2, numliq As Integer
+    Private tbTolvas As New DataTable
+
 
     Private Sub frmFormulas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'verificamos cuantas filas de liquidos y cuantas de solidos se debe seleccionar
       Dim da1 As New OleDbDataAdapter("select * from NumeroTolvasTanques order by ID", sConnString)
         Dim ds1 As New DataSet
-        Dim numliq As Integer
-      Dim numsol1 As Integer
-      Dim numsol2 As Integer
 
         Dim i As Integer
         da1.Fill(ds1)
+        'Se llena la tabla del número de tolvas
+        da1.Fill(tbTolvas)
         registros = ds1.Tables(0).Rows.Count
-      'If registros <> 3 Then
-      'Exit Sub
-      'Else
-      numsol1 = ds1.Tables(0).Rows(0).Item(2)
-        numsol2 = ds1.Tables(0).Rows(1).Item(2)
-        numliq = ds1.Tables(0).Rows(2).Item(2)
+        'numsol1 = ds1.Tables(0).Rows(0).Item(2)
+        'numsol2 = ds1.Tables(0).Rows(1).Item(2)
+        'numliq = ds1.Tables(0).Rows(2).Item(2)
         'registros = numsol1
 
-        registros = numliq + numsol1 + numsol2
+        'registros = numliq + numsol1 + numsol2
         'End If
 
         'cargamos datos de productos
@@ -106,59 +105,71 @@ Public Class frmFormulas
       Dim TxtCantidadColumn As New DataGridViewTextBoxColumn
       TxtCantidadColumn.Name = "Cantidad"
       Me.DataGridView1.Columns.Add(TxtCantidadColumn)
+        Me.DataGridView1.Rows.Add(registros)
+        Try
+            Me.cmbproductos.SelectedIndex = 0
+        Catch ex As Exception
 
-
-      Me.DataGridView1.Rows.Add(registros)
-      Dim j As Integer = 1
-      For i = 0 To numsol1 - 1
-         Me.DataGridView1.Rows(i).Cells(0).Value = "Arido " & j
-         j = j + 1
-      Next
-      j = 1
-      For i = numsol1 To numsol1 + numsol2 - 1
-         Me.DataGridView1.Rows(i).Cells(0).Value = "Cemento " & j
-         j = j + 1
-      Next
-      j = 1
-      For i = numsol1 + numsol2 To numsol1 + numsol2 + numliq - 1
-         Me.DataGridView1.Rows(i).Cells(0).Value = "Liquido " & j
-         j = j + 1
-      Next
-
-      'lleno los datos de la formula
-      If objds.Tables(0).Rows.Count > 0 Then
-
-         Try
-            Dim da2 As New OleDbDataAdapter("select * from AdminTolvasTanques", sConnString)
-            Dim ds2 As New DataSet
-            da2.Fill(ds2)
-            For i = 0 To ds2.Tables(0).Rows.Count - 1
-               Try
-                  Dim da3 As New OleDbDataAdapter("select id_ingrediente from ingredientes where id_ingrediente='" & ds2.Tables(0).Rows(i).Item(1) & "'", sConnString)
-                  Dim ds3 As New DataSet
-                  da3.Fill(ds3)
-
-                  If ds3.Tables(0).Rows.Count > 0 Then
-                     Me.DataGridView1.Rows(i).Cells(1).Value = ds2.Tables(0).Rows(i).Item(1)
-                     'Me.DataGridView1.Rows(i).Cells(2).Value = ds2.Tables(0).Rows(i).Item(2)
-                  Else
-                     Me.DataGridView1.Rows(i).Cells(1).Value = "0"
-                  End If
-                  Me.DataGridView1.Rows(i).Cells(2).Value = 0
-                  Me.cmbproductos.SelectedValue = ds2.Tables(0).Rows(i).Item(3)
-
-               Catch ex As ArgumentException
-
-               End Try
-            Next
-         Catch ex As Exception
-            MessageBox.Show("No existe un ingrediente de tolva en el listado de ingredientes")
-         End Try
-
-      End If
-      DataGridView1.AutoResizeColumns()
+        End Try
+        '*-*-AQ--
+        'Funcion para actualizar las formulas guardadas
+        Actualizar_Formula_DG()
     End Sub
 
+    Private Sub Actualizar_Formula_DG()
+        Dim i As Integer
+        DataGridView1.Rows.Clear()
+        da = New OleDbDataAdapter("SELECT * FROM Ingredientes ORDER BY Id_ingrediente", sConnString)
+        Dim objds As New DataSet
+
+        'Pasamos las columnas que deseamos en el dataset
+        da.Fill(objds, "Id_ingrediente")
+        da.Fill(objds, "Descripcion")
+
+        'Lleno los datos de la formula
+        If objds.Tables(0).Rows.Count > 0 Then
+            Try
+                Dim cmdTxt As String = $"SELECT * FROM DetalleFormulas WHERE id_formula='{cmbproductos.SelectedValue.ToString}'"
+                Dim da2 As New OleDbDataAdapter(cmdTxt, sConnString)
+                Dim ds2 As New DataSet
+                da2.Fill(ds2)
+                If ds2.Tables(0).Rows.Count > 0 Then
+                    For i = 0 To ds2.Tables(0).Rows.Count - 1
+                        Try
+                            cmdTxt = $"SELECT Id_ingrediente FROM ingredientes WHERE Id_ingrediente = '{ds2.Tables(0).Rows(i).Item(2)}'"
+                            Dim da3 As New OleDbDataAdapter(cmdTxt, sConnString)
+                            Dim ds3 As New DataSet
+                            da3.Fill(ds3)
+
+                            If ds3.Tables(0).Rows.Count > 0 Then
+                                Me.DataGridView1.Rows.Add(1)
+                                Me.DataGridView1.Rows(i).Cells(0).Value = tbTolvas.Rows(i).Item(1)
+                                Me.DataGridView1.Rows(i).Cells(1).Value = ds2.Tables(0).Rows(i).Item(2)
+                                Me.DataGridView1.Rows(i).Cells(2).Value = ds2.Tables(0).Rows(i).Item(3)
+                            End If
+                        Catch ex As ArgumentException
+
+                        End Try
+                    Next
+                Else
+                    For i = 0 To registros - 1
+                        Try
+                            Me.DataGridView1.Rows.Add(1)
+                            Me.DataGridView1.Rows(i).Cells(2).Value = 0
+                            Me.DataGridView1.Rows(i).Cells(0).Value = tbTolvas.Rows(i).Item(1)
+                        Catch ex As ArgumentException
+
+                        End Try
+                    Next
+                End If
+            Catch ex As Exception
+                'MsgBox(ex.Message, "Error Actualizar Formula")
+            End Try
+        End If
+        DataGridView1.AutoResizeColumns()
+
+
+    End Sub
     'Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuardar.Click
     'MsgBox(Me.DataGridView1.CurrentRow.Cells(1).Value)
 
@@ -186,9 +197,9 @@ Public Class frmFormulas
             If CStr(DataGridView1.Rows(i).Cells(2).Value) = "" Then
                 DataGridView1.Rows(i).Cells(2).Value = 0
             End If
-            cmd.CommandText = "Insert into AdminTolvasTanques values('" & DataGridView1.Rows(i).Cells(0).Value & _
-            "','" & DataGridView1.Rows(i).Cells(1).Value & _
-            "'," & DataGridView1.Rows(i).Cells(2).Value & _
+            cmd.CommandText = "Insert into AdminTolvasTanques values('" & DataGridView1.Rows(i).Cells(0).Value &
+            "','" & DataGridView1.Rows(i).Cells(1).Value &
+            "'," & DataGridView1.Rows(i).Cells(2).Value &
             ",'" & cmbproductos.SelectedValue & "')"
             cmd.ExecuteNonQuery()
         Next
@@ -375,4 +386,49 @@ Public Class frmFormulas
         Btt_Env_AgregFormulas.Enabled = True
     End Sub
 
+    Private Sub Btt_GuardarFormula_Click(sender As Object, e As EventArgs) Handles Btt_GuardarFormula.Click
+        Try
+            Using conection As New OleDbConnection(sConnString)
+                Using cmd As New OleDbCommand
+                    cmd.Connection = conection
+                    cmd.CommandText = "DELETE * FROM DetalleFormulas where id_formula=?"
+                    cmd.Parameters.AddWithValue("?", cmbproductos.SelectedValue.ToString)
+                    conection.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+        Catch ex As Exception
+            MsgBox(ex.Message, "::Error Eliminar Detalle Fórmula::")
+            Exit Sub
+        End Try
+        Try
+            For i As Integer = 0 To DataGridView1.Rows.Count - 1
+                If CStr(DataGridView1.Rows(i).Cells(1).Value) = "" Then
+                    DataGridView1.Rows(i).Cells(1).Value = 0
+                End If
+                Using conection As New OleDbConnection(sConnString)
+                    Using cmd As New OleDbCommand
+                        cmd.Connection = conection
+                        cmd.CommandText = "INSERT INTO DetalleFormulas (id_formula, id_ingrediente, cantidad, Num_Tolva) VALUES (?,?,?,?)"
+                        cmd.Parameters.AddWithValue("?", cmbproductos.SelectedValue.ToString)
+                        cmd.Parameters.AddWithValue("?", DataGridView1.Rows(i).Cells(1).Value.ToString)
+                        cmd.Parameters.AddWithValue("?", CInt(DataGridView1.Rows(i).Cells(2).Value))
+                        cmd.Parameters.AddWithValue("?", CInt(tbTolvas.Rows(i).Item(0)))
+                        'cmd.Parameters.AddWithValue("?", DataGridView1.Rows(i).Cells(0).Value.ToString.Replace("Ingrediente ", ""))
+                        conection.Open()
+                        cmd.ExecuteNonQuery()
+                    End Using
+                End Using
+            Next
+            MessageBox.Show("Proceso Finalizado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MsgBox(ex.Message, "::Error Registrar Fórmula::")
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub cmbproductos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbproductos.SelectedIndexChanged
+        Actualizar_Formula_DG()
+    End Sub
 End Class

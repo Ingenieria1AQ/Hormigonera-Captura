@@ -32,9 +32,6 @@ Partial Class Principal
         Me.Txt_EstadoCon = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Txt_Mensj_Sistema = New System.Windows.Forms.TextBox()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Tmr_LeeCamara = New System.Windows.Forms.Timer(Me.components)
-        Me.Tmr_timeoutConn = New System.Windows.Forms.Timer(Me.components)
         Me.btt_Con_Indicador = New System.Windows.Forms.Button()
         Me.btnReportes = New System.Windows.Forms.Button()
         Me.btnobtener = New System.Windows.Forms.Button()
@@ -43,6 +40,9 @@ Partial Class Principal
         Me.btnEProductos = New System.Windows.Forms.Button()
         Me.btnEOperadores = New System.Windows.Forms.Button()
         Me.btnEIngredientes = New System.Windows.Forms.Button()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Tmr_LeeCamara = New System.Windows.Forms.Timer(Me.components)
+        Me.Tmr_timeoutConn = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -181,21 +181,6 @@ Partial Class Principal
         Me.Txt_Mensj_Sistema.TabIndex = 0
         Me.Txt_Mensj_Sistema.Visible = False
         '
-        'Panel2
-        '
-        Me.Panel2.BackColor = System.Drawing.SystemColors.ButtonShadow
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(145, 0)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(603, 625)
-        Me.Panel2.TabIndex = 3
-        '
-        'Tmr_LeeCamara
-        '
-        '
-        'Tmr_timeoutConn
-        '
-        '
         'btt_Con_Indicador
         '
         Me.btt_Con_Indicador.Image = Global.CM_Construcciones.My.Resources.Resources.disconnect
@@ -291,6 +276,21 @@ Partial Class Principal
         Me.btnEIngredientes.Text = "Ingredientes"
         Me.btnEIngredientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnEIngredientes.UseVisualStyleBackColor = True
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(145, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(603, 625)
+        Me.Panel2.TabIndex = 3
+        '
+        'Tmr_LeeCamara
+        '
+        '
+        'Tmr_timeoutConn
+        '
         '
         'Principal
         '
