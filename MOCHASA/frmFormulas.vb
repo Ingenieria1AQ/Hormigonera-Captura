@@ -38,8 +38,8 @@ Public Class frmFormulas
       objda.Fill(objds_p, "Id_Producto")
       objda.Fill(objds_p, "Descripcion")
       If objds_p.Tables(0).Rows.Count = 0 Then
-         MessageBox.Show("No existen datos de productos")
-         Me.Close()
+            MessageBox.Show("No existen datos de productos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Me.Close()
       End If
       For i = 0 To objds_p.Tables(0).Rows.Count - 1
          objds_p.Tables(0).Rows(i).Item(1) = objds_p.Tables(0).Rows(i).Item(0) & ", " & objds_p.Tables(0).Rows(i).Item(1)
