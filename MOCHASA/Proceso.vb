@@ -87,11 +87,12 @@ Public Class Proceso
             'Llenar los Labels
             For i As Integer = 0 To dt.Rows.Count - 1
                 Dim idx As Integer = i + 1
-                Dim lblTolva As Label = ObtenerLabel("Lbl_Tolv" & idx)
-                Dim lblIng As Label = ObtenerLabel("Lbl_Ing" & idx)
-                Dim lblCanTeo As Label = ObtenerLabel("Lbl_CanTeo" & idx)
-                Dim lblCanReal As Label = ObtenerLabel("Lbl_CanRea" & idx)
-                Dim lblDifer As Label = ObtenerLabel("Lbl_Dif" & idx)
+                Dim lblTolva As Label = BuscarLabel("Lbl_Tolv" & idx)
+                Dim lblIng As Label = BuscarLabel("Lbl_Ing" & idx)
+                Dim lblCanTeo As Label = BuscarLabel("Lbl_CanTeo" & idx)
+                Dim lblCanReal As Label = BuscarLabel("Lbl_CanRea" & idx)
+                Dim lblDifer As Label = BuscarLabel("Lbl_Dif" & idx)
+                Dim PgBar As ProgressBar = BuscarPgBar("Pb_Tol" & idx)
 
                 If lblTolva Is Nothing Then Continue For
 
@@ -100,6 +101,8 @@ Public Class Proceso
                 lblCanTeo.Text = dt.Rows(i).Item("Cantidad").ToString()
                 lblCanReal.Text = "0"
                 lblDifer.Text = "0"
+                PgBar.Visible = True
+                PgBar.Value = 0
             Next
 
         Catch ex As Exception
@@ -110,11 +113,12 @@ Public Class Proceso
     Private Sub LimpiarLabelsFormula()
         Try
             For i As Integer = 1 To registros
-                Dim lblTolva = BuscarLabel("Lbl_Tolv" & i)
-                Dim lblIng = BuscarLabel("Lbl_Ing" & i)
-                Dim lblCanTeo = BuscarLabel("Lbl_CanTeo" & i)
-                Dim lblCanRea = BuscarLabel("Lbl_CanRea" & i)
-                Dim lblDifer = BuscarLabel("Lbl_Dif" & i)
+                Dim lblTolva As Label = BuscarLabel("Lbl_Tolv" & i)
+                Dim lblIng As Label = BuscarLabel("Lbl_Ing" & i)
+                Dim lblCanTeo As Label = BuscarLabel("Lbl_CanTeo" & i)
+                Dim lblCanRea As Label = BuscarLabel("Lbl_CanRea" & i)
+                Dim lblDifer As Label = BuscarLabel("Lbl_Dif" & i)
+                Dim PgBar As ProgressBar = BuscarPgBar("Pb_Tol" & i)
 
                 If lblTolva IsNot Nothing Then
                     lblTolva.Text = ""
@@ -135,6 +139,10 @@ Public Class Proceso
                 If lblDifer IsNot Nothing Then
                     lblDifer.Text = ""
                     lblDifer.visible = True
+                End If
+                If PgBar IsNot Nothing Then
+                    PgBar.Visible = False
+                    PgBar.Value = 0
                 End If
             Next
         Catch ex As Exception
@@ -164,24 +172,24 @@ Public Class Proceso
         Return Nothing
 
     End Function
-    Private Function ObtenerLabel(nombre As String) As Label
-        Return ObtenerLabelRec(Me.Controls, nombre)
-    End Function
 
-    Private Function ObtenerLabelRec(controles As Control.ControlCollection, nombre As String) As Label
-        For Each c As Control In controles
-            If TypeOf c Is Label AndAlso c.Name = nombre Then
-                Return CType(c, Label)
+    Private Function BuscarPgBar(nombre As String) As ProgressBar
+        Return BuscarPgBarEnControles(Me.Controls, nombre)
+    End Function
+    Private Function BuscarPgBarEnControles(controles As Control.ControlCollection, nombre As String) As ProgressBar
+
+        For Each ctrl As Control In controles
+            If TypeOf ctrl Is ProgressBar AndAlso ctrl.Name = nombre Then
+                Return CType(ctrl, ProgressBar)
             End If
 
-            If c.HasChildren Then
-                Dim encontrado = ObtenerLabelRec(c.Controls, nombre)
+            If ctrl.HasChildren Then
+                Dim encontrado = BuscarPgBarEnControles(ctrl.Controls, nombre)
                 If encontrado IsNot Nothing Then Return encontrado
             End If
         Next
         Return Nothing
     End Function
-
 
     Private Sub cmbproductos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbproductos.SelectedIndexChanged
         If cmbproductos.SelectedIndex > -1 Then
