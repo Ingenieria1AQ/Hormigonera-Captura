@@ -31,31 +31,10 @@ Public Class frmConexion
             CargarConfig(0, cboSerialPort1, Txt_Baud1, Txt_DataBits1, cboParity1, cboStopBits1, cboFlowControl1, cboTipoInd1)
             CargarConfig(1, cboSerialPort2, Txt_Baud2, Txt_DataBits2, cboParity2, cboStopBits2, cboFlowControl2, cboTipoInd2)
             CargarConfig(2, cboSerialPort3, Txt_Baud3, Txt_DataBits3, cboParity3, cboStopBits3, cboFlowControl3, cboTipoInd3)
-            'If dtConfigTol.Rows.Count >= 2 Then
-            '    cboSerialPort1.SelectedIndex = cboSerialPort1.FindString(dtConfigTol.Rows(0).Item("PuertoCOM"))
-            '    Txt_Baud1.Text = dtConfigTol.Rows(0).Item("BaudRate")
-            '    Txt_DataBits1.Text = dtConfigTol.Rows(0).Item("Bits")
-            '    cboParity1.SelectedIndex = cboParity1.FindString(dtConfigTol.Rows(0).Item("Paridad"))
-            '    cboStopBits1.SelectedIndex = cboStopBits1.FindString(dtConfigTol.Rows(0).Item("Parada"))
-            '    cboFlowControl1.SelectedIndex = cboFlowControl1.FindString(dtConfigTol.Rows(0).Item("ControlFlujo"))
-            '    cboTipoInd1.SelectedIndex = cboTipoInd1.FindString(dtConfigTol.Rows(0).Item("TipoIndicador"))
 
-            '    cboSerialPort2.SelectedIndex = cboSerialPort2.FindString(dtConfigTol.Rows(1).Item("PuertoCOM"))
-            '    Txt_Baud2.Text = dtConfigTol.Rows(1).Item("BaudRate")
-            '    Txt_DataBits2.Text = dtConfigTol.Rows(1).Item("Bits")
-            '    cboParity2.SelectedIndex = cboParity2.FindString(dtConfigTol.Rows(1).Item("Paridad"))
-            '    cboStopBits2.SelectedIndex = cboStopBits2.FindString(dtConfigTol.Rows(1).Item("Parada"))
-            '    cboFlowControl2.SelectedIndex = cboFlowControl2.FindString(dtConfigTol.Rows(1).Item("ControlFlujo"))
-            '    cboTipoInd2.SelectedIndex = cboTipoInd2.FindString(dtConfigTol.Rows(1).Item("TipoIndicador"))
+            Txt_IpAdd.Text = Funciones.Obtener_Valor_Configuracion("PLC_IP")
+            Txt_Puerto.Text = Funciones.Obtener_Valor_Configuracion("PLC_Puerto")
 
-            '    cboSerialPort3.SelectedIndex = cboSerialPort3.FindString(dtConfigTol.Rows(2).Item("PuertoCOM"))
-            '    Txt_Baud3.Text = dtConfigTol.Rows(2).Item("BaudRate")
-            '    Txt_DataBits3.Text = dtConfigTol.Rows(2).Item("Bits")
-            '    cboParity3.SelectedIndex = cboParity3.FindString(dtConfigTol.Rows(2).Item("Paridad"))
-            '    cboStopBits3.SelectedIndex = cboStopBits3.FindString(dtConfigTol.Rows(2).Item("Parada"))
-            '    cboFlowControl3.SelectedIndex = cboFlowControl3.FindString(dtConfigTol.Rows(2).Item("ControlFlujo"))
-            '    cboTipoInd3.SelectedIndex = cboTipoInd3.FindString(dtConfigTol.Rows(2).Item("TipoIndicador"))
-            'End If
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Excepcion: Load", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -103,9 +82,12 @@ Public Class frmConexion
             Dim bitsDatos As String = ""
             Dim paridad As String = ""
             Dim controlFlujo As String = ""
+            Dim bitsParada As String = ""
             Dim NombreIndicador As String = ""
             Dim tipo As String = "Serie"
             Dim idTolva As String = "0"
+            Dim IP_PLC As String = ""
+            Dim Puerto_PLC As String = "0"
 
             Select Case TabControl1.SelectedIndex
                 Case 0
@@ -114,6 +96,7 @@ Public Class frmConexion
                     bitsDatos = Txt_DataBits1.Text
                     paridad = cboParity1.SelectedValue
                     controlFlujo = cboFlowControl1.SelectedValue
+                    bitsParada = cboStopBits1.SelectedValue
                     NombreIndicador = cboTipoInd1.Text
                     idTolva = CInt(dtConfigTol.Rows(0).Item("id"))
                 Case 1
@@ -122,6 +105,7 @@ Public Class frmConexion
                     bitsDatos = Txt_DataBits2.Text
                     paridad = cboParity2.SelectedValue
                     controlFlujo = cboFlowControl2.SelectedValue
+                    bitsParada = cboStopBits2.SelectedValue
                     NombreIndicador = cboTipoInd2.Text
                     idTolva = CInt(dtConfigTol.Rows(1).Item("id"))
 
@@ -131,14 +115,17 @@ Public Class frmConexion
                     bitsDatos = Txt_DataBits3.Text
                     paridad = cboParity3.SelectedValue
                     controlFlujo = cboFlowControl3.SelectedValue
+                    bitsParada = cboStopBits3.SelectedValue
                     NombreIndicador = cboTipoInd3.Text
                     idTolva = CInt(dtConfigTol.Rows(2).Item("id"))
 
                 Case 3
                     tipo = "PLC"
+                    IP_PLC = Txt_IpAdd.Text
+                    Puerto_PLC = Txt_Puerto.Text
 
             End Select
-            ActualizarConfiguracion(idTolva, NombreCom, Baud, bitsDatos, paridad, controlFlujo, NombreIndicador, tipo)
+            ActualizarConfiguracion(idTolva, NombreCom, Baud, bitsDatos, paridad, bitsParada, controlFlujo, NombreIndicador, tipo, IP_PLC, Puerto_PLC)
 
         Catch ex As Exception
             MsgBox("Exepción Actualizar: " & ex.Message)
@@ -148,20 +135,30 @@ Public Class frmConexion
     Private Sub Btt_Cancelar_Click(sender As Object, e As EventArgs) Handles Btt_Cancelar.Click
         Me.Close()
     End Sub
-    Private Sub ActualizarConfiguracion(idTolva As Integer, PuertoSerie As String, Baudrate As Integer, BitsDatos As String, BitsParada As String, ControlFlujo As String, nombreIndicador As String, tipo As String)
+
+    Private Sub ActualizarConfiguracion(idTolva As Integer, PuertoSerie As String, Baudrate As Integer, BitsDatos As String, Paridad As String,
+                                        BitsParada As String, ControlFlujo As String, nombreIndicador As String, tipo As String, IP As String, Puerto As String)
         Try
             Select Case tipo
                 Case "PLC"
-                    MessageBox.Show("Registro PLC", "Mensaje")
+                    If Funciones.Actualizar_Valor_Configuracion("PLC_IP", IP) And Funciones.Actualizar_Valor_Configuracion("PLC_Puerto", Puerto) Then
+                        MessageBox.Show("Registro de PLC actualizado correctamente", "Mensaje",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+
+                        MessageBox.Show("No se actualizó ningún registro del PLC", "Mensaje",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
 
                 Case "Serie"
                     Using conection As New OleDbConnection(sConnString)
                         Using cmd As New OleDbCommand
                             cmd.Connection = conection
-                            cmd.CommandText = "UPDATE NumeroTolvasTanques SET PuertoCOM = ?, BaudRate = ?, Bits = ?, Parada = ? ,ControlFlujo = ?, TipoIndicador = ? WHERE id = ? "
+                            cmd.CommandText = "UPDATE NumeroTolvasTanques SET PuertoCOM = ?, BaudRate = ?, Bits = ?, Paridad = ?, Parada = ? ,ControlFlujo = ?, TipoIndicador = ? WHERE id = ? "
                             cmd.Parameters.AddWithValue("?", PuertoSerie)
                             cmd.Parameters.AddWithValue("?", Baudrate)
                             cmd.Parameters.AddWithValue("?", BitsDatos)
+                            cmd.Parameters.AddWithValue("?", Paridad)
                             cmd.Parameters.AddWithValue("?", BitsParada)
                             cmd.Parameters.AddWithValue("?", ControlFlujo)
                             cmd.Parameters.AddWithValue("?", nombreIndicador)
@@ -169,10 +166,10 @@ Public Class frmConexion
                             conection.Open()
                             Dim filasAfectadas As Integer = cmd.ExecuteNonQuery
                             If filasAfectadas > 0 Then
-                                MessageBox.Show("Registro actualizado correctamente", "Mensaje",
+                                MessageBox.Show($"Registro de **{dtConfigTol.Rows(idTolva - 1).Item("descripcion")}** actualizado correctamente", "Mensaje",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information)
                             Else
-                                MessageBox.Show("No se actualizó ningún registro", "Mensaje",
+                                MessageBox.Show($"No se actualizó ningún registro en **{dtConfigTol.Rows(idTolva - 1).Item("descripcion")}**", "Mensaje",
                                             MessageBoxButtons.OK, MessageBoxIcon.Warning)
                             End If
                         End Using

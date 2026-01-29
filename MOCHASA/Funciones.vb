@@ -113,6 +113,48 @@ Module Funciones
             Exit Sub
         End If
     End Sub
+    Public Function Actualizar_Valor_Configuracion(Nombre As String, Valor As String) As Boolean
+        Dim rpta As Boolean = False
+        Using conection As New OleDbConnection(sConnString)
+            Using cmd As New OleDbCommand
+                cmd.Connection = conection
+                cmd.CommandText = "UPDATE Configuracion SET Valor = ? WHERE Nombre = ?  "
+                cmd.Parameters.AddWithValue("?", Valor)
+                cmd.Parameters.AddWithValue("?", Nombre)
+
+                conection.Open()
+                Dim filasAfectadas As Integer = cmd.ExecuteNonQuery
+                If filasAfectadas > 0 Then
+                    rpta = True
+                Else
+                    rpta = False
+                End If
+            End Using
+        End Using
+        Return rpta
+    End Function
+    Public Function Obtener_Valor_Configuracion(Nombre As String) As String
+        Dim tbDatos As New DataTable
+        Dim rpta As String
+        Using conection As New OleDbConnection(sConnString)
+            Using cmd As New OleDbCommand
+                cmd.Connection = conection
+                cmd.CommandText = "SELECT Valor FROM Configuracion WHERE Nombre = ?  "
+                cmd.Parameters.AddWithValue("?", Nombre)
+
+                conection.Open()
+                Using da As New OleDbDataAdapter(cmd)
+                    da.Fill(tbDatos)
+                End Using
+            End Using
+            If tbDatos IsNot Nothing OrElse tbDatos.Rows.Count = 0 Then
+                rpta = tbDatos.Rows(0).Item("Valor")
+            Else
+                rpta = ""
+            End If
+        End Using
+        Return rpta
+    End Function
 
     Public Sub enviarArchivo(nomArchivo As String, btt_Envio As Button, txt_estado As TextBox)
         'Public Sub enviarArchivo(nomArchivo As String)
