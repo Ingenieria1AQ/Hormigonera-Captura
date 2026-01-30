@@ -1674,7 +1674,7 @@ Partial Class Proceso
         '
         'btn_impresion
         '
-        Me.btn_impresion.Location = New System.Drawing.Point(29, 566)
+        Me.btn_impresion.Location = New System.Drawing.Point(530, 559)
         Me.btn_impresion.Name = "btn_impresion"
         Me.btn_impresion.Size = New System.Drawing.Size(121, 23)
         Me.btn_impresion.TabIndex = 241
