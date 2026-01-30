@@ -4,6 +4,8 @@ Imports System.IO
 Imports System.Threading
 Imports System.Data.OleDb
 Imports SocketTools.SocketWrench.ErrorCode
+Imports System.IO.Ports
+
 Module Funciones
 
     Private Conn As New OleDbConnection()
@@ -11,6 +13,8 @@ Module Funciones
     Public Const CSWSOCK10_LICENSE_KEY As String = "AnFJpHIoGSoBVlGQlEWtMOhFJsBIzP"
     Public WithEvents clientSocketCamara As New SocketTools.SocketWrench
 
+    Public IntentosSerial As Integer
+    Public IntentosSerialMax As Integer = 10
 
 
     Public Sub Conectar_Indicador(IpAddress As String, Port As Integer)
@@ -363,5 +367,59 @@ Module Funciones
         Next
         Return False
     End Function
+    Public Function AbrirPuertoSerial(sp As IO.Ports.SerialPort, row As DataRow) As Boolean
+        Dim puerto As String = row.Field(Of String)("PuertoCOM")
+        Dim baud As Integer = row.Field(Of Integer)("BaudRate")
+        Dim bits As Integer = row.Field(Of Integer)("Bits")
+
+        Dim paridad As Parity = DirectCast(System.Enum.Parse(GetType(Parity), row.Field(Of String)("Paridad")), Parity)
+
+        Dim parada As StopBits = DirectCast(System.Enum.Parse(GetType(StopBits), row.Field(Of String)("Parada")), StopBits)
+
+        Dim flujo As Handshake = DirectCast(System.Enum.Parse(GetType(Handshake), row.Field(Of String)("ControlFlujo")), Handshake)
+
+        Return Funciones.spOpen(sp, puerto, baud, bits, paridad, parada, flujo)
+    End Function
+
+    Public Function spOpen(PuertoSerie As SerialPort, Com As String, BaudRate As Integer, DataBits As Integer, Pariedad As Parity, StopBits As StopBits, flowControl As Handshake) As Boolean
+        Dim rpta As Boolean = False
+        Try
+            If PuertoSerie.IsOpen Then
+                PuertoSerie.Close()
+            End If
+            With PuertoSerie
+                .PortName = Com
+                .BaudRate = BaudRate
+                .DataBits = DataBits
+                .Parity = Pariedad
+                .StopBits = StopBits
+                .Handshake = flowControl
+                .DtrEnable = False
+                .RtsEnable = False
+                '.NewLine = vbCr
+                .ReadTimeout = 3000
+                .WriteTimeout = -1
+            End With
+            PuertoSerie.Open()
+            If PuertoSerie.IsOpen Then
+                rpta = True
+            End If
+            IntentosSerial = 0
+        Catch ex As Exception
+            MessageBox.Show("Error al Abrir Puerto Serie: " & ex.Message, "Exepción ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            rpta = False
+        End Try
+        Return rpta
+    End Function
+    Public Sub spClose(PuertoSerie As SerialPort)
+        Try
+            If PuertoSerie.IsOpen Then
+                PuertoSerie.Close()
+                PuertoSerie.Dispose()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error al Cerrar Puerto Serie: " & ex.Message, "Exepción ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
+    End Sub
 
 End Module

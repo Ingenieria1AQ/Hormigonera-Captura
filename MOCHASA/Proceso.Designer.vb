@@ -22,6 +22,7 @@ Partial Class Proceso
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Proceso))
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -47,7 +48,7 @@ Partial Class Proceso
         Me.cmbproductos = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.Rtx_Mensajes = New System.Windows.Forms.RichTextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Btt_Reconectar = New System.Windows.Forms.Button()
         Me.Label21 = New System.Windows.Forms.Label()
@@ -130,6 +131,9 @@ Partial Class Proceso
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
+        Me.SerialTolva1 = New System.IO.Ports.SerialPort(Me.components)
+        Me.SerialTolva2 = New System.IO.Ports.SerialPort(Me.components)
+        Me.SerialCemento = New System.IO.Ports.SerialPort(Me.components)
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -538,13 +542,13 @@ Partial Class Proceso
         Me.NumericUpDown1.TabIndex = 217
         Me.NumericUpDown1.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'RichTextBox1
+        'Rtx_Mensajes
         '
-        Me.RichTextBox1.Location = New System.Drawing.Point(12, 243)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(361, 113)
-        Me.RichTextBox1.TabIndex = 219
-        Me.RichTextBox1.Text = ""
+        Me.Rtx_Mensajes.Location = New System.Drawing.Point(12, 243)
+        Me.Rtx_Mensajes.Name = "Rtx_Mensajes"
+        Me.Rtx_Mensajes.Size = New System.Drawing.Size(361, 113)
+        Me.Rtx_Mensajes.TabIndex = 219
+        Me.Rtx_Mensajes.Text = ""
         '
         'Label16
         '
@@ -1685,7 +1689,7 @@ Partial Class Proceso
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label16)
-        Me.Controls.Add(Me.RichTextBox1)
+        Me.Controls.Add(Me.Rtx_Mensajes)
         Me.Controls.Add(Me.NumericUpDown1)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.cmbproductos)
@@ -1780,7 +1784,7 @@ Partial Class Proceso
     Friend WithEvents cmbproductos As ComboBox
     Friend WithEvents Label15 As Label
     Friend WithEvents NumericUpDown1 As NumericUpDown
-    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents Rtx_Mensajes As RichTextBox
     Friend WithEvents Label16 As Label
     Friend WithEvents Btt_Reconectar As Button
     Friend WithEvents Label21 As Label
@@ -1863,4 +1867,7 @@ Partial Class Proceso
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents Label27 As Label
     Friend WithEvents Label28 As Label
+    Friend WithEvents SerialTolva1 As IO.Ports.SerialPort
+    Friend WithEvents SerialTolva2 As IO.Ports.SerialPort
+    Friend WithEvents SerialCemento As IO.Ports.SerialPort
 End Class

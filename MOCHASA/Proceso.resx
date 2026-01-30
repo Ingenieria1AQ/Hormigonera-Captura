@@ -198,4 +198,13 @@
   <data name="Pilot_L1_BatchReady.DebugData" xml:space="preserve">
     <value>001,999,668,1,255,0,0,0,255,0,0,0,1,0,0,5,4,4,994,4,994,664,4,664,4,4,,1,255,255,255,255,255,0,0,0,1,0,0,6,4,664,46,622,952,46,994,4,4,4,4,664,,1,255,229,229,229,255,127,127,127,1,0,0,5,46,46,952,46,952,622,46,622,46,46,</value>
   </data>
+  <metadata name="SerialTolva1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="SerialTolva2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>127, 17</value>
+  </metadata>
+  <metadata name="SerialCemento.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>237, 17</value>
+  </metadata>
 </root>

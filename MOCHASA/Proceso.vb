@@ -1,16 +1,53 @@
 ﻿Imports System.Data
 Imports System.Data.OleDb
+Imports System.IO.Ports
+
 Public Class Proceso
     Private da As OleDbDataAdapter
     Private ds As New DataSet
     Private registros As Integer = 5
     Private tbTolvas As New DataTable
+    Private font_Rtxt As System.Drawing.Font = New System.Drawing.Font("MicrosoftSansSerif", 8)
 
+
+    '*-*-Variables para manejo del proceso-*-*-*-*-
+    Private running As Boolean = False
+    Private preparado As Boolean = False
+    Private peso As Double = 0.0
+    Private codIng As String
+    Private nomIng As String
+    Private codProd As String
+    Private nomProd As String
+    Private valor As Double
+    Private pesoSet As Double
+    Private pesoReal As Double
+    Private diferencia As Double
+    Private pesoSet1, pesoSet2, pesoSet3, pesoSet4, pesoSet5 As Double
+    Private pesoReal1, pesoReal2, pesoReal3, pesoReal4, pesoReal5 As Double
+    Private batchPlanificacion, batchActual, batchPendientes As Integer
+    Private corteT1, corteT2, corteCemento, corteAgua As Double
+
+    Private flagFinCemento As Boolean = False
+    Private flagFinAridos As Boolean = False
+    Private flagFinAgua As Boolean = False
+    Private flagFinParcial As Boolean = False
+    Private flagSoltarProducto As Boolean = False
+
+    Private flagEnviadoParcialCemento As Boolean = False
+    Private flagEnviadoParcialAgua As Boolean = False
+
+    Private SerTol1_ok, SerTol2_ok, SerCemento_ok As Boolean
+
+
+    '*-*-*-*-**-*-*-*-*-*-*-*
     Private Sub Proceso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargarInfoTolvas()
         CargaProductos()
         LimpiarLabelsFormula()
+        Config_Serial_Tolvas()
     End Sub
+
+
     Private Sub CargarInfoTolvas()
         Try
             'Se extrae la configuracion de Tolvas 
@@ -21,6 +58,11 @@ Public Class Proceso
             da1.Fill(ds1)
             'Se llena la tabla del número de tolvas
             da1.Fill(tbTolvas)
+            If tbTolvas IsNot Nothing And tbTolvas.Rows.Count = 4 Then
+            Else
+                MessageBox.Show("Configuracion de Tolvas no es correcta " & vbCrLf & "Consulte a su administrador", "Excepcion Carga Info Tolvas", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Me.Close()
+            End If
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Excepcion Carga Info Tolvas", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -52,6 +94,46 @@ Public Class Proceso
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Excepcion Carga Inicial", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    Private Sub LimpiarLabelsFormula()
+        Try
+            For i As Integer = 1 To registros
+                Dim lblTolva As Label = BuscarLabel("Lbl_Tolv" & i)
+                Dim lblIng As Label = BuscarLabel("Lbl_Ing" & i)
+                Dim lblCanTeo As Label = BuscarLabel("Lbl_CanTeo" & i)
+                Dim lblCanRea As Label = BuscarLabel("Lbl_CanRea" & i)
+                Dim lblDifer As Label = BuscarLabel("Lbl_Dif" & i)
+                Dim PgBar As ProgressBar = BuscarPgBar("Pb_Tol" & i)
+
+                If lblTolva IsNot Nothing Then
+                    lblTolva.Text = ""
+                    lblTolva.visible = True
+                End If
+                If lblIng IsNot Nothing Then
+                    lblIng.Text = ""
+                    lblIng.visible = True
+                End If
+                If lblCanTeo IsNot Nothing Then
+                    lblCanTeo.Text = ""
+                    lblCanTeo.visible = True
+                End If
+                If lblCanRea IsNot Nothing Then
+                    lblCanRea.Text = ""
+                    lblCanRea.visible = True
+                End If
+                If lblDifer IsNot Nothing Then
+                    lblDifer.Text = ""
+                    lblDifer.visible = True
+                End If
+                If PgBar IsNot Nothing Then
+                    PgBar.Visible = False
+                    PgBar.Value = 0
+                End If
+            Next
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
     Private Sub ObtieneFormulaxProducto(idProducto As String)
         Dim dt As New DataTable
@@ -110,52 +192,11 @@ Public Class Proceso
         End Try
 
     End Sub
-    Private Sub LimpiarLabelsFormula()
-        Try
-            For i As Integer = 1 To registros
-                Dim lblTolva As Label = BuscarLabel("Lbl_Tolv" & i)
-                Dim lblIng As Label = BuscarLabel("Lbl_Ing" & i)
-                Dim lblCanTeo As Label = BuscarLabel("Lbl_CanTeo" & i)
-                Dim lblCanRea As Label = BuscarLabel("Lbl_CanRea" & i)
-                Dim lblDifer As Label = BuscarLabel("Lbl_Dif" & i)
-                Dim PgBar As ProgressBar = BuscarPgBar("Pb_Tol" & i)
-
-                If lblTolva IsNot Nothing Then
-                    lblTolva.Text = ""
-                    lblTolva.visible = True
-                End If
-                If lblIng IsNot Nothing Then
-                    lblIng.Text = ""
-                    lblIng.visible = True
-                End If
-                If lblCanTeo IsNot Nothing Then
-                    lblCanTeo.Text = ""
-                    lblCanTeo.visible = True
-                End If
-                If lblCanRea IsNot Nothing Then
-                    lblCanRea.Text = ""
-                    lblCanRea.visible = True
-                End If
-                If lblDifer IsNot Nothing Then
-                    lblDifer.Text = ""
-                    lblDifer.visible = True
-                End If
-                If PgBar IsNot Nothing Then
-                    PgBar.Visible = False
-                    PgBar.Value = 0
-                End If
-            Next
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
-    End Sub
     Private Function BuscarLabel(nombre As String) As Label
 
         Return BuscarLabelEnControles(Me.Controls, nombre)
 
     End Function
-
     Private Function BuscarLabelEnControles(controles As Control.ControlCollection, nombre As String) As Label
 
         For Each ctrl As Control In controles
@@ -191,10 +232,40 @@ Public Class Proceso
         Return Nothing
     End Function
 
+
     Private Sub cmbproductos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbproductos.SelectedIndexChanged
         If cmbproductos.SelectedIndex > -1 Then
             ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
         End If
+    End Sub
+
+    Private Sub Config_Serial_Tolvas()
+        Try
+            SerTol1_ok = Funciones.AbrirPuertoSerial(SerialTolva1, tbTolvas.Rows(0))
+            SerTol2_ok = Funciones.AbrirPuertoSerial(SerialTolva2, tbTolvas.Rows(1))
+            SerCemento_ok = Funciones.AbrirPuertoSerial(SerialCemento, tbTolvas.Rows(2))
+
+            If SerTol1_ok AndAlso SerTol2_ok AndAlso SerCemento_ok Then
+                Rtx_Mensajes.AppendColoredText(
+                    "Configuración serial de tolvas correcta" & Environment.NewLine,
+                    Drawing.Color.Black,
+                    font_Rtxt)
+            Else
+                MessageBox.Show(
+                    "Configuración Serial de Tolvas no es correcta" & vbCrLf &
+                    "Consulte a su administrador",
+                    "Excepción Config Serial Tolvas",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error)
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(
+                ex.Message,
+                "Excepción: Configuración Serial Tolvas",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error)
+        End Try
 
     End Sub
 End Class
