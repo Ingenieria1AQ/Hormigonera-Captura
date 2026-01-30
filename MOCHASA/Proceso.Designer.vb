@@ -134,6 +134,8 @@ Partial Class Proceso
         Me.SerialTolva1 = New System.IO.Ports.SerialPort(Me.components)
         Me.SerialTolva2 = New System.IO.Ports.SerialPort(Me.components)
         Me.SerialCemento = New System.IO.Ports.SerialPort(Me.components)
+        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
+        Me.btn_impresion = New System.Windows.Forms.Button()
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1667,11 +1669,24 @@ Partial Class Proceso
         Me.Label28.TabIndex = 0
         Me.Label28.Text = "0.00"
         '
+        'PrintDocument1
+        '
+        '
+        'btn_impresion
+        '
+        Me.btn_impresion.Location = New System.Drawing.Point(29, 566)
+        Me.btn_impresion.Name = "btn_impresion"
+        Me.btn_impresion.Size = New System.Drawing.Size(121, 23)
+        Me.btn_impresion.TabIndex = 241
+        Me.btn_impresion.Text = "Test Impresion"
+        Me.btn_impresion.UseVisualStyleBackColor = True
+        '
         'Proceso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1223, 614)
+        Me.Controls.Add(Me.btn_impresion)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.Tub_P4_02)
@@ -1870,4 +1885,6 @@ Partial Class Proceso
     Friend WithEvents SerialTolva1 As IO.Ports.SerialPort
     Friend WithEvents SerialTolva2 As IO.Ports.SerialPort
     Friend WithEvents SerialCemento As IO.Ports.SerialPort
+    Friend WithEvents PrintDocument1 As Printing.PrintDocument
+    Friend WithEvents btn_impresion As Button
 End Class
