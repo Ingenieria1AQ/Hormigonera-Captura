@@ -1,5 +1,6 @@
 ﻿Imports System.Data
 Imports System.Data.OleDb
+Imports System.Drawing.Printing
 Imports System.IO.Ports
 
 Public Class Proceso
@@ -38,15 +39,42 @@ Public Class Proceso
 
     Private SerTol1_ok, SerTol2_ok, SerCemento_ok As Boolean
 
-
+    Dim textoImprimir As String = ""
+    Dim nombreImpresora As String = ""
     '*-*-*-*-**-*-*-*-*-*-*-*
+
+    Private Sub btn_impresion_Click(sender As Object, e As EventArgs) Handles btn_impresion.Click
+        textoImprimir = "PRODUCTO: Cemento" & vbCrLf &
+                "CANT TEORICA: 10" & vbCrLf &
+                "CANT REAL: 11" & vbCrLf
+        PrintDocument1.PrinterSettings.PrinterName = nombreImpresora
+        PrintDocument1.PrintController = New StandardPrintController()
+        PrintDocument1.Print()
+
+    End Sub
     Private Sub Proceso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargarInfoTolvas()
         CargaProductos()
         LimpiarLabelsFormula()
         Config_Serial_Tolvas()
+        CargarNombreImpresora()
     End Sub
 
+    Private Sub CargarNombreImpresora()
+        Using conex As New OleDbConnection(sConnString)
+            conex.Open()
+            Using cmd As New OleDbCommand("select valor from Configuracion where nombre=@nombreImpresora", conex)
+                cmd.Parameters.AddWithValue("@nombreImpresora", "Nombre_Impresora")
+                Dim resultado As Object = cmd.ExecuteScalar()
+
+                If resultado IsNot Nothing AndAlso Not IsDBNull(resultado) Then
+                    nombreImpresora = resultado.ToString()
+                Else
+                    MessageBox.Show("No se encontro una impresora configurada", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            End Using
+        End Using
+    End Sub
 
     Private Sub CargarInfoTolvas()
         Try
@@ -107,23 +135,23 @@ Public Class Proceso
 
                 If lblTolva IsNot Nothing Then
                     lblTolva.Text = ""
-                    lblTolva.visible = True
+                    lblTolva.Visible = True
                 End If
                 If lblIng IsNot Nothing Then
                     lblIng.Text = ""
-                    lblIng.visible = True
+                    lblIng.Visible = True
                 End If
                 If lblCanTeo IsNot Nothing Then
                     lblCanTeo.Text = ""
-                    lblCanTeo.visible = True
+                    lblCanTeo.Visible = True
                 End If
                 If lblCanRea IsNot Nothing Then
                     lblCanRea.Text = ""
-                    lblCanRea.visible = True
+                    lblCanRea.Visible = True
                 End If
                 If lblDifer IsNot Nothing Then
                     lblDifer.Text = ""
-                    lblDifer.visible = True
+                    lblDifer.Visible = True
                 End If
                 If PgBar IsNot Nothing Then
                     PgBar.Visible = False
@@ -267,5 +295,12 @@ Public Class Proceso
                 MessageBoxIcon.Error)
         End Try
 
+    End Sub
+    Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles PrintDocument1.PrintPage
+
+        Dim fuente As New Font("Courier New", 10)
+        e.Graphics.DrawString(textoImprimir, fuente, Brushes.Black, 0, 0)
+
+        e.HasMorePages = False
     End Sub
 End Class

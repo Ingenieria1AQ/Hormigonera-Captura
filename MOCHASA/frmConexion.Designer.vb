@@ -79,11 +79,15 @@ Partial Class frmConexion
         Me.TP_PLC = New System.Windows.Forms.TabPage()
         Me.label11 = New System.Windows.Forms.Label()
         Me.label12 = New System.Windows.Forms.Label()
+        Me.TP_Impresora = New System.Windows.Forms.TabPage()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.cbx_impresora = New System.Windows.Forms.ComboBox()
         Me.TabControl1.SuspendLayout()
         Me.TP_Tolv1.SuspendLayout()
         Me.TP_Tolv2.SuspendLayout()
         Me.TP_Cemento.SuspendLayout()
         Me.TP_PLC.SuspendLayout()
+        Me.TP_Impresora.SuspendLayout()
         Me.SuspendLayout()
         '
         'Btt_Cancelar
@@ -141,6 +145,7 @@ Partial Class frmConexion
         Me.TabControl1.Controls.Add(Me.TP_Tolv2)
         Me.TabControl1.Controls.Add(Me.TP_Cemento)
         Me.TabControl1.Controls.Add(Me.TP_PLC)
+        Me.TabControl1.Controls.Add(Me.TP_Impresora)
         Me.TabControl1.Location = New System.Drawing.Point(2, 12)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -662,6 +667,37 @@ Partial Class frmConexion
         Me.label12.TabIndex = 12
         Me.label12.Text = "Direccion IP-Servidor:"
         '
+        'TP_Impresora
+        '
+        Me.TP_Impresora.Controls.Add(Me.Label24)
+        Me.TP_Impresora.Controls.Add(Me.cbx_impresora)
+        Me.TP_Impresora.Location = New System.Drawing.Point(4, 22)
+        Me.TP_Impresora.Name = "TP_Impresora"
+        Me.TP_Impresora.Size = New System.Drawing.Size(358, 226)
+        Me.TP_Impresora.TabIndex = 6
+        Me.TP_Impresora.Text = "Impresora"
+        Me.TP_Impresora.UseVisualStyleBackColor = True
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.Location = New System.Drawing.Point(27, 43)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(66, 13)
+        Me.Label24.TabIndex = 26
+        Me.Label24.Text = "Impresora:"
+        '
+        'cbx_impresora
+        '
+        Me.cbx_impresora.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbx_impresora.FormattingEnabled = True
+        Me.cbx_impresora.Items.AddRange(New Object() {"ZM301", "ZM201", "QW", "GW", "EDS"})
+        Me.cbx_impresora.Location = New System.Drawing.Point(97, 40)
+        Me.cbx_impresora.Name = "cbx_impresora"
+        Me.cbx_impresora.Size = New System.Drawing.Size(231, 21)
+        Me.cbx_impresora.TabIndex = 25
+        '
         'frmConexion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -682,6 +718,8 @@ Partial Class frmConexion
         Me.TP_Cemento.PerformLayout()
         Me.TP_PLC.ResumeLayout(False)
         Me.TP_PLC.PerformLayout()
+        Me.TP_Impresora.ResumeLayout(False)
+        Me.TP_Impresora.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -741,4 +779,7 @@ Partial Class frmConexion
     Friend WithEvents Label21 As Label
     Friend WithEvents Label22 As Label
     Friend WithEvents Label23 As Label
+    Friend WithEvents TP_Impresora As TabPage
+    Friend WithEvents Label24 As Label
+    Friend WithEvents cbx_impresora As ComboBox
 End Class
