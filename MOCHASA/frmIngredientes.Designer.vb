@@ -156,6 +156,7 @@ Partial Class frmIngredientes
         Me.Btt_EnviarZM.Text = "Enviar a " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Controlador"
         Me.Btt_EnviarZM.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_EnviarZM.UseVisualStyleBackColor = True
+        Me.Btt_EnviarZM.Visible = False
         '
         'Txt_Estado
         '

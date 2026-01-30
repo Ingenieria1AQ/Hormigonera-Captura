@@ -25,7 +25,7 @@ Public Class frmOperadores
         Try
             ' Especificar un 'connection string' valido
             ' En este caso origen de la carpeta de la aplicacion BD1.mdb
-            Dim cmdtxt As String = "SELECT * FROM Operadores order by Id_operador"
+            Dim cmdtxt As String = "SELECT * FROM Operadores order by idOperador"
             ' Crear un nuevo adaptador de datos vasado en el 'query' especificado
             Me.AdaptadorDeDatos = New OleDb.OleDbDataAdapter(cmdtxt, sConnString)
             Me.DataGridView1.DataSource = Me.bindingSource1

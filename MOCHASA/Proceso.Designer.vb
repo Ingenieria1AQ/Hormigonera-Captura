@@ -134,6 +134,13 @@ Partial Class Proceso
         Me.SerialTolva1 = New System.IO.Ports.SerialPort(Me.components)
         Me.SerialTolva2 = New System.IO.Ports.SerialPort(Me.components)
         Me.SerialCemento = New System.IO.Ports.SerialPort(Me.components)
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.Lbl_Puerto = New System.Windows.Forms.Label()
+        Me.Lbl_Est_Conn = New System.Windows.Forms.Label()
+        Me.Lbl_IpAdd = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -168,6 +175,7 @@ Partial Class Proceso
         CType(Me.Pilot_L1_Busy, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pilot_L1_BatchReady, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label9
@@ -1667,11 +1675,84 @@ Partial Class Proceso
         Me.Label28.TabIndex = 0
         Me.Label28.Text = "0.00"
         '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.Lbl_Puerto)
+        Me.GroupBox6.Controls.Add(Me.Lbl_Est_Conn)
+        Me.GroupBox6.Controls.Add(Me.Lbl_IpAdd)
+        Me.GroupBox6.Controls.Add(Me.Label7)
+        Me.GroupBox6.Controls.Add(Me.Label8)
+        Me.GroupBox6.Controls.Add(Me.Label29)
+        Me.GroupBox6.Location = New System.Drawing.Point(12, 527)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(128, 78)
+        Me.GroupBox6.TabIndex = 241
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Información:"
+        '
+        'Lbl_Puerto
+        '
+        Me.Lbl_Puerto.AutoSize = True
+        Me.Lbl_Puerto.BackColor = System.Drawing.Color.White
+        Me.Lbl_Puerto.Location = New System.Drawing.Point(48, 36)
+        Me.Lbl_Puerto.Name = "Lbl_Puerto"
+        Me.Lbl_Puerto.Size = New System.Drawing.Size(37, 13)
+        Me.Lbl_Puerto.TabIndex = 17
+        Me.Lbl_Puerto.Text = "10101"
+        '
+        'Lbl_Est_Conn
+        '
+        Me.Lbl_Est_Conn.AutoSize = True
+        Me.Lbl_Est_Conn.ForeColor = System.Drawing.Color.Red
+        Me.Lbl_Est_Conn.Location = New System.Drawing.Point(48, 57)
+        Me.Lbl_Est_Conn.Name = "Lbl_Est_Conn"
+        Me.Lbl_Est_Conn.Size = New System.Drawing.Size(77, 13)
+        Me.Lbl_Est_Conn.TabIndex = 0
+        Me.Lbl_Est_Conn.Text = "Desconectado"
+        '
+        'Lbl_IpAdd
+        '
+        Me.Lbl_IpAdd.AutoSize = True
+        Me.Lbl_IpAdd.BackColor = System.Drawing.Color.White
+        Me.Lbl_IpAdd.Location = New System.Drawing.Point(48, 15)
+        Me.Lbl_IpAdd.Name = "Lbl_IpAdd"
+        Me.Lbl_IpAdd.Size = New System.Drawing.Size(70, 13)
+        Me.Lbl_IpAdd.TabIndex = 16
+        Me.Lbl_IpAdd.Text = "192.168.1.62"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(6, 56)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(46, 13)
+        Me.Label7.TabIndex = 0
+        Me.Label7.Text = "Estado: "
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(6, 36)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(44, 13)
+        Me.Label8.TabIndex = 15
+        Me.Label8.Text = "Puerto: "
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(6, 15)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(26, 13)
+        Me.Label29.TabIndex = 14
+        Me.Label29.Text = "Dir: "
+        '
         'Proceso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1223, 614)
+        Me.Controls.Add(Me.GroupBox6)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.Tub_P4_02)
@@ -1755,6 +1836,8 @@ Partial Class Proceso
         CType(Me.Pilot_L1_BatchReady, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1870,4 +1953,11 @@ Partial Class Proceso
     Friend WithEvents SerialTolva1 As IO.Ports.SerialPort
     Friend WithEvents SerialTolva2 As IO.Ports.SerialPort
     Friend WithEvents SerialCemento As IO.Ports.SerialPort
+    Friend WithEvents GroupBox6 As GroupBox
+    Friend WithEvents Lbl_Puerto As Label
+    Friend WithEvents Lbl_Est_Conn As Label
+    Friend WithEvents Lbl_IpAdd As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label29 As Label
 End Class

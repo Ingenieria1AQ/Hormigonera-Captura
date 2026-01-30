@@ -5,6 +5,9 @@ Imports System.Threading
 Imports System.Data.OleDb
 Imports SocketTools.SocketWrench.ErrorCode
 Imports System.IO.Ports
+Imports System.Text.RegularExpressions
+Imports System.Net.NetworkInformation
+Imports System.Threading.Thread
 
 Module Funciones
 
@@ -40,7 +43,7 @@ Module Funciones
 
     Public Sub sockClient_OnConnect(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles clientSocketCamara.OnConnect
         Principal.Tmr_timeoutConn.Enabled = False
-        With Principal.Lbl_Est_Conn
+        With Proceso.Lbl_Est_Conn
             .Text = "Conectado"
             .ForeColor = Color.Green
         End With
@@ -57,7 +60,7 @@ Module Funciones
         '
         If clientSocketCamara.IsConnected Then
             clientSocketCamara.Disconnect()
-            With Principal.Lbl_Est_Conn
+            With Proceso.Lbl_Est_Conn
                 .Text = "Desconectado"
                 .ForeColor = Color.Red
             End With
@@ -422,4 +425,128 @@ Module Funciones
         End Try
     End Sub
 
+    Public Sub verifica_mac()
+        Dim direccion As String = ""
+        Dim permitidos(40) As String
+        permitidos(0) = "B86B23DD5373" 'PC AQ Ingematic
+        permitidos(1) = "A8A15956BCE8" 'PC cliente de Interbalanzas
+        permitidos(2) = ""
+        permitidos(3) = ""
+        permitidos(4) = ""
+        permitidos(5) = ""
+        permitidos(6) = ""
+        permitidos(7) = ""
+        permitidos(8) = ""
+        permitidos(9) = ""
+        permitidos(10) = ""
+        permitidos(11) = ""
+        permitidos(12) = ""
+        permitidos(13) = ""
+        permitidos(14) = ""
+        permitidos(15) = ""
+        permitidos(16) = ""
+        permitidos(17) = ""
+        permitidos(18) = ""
+        permitidos(19) = ""
+        permitidos(20) = ""
+        permitidos(21) = ""
+        permitidos(22) = ""
+        permitidos(23) = ""
+        permitidos(24) = ""
+        permitidos(25) = ""
+        permitidos(26) = ""
+        permitidos(27) = ""
+        permitidos(28) = ""
+        permitidos(29) = ""
+        permitidos(30) = ""
+        permitidos(31) = ""
+        permitidos(32) = ""
+        permitidos(33) = ""
+        permitidos(34) = ""
+        permitidos(35) = ""
+        permitidos(36) = ""
+        permitidos(37) = ""
+        permitidos(38) = ""
+        permitidos(39) = ""
+        permitidos(40) = ""
+        Dim computerProperties As IPGlobalProperties = IPGlobalProperties.GetIPGlobalProperties()
+        Dim nics As NetworkInterface() = NetworkInterface.GetAllNetworkInterfaces()
+        Variables.nombre_PC = computerProperties.HostName
+        Dim tiene_licencia As Int16 = 0
+        Dim adapter As NetworkInterface
+
+        For Each adapter In nics
+            Dim dir As String = adapter.GetPhysicalAddress().ToString()
+            If dir <> "" Then
+                direccion = dir
+                'If direccion <> "" Then
+                Dim properties As IPInterfaceProperties = adapter.GetIPProperties()
+                Dim i As Int16
+                For i = 0 To permitidos.Length - 1
+                    If permitidos(i) = direccion Then
+                        tiene_licencia = 1
+                        Exit For
+                    End If
+                Next
+            End If
+        Next adapter
+        '++++++OJOOOOO no tiene control Licencias, quitar esta linea
+        'tiene_licencia = 1
+
+        If tiene_licencia = 0 Then
+            If direccion = "" Then
+                MsgBox("No se encontró una tarjeta de red en este computador(" & nombre_PC & "). El sistema no puede continuar", MsgBoxStyle.Critical, ".:Pesos Noperti:.")
+            Else
+                MsgBox("Este computador (" & nombre_PC & ") " & vbCrLf & "NO tiene licencia para el uso de este software" & vbCrLf & "Consulte a su proveedor", MsgBoxStyle.Critical, ".:Pesos Noperti:.")
+
+            End If
+            Application.Exit()
+        End If
+    End Sub
+    Public Sub LeerSerie(SP As SerialPort, Btt_ReCon As Button, Lb_Estado As Label, Lb_Peso As Label, Temporizador As System.Windows.Forms.Timer, Indicador As String)
+        Try
+            Dim spLectura As String
+            Dim spPeso As Decimal
+            Dim pattern As String
+            pattern = ""
+            Select Case Indicador
+                Case "Estándar"
+                    pattern = "-?\d+(\.\d+)?"
+            End Select
+
+            Dim regex As New Regex(pattern)
+            Dim encontrado As Match
+            If SP.IsOpen And IntentosSerial < IntentosSerialMax Then
+                Btt_ReCon.Visible = False
+                Lb_Estado.Text = "Conectado"
+                Lb_Estado.ForeColor = System.Drawing.Color.DarkGreen
+                SP.ReceivedBytesThreshold = 1000000
+                spLectura = SP.ReadExisting().ToString
+                Sleep(300)
+                encontrado = regex.Match(spLectura)
+                'Verificar si se encontró alguna coincidencia
+                If encontrado.Success Then
+                    spPeso = Decimal.Parse(encontrado.Value)
+                    'Lb_Peso.Text = spPeso.ToString
+                    Lb_Peso.Text = (String.Format("{0:N3}", spPeso))
+                    IntentosSerial = 0
+                Else
+                    IntentosSerial += 1
+                    Exit Sub
+                End If
+            Else
+                If SP.IsOpen Then
+                    SP.Close()
+                End If
+                Lb_Estado.Text = "Desconectado"
+                Lb_Estado.ForeColor = System.Drawing.Color.DarkRed
+                Btt_ReCon.Visible = True
+            End If
+        Catch ex As System.TimeoutException
+            Temporizador.Enabled = False
+            Lb_Estado.Text = "Desconectado"
+            Lb_Estado.ForeColor = System.Drawing.Color.DarkRed
+            Btt_ReCon.Visible = True
+        End Try
+    End Sub
 End Module

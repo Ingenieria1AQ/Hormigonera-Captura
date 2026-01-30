@@ -29,9 +29,14 @@ Public Class Principal
     End Sub
 
     Private Sub btnEOperadores_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEOperadores.Click
-        frmOperadores.TopLevel = False
-        Panel2.Controls.Add(frmOperadores)
-        frmOperadores.Show()
+        If tipoOperador.Equals("Administrador") Then
+            frmOperadores.TopLevel = False
+            Panel2.Controls.Add(frmOperadores)
+            frmOperadores.Show()
+        Else
+            MessageBox.Show("No tiene autorización para continuar", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+
     End Sub
 
     Private Sub btnEProductos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEProductos.Click
@@ -59,6 +64,7 @@ Public Class Principal
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Application.EnableVisualStyles()
         Control.CheckForIllegalCrossThreadCalls = False
+        Login.ShowDialog()
 
         '700%sMAEST%e             P700.    DBNam MAEST
         '701%s80.5%e              P701.80  Col01 nomoperador
@@ -97,15 +103,15 @@ Public Class Principal
             Panel2.Controls.Add(frmConexion)
             frmConexion.Show()
         Else
-            'If clientSocketCamara.IsConnected Then
-            clientSocketCamara.Disconnect()
-            With Lbl_Est_Conn
-                .Text = "Desconectado"
-                .ForeColor = Color.Red
-            End With
-            With btt_Con_Indicador
-                .Text = "Conectar Controlador"
-            End With
+            ''If clientSocketCamara.IsConnected Then
+            'clientSocketCamara.Disconnect()
+            'With Lbl_Est_Conn
+            '    .Text = "Desconectado"
+            '    .ForeColor = Color.Red
+            'End With
+            'With btt_Con_Indicador
+            '    .Text = "Conectar Controlador"
+            'End With
             'End If
         End If
 

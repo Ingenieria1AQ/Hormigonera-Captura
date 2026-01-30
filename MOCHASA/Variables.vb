@@ -16,4 +16,12 @@ Module Variables
     Public retardo As Integer = 100000000
     Public leer_tabla As String
     Public estado_Conexion As Boolean
+
+    Public nomOperador As String
+    Public tipoOperador As String
+    Public idOperador As String
+    Public nombre_PC As String
+    Public intentosLogin As Integer
+    Public codOperador As String
+    Public convertirFecha As Boolean
 End Module
