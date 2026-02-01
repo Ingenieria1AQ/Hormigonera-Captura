@@ -45,7 +45,7 @@ Public Class crPorOperador
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "CM_Construcciones.crPorOperador.rpt"
+            Return "HORMIGONERA.crPorOperador.rpt"
         End Get
         Set
             'Do nothing

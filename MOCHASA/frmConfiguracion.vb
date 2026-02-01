@@ -3,7 +3,7 @@ Imports System.Data
 Imports System.Data.OleDb
 Imports System.Drawing.Printing
 
-Public Class frmConexion
+Public Class frmConfiguracion
     Private dtConfigTol As New DataTable
     Private Sub Init()
         'Load Serial Comm settings...
@@ -35,6 +35,10 @@ Public Class frmConexion
 
             Txt_IpAdd.Text = Funciones.Obtener_Valor_Configuracion("PLC_IP")
             Txt_Puerto.Text = Funciones.Obtener_Valor_Configuracion("PLC_Puerto")
+            Dim idx As Integer
+            idx = cbx_impresora.FindString(Funciones.Obtener_Valor_Configuracion("Nombre_Impresora").ToString())
+            If idx >= 0 Then cbx_impresora.SelectedIndex = idx
+            chBox_Hab_Imp.Checked = Convert.ToBoolean(Funciones.Obtener_Valor_Configuracion("UsaImpresora") = "1")
 
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Excepcion: Load", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -101,6 +105,7 @@ Public Class frmConexion
             Dim IP_PLC As String = ""
             Dim Puerto_PLC As String = "0"
             Dim nombreImpresora As String = ""
+            Dim usaImpresora As Integer = 0
             Select Case TabControl1.SelectedIndex
                 Case 0
                     NombreCom = cboSerialPort1.SelectedValue
@@ -138,9 +143,10 @@ Public Class frmConexion
                 Case 4
                     tipo = "Impresora"
                     nombreImpresora = cbx_impresora.Text
+                    usaImpresora = Convert.ToInt32(chBox_Hab_Imp.Checked)
 
             End Select
-            ActualizarConfiguracion(idTolva, NombreCom, Baud, bitsDatos, paridad, bitsParada, controlFlujo, NombreIndicador, tipo, IP_PLC, Puerto_PLC, nombreImpresora)
+            ActualizarConfiguracion(idTolva, NombreCom, Baud, bitsDatos, paridad, bitsParada, controlFlujo, NombreIndicador, tipo, IP_PLC, Puerto_PLC, nombreImpresora, usaImpresora)
 
         Catch ex As Exception
             MsgBox("Exepción Actualizar: " & ex.Message)
@@ -152,7 +158,8 @@ Public Class frmConexion
     End Sub
 
     Private Sub ActualizarConfiguracion(idTolva As Integer, PuertoSerie As String, Baudrate As Integer, BitsDatos As String, Paridad As String,
-                                        BitsParada As String, ControlFlujo As String, nombreIndicador As String, tipo As String, IP As String, Puerto As String, nombreImpresora As String)
+                                        BitsParada As String, ControlFlujo As String, nombreIndicador As String, tipo As String, IP As String,
+                                        Puerto As String, nombreImpresora As String, usaImp As Integer)
         Try
             Select Case tipo
                 Case "PLC"
@@ -190,7 +197,7 @@ Public Class frmConexion
                         End Using
                     End Using
                 Case "Impresora"
-                    If Funciones.Actualizar_Valor_Configuracion("Nombre_Impresora", nombreImpresora) Then
+                    If Funciones.Actualizar_Valor_Configuracion("Nombre_Impresora", nombreImpresora) And Funciones.Actualizar_Valor_Configuracion("UsaImpresora", usaImp) Then
                         MessageBox.Show("Registro de Impresora actualizado correctamente", "Mensaje",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Else
@@ -245,4 +252,5 @@ Public Class frmConexion
             MessageBox.Show(ex.Message, "Excepcion", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
 End Class

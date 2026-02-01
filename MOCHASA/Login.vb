@@ -46,7 +46,6 @@ Public Class Login
         End Try
     End Sub
     Private Sub Btt_Acceder_Click(sender As Object, e As EventArgs) Handles Btt_Acceder.Click
-        Dim adaptador As OleDbDataAdapter
         Dim tabla As New DataTable
 
         If Txt_Usuario.Text = String.Empty Or Txt_Clave.Text = String.Empty Then
@@ -87,14 +86,16 @@ Public Class Login
             End Using
 
             If tabla.Rows.Count > 0 Then
-                Principal.Panel1.Width = 199
+                'Principal.Panel1.Width = 199
                 intentosLogin = 0
-                Me.Close()
+
                 'Extraer informacion del operador
                 nomOperador = tabla.Rows(0).Item("nomOperador")
                 codOperador = tabla.Rows(0).Item("codOperador")
                 tipoOperador = tabla.Rows(0).Item("tipoOperador")
                 idOperador = tabla.Rows(0).Item("idOperador")
+                Principal.Show()
+                Me.Close()
 
             Else
                 intentosLogin += 1

@@ -6,7 +6,8 @@ Imports System.IO.Ports
 Public Class Proceso
     Private da As OleDbDataAdapter
     Private ds As New DataSet
-    Private registros As Integer = 5
+    Private numTolvas_Serial As Integer = 3
+    Private registros As Integer = 5 'Numero total de registros de la tabla NumeroTolvasTanques
     Private tbTolvas As New DataTable
     Private font_Rtxt As System.Drawing.Font = New System.Drawing.Font("MicrosoftSansSerif", 8)
 
@@ -28,6 +29,7 @@ Public Class Proceso
     Private batchPlanificacion, batchActual, batchPendientes As Integer
     Private corteT1, corteT2, corteCemento, corteAgua As Double
 
+    Private flagConfigTolvas As Boolean = False
     Private flagFinCemento As Boolean = False
     Private flagFinAridos As Boolean = False
     Private flagFinAgua As Boolean = False
@@ -39,8 +41,65 @@ Public Class Proceso
 
     Private SerTol1_ok, SerTol2_ok, SerCemento_ok As Boolean
 
-    Dim textoImprimir As String = ""
-    Dim nombreImpresora As String = ""
+
+    Private Sub Timer_Tolva1_Tick(sender As Object, e As EventArgs) Handles Timer_Tolva1.Tick
+        Funciones.LeerSerie(SerialTolva1, Btt_ReCon_T1, Lbl_Est_T1, Lbl_Peso_T1, Timer_Tolva1, "Estandar")
+    End Sub
+
+    Private Sub Timer_Tolva2_Tick(sender As Object, e As EventArgs) Handles Timer_Tolva2.Tick
+        Funciones.LeerSerie(SerialTolva2, Btt_ReCon_T2, Lbl_Est_T2, Lbl_Peso_T2, Timer_Tolva2, "Estandar")
+    End Sub
+
+    Private Sub TimerTolvCemento_Tick(sender As Object, e As EventArgs) Handles TimerTolvCemento.Tick
+        Funciones.LeerSerie(SerialCemento, Btt_ReCon_Cemento, Lbl_Est_Cem, Lbl_Peso_Cem, TimerTolvCemento, "Estandar")
+    End Sub
+
+    Private Sub Btt_ReCon_T1_Click(sender As Object, e As EventArgs) Handles Btt_ReCon_T1.Click
+        SerTol1_ok = Funciones.AbrirPuertoSerial(SerialTolva1, tbTolvas.Rows(0))
+        If Not SerialTolva1.IsOpen Then
+            'MessageBox.Show(String.Format("No se pudo abrir el puerto {0} " & "Verifique conexiones", SerialTolva1.PortName), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Rtx_Mensajes.AppendColoredText(
+                String.Format("No se pudo abrir el puerto {0} " & "Verifique conexiones", SerialTolva1.PortName) & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
+            Exit Sub
+        Else
+            Timer_Tolva1.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Btt_ReCon_T2_Click(sender As Object, e As EventArgs) Handles Btt_ReCon_T2.Click
+        SerTol2_ok = Funciones.AbrirPuertoSerial(SerialTolva2, tbTolvas.Rows(1))
+        If Not SerialTolva2.IsOpen Then
+            'MessageBox.Show(String.Format("No se pudo abrir el puerto {0} " & "Verifique conexiones", SerialTolva1.PortName), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Rtx_Mensajes.AppendColoredText(
+                String.Format("No se pudo abrir el puerto {0} " & "Verifique conexiones", SerialTolva2.PortName) & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
+            Exit Sub
+        Else
+            Timer_Tolva2.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Btt_ReCon_Cemento_Click(sender As Object, e As EventArgs) Handles Btt_ReCon_Cemento.Click
+        SerCemento_ok = Funciones.AbrirPuertoSerial(SerialCemento, tbTolvas.Rows(2))
+        If Not SerialCemento.IsOpen Then
+            'MessageBox.Show(String.Format("No se pudo abrir el puerto {0} " & "Verifique conexiones", SerialTolva1.PortName), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Rtx_Mensajes.AppendColoredText(
+                String.Format("No se pudo abrir el puerto {0} " & "Verifique conexiones", SerialCemento.PortName) & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
+            Exit Sub
+        Else
+            Timer_Tolva2.Enabled = True
+        End If
+    End Sub
+
+    Private textoImprimir As String = ""
+    Private nombreImpresora As String = ""
+    Private flagUsaImpresora As Boolean = False
+
     '*-*-*-*-**-*-*-*-*-*-*-*
 
     Private Sub btn_impresion_Click(sender As Object, e As EventArgs) Handles btn_impresion.Click
@@ -53,48 +112,69 @@ Public Class Proceso
 
     End Sub
     Private Sub Proceso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CargarInfoTolvas()
+        flagConfigTolvas = Cargar_y_Configurar_Tolvas()
         CargaProductos()
         LimpiarLabelsFormula()
-        Config_Serial_Tolvas()
-        CargarNombreImpresora()
+        nombreImpresora = Funciones.Obtener_Valor_Configuracion("Nombre_Impresora")
+        flagUsaImpresora = Convert.ToBoolean(Funciones.Obtener_Valor_Configuracion("UsaImpresora") = "1")
+        'Inicializar Timers para lectura del peso
+        Timer_Tolva1.Enabled = True
+        Timer_Tolva2.Enabled = True
+        TimerTolvCemento.Enabled = True
     End Sub
 
-    Private Sub CargarNombreImpresora()
-        Using conex As New OleDbConnection(sConnString)
-            conex.Open()
-            Using cmd As New OleDbCommand("select valor from Configuracion where nombre=@nombreImpresora", conex)
-                cmd.Parameters.AddWithValue("@nombreImpresora", "Nombre_Impresora")
-                Dim resultado As Object = cmd.ExecuteScalar()
-
-                If resultado IsNot Nothing AndAlso Not IsDBNull(resultado) Then
-                    nombreImpresora = resultado.ToString()
-                Else
-                    MessageBox.Show("No se encontro una impresora configurada", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
-            End Using
-        End Using
-    End Sub
-
-    Private Sub CargarInfoTolvas()
+    Private Function Cargar_y_Configurar_Tolvas() As Boolean
         Try
-            'Se extrae la configuracion de Tolvas 
-            Dim cmdTxt As String = "SELECT * FROM NumeroTolvasTanques ORDER BY ID"
-            Dim da1 As New OleDbDataAdapter(cmdTxt, sConnString)
-            Dim ds1 As New DataSet
-
-            da1.Fill(ds1)
-            'Se llena la tabla del número de tolvas
-            da1.Fill(tbTolvas)
-            If tbTolvas IsNot Nothing And tbTolvas.Rows.Count = 4 Then
-            Else
-                MessageBox.Show("Configuracion de Tolvas no es correcta " & vbCrLf & "Consulte a su administrador", "Excepcion Carga Info Tolvas", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Me.Close()
+            '1: Cargar configuracion de tolvas
+            Dim cmdTxt As String = "SELECT * FROM NumeroTolvasTanques ORDER BY id"
+            Using da As New OleDbDataAdapter(cmdTxt, sConnString)
+                tbTolvas.Clear()
+                da.Fill(tbTolvas)
+            End Using
+            'Validacion de datos
+            If tbTolvas Is Nothing OrElse tbTolvas.Rows.Count < numTolvas_Serial Then
+                Rtx_Mensajes.AppendColoredText(
+                "Error en la configuración de Tolvas. Consulte con el administrador del sistema" & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
+                Return False
             End If
+
+            '2: Configurar Puertos seriales
+            SerTol1_ok = Funciones.AbrirPuertoSerial(SerialTolva1, tbTolvas.Rows(0))
+            SerTol2_ok = Funciones.AbrirPuertoSerial(SerialTolva2, tbTolvas.Rows(1))
+            SerCemento_ok = Funciones.AbrirPuertoSerial(SerialCemento, tbTolvas.Rows(2))
+
+            If SerTol1_ok AndAlso SerTol2_ok AndAlso SerCemento_ok Then
+                Rtx_Mensajes.AppendColoredText(
+                    "Configuración serial de tolvas correcta" & Environment.NewLine,
+                    Drawing.Color.Black,
+                    font_Rtxt)
+                Return True
+            Else
+                Dim errores As New List(Of String)
+                If Not SerTol1_ok Then errores.Add("Tolva 1 - " & SerialTolva1.PortName)
+                If Not SerTol2_ok Then errores.Add("Tolva 2 - " & SerialTolva2.PortName)
+                If Not SerCemento_ok Then errores.Add("Tolva Cemento - " & SerialCemento.PortName)
+                Dim msg As String = "Error en la configuración del puerto serie:" & vbCrLf &
+                "- " & String.Join(vbCrLf & "- ", errores)
+                Rtx_Mensajes.AppendColoredText(msg & Environment.NewLine,
+                    Drawing.Color.Red,
+                    font_Rtxt)
+                Return False
+            End If
+
         Catch ex As Exception
-            MessageBox.Show(ex.Message, "Excepcion Carga Info Tolvas", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show(
+            ex.Message,
+            "Excepción: Carga y Configuración de Tolvas",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error)
+            Return False
         End Try
-    End Sub
+    End Function
+
+
     Private Sub CargaProductos()
         Try
 
@@ -267,35 +347,6 @@ Public Class Proceso
         End If
     End Sub
 
-    Private Sub Config_Serial_Tolvas()
-        Try
-            SerTol1_ok = Funciones.AbrirPuertoSerial(SerialTolva1, tbTolvas.Rows(0))
-            SerTol2_ok = Funciones.AbrirPuertoSerial(SerialTolva2, tbTolvas.Rows(1))
-            SerCemento_ok = Funciones.AbrirPuertoSerial(SerialCemento, tbTolvas.Rows(2))
-
-            If SerTol1_ok AndAlso SerTol2_ok AndAlso SerCemento_ok Then
-                Rtx_Mensajes.AppendColoredText(
-                    "Configuración serial de tolvas correcta" & Environment.NewLine,
-                    Drawing.Color.Black,
-                    font_Rtxt)
-            Else
-                MessageBox.Show(
-                    "Configuración Serial de Tolvas no es correcta" & vbCrLf &
-                    "Consulte a su administrador",
-                    "Excepción Config Serial Tolvas",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error)
-            End If
-
-        Catch ex As Exception
-            MessageBox.Show(
-                ex.Message,
-                "Excepción: Configuración Serial Tolvas",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error)
-        End Try
-
-    End Sub
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles PrintDocument1.PrintPage
 
         Dim fuente As New Font("Courier New", 10)

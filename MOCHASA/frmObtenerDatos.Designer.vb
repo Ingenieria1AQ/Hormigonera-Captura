@@ -124,7 +124,7 @@ Partial Class frmObtenerDatos
         '
         'Btt_BorrarTransacc
         '
-        Me.Btt_BorrarTransacc.Image = Global.CM_Construcciones.My.Resources.Resources.report_delete
+        Me.Btt_BorrarTransacc.Image = Global.HORMIGONERA.My.Resources.Resources.report_delete
         Me.Btt_BorrarTransacc.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_BorrarTransacc.Location = New System.Drawing.Point(287, 338)
         Me.Btt_BorrarTransacc.Name = "Btt_BorrarTransacc"
@@ -136,7 +136,7 @@ Partial Class frmObtenerDatos
         '
         'Btt_LeerOperadores
         '
-        Me.Btt_LeerOperadores.Image = Global.CM_Construcciones.My.Resources.Resources.group
+        Me.Btt_LeerOperadores.Image = Global.HORMIGONERA.My.Resources.Resources.group
         Me.Btt_LeerOperadores.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_LeerOperadores.Location = New System.Drawing.Point(148, 338)
         Me.Btt_LeerOperadores.Name = "Btt_LeerOperadores"
@@ -148,7 +148,7 @@ Partial Class frmObtenerDatos
         '
         'Btt_LeerProductos
         '
-        Me.Btt_LeerProductos.Image = Global.CM_Construcciones.My.Resources.Resources.box_closed
+        Me.Btt_LeerProductos.Image = Global.HORMIGONERA.My.Resources.Resources.box_closed
         Me.Btt_LeerProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_LeerProductos.Location = New System.Drawing.Point(148, 295)
         Me.Btt_LeerProductos.Name = "Btt_LeerProductos"
@@ -160,7 +160,7 @@ Partial Class frmObtenerDatos
         '
         'Btt_LeerTransacc
         '
-        Me.Btt_LeerTransacc.Image = Global.CM_Construcciones.My.Resources.Resources.report_magnify
+        Me.Btt_LeerTransacc.Image = Global.HORMIGONERA.My.Resources.Resources.report_magnify
         Me.Btt_LeerTransacc.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_LeerTransacc.Location = New System.Drawing.Point(287, 295)
         Me.Btt_LeerTransacc.Name = "Btt_LeerTransacc"
@@ -172,7 +172,7 @@ Partial Class frmObtenerDatos
         '
         'Btt_LeerFormulas
         '
-        Me.Btt_LeerFormulas.Image = Global.CM_Construcciones.My.Resources.Resources.form
+        Me.Btt_LeerFormulas.Image = Global.HORMIGONERA.My.Resources.Resources.form
         Me.Btt_LeerFormulas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_LeerFormulas.Location = New System.Drawing.Point(12, 338)
         Me.Btt_LeerFormulas.Name = "Btt_LeerFormulas"
@@ -184,7 +184,7 @@ Partial Class frmObtenerDatos
         '
         'Btt_LeerIngredientes
         '
-        Me.Btt_LeerIngredientes.Image = Global.CM_Construcciones.My.Resources.Resources.application_view_columns
+        Me.Btt_LeerIngredientes.Image = Global.HORMIGONERA.My.Resources.Resources.application_view_columns
         Me.Btt_LeerIngredientes.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_LeerIngredientes.Location = New System.Drawing.Point(12, 295)
         Me.Btt_LeerIngredientes.Name = "Btt_LeerIngredientes"
@@ -196,7 +196,7 @@ Partial Class frmObtenerDatos
         '
         'Salir
         '
-        Me.Salir.Image = Global.CM_Construcciones.My.Resources.Resources.cancel
+        Me.Salir.Image = Global.HORMIGONERA.My.Resources.Resources.cancel
         Me.Salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Salir.Location = New System.Drawing.Point(535, 295)
         Me.Salir.Name = "Salir"

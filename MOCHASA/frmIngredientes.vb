@@ -15,9 +15,14 @@ Public Class frmIngredientes
     End Sub
 
     Private Sub Eliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Eliminar.Click
-        If DataGridView1.Rows.Count > 0 Then
-            Me.DataGridView1.Rows.Remove(Me.DataGridView1.CurrentRow)
-        End If
+        Try
+            If DataGridView1.Rows.Count > 0 Then
+                Me.DataGridView1.Rows.Remove(Me.DataGridView1.CurrentRow)
+            End If
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub cargaringredientes()

@@ -45,7 +45,7 @@ Public Class crPorIngrediente
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "CM_Construcciones.crPorIngrediente.rpt"
+            Return "HORMIGONERA.crPorIngrediente.rpt"
         End Get
         Set
             'Do nothing

@@ -17,8 +17,8 @@ Module Funciones
     Public WithEvents clientSocketCamara As New SocketTools.SocketWrench
 
     Public IntentosSerial As Integer
-    Public IntentosSerialMax As Integer = 10
-
+    Public IntentosSerialMax As Integer = 6
+    Private Const TIMEOUT_SERIAL_MS As Integer = 3000
 
     Public Sub Conectar_Indicador(IpAddress As String, Port As Integer)
         If Not clientSocketCamara.Initialize(CSWSOCK10_LICENSE_KEY) Then
@@ -371,18 +371,51 @@ Module Funciones
         Return False
     End Function
     Public Function AbrirPuertoSerial(sp As IO.Ports.SerialPort, row As DataRow) As Boolean
-        Dim puerto As String = row.Field(Of String)("PuertoCOM")
-        Dim baud As Integer = row.Field(Of Integer)("BaudRate")
-        Dim bits As Integer = row.Field(Of Integer)("Bits")
+        Try
+            If row Is Nothing Then Return False
 
-        Dim paridad As Parity = DirectCast(System.Enum.Parse(GetType(Parity), row.Field(Of String)("Paridad")), Parity)
+            ' Cerrar puerto si ya está abierto
+            If sp.IsOpen Then sp.Close()
 
-        Dim parada As StopBits = DirectCast(System.Enum.Parse(GetType(StopBits), row.Field(Of String)("Parada")), StopBits)
+            With sp
+                .PortName = row.Field(Of String)("PuertoCOM")
+                .BaudRate = row.Field(Of Integer)("BaudRate")
+                .DataBits = row.Field(Of Integer)("Bits")
 
-        Dim flujo As Handshake = DirectCast(System.Enum.Parse(GetType(Handshake), row.Field(Of String)("ControlFlujo")), Handshake)
+                .Parity = ParseEnum(Of Parity)(row("Paridad"))
+                .StopBits = ParseEnum(Of StopBits)(row("Parada"))
+                .Handshake = ParseEnum(Of Handshake)(row("ControlFlujo"))
 
-        Return Funciones.spOpen(sp, puerto, baud, bits, paridad, parada, flujo)
+                .DtrEnable = False
+                .RtsEnable = False
+                .ReadTimeout = TIMEOUT_SERIAL_MS
+                .WriteTimeout = -1
+            End With
+
+            sp.Open()
+            IntentosSerial = 0
+
+            Return sp.IsOpen
+
+        Catch ex As Exception
+            ' Manejo centralizado (log / mensaje)
+            MessageBox.Show(
+            "Error al abrir puerto serie (" & sp.PortName & "): " & ex.Message,
+            "Excepción Puerto Serie",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Warning)
+            Return False
+        End Try
+
     End Function
+    Private Function ParseEnum(Of T)(value As Object) As T
+        If value Is Nothing OrElse IsDBNull(value) Then
+            Return CType([Enum].GetValues(GetType(T))(0), T)
+        End If
+
+        Return CType([Enum].Parse(GetType(T), value.ToString(), True), T)
+    End Function
+
 
     Public Function spOpen(PuertoSerie As SerialPort, Com As String, BaudRate As Integer, DataBits As Integer, Pariedad As Parity, StopBits As StopBits, flowControl As Handshake) As Boolean
         Dim rpta As Boolean = False
@@ -409,7 +442,7 @@ Module Funciones
             End If
             IntentosSerial = 0
         Catch ex As Exception
-            MessageBox.Show("Error al Abrir Puerto Serie: " & ex.Message, "Exepción ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Error al Abrir Puerto Serie: " & ex.Message, "Exepción SP Open", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             rpta = False
         End Try
         Return rpta
@@ -429,7 +462,7 @@ Module Funciones
         Dim direccion As String = ""
         Dim permitidos(40) As String
         permitidos(0) = "B86B23DD5373" 'PC AQ Ingematic
-        permitidos(1) = "A8A15956BCE8" 'PC cliente de Interbalanzas
+        permitidos(1) = "0068EB67CC95" 'PC AQ
         permitidos(2) = ""
         permitidos(3) = ""
         permitidos(4) = ""
@@ -503,6 +536,48 @@ Module Funciones
             Application.Exit()
         End If
     End Sub
+    Public Sub LeerSerie_Nueva(SP As SerialPort, Estado As SerialState, Btt_ReCon As Button, Lb_Estado As Label, Lb_Peso As Label,
+                        Temporizador As System.Windows.Forms.Timer, Indicador As String)
+        Try
+            If Not SP.IsOpen Then Throw New TimeoutException()
+            'Cambia de estado al Label
+            Btt_ReCon.Visible = False
+            Lb_Estado.Text = "Conectado"
+            Lb_Estado.ForeColor = Color.DarkGreen
+
+            'Seleccion de patron
+            Dim pattern As String = ""
+            Select Case Indicador
+                Case "Estandar"
+                    pattern = "[-+]?\d+([.,]\d+)?"
+            End Select
+            'Leer buffer completo
+            Estado.Buffer &= SP.ReadExisting
+            Dim match As Match = Regex.Match(Estado.Buffer, pattern)
+            If match.Success Then
+                Dim valorStr = match.Value.Replace(",", ".")
+                Dim peso As Decimal = Decimal.Parse(valorStr, Globalization.CultureInfo.InvariantCulture)
+                Estado.Buffer = Estado.Buffer.Substring(match.Index + match.Length)
+                Estado.UltimaLecturaOk = DateTime.Now
+                Estado.Intentos = 0
+                Lb_Peso.Text = peso.ToString("N3")
+            Else
+                Estado.Intentos += 1
+            End If
+            If (DateTime.Now - Estado.UltimaLecturaOk).TotalMilliseconds > TIMEOUT_SERIAL_MS Then
+                Throw New TimeoutException()
+            End If
+        Catch ex As TimeoutException
+            Temporizador.Enabled = False
+
+            If SP.IsOpen Then SP.Close()
+
+            Lb_Estado.Text = "Desconectado"
+            Lb_Estado.ForeColor = Color.DarkRed
+            Btt_ReCon.Visible = True
+        End Try
+    End Sub
+
     Public Sub LeerSerie(SP As SerialPort, Btt_ReCon As Button, Lb_Estado As Label, Lb_Peso As Label, Temporizador As System.Windows.Forms.Timer, Indicador As String)
         Try
             Dim spLectura As String
@@ -511,6 +586,8 @@ Module Funciones
             pattern = ""
             Select Case Indicador
                 Case "Estándar"
+                    pattern = "-?\d+(\.\d+)?"
+                Case Else
                     pattern = "-?\d+(\.\d+)?"
             End Select
 
@@ -550,3 +627,8 @@ Module Funciones
         End Try
     End Sub
 End Module
+Public Class SerialState
+    Public Buffer As String = String.Empty
+    Public UltimaLecturaOk As DateTime = DateTime.MinValue
+    Public Intentos As Integer = 0
+End Class

@@ -50,18 +50,21 @@ Partial Class Proceso
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
         Me.Rtx_Mensajes = New System.Windows.Forms.RichTextBox()
         Me.Label16 = New System.Windows.Forms.Label()
-        Me.Btt_Reconectar = New System.Windows.Forms.Button()
+        Me.Btt_ReCon_T1 = New System.Windows.Forms.Button()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.Lbl_PesoControlador = New System.Windows.Forms.Label()
+        Me.Lbl_Peso_T1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Lbl_Est_T1 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Lbl_Est_T2 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Lbl_Peso_T2 = New System.Windows.Forms.Label()
+        Me.Btt_ReCon_T2 = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Lbl_Est_Cem = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Lbl_Peso_Cem = New System.Windows.Forms.Label()
+        Me.Btt_ReCon_Cemento = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Lbl_Dif5 = New System.Windows.Forms.Label()
         Me.Lbl_Dif4 = New System.Windows.Forms.Label()
@@ -134,7 +137,6 @@ Partial Class Proceso
         Me.SerialTolva1 = New System.IO.Ports.SerialPort(Me.components)
         Me.SerialTolva2 = New System.IO.Ports.SerialPort(Me.components)
         Me.SerialCemento = New System.IO.Ports.SerialPort(Me.components)
-
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Lbl_Puerto = New System.Windows.Forms.Label()
         Me.Lbl_Est_Conn = New System.Windows.Forms.Label()
@@ -142,10 +144,11 @@ Partial Class Proceso
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
-
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.btn_impresion = New System.Windows.Forms.Button()
-
+        Me.Timer_Tolva1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Timer_Tolva2 = New System.Windows.Forms.Timer(Me.components)
+        Me.TimerTolvCemento = New System.Windows.Forms.Timer(Me.components)
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -557,7 +560,7 @@ Partial Class Proceso
         '
         'Rtx_Mensajes
         '
-        Me.Rtx_Mensajes.Location = New System.Drawing.Point(12, 243)
+        Me.Rtx_Mensajes.Location = New System.Drawing.Point(15, 325)
         Me.Rtx_Mensajes.Name = "Rtx_Mensajes"
         Me.Rtx_Mensajes.Size = New System.Drawing.Size(361, 113)
         Me.Rtx_Mensajes.TabIndex = 219
@@ -567,24 +570,24 @@ Partial Class Proceso
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(9, 221)
+        Me.Label16.Location = New System.Drawing.Point(12, 303)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(70, 16)
         Me.Label16.TabIndex = 220
         Me.Label16.Text = "Mensajes:"
         '
-        'Btt_Reconectar
+        'Btt_ReCon_T1
         '
-        Me.Btt_Reconectar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Btt_Reconectar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_Reconectar.Location = New System.Drawing.Point(7, 60)
-        Me.Btt_Reconectar.Name = "Btt_Reconectar"
-        Me.Btt_Reconectar.Size = New System.Drawing.Size(83, 26)
-        Me.Btt_Reconectar.TabIndex = 226
-        Me.Btt_Reconectar.Text = "Reconectar"
-        Me.Btt_Reconectar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_Reconectar.UseVisualStyleBackColor = True
-        Me.Btt_Reconectar.Visible = False
+        Me.Btt_ReCon_T1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btt_ReCon_T1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btt_ReCon_T1.Location = New System.Drawing.Point(7, 60)
+        Me.Btt_ReCon_T1.Name = "Btt_ReCon_T1"
+        Me.Btt_ReCon_T1.Size = New System.Drawing.Size(83, 26)
+        Me.Btt_ReCon_T1.TabIndex = 226
+        Me.Btt_ReCon_T1.Text = "Reconectar"
+        Me.Btt_ReCon_T1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Btt_ReCon_T1.UseVisualStyleBackColor = True
+        Me.Btt_ReCon_T1.Visible = False
         '
         'Label21
         '
@@ -597,43 +600,67 @@ Partial Class Proceso
         Me.Label21.TabIndex = 67
         Me.Label21.Text = "kg"
         '
-        'Lbl_PesoControlador
+        'Lbl_Peso_T1
         '
-        Me.Lbl_PesoControlador.AutoSize = True
-        Me.Lbl_PesoControlador.BackColor = System.Drawing.Color.SteelBlue
-        Me.Lbl_PesoControlador.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_PesoControlador.ForeColor = System.Drawing.Color.Black
-        Me.Lbl_PesoControlador.Location = New System.Drawing.Point(6, 24)
-        Me.Lbl_PesoControlador.Name = "Lbl_PesoControlador"
-        Me.Lbl_PesoControlador.Size = New System.Drawing.Size(65, 24)
-        Me.Lbl_PesoControlador.TabIndex = 0
-        Me.Lbl_PesoControlador.Text = "14125"
+        Me.Lbl_Peso_T1.AutoSize = True
+        Me.Lbl_Peso_T1.BackColor = System.Drawing.Color.SteelBlue
+        Me.Lbl_Peso_T1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Peso_T1.ForeColor = System.Drawing.Color.Black
+        Me.Lbl_Peso_T1.Location = New System.Drawing.Point(6, 24)
+        Me.Lbl_Peso_T1.Name = "Lbl_Peso_T1"
+        Me.Lbl_Peso_T1.Size = New System.Drawing.Size(49, 24)
+        Me.Lbl_Peso_T1.TabIndex = 0
+        Me.Lbl_Peso_T1.Text = "0.00"
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Lbl_Est_T1)
         Me.GroupBox1.Controls.Add(Me.Label21)
-        Me.GroupBox1.Controls.Add(Me.Lbl_PesoControlador)
-        Me.GroupBox1.Controls.Add(Me.Btt_Reconectar)
+        Me.GroupBox1.Controls.Add(Me.Lbl_Peso_T1)
+        Me.GroupBox1.Controls.Add(Me.Btt_ReCon_T1)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(22, 113)
+        Me.GroupBox1.Location = New System.Drawing.Point(11, 113)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(112, 92)
+        Me.GroupBox1.Size = New System.Drawing.Size(112, 117)
         Me.GroupBox1.TabIndex = 227
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "TOLVA 1"
         '
+        'Lbl_Est_T1
+        '
+        Me.Lbl_Est_T1.AutoSize = True
+        Me.Lbl_Est_T1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Est_T1.ForeColor = System.Drawing.Color.DarkRed
+        Me.Lbl_Est_T1.Location = New System.Drawing.Point(9, 92)
+        Me.Lbl_Est_T1.Name = "Lbl_Est_T1"
+        Me.Lbl_Est_T1.Size = New System.Drawing.Size(97, 16)
+        Me.Lbl_Est_T1.TabIndex = 243
+        Me.Lbl_Est_T1.Text = "Desconectado"
+        '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.Lbl_Est_T2)
         Me.GroupBox2.Controls.Add(Me.Label17)
-        Me.GroupBox2.Controls.Add(Me.Label18)
-        Me.GroupBox2.Controls.Add(Me.Button3)
+        Me.GroupBox2.Controls.Add(Me.Lbl_Peso_T2)
+        Me.GroupBox2.Controls.Add(Me.Btt_ReCon_T2)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(145, 113)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(112, 92)
+        Me.GroupBox2.Size = New System.Drawing.Size(112, 117)
         Me.GroupBox2.TabIndex = 228
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "TOLVA 2"
+        '
+        'Lbl_Est_T2
+        '
+        Me.Lbl_Est_T2.AutoSize = True
+        Me.Lbl_Est_T2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Est_T2.ForeColor = System.Drawing.Color.DarkRed
+        Me.Lbl_Est_T2.Location = New System.Drawing.Point(6, 92)
+        Me.Lbl_Est_T2.Name = "Lbl_Est_T2"
+        Me.Lbl_Est_T2.Size = New System.Drawing.Size(97, 16)
+        Me.Lbl_Est_T2.TabIndex = 244
+        Me.Lbl_Est_T2.Text = "Desconectado"
         '
         'Label17
         '
@@ -646,43 +673,55 @@ Partial Class Proceso
         Me.Label17.TabIndex = 67
         Me.Label17.Text = "kg"
         '
-        'Label18
+        'Lbl_Peso_T2
         '
-        Me.Label18.AutoSize = True
-        Me.Label18.BackColor = System.Drawing.Color.DarkGray
-        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.ForeColor = System.Drawing.Color.Black
-        Me.Label18.Location = New System.Drawing.Point(6, 24)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(65, 24)
-        Me.Label18.TabIndex = 0
-        Me.Label18.Text = "14125"
+        Me.Lbl_Peso_T2.AutoSize = True
+        Me.Lbl_Peso_T2.BackColor = System.Drawing.Color.DarkGray
+        Me.Lbl_Peso_T2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Peso_T2.ForeColor = System.Drawing.Color.Black
+        Me.Lbl_Peso_T2.Location = New System.Drawing.Point(6, 24)
+        Me.Lbl_Peso_T2.Name = "Lbl_Peso_T2"
+        Me.Lbl_Peso_T2.Size = New System.Drawing.Size(49, 24)
+        Me.Lbl_Peso_T2.TabIndex = 0
+        Me.Lbl_Peso_T2.Text = "0.00"
         '
-        'Button3
+        'Btt_ReCon_T2
         '
-        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button3.Location = New System.Drawing.Point(7, 60)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(83, 26)
-        Me.Button3.TabIndex = 226
-        Me.Button3.Text = "Reconectar"
-        Me.Button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button3.UseVisualStyleBackColor = True
-        Me.Button3.Visible = False
+        Me.Btt_ReCon_T2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btt_ReCon_T2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btt_ReCon_T2.Location = New System.Drawing.Point(7, 60)
+        Me.Btt_ReCon_T2.Name = "Btt_ReCon_T2"
+        Me.Btt_ReCon_T2.Size = New System.Drawing.Size(83, 26)
+        Me.Btt_ReCon_T2.TabIndex = 226
+        Me.Btt_ReCon_T2.Text = "Reconectar"
+        Me.Btt_ReCon_T2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Btt_ReCon_T2.UseVisualStyleBackColor = True
+        Me.Btt_ReCon_T2.Visible = False
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.Lbl_Est_Cem)
         Me.GroupBox3.Controls.Add(Me.Label19)
-        Me.GroupBox3.Controls.Add(Me.Label20)
-        Me.GroupBox3.Controls.Add(Me.Button4)
+        Me.GroupBox3.Controls.Add(Me.Lbl_Peso_Cem)
+        Me.GroupBox3.Controls.Add(Me.Btt_ReCon_Cemento)
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(265, 113)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(112, 92)
+        Me.GroupBox3.Size = New System.Drawing.Size(112, 117)
         Me.GroupBox3.TabIndex = 228
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "CEMENTO"
+        '
+        'Lbl_Est_Cem
+        '
+        Me.Lbl_Est_Cem.AutoSize = True
+        Me.Lbl_Est_Cem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Est_Cem.ForeColor = System.Drawing.Color.DarkRed
+        Me.Lbl_Est_Cem.Location = New System.Drawing.Point(6, 92)
+        Me.Lbl_Est_Cem.Name = "Lbl_Est_Cem"
+        Me.Lbl_Est_Cem.Size = New System.Drawing.Size(97, 16)
+        Me.Lbl_Est_Cem.TabIndex = 245
+        Me.Lbl_Est_Cem.Text = "Desconectado"
         '
         'Label19
         '
@@ -695,30 +734,30 @@ Partial Class Proceso
         Me.Label19.TabIndex = 67
         Me.Label19.Text = "kg"
         '
-        'Label20
+        'Lbl_Peso_Cem
         '
-        Me.Label20.AutoSize = True
-        Me.Label20.BackColor = System.Drawing.Color.IndianRed
-        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.ForeColor = System.Drawing.Color.Black
-        Me.Label20.Location = New System.Drawing.Point(6, 24)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(65, 24)
-        Me.Label20.TabIndex = 0
-        Me.Label20.Text = "14125"
+        Me.Lbl_Peso_Cem.AutoSize = True
+        Me.Lbl_Peso_Cem.BackColor = System.Drawing.Color.IndianRed
+        Me.Lbl_Peso_Cem.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Peso_Cem.ForeColor = System.Drawing.Color.Black
+        Me.Lbl_Peso_Cem.Location = New System.Drawing.Point(6, 24)
+        Me.Lbl_Peso_Cem.Name = "Lbl_Peso_Cem"
+        Me.Lbl_Peso_Cem.Size = New System.Drawing.Size(49, 24)
+        Me.Lbl_Peso_Cem.TabIndex = 0
+        Me.Lbl_Peso_Cem.Text = "0.00"
         '
-        'Button4
+        'Btt_ReCon_Cemento
         '
-        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button4.Location = New System.Drawing.Point(7, 60)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(83, 26)
-        Me.Button4.TabIndex = 226
-        Me.Button4.Text = "Reconectar"
-        Me.Button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button4.UseVisualStyleBackColor = True
-        Me.Button4.Visible = False
+        Me.Btt_ReCon_Cemento.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btt_ReCon_Cemento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btt_ReCon_Cemento.Location = New System.Drawing.Point(7, 60)
+        Me.Btt_ReCon_Cemento.Name = "Btt_ReCon_Cemento"
+        Me.Btt_ReCon_Cemento.Size = New System.Drawing.Size(83, 26)
+        Me.Btt_ReCon_Cemento.TabIndex = 226
+        Me.Btt_ReCon_Cemento.Text = "Reconectar"
+        Me.Btt_ReCon_Cemento.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Btt_ReCon_Cemento.UseVisualStyleBackColor = True
+        Me.Btt_ReCon_Cemento.Visible = False
         '
         'TableLayoutPanel1
         '
@@ -1338,7 +1377,7 @@ Partial Class Proceso
         Me.GroupBox4.Controls.Add(Me.Pilot_L1_Busy)
         Me.GroupBox4.Controls.Add(Me.Pilot_L1_BatchReady)
         Me.GroupBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(12, 363)
+        Me.GroupBox4.Location = New System.Drawing.Point(11, 444)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(365, 158)
         Me.GroupBox4.TabIndex = 240
@@ -1680,7 +1719,6 @@ Partial Class Proceso
         Me.Label28.TabIndex = 0
         Me.Label28.Text = "0.00"
         '
-
         'GroupBox6
         '
         Me.GroupBox6.Controls.Add(Me.Lbl_Puerto)
@@ -1689,7 +1727,7 @@ Partial Class Proceso
         Me.GroupBox6.Controls.Add(Me.Label7)
         Me.GroupBox6.Controls.Add(Me.Label8)
         Me.GroupBox6.Controls.Add(Me.Label29)
-        Me.GroupBox6.Location = New System.Drawing.Point(12, 527)
+        Me.GroupBox6.Location = New System.Drawing.Point(946, 524)
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.Size = New System.Drawing.Size(128, 78)
         Me.GroupBox6.TabIndex = 241
@@ -1752,7 +1790,7 @@ Partial Class Proceso
         Me.Label29.Size = New System.Drawing.Size(26, 13)
         Me.Label29.TabIndex = 14
         Me.Label29.Text = "Dir: "
-
+        '
         'PrintDocument1
         '
         '
@@ -1765,14 +1803,24 @@ Partial Class Proceso
         Me.btn_impresion.Text = "Test Impresion"
         Me.btn_impresion.UseVisualStyleBackColor = True
         '
+        'Timer_Tolva1
+        '
+        Me.Timer_Tolva1.Interval = 500
+        '
+        'Timer_Tolva2
+        '
+        Me.Timer_Tolva2.Interval = 500
+        '
+        'TimerTolvCemento
+        '
+        Me.TimerTolvCemento.Interval = 500
+        '
         'Proceso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1223, 614)
-
         Me.Controls.Add(Me.GroupBox6)
-
         Me.Controls.Add(Me.btn_impresion)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox4)
@@ -1890,18 +1938,18 @@ Partial Class Proceso
     Friend WithEvents NumericUpDown1 As NumericUpDown
     Friend WithEvents Rtx_Mensajes As RichTextBox
     Friend WithEvents Label16 As Label
-    Friend WithEvents Btt_Reconectar As Button
+    Friend WithEvents Btt_ReCon_T1 As Button
     Friend WithEvents Label21 As Label
-    Friend WithEvents Lbl_PesoControlador As Label
+    Friend WithEvents Lbl_Peso_T1 As Label
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Label17 As Label
-    Friend WithEvents Label18 As Label
-    Friend WithEvents Button3 As Button
+    Friend WithEvents Lbl_Peso_T2 As Label
+    Friend WithEvents Btt_ReCon_T2 As Button
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents Label19 As Label
-    Friend WithEvents Label20 As Label
-    Friend WithEvents Button4 As Button
+    Friend WithEvents Lbl_Peso_Cem As Label
+    Friend WithEvents Btt_ReCon_Cemento As Button
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Lbl_CanRea5 As Label
     Friend WithEvents Lbl_CanTeo5 As Label
@@ -1985,5 +2033,10 @@ Partial Class Proceso
 
     Friend WithEvents PrintDocument1 As Printing.PrintDocument
     Friend WithEvents btn_impresion As Button
-
+    Friend WithEvents Timer_Tolva1 As Timer
+    Friend WithEvents Timer_Tolva2 As Timer
+    Friend WithEvents TimerTolvCemento As Timer
+    Friend WithEvents Lbl_Est_T1 As Label
+    Friend WithEvents Lbl_Est_T2 As Label
+    Friend WithEvents Lbl_Est_Cem As Label
 End Class

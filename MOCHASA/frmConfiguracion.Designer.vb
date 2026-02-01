@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmConexion
+Partial Class frmConfiguracion
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -22,7 +22,7 @@ Partial Class frmConexion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmConexion))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmConfiguracion))
         Me.Btt_Cancelar = New System.Windows.Forms.Button()
         Me.Txt_IpAdd = New System.Windows.Forms.TextBox()
         Me.Txt_Puerto = New System.Windows.Forms.TextBox()
@@ -80,6 +80,7 @@ Partial Class frmConexion
         Me.label11 = New System.Windows.Forms.Label()
         Me.label12 = New System.Windows.Forms.Label()
         Me.TP_Impresora = New System.Windows.Forms.TabPage()
+        Me.chBox_Hab_Imp = New System.Windows.Forms.CheckBox()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.cbx_impresora = New System.Windows.Forms.ComboBox()
         Me.TabControl1.SuspendLayout()
@@ -97,7 +98,7 @@ Partial Class frmConexion
         Me.Btt_Cancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.Btt_Cancelar.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Btt_Cancelar.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Btt_Cancelar.Image = Global.CM_Construcciones.My.Resources.Resources.cancel
+        Me.Btt_Cancelar.Image = Global.HORMIGONERA.My.Resources.Resources.cancel
         Me.Btt_Cancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_Cancelar.Location = New System.Drawing.Point(374, 112)
         Me.Btt_Cancelar.Name = "Btt_Cancelar"
@@ -128,7 +129,7 @@ Partial Class frmConexion
         Me.Btt_Conectar.Cursor = System.Windows.Forms.Cursors.Default
         Me.Btt_Conectar.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Btt_Conectar.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Btt_Conectar.Image = Global.CM_Construcciones.My.Resources.Resources.connect
+        Me.Btt_Conectar.Image = Global.HORMIGONERA.My.Resources.Resources.connect
         Me.Btt_Conectar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_Conectar.Location = New System.Drawing.Point(374, 54)
         Me.Btt_Conectar.Name = "Btt_Conectar"
@@ -669,6 +670,7 @@ Partial Class frmConexion
         '
         'TP_Impresora
         '
+        Me.TP_Impresora.Controls.Add(Me.chBox_Hab_Imp)
         Me.TP_Impresora.Controls.Add(Me.Label24)
         Me.TP_Impresora.Controls.Add(Me.cbx_impresora)
         Me.TP_Impresora.Location = New System.Drawing.Point(4, 22)
@@ -677,6 +679,18 @@ Partial Class frmConexion
         Me.TP_Impresora.TabIndex = 6
         Me.TP_Impresora.Text = "Impresora"
         Me.TP_Impresora.UseVisualStyleBackColor = True
+        '
+        'chBox_Hab_Imp
+        '
+        Me.chBox_Hab_Imp.AutoSize = True
+        Me.chBox_Hab_Imp.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chBox_Hab_Imp.Location = New System.Drawing.Point(30, 90)
+        Me.chBox_Hab_Imp.Name = "chBox_Hab_Imp"
+        Me.chBox_Hab_Imp.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.chBox_Hab_Imp.Size = New System.Drawing.Size(111, 17)
+        Me.chBox_Hab_Imp.TabIndex = 28
+        Me.chBox_Hab_Imp.Text = "Usar Impresora"
+        Me.chBox_Hab_Imp.UseVisualStyleBackColor = True
         '
         'Label24
         '
@@ -698,7 +712,7 @@ Partial Class frmConexion
         Me.cbx_impresora.Size = New System.Drawing.Size(231, 21)
         Me.cbx_impresora.TabIndex = 25
         '
-        'frmConexion
+        'frmConfiguracion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -707,8 +721,8 @@ Partial Class frmConexion
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Btt_Cancelar)
         Me.Controls.Add(Me.Btt_Conectar)
-        Me.Name = "frmConexion"
-        Me.Text = "Conexión"
+        Me.Name = "frmConfiguracion"
+        Me.Text = "Configuración"
         Me.TabControl1.ResumeLayout(False)
         Me.TP_Tolv1.ResumeLayout(False)
         Me.TP_Tolv1.PerformLayout()
@@ -782,4 +796,5 @@ Partial Class frmConexion
     Friend WithEvents TP_Impresora As TabPage
     Friend WithEvents Label24 As Label
     Friend WithEvents cbx_impresora As ComboBox
+    Friend WithEvents chBox_Hab_Imp As CheckBox
 End Class

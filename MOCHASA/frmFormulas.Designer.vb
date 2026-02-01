@@ -166,7 +166,7 @@ Partial Class frmFormulas
         '
         'Btt_Env_ReempFormulas
         '
-        Me.Btt_Env_ReempFormulas.Image = Global.CM_Construcciones.My.Resources.Resources.application_form_delete
+        Me.Btt_Env_ReempFormulas.Image = Global.HORMIGONERA.My.Resources.Resources.application_form_delete
         Me.Btt_Env_ReempFormulas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_Env_ReempFormulas.Location = New System.Drawing.Point(201, 168)
         Me.Btt_Env_ReempFormulas.Name = "Btt_Env_ReempFormulas"
@@ -179,7 +179,7 @@ Partial Class frmFormulas
         '
         'Btt_Env_AgregFormulas
         '
-        Me.Btt_Env_AgregFormulas.Image = Global.CM_Construcciones.My.Resources.Resources.application_form_add
+        Me.Btt_Env_AgregFormulas.Image = Global.HORMIGONERA.My.Resources.Resources.application_form_add
         Me.Btt_Env_AgregFormulas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_Env_AgregFormulas.Location = New System.Drawing.Point(26, 168)
         Me.Btt_Env_AgregFormulas.Name = "Btt_Env_AgregFormulas"
@@ -192,7 +192,7 @@ Partial Class frmFormulas
         '
         'btnsalir
         '
-        Me.btnsalir.Image = Global.CM_Construcciones.My.Resources.Resources.cancel
+        Me.btnsalir.Image = Global.HORMIGONERA.My.Resources.Resources.cancel
         Me.btnsalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnsalir.Location = New System.Drawing.Point(548, 342)
         Me.btnsalir.Name = "btnsalir"
@@ -204,7 +204,7 @@ Partial Class frmFormulas
         '
         'btnGuardar
         '
-        Me.btnGuardar.Image = Global.CM_Construcciones.My.Resources.Resources.application_put
+        Me.btnGuardar.Image = Global.HORMIGONERA.My.Resources.Resources.application_put
         Me.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnGuardar.Location = New System.Drawing.Point(377, 342)
         Me.btnGuardar.Name = "btnGuardar"
@@ -217,7 +217,7 @@ Partial Class frmFormulas
         '
         'Btt_GuardarFormula
         '
-        Me.Btt_GuardarFormula.Image = Global.CM_Construcciones.My.Resources.Resources.application_put
+        Me.Btt_GuardarFormula.Image = Global.HORMIGONERA.My.Resources.Resources.application_put
         Me.Btt_GuardarFormula.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_GuardarFormula.Location = New System.Drawing.Point(16, 342)
         Me.Btt_GuardarFormula.Name = "Btt_GuardarFormula"

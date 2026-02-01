@@ -7,9 +7,9 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{17BA84A2-95DD-4709-8866-AB325F030AB2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>CM_Construcciones.My.MyApplication</StartupObject>
-    <RootNamespace>CM_Construcciones</RootNamespace>
-    <AssemblyName>CM_Construcciones</AssemblyName>
+    <StartupObject>HORMIGONERA.My.MyApplication</StartupObject>
+    <RootNamespace>HORMIGONERA</RootNamespace>
+    <AssemblyName>HORMIGONERA</AssemblyName>
     <MyType>WindowsForms</MyType>
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -17,6 +17,7 @@
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
     <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
     <PublishUrl>http://localhost/CM_Construcciones/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -31,7 +32,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,7 +39,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>CM_Construcciones.xml</DocumentationFile>
+    <DocumentationFile>HORMIGONERA.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
@@ -50,10 +50,14 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>CM_Construcciones.xml</DocumentationFile>
+    <DocumentationFile>HORMIGONERA.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -102,10 +106,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>datosreportes.xsd</DependentUpon>
     </Compile>
-    <Compile Include="frmConexion.Designer.vb">
-      <DependentUpon>frmConexion.vb</DependentUpon>
+    <Compile Include="frmConfiguracion.Designer.vb">
+      <DependentUpon>frmConfiguracion.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmConexion.vb">
+    <Compile Include="frmConfiguracion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmFormulas.Designer.vb">
@@ -220,8 +224,8 @@
     <Compile Include="Variables.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmConexion.resx">
-      <DependentUpon>frmConexion.vb</DependentUpon>
+    <EmbeddedResource Include="frmConfiguracion.resx">
+      <DependentUpon>frmConfiguracion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFormulas.resx">
       <SubType>Designer</SubType>
@@ -420,9 +424,14 @@
     <None Include="Resources\report_delete.png" />
   </ItemGroup>
   <ItemGroup>
-
     <None Include="Resources\Logo_Concretera.jpg" />
-
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\131823 - arrow forward next right.png" />
+    <Content Include="Resources\131823 - arrow forward next right_25X25.png" />
+    <Content Include="Resources\131885 - close door exit log out logout user logout.png" />
+    <None Include="Resources\setting_tools.png" />
+    <None Include="Resources\cog_edit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

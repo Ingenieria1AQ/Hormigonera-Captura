@@ -57,7 +57,7 @@ Partial Class frmIngredientes
         '
         'Eliminart
         '
-        Me.Eliminart.Image = Global.CM_Construcciones.My.Resources.Resources.table_delete
+        Me.Eliminart.Image = Global.HORMIGONERA.My.Resources.Resources.table_delete
         Me.Eliminart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Eliminart.Location = New System.Drawing.Point(120, 320)
         Me.Eliminart.Name = "Eliminart"
@@ -69,7 +69,7 @@ Partial Class frmIngredientes
         '
         'Importar
         '
-        Me.Importar.Image = Global.CM_Construcciones.My.Resources.Resources.table_add
+        Me.Importar.Image = Global.HORMIGONERA.My.Resources.Resources.table_add
         Me.Importar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Importar.Location = New System.Drawing.Point(228, 320)
         Me.Importar.Name = "Importar"
@@ -81,7 +81,7 @@ Partial Class frmIngredientes
         '
         'Enviar
         '
-        Me.Enviar.Image = Global.CM_Construcciones.My.Resources.Resources.table_go
+        Me.Enviar.Image = Global.HORMIGONERA.My.Resources.Resources.table_go
         Me.Enviar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Enviar.Location = New System.Drawing.Point(315, 258)
         Me.Enviar.Name = "Enviar"
@@ -94,7 +94,7 @@ Partial Class frmIngredientes
         '
         'Salir
         '
-        Me.Salir.Image = Global.CM_Construcciones.My.Resources.Resources.cerrar_chiquito
+        Me.Salir.Image = Global.HORMIGONERA.My.Resources.Resources.cerrar_chiquito
         Me.Salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Salir.Location = New System.Drawing.Point(538, 321)
         Me.Salir.Name = "Salir"
@@ -106,7 +106,7 @@ Partial Class frmIngredientes
         '
         'Eliminar
         '
-        Me.Eliminar.Image = Global.CM_Construcciones.My.Resources.Resources.table_delete
+        Me.Eliminar.Image = Global.HORMIGONERA.My.Resources.Resources.table_delete
         Me.Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Eliminar.Location = New System.Drawing.Point(16, 320)
         Me.Eliminar.Name = "Eliminar"
@@ -118,7 +118,7 @@ Partial Class frmIngredientes
         '
         'Guardar
         '
-        Me.Guardar.Image = Global.CM_Construcciones.My.Resources.Resources.table_save
+        Me.Guardar.Image = Global.HORMIGONERA.My.Resources.Resources.table_save
         Me.Guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Guardar.Location = New System.Drawing.Point(419, 321)
         Me.Guardar.Name = "Guardar"
@@ -130,7 +130,7 @@ Partial Class frmIngredientes
         '
         'seleccionar
         '
-        Me.seleccionar.Image = Global.CM_Construcciones.My.Resources.Resources.arrow_left
+        Me.seleccionar.Image = Global.HORMIGONERA.My.Resources.Resources.arrow_left
         Me.seleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.seleccionar.Location = New System.Drawing.Point(16, 320)
         Me.seleccionar.Name = "seleccionar"
@@ -147,7 +147,7 @@ Partial Class frmIngredientes
         '
         'Btt_EnviarZM
         '
-        Me.Btt_EnviarZM.Image = Global.CM_Construcciones.My.Resources.Resources.table_go
+        Me.Btt_EnviarZM.Image = Global.HORMIGONERA.My.Resources.Resources.table_go
         Me.Btt_EnviarZM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Btt_EnviarZM.Location = New System.Drawing.Point(313, 321)
         Me.Btt_EnviarZM.Name = "Btt_EnviarZM"

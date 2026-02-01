@@ -28,12 +28,12 @@ Partial Class Login
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Txt_Usuario = New System.Windows.Forms.TextBox()
         Me.Txt_Clave = New System.Windows.Forms.TextBox()
-        Me.Btt_Acceder = New System.Windows.Forms.Button()
         Me.Btt_Salir = New System.Windows.Forms.Button()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Pcb_Login = New System.Windows.Forms.PictureBox()
+        Me.Btt_Acceder = New System.Windows.Forms.Button()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,19 +79,9 @@ Partial Class Login
         Me.Txt_Clave.Size = New System.Drawing.Size(118, 24)
         Me.Txt_Clave.TabIndex = 3
         '
-        'Btt_Acceder
-        '
-        Me.Btt_Acceder.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_Acceder.Location = New System.Drawing.Point(81, 243)
-        Me.Btt_Acceder.Name = "Btt_Acceder"
-        Me.Btt_Acceder.Size = New System.Drawing.Size(92, 42)
-        Me.Btt_Acceder.TabIndex = 4
-        Me.Btt_Acceder.Text = "Acceder"
-        Me.Btt_Acceder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_Acceder.UseVisualStyleBackColor = True
-        '
         'Btt_Salir
         '
+        Me.Btt_Salir.Image = Global.HORMIGONERA.My.Resources.Resources._131885___close_door_exit_log_out_logout_user_logout
         Me.Btt_Salir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_Salir.Location = New System.Drawing.Point(206, 243)
         Me.Btt_Salir.Name = "Btt_Salir"
@@ -126,13 +116,25 @@ Partial Class Login
         '
         'Pcb_Login
         '
-        Me.Pcb_Login.Image = Global.CM_Construcciones.My.Resources.Resources.Logo_Concretera
+        Me.Pcb_Login.Image = Global.HORMIGONERA.My.Resources.Resources.Logo_Concretera
         Me.Pcb_Login.Location = New System.Drawing.Point(99, 8)
         Me.Pcb_Login.Name = "Pcb_Login"
         Me.Pcb_Login.Size = New System.Drawing.Size(174, 140)
         Me.Pcb_Login.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Pcb_Login.TabIndex = 6
         Me.Pcb_Login.TabStop = False
+        '
+        'Btt_Acceder
+        '
+        Me.Btt_Acceder.Image = Global.HORMIGONERA.My.Resources.Resources._131823___arrow_forward_next_right
+        Me.Btt_Acceder.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Btt_Acceder.Location = New System.Drawing.Point(81, 243)
+        Me.Btt_Acceder.Name = "Btt_Acceder"
+        Me.Btt_Acceder.Size = New System.Drawing.Size(92, 42)
+        Me.Btt_Acceder.TabIndex = 4
+        Me.Btt_Acceder.Text = "Acceder"
+        Me.Btt_Acceder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btt_Acceder.UseVisualStyleBackColor = True
         '
         'Login
         '

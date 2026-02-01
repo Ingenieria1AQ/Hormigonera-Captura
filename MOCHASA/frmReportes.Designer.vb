@@ -281,7 +281,7 @@ Partial Class frmReportes
         '
         'Salir
         '
-        Me.Salir.Image = Global.CM_Construcciones.My.Resources.Resources.cerrar_chiquito
+        Me.Salir.Image = Global.HORMIGONERA.My.Resources.Resources.cerrar_chiquito
         Me.Salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Salir.Location = New System.Drawing.Point(284, 315)
         Me.Salir.Name = "Salir"
@@ -293,7 +293,7 @@ Partial Class frmReportes
         '
         'Reporte
         '
-        Me.Reporte.Image = Global.CM_Construcciones.My.Resources.Resources.book_go
+        Me.Reporte.Image = Global.HORMIGONERA.My.Resources.Resources.book_go
         Me.Reporte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Reporte.Location = New System.Drawing.Point(169, 315)
         Me.Reporte.Name = "Reporte"
