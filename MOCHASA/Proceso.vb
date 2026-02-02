@@ -7,7 +7,7 @@ Public Class Proceso
     Private da As OleDbDataAdapter
     Private ds As New DataSet
     Private numTolvas_Serial As Integer = 3
-    Private registros As Integer = 5 'Numero total de registros de la tabla NumeroTolvasTanques
+    Private registros As Integer = 4  'Numero total de registros de la tabla NumeroTolvasTanques
     Private tbTolvas As New DataTable
     Private font_Rtxt As System.Drawing.Font = New System.Drawing.Font("MicrosoftSansSerif", 8)
 
@@ -42,6 +42,9 @@ Public Class Proceso
     Private corteT1, corteT2, corteCemento, corteAgua As Double
 
     Private flagConfigTolvas As Boolean = False
+    Private flagConfigPLC As Boolean = False
+    Private flagConfigSetpoints As Boolean = False
+
     Private flagFinCemento As Boolean = False
     Private flagFinAridos As Boolean = False
     Private flagFinAgua As Boolean = False
@@ -61,20 +64,12 @@ Public Class Proceso
     Private flagUsaImpresora As Boolean = False
 
     '*-*-*-*-**-*-*-*-*-*-*-*
-
-
-    Private Sub btn_impresion_Click(sender As Object, e As EventArgs) Handles btn_impresion.Click
-        textoImprimir = "PRODUCTO: Cemento" & vbCrLf &
-                "CANT TEORICA: 10" & vbCrLf &
-                "CANT REAL: 11" & vbCrLf
-        PrintDocument1.PrinterSettings.PrinterName = nombreImpresora
-        PrintDocument1.PrintController = New StandardPrintController()
-        PrintDocument1.Print()
-
-    End Sub
     Private Sub Proceso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         flagConfigTolvas = Cargar_y_Configurar_Tolvas()
+        Sig_ConfigSerial.DiscreteValue1 = flagConfigTolvas
         CargaProductos()
+        flagConfigPLC = Configura_PLC()
+        Sig_PLC.DiscreteValue1 = flagConfigPLC
         LimpiarLabelsFormula()
         nombreImpresora = Funciones.Obtener_Valor_Configuracion("Nombre_Impresora")
         flagUsaImpresora = Convert.ToBoolean(Funciones.Obtener_Valor_Configuracion("UsaImpresora") = "1")
@@ -246,6 +241,10 @@ Public Class Proceso
             SerTol2_ok = Funciones.AbrirPuertoSerial(SerialTolva2, tbTolvas.Rows(1))
             SerCemento_ok = Funciones.AbrirPuertoSerial(SerialCemento, tbTolvas.Rows(2))
 
+            Sig_Tolv1.DiscreteValue1 = SerTol1_ok
+            Sig_Tolv2.DiscreteValue1 = SerTol2_ok
+            Sig_TolvCemento.DiscreteValue1 = SerCemento_ok
+
             If SerTol1_ok AndAlso SerTol2_ok AndAlso SerCemento_ok Then
                 Rtx_Mensajes.AppendColoredText(
                     "Configuración serial de tolvas correcta" & Environment.NewLine,
@@ -375,6 +374,18 @@ Public Class Proceso
             'Limpiar todos los Labels
             LimpiarLabelsFormula()
 
+            'Asignar valores de setpoints  
+            If dt.Rows.Count >= registros Then
+                pesoSet1 = Convert.ToDouble(dt.Rows(0).Item("Cantidad")) '--Tolva 1
+                pesoSet2 = Convert.ToDouble(dt.Rows(1).Item("Cantidad")) '--Tolva 2
+                pesoSet3 = Convert.ToDouble(dt.Rows(2).Item("Cantidad")) '--Tolva Cemento
+                pesoSet4 = Convert.ToDouble(dt.Rows(3).Item("Cantidad")) '--Agua
+
+            End If
+            'Rtx_Mensajes.AppendColoredText("PesoSet1 = " & pesoSet1.ToString & Environment.NewLine, Drawing.Color.Black, font_Rtxt)
+            'Rtx_Mensajes.AppendColoredText("PesoSet2 = " & pesoSet2.ToString & Environment.NewLine, Drawing.Color.Black, font_Rtxt)
+            'Rtx_Mensajes.AppendColoredText("PesoSet3 = " & pesoSet3.ToString & Environment.NewLine, Drawing.Color.Black, font_Rtxt)
+            'Rtx_Mensajes.AppendColoredText("PesoSet4 = " & pesoSet4.ToString & Environment.NewLine, Drawing.Color.Black, font_Rtxt)
             'Llenar los Labels
             For i As Integer = 0 To dt.Rows.Count - 1
                 Dim idx As Integer = i + 1
@@ -395,6 +406,7 @@ Public Class Proceso
                 PgBar.Visible = True
                 PgBar.Value = 0
             Next
+
 
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -443,7 +455,8 @@ Public Class Proceso
 
 
     Private Sub cmbproductos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbproductos.SelectedIndexChanged
-        If cmbproductos.SelectedIndex > -1 Then
+        If cmbproductos.SelectedIndex > -1 AndAlso cmbproductos.SelectedValue IsNot Nothing AndAlso
+            Not TypeOf cmbproductos.SelectedValue Is DataRowView Then
             ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
         End If
     End Sub

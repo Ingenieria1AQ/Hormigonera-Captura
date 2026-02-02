@@ -24,8 +24,8 @@ Partial Class Proceso
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Proceso))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.label3 = New System.Windows.Forms.Label()
@@ -113,26 +113,26 @@ Partial Class Proceso
         Me.StandardControl8 = New SymbolFactoryDotNet.StandardControl()
         Me.Tub_P4_02 = New SymbolFactoryDotNet.StandardControl()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.Pilot_Scale1_ValveFlush = New SymbolFactoryDotNet.StandardControl()
+        Me.Sig_DescargaT2 = New SymbolFactoryDotNet.StandardControl()
         Me.Label32 = New System.Windows.Forms.Label()
-        Me.Pilot_FineP2 = New SymbolFactoryDotNet.StandardControl()
+        Me.Sig_Banda = New SymbolFactoryDotNet.StandardControl()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.Pilot_CoarseP2 = New SymbolFactoryDotNet.StandardControl()
+        Me.Sig_Bomba = New SymbolFactoryDotNet.StandardControl()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.Pilot_L1Active = New SymbolFactoryDotNet.StandardControl()
-        Me.Pilot_FineP1 = New SymbolFactoryDotNet.StandardControl()
+        Me.Sig_PLC = New SymbolFactoryDotNet.StandardControl()
+        Me.Sig_DesCemento = New SymbolFactoryDotNet.StandardControl()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.Label35 = New System.Windows.Forms.Label()
-        Me.Pilot_CoarseP1 = New SymbolFactoryDotNet.StandardControl()
-        Me.Pilot_Scale1_Empty = New SymbolFactoryDotNet.StandardControl()
+        Me.Sig_CargaCemento = New SymbolFactoryDotNet.StandardControl()
+        Me.Sig_DescargaT1 = New SymbolFactoryDotNet.StandardControl()
         Me.Label36 = New System.Windows.Forms.Label()
-        Me.Pilot_AutoMode = New SymbolFactoryDotNet.StandardControl()
-        Me.Pilot_L1_Busy = New SymbolFactoryDotNet.StandardControl()
-        Me.Pilot_L1_BatchReady = New SymbolFactoryDotNet.StandardControl()
+        Me.Sig_ConfigSerial = New SymbolFactoryDotNet.StandardControl()
+        Me.Sig_Setpoints = New SymbolFactoryDotNet.StandardControl()
+        Me.Sig_Dosifica = New SymbolFactoryDotNet.StandardControl()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
@@ -160,6 +160,12 @@ Partial Class Proceso
         Me.Dgv_Coils = New System.Windows.Forms.DataGridView()
         Me.dataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Sig_Tolv1 = New SymbolFactoryDotNet.StandardControl()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Sig_TolvCemento = New SymbolFactoryDotNet.StandardControl()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Sig_Tolv2 = New SymbolFactoryDotNet.StandardControl()
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -183,16 +189,16 @@ Partial Class Proceso
         CType(Me.StandardControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tub_P4_02, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
-        CType(Me.Pilot_Scale1_ValveFlush, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pilot_FineP2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pilot_CoarseP2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pilot_L1Active, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pilot_FineP1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pilot_CoarseP1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pilot_Scale1_Empty, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pilot_AutoMode, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pilot_L1_Busy, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pilot_L1_BatchReady, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sig_DescargaT2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sig_Banda, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sig_Bomba, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sig_PLC, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sig_DesCemento, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sig_CargaCemento, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sig_DescargaT1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sig_ConfigSerial, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sig_Setpoints, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sig_Dosifica, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.tabControl1.SuspendLayout()
@@ -200,6 +206,9 @@ Partial Class Proceso
         CType(Me.Dgv_HR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabCoils.SuspendLayout()
         CType(Me.Dgv_Coils, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sig_Tolv1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sig_TolvCemento, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sig_Tolv2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label9
@@ -1372,333 +1381,339 @@ Partial Class Proceso
         '
         'GroupBox4
         '
-        Me.GroupBox4.Controls.Add(Me.Pilot_Scale1_ValveFlush)
+        Me.GroupBox4.Controls.Add(Me.Label30)
+        Me.GroupBox4.Controls.Add(Me.Sig_Tolv2)
+        Me.GroupBox4.Controls.Add(Me.Label20)
+        Me.GroupBox4.Controls.Add(Me.Sig_TolvCemento)
+        Me.GroupBox4.Controls.Add(Me.Label18)
+        Me.GroupBox4.Controls.Add(Me.Sig_Tolv1)
+        Me.GroupBox4.Controls.Add(Me.Sig_DescargaT2)
         Me.GroupBox4.Controls.Add(Me.Label32)
-        Me.GroupBox4.Controls.Add(Me.Pilot_FineP2)
+        Me.GroupBox4.Controls.Add(Me.Sig_Banda)
         Me.GroupBox4.Controls.Add(Me.Label10)
         Me.GroupBox4.Controls.Add(Me.Label11)
-        Me.GroupBox4.Controls.Add(Me.Pilot_CoarseP2)
+        Me.GroupBox4.Controls.Add(Me.Sig_Bomba)
         Me.GroupBox4.Controls.Add(Me.Label12)
         Me.GroupBox4.Controls.Add(Me.Label13)
-        Me.GroupBox4.Controls.Add(Me.Pilot_L1Active)
-        Me.GroupBox4.Controls.Add(Me.Pilot_FineP1)
+        Me.GroupBox4.Controls.Add(Me.Sig_PLC)
+        Me.GroupBox4.Controls.Add(Me.Sig_DesCemento)
         Me.GroupBox4.Controls.Add(Me.Label31)
         Me.GroupBox4.Controls.Add(Me.Label33)
         Me.GroupBox4.Controls.Add(Me.Label34)
         Me.GroupBox4.Controls.Add(Me.Label35)
-        Me.GroupBox4.Controls.Add(Me.Pilot_CoarseP1)
-        Me.GroupBox4.Controls.Add(Me.Pilot_Scale1_Empty)
+        Me.GroupBox4.Controls.Add(Me.Sig_CargaCemento)
+        Me.GroupBox4.Controls.Add(Me.Sig_DescargaT1)
         Me.GroupBox4.Controls.Add(Me.Label36)
-        Me.GroupBox4.Controls.Add(Me.Pilot_AutoMode)
-        Me.GroupBox4.Controls.Add(Me.Pilot_L1_Busy)
-        Me.GroupBox4.Controls.Add(Me.Pilot_L1_BatchReady)
+        Me.GroupBox4.Controls.Add(Me.Sig_ConfigSerial)
+        Me.GroupBox4.Controls.Add(Me.Sig_Setpoints)
+        Me.GroupBox4.Controls.Add(Me.Sig_Dosifica)
         Me.GroupBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox4.Location = New System.Drawing.Point(11, 378)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(365, 135)
+        Me.GroupBox4.Size = New System.Drawing.Size(344, 184)
         Me.GroupBox4.TabIndex = 240
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Información Proceso"
         '
-        'Pilot_Scale1_ValveFlush
+        'Sig_DescargaT2
         '
-        Me.Pilot_Scale1_ValveFlush.AnalogIntValue1 = CType(0, Short)
-        Me.Pilot_Scale1_ValveFlush.AnalogValue1 = 0R
-        Me.Pilot_Scale1_ValveFlush.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pilot_Scale1_ValveFlush.BackColor = System.Drawing.Color.Transparent
-        Me.Pilot_Scale1_ValveFlush.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pilot_Scale1_ValveFlush.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pilot_Scale1_ValveFlush.BlinkColor = System.Drawing.Color.Red
-        Me.Pilot_Scale1_ValveFlush.Category = "1Btn.cat2"
-        Me.Pilot_Scale1_ValveFlush.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pilot_Scale1_ValveFlush.DebugData"))
-        Me.Pilot_Scale1_ValveFlush.FillColor = System.Drawing.Color.Gray
-        Me.Pilot_Scale1_ValveFlush.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pilot_Scale1_ValveFlush.Location = New System.Drawing.Point(8, 114)
-        Me.Pilot_Scale1_ValveFlush.Name = "Pilot_Scale1_ValveFlush"
-        Me.Pilot_Scale1_ValveFlush.Size = New System.Drawing.Size(20, 15)
-        Me.Pilot_Scale1_ValveFlush.SymbolHandle = CType(480163100, Long)
-        Me.Pilot_Scale1_ValveFlush.TabIndex = 113
+        Me.Sig_DescargaT2.AnalogIntValue1 = CType(0, Short)
+        Me.Sig_DescargaT2.AnalogValue1 = 0R
+        Me.Sig_DescargaT2.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sig_DescargaT2.BackColor = System.Drawing.Color.Transparent
+        Me.Sig_DescargaT2.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sig_DescargaT2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Sig_DescargaT2.BlinkColor = System.Drawing.Color.Red
+        Me.Sig_DescargaT2.Category = "1Btn.cat2"
+        Me.Sig_DescargaT2.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sig_DescargaT2.DebugData"))
+        Me.Sig_DescargaT2.FillColor = System.Drawing.Color.Gray
+        Me.Sig_DescargaT2.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sig_DescargaT2.Location = New System.Drawing.Point(176, 65)
+        Me.Sig_DescargaT2.Name = "Sig_DescargaT2"
+        Me.Sig_DescargaT2.Size = New System.Drawing.Size(20, 15)
+        Me.Sig_DescargaT2.SymbolHandle = CType(480163100, Long)
+        Me.Sig_DescargaT2.TabIndex = 113
         '
         'Label32
         '
         Me.Label32.AutoSize = True
         Me.Label32.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label32.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label32.Location = New System.Drawing.Point(35, 114)
+        Me.Label32.Location = New System.Drawing.Point(203, 65)
         Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(121, 15)
+        Me.Label32.Size = New System.Drawing.Size(77, 15)
         Me.Label32.TabIndex = 112
-        Me.Label32.Text = "Balanza 1: Descarga"
+        Me.Label32.Text = "Descarga T2"
         '
-        'Pilot_FineP2
+        'Sig_Banda
         '
-        Me.Pilot_FineP2.AnalogIntValue1 = CType(0, Short)
-        Me.Pilot_FineP2.AnalogValue1 = 0R
-        Me.Pilot_FineP2.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pilot_FineP2.BackColor = System.Drawing.Color.Transparent
-        Me.Pilot_FineP2.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pilot_FineP2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pilot_FineP2.BlinkColor = System.Drawing.Color.Red
-        Me.Pilot_FineP2.Category = "1Btn.cat2"
-        Me.Pilot_FineP2.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pilot_FineP2.DebugData"))
-        Me.Pilot_FineP2.FillColor = System.Drawing.Color.Gray
-        Me.Pilot_FineP2.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pilot_FineP2.Location = New System.Drawing.Point(200, 111)
-        Me.Pilot_FineP2.Name = "Pilot_FineP2"
-        Me.Pilot_FineP2.Size = New System.Drawing.Size(20, 15)
-        Me.Pilot_FineP2.SymbolHandle = CType(480163100, Long)
-        Me.Pilot_FineP2.TabIndex = 103
+        Me.Sig_Banda.AnalogIntValue1 = CType(0, Short)
+        Me.Sig_Banda.AnalogValue1 = 0R
+        Me.Sig_Banda.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sig_Banda.BackColor = System.Drawing.Color.Transparent
+        Me.Sig_Banda.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sig_Banda.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Sig_Banda.BlinkColor = System.Drawing.Color.Red
+        Me.Sig_Banda.Category = "1Btn.cat2"
+        Me.Sig_Banda.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sig_Banda.DebugData"))
+        Me.Sig_Banda.FillColor = System.Drawing.Color.Gray
+        Me.Sig_Banda.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sig_Banda.Location = New System.Drawing.Point(176, 145)
+        Me.Sig_Banda.Name = "Sig_Banda"
+        Me.Sig_Banda.Size = New System.Drawing.Size(20, 15)
+        Me.Sig_Banda.SymbolHandle = CType(480163100, Long)
+        Me.Sig_Banda.TabIndex = 103
         '
         'Label10
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label10.Location = New System.Drawing.Point(224, 111)
+        Me.Label10.Location = New System.Drawing.Point(202, 145)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(122, 15)
+        Me.Label10.Size = New System.Drawing.Size(136, 15)
         Me.Label10.TabIndex = 102
-        Me.Label10.Text = "P2: Dosificación Fina"
+        Me.Label10.Text = "Bandas Transportadora"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label11.Location = New System.Drawing.Point(224, 91)
+        Me.Label11.Location = New System.Drawing.Point(202, 125)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(138, 15)
+        Me.Label11.Size = New System.Drawing.Size(95, 15)
         Me.Label11.TabIndex = 100
-        Me.Label11.Text = "P2: Dosificación Gruesa"
+        Me.Label11.Text = "Bomba de agua"
         '
-        'Pilot_CoarseP2
+        'Sig_Bomba
         '
-        Me.Pilot_CoarseP2.AnalogIntValue1 = CType(0, Short)
-        Me.Pilot_CoarseP2.AnalogValue1 = 0R
-        Me.Pilot_CoarseP2.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pilot_CoarseP2.BackColor = System.Drawing.Color.Transparent
-        Me.Pilot_CoarseP2.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pilot_CoarseP2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pilot_CoarseP2.BlinkColor = System.Drawing.Color.Red
-        Me.Pilot_CoarseP2.Category = "1Btn.cat2"
-        Me.Pilot_CoarseP2.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pilot_CoarseP2.DebugData"))
-        Me.Pilot_CoarseP2.FillColor = System.Drawing.Color.Gray
-        Me.Pilot_CoarseP2.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pilot_CoarseP2.Location = New System.Drawing.Point(200, 91)
-        Me.Pilot_CoarseP2.Name = "Pilot_CoarseP2"
-        Me.Pilot_CoarseP2.Size = New System.Drawing.Size(20, 15)
-        Me.Pilot_CoarseP2.SymbolHandle = CType(480163100, Long)
-        Me.Pilot_CoarseP2.TabIndex = 101
+        Me.Sig_Bomba.AnalogIntValue1 = CType(0, Short)
+        Me.Sig_Bomba.AnalogValue1 = 0R
+        Me.Sig_Bomba.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sig_Bomba.BackColor = System.Drawing.Color.Transparent
+        Me.Sig_Bomba.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sig_Bomba.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Sig_Bomba.BlinkColor = System.Drawing.Color.Red
+        Me.Sig_Bomba.Category = "1Btn.cat2"
+        Me.Sig_Bomba.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sig_Bomba.DebugData"))
+        Me.Sig_Bomba.FillColor = System.Drawing.Color.Gray
+        Me.Sig_Bomba.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sig_Bomba.Location = New System.Drawing.Point(176, 125)
+        Me.Sig_Bomba.Name = "Sig_Bomba"
+        Me.Sig_Bomba.Size = New System.Drawing.Size(20, 15)
+        Me.Sig_Bomba.SymbolHandle = CType(480163100, Long)
+        Me.Sig_Bomba.TabIndex = 101
         '
         'Label12
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label12.Location = New System.Drawing.Point(224, 58)
+        Me.Label12.Location = New System.Drawing.Point(202, 105)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(122, 15)
+        Me.Label12.Size = New System.Drawing.Size(113, 15)
         Me.Label12.TabIndex = 98
-        Me.Label12.Text = "P1: Dosificación Fina"
+        Me.Label12.Text = "Descarga Cemento"
         '
         'Label13
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label13.Location = New System.Drawing.Point(34, 24)
+        Me.Label13.Location = New System.Drawing.Point(34, 25)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(85, 15)
+        Me.Label13.Size = New System.Drawing.Size(71, 15)
         Me.Label13.TabIndex = 96
-        Me.Label13.Text = "Línea 1: Activa"
+        Me.Label13.Text = "PLC Conect"
         '
-        'Pilot_L1Active
+        'Sig_PLC
         '
-        Me.Pilot_L1Active.AnalogIntValue1 = CType(0, Short)
-        Me.Pilot_L1Active.AnalogValue1 = 0R
-        Me.Pilot_L1Active.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pilot_L1Active.BackColor = System.Drawing.Color.Transparent
-        Me.Pilot_L1Active.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pilot_L1Active.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pilot_L1Active.BlinkColor = System.Drawing.Color.Red
-        Me.Pilot_L1Active.Category = "1Btn.cat2"
-        Me.Pilot_L1Active.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pilot_L1Active.DebugData"))
-        Me.Pilot_L1Active.FillColor = System.Drawing.Color.Gray
-        Me.Pilot_L1Active.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pilot_L1Active.Location = New System.Drawing.Point(8, 25)
-        Me.Pilot_L1Active.Name = "Pilot_L1Active"
-        Me.Pilot_L1Active.Size = New System.Drawing.Size(20, 15)
-        Me.Pilot_L1Active.SymbolHandle = CType(480163100, Long)
-        Me.Pilot_L1Active.TabIndex = 97
+        Me.Sig_PLC.AnalogIntValue1 = CType(0, Short)
+        Me.Sig_PLC.AnalogValue1 = 0R
+        Me.Sig_PLC.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sig_PLC.BackColor = System.Drawing.Color.Transparent
+        Me.Sig_PLC.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sig_PLC.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Sig_PLC.BlinkColor = System.Drawing.Color.Red
+        Me.Sig_PLC.Category = "1Btn.cat2"
+        Me.Sig_PLC.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sig_PLC.DebugData"))
+        Me.Sig_PLC.FillColor = System.Drawing.Color.Gray
+        Me.Sig_PLC.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sig_PLC.Location = New System.Drawing.Point(8, 25)
+        Me.Sig_PLC.Name = "Sig_PLC"
+        Me.Sig_PLC.Size = New System.Drawing.Size(20, 15)
+        Me.Sig_PLC.SymbolHandle = CType(480163100, Long)
+        Me.Sig_PLC.TabIndex = 97
         '
-        'Pilot_FineP1
+        'Sig_DesCemento
         '
-        Me.Pilot_FineP1.AnalogIntValue1 = CType(0, Short)
-        Me.Pilot_FineP1.AnalogValue1 = 0R
-        Me.Pilot_FineP1.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pilot_FineP1.BackColor = System.Drawing.Color.Transparent
-        Me.Pilot_FineP1.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pilot_FineP1.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pilot_FineP1.BlinkColor = System.Drawing.Color.Red
-        Me.Pilot_FineP1.Category = "1Btn.cat2"
-        Me.Pilot_FineP1.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pilot_FineP1.DebugData"))
-        Me.Pilot_FineP1.FillColor = System.Drawing.Color.Gray
-        Me.Pilot_FineP1.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pilot_FineP1.Location = New System.Drawing.Point(200, 58)
-        Me.Pilot_FineP1.Name = "Pilot_FineP1"
-        Me.Pilot_FineP1.Size = New System.Drawing.Size(20, 15)
-        Me.Pilot_FineP1.SymbolHandle = CType(480163100, Long)
-        Me.Pilot_FineP1.TabIndex = 99
+        Me.Sig_DesCemento.AnalogIntValue1 = CType(0, Short)
+        Me.Sig_DesCemento.AnalogValue1 = 0R
+        Me.Sig_DesCemento.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sig_DesCemento.BackColor = System.Drawing.Color.Transparent
+        Me.Sig_DesCemento.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sig_DesCemento.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Sig_DesCemento.BlinkColor = System.Drawing.Color.Red
+        Me.Sig_DesCemento.Category = "1Btn.cat2"
+        Me.Sig_DesCemento.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sig_DesCemento.DebugData"))
+        Me.Sig_DesCemento.FillColor = System.Drawing.Color.Gray
+        Me.Sig_DesCemento.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sig_DesCemento.Location = New System.Drawing.Point(176, 105)
+        Me.Sig_DesCemento.Name = "Sig_DesCemento"
+        Me.Sig_DesCemento.Size = New System.Drawing.Size(20, 15)
+        Me.Sig_DesCemento.SymbolHandle = CType(480163100, Long)
+        Me.Sig_DesCemento.TabIndex = 99
         '
         'Label31
         '
         Me.Label31.AutoSize = True
         Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label31.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label31.Location = New System.Drawing.Point(224, 41)
+        Me.Label31.Location = New System.Drawing.Point(202, 85)
         Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(138, 15)
+        Me.Label31.Size = New System.Drawing.Size(93, 15)
         Me.Label31.TabIndex = 94
-        Me.Label31.Text = "P1: Dosificación Gruesa"
+        Me.Label31.Text = "Carga Cemento"
         '
         'Label33
         '
         Me.Label33.AutoSize = True
         Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label33.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label33.Location = New System.Drawing.Point(34, 95)
+        Me.Label33.Location = New System.Drawing.Point(202, 45)
         Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(104, 15)
+        Me.Label33.Size = New System.Drawing.Size(77, 15)
         Me.Label33.TabIndex = 92
-        Me.Label33.Text = "Balanza 1: Vacía  "
+        Me.Label33.Text = "Descarga T1"
         '
         'Label34
         '
         Me.Label34.AutoSize = True
         Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label34.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label34.Location = New System.Drawing.Point(34, 77)
+        Me.Label34.Location = New System.Drawing.Point(203, 25)
         Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(114, 15)
+        Me.Label34.Size = New System.Drawing.Size(74, 15)
         Me.Label34.TabIndex = 90
-        Me.Label34.Text = "Línea 1: Batch Listo"
+        Me.Label34.Text = "Dosificacion"
         '
         'Label35
         '
         Me.Label35.AutoSize = True
         Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label35.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label35.Location = New System.Drawing.Point(34, 59)
+        Me.Label35.Location = New System.Drawing.Point(34, 65)
         Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(104, 15)
+        Me.Label35.Size = New System.Drawing.Size(99, 15)
         Me.Label35.TabIndex = 88
-        Me.Label35.Text = "Línea 1: Ocupada"
+        Me.Label35.Text = "Config. Setpoints"
         '
-        'Pilot_CoarseP1
+        'Sig_CargaCemento
         '
-        Me.Pilot_CoarseP1.AnalogIntValue1 = CType(0, Short)
-        Me.Pilot_CoarseP1.AnalogValue1 = 0R
-        Me.Pilot_CoarseP1.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pilot_CoarseP1.BackColor = System.Drawing.Color.Transparent
-        Me.Pilot_CoarseP1.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pilot_CoarseP1.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pilot_CoarseP1.BlinkColor = System.Drawing.Color.Red
-        Me.Pilot_CoarseP1.Category = "1Btn.cat2"
-        Me.Pilot_CoarseP1.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pilot_CoarseP1.DebugData"))
-        Me.Pilot_CoarseP1.FillColor = System.Drawing.Color.Gray
-        Me.Pilot_CoarseP1.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pilot_CoarseP1.Location = New System.Drawing.Point(200, 41)
-        Me.Pilot_CoarseP1.Name = "Pilot_CoarseP1"
-        Me.Pilot_CoarseP1.Size = New System.Drawing.Size(20, 15)
-        Me.Pilot_CoarseP1.SymbolHandle = CType(480163100, Long)
-        Me.Pilot_CoarseP1.TabIndex = 95
+        Me.Sig_CargaCemento.AnalogIntValue1 = CType(0, Short)
+        Me.Sig_CargaCemento.AnalogValue1 = 0R
+        Me.Sig_CargaCemento.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sig_CargaCemento.BackColor = System.Drawing.Color.Transparent
+        Me.Sig_CargaCemento.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sig_CargaCemento.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Sig_CargaCemento.BlinkColor = System.Drawing.Color.Red
+        Me.Sig_CargaCemento.Category = "1Btn.cat2"
+        Me.Sig_CargaCemento.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sig_CargaCemento.DebugData"))
+        Me.Sig_CargaCemento.FillColor = System.Drawing.Color.Gray
+        Me.Sig_CargaCemento.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sig_CargaCemento.Location = New System.Drawing.Point(176, 85)
+        Me.Sig_CargaCemento.Name = "Sig_CargaCemento"
+        Me.Sig_CargaCemento.Size = New System.Drawing.Size(20, 15)
+        Me.Sig_CargaCemento.SymbolHandle = CType(480163100, Long)
+        Me.Sig_CargaCemento.TabIndex = 95
         '
-        'Pilot_Scale1_Empty
+        'Sig_DescargaT1
         '
-        Me.Pilot_Scale1_Empty.AnalogIntValue1 = CType(0, Short)
-        Me.Pilot_Scale1_Empty.AnalogValue1 = 0R
-        Me.Pilot_Scale1_Empty.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pilot_Scale1_Empty.BackColor = System.Drawing.Color.Transparent
-        Me.Pilot_Scale1_Empty.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pilot_Scale1_Empty.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pilot_Scale1_Empty.BlinkColor = System.Drawing.Color.Red
-        Me.Pilot_Scale1_Empty.Category = "1Btn.cat2"
-        Me.Pilot_Scale1_Empty.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pilot_Scale1_Empty.DebugData"))
-        Me.Pilot_Scale1_Empty.FillColor = System.Drawing.Color.Gray
-        Me.Pilot_Scale1_Empty.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pilot_Scale1_Empty.Location = New System.Drawing.Point(8, 95)
-        Me.Pilot_Scale1_Empty.Name = "Pilot_Scale1_Empty"
-        Me.Pilot_Scale1_Empty.Size = New System.Drawing.Size(20, 15)
-        Me.Pilot_Scale1_Empty.SymbolHandle = CType(480163100, Long)
-        Me.Pilot_Scale1_Empty.TabIndex = 93
+        Me.Sig_DescargaT1.AnalogIntValue1 = CType(0, Short)
+        Me.Sig_DescargaT1.AnalogValue1 = 0R
+        Me.Sig_DescargaT1.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sig_DescargaT1.BackColor = System.Drawing.Color.Transparent
+        Me.Sig_DescargaT1.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sig_DescargaT1.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Sig_DescargaT1.BlinkColor = System.Drawing.Color.Red
+        Me.Sig_DescargaT1.Category = "1Btn.cat2"
+        Me.Sig_DescargaT1.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sig_DescargaT1.DebugData"))
+        Me.Sig_DescargaT1.FillColor = System.Drawing.Color.Gray
+        Me.Sig_DescargaT1.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sig_DescargaT1.Location = New System.Drawing.Point(176, 45)
+        Me.Sig_DescargaT1.Name = "Sig_DescargaT1"
+        Me.Sig_DescargaT1.Size = New System.Drawing.Size(20, 15)
+        Me.Sig_DescargaT1.SymbolHandle = CType(480163100, Long)
+        Me.Sig_DescargaT1.TabIndex = 93
         '
         'Label36
         '
         Me.Label36.AutoSize = True
         Me.Label36.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label36.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label36.Location = New System.Drawing.Point(34, 41)
+        Me.Label36.Location = New System.Drawing.Point(34, 45)
         Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(150, 15)
+        Me.Label36.Size = New System.Drawing.Size(118, 15)
         Me.Label36.TabIndex = 17
-        Me.Label36.Text = "Línea 1: Modo Automatico"
+        Me.Label36.Text = "Config. Serial Tolvas"
         '
-        'Pilot_AutoMode
+        'Sig_ConfigSerial
         '
-        Me.Pilot_AutoMode.AnalogIntValue1 = CType(0, Short)
-        Me.Pilot_AutoMode.AnalogValue1 = 0R
-        Me.Pilot_AutoMode.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pilot_AutoMode.BackColor = System.Drawing.Color.Transparent
-        Me.Pilot_AutoMode.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pilot_AutoMode.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pilot_AutoMode.BlinkColor = System.Drawing.Color.Red
-        Me.Pilot_AutoMode.Category = "1Btn.cat2"
-        Me.Pilot_AutoMode.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pilot_AutoMode.DebugData"))
-        Me.Pilot_AutoMode.FillColor = System.Drawing.Color.Gray
-        Me.Pilot_AutoMode.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pilot_AutoMode.Location = New System.Drawing.Point(8, 42)
-        Me.Pilot_AutoMode.Name = "Pilot_AutoMode"
-        Me.Pilot_AutoMode.Size = New System.Drawing.Size(20, 15)
-        Me.Pilot_AutoMode.SymbolHandle = CType(480163100, Long)
-        Me.Pilot_AutoMode.TabIndex = 87
+        Me.Sig_ConfigSerial.AnalogIntValue1 = CType(0, Short)
+        Me.Sig_ConfigSerial.AnalogValue1 = 0R
+        Me.Sig_ConfigSerial.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sig_ConfigSerial.BackColor = System.Drawing.Color.Transparent
+        Me.Sig_ConfigSerial.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sig_ConfigSerial.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Sig_ConfigSerial.BlinkColor = System.Drawing.Color.Red
+        Me.Sig_ConfigSerial.Category = "1Btn.cat2"
+        Me.Sig_ConfigSerial.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sig_ConfigSerial.DebugData"))
+        Me.Sig_ConfigSerial.FillColor = System.Drawing.Color.Gray
+        Me.Sig_ConfigSerial.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sig_ConfigSerial.Location = New System.Drawing.Point(8, 45)
+        Me.Sig_ConfigSerial.Name = "Sig_ConfigSerial"
+        Me.Sig_ConfigSerial.Size = New System.Drawing.Size(20, 15)
+        Me.Sig_ConfigSerial.SymbolHandle = CType(480163100, Long)
+        Me.Sig_ConfigSerial.TabIndex = 87
         '
-        'Pilot_L1_Busy
+        'Sig_Setpoints
         '
-        Me.Pilot_L1_Busy.AnalogIntValue1 = CType(0, Short)
-        Me.Pilot_L1_Busy.AnalogValue1 = 0R
-        Me.Pilot_L1_Busy.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pilot_L1_Busy.BackColor = System.Drawing.Color.Transparent
-        Me.Pilot_L1_Busy.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pilot_L1_Busy.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pilot_L1_Busy.BlinkColor = System.Drawing.Color.Red
-        Me.Pilot_L1_Busy.Category = "1Btn.cat2"
-        Me.Pilot_L1_Busy.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pilot_L1_Busy.DebugData"))
-        Me.Pilot_L1_Busy.FillColor = System.Drawing.Color.Gray
-        Me.Pilot_L1_Busy.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pilot_L1_Busy.Location = New System.Drawing.Point(8, 59)
-        Me.Pilot_L1_Busy.Name = "Pilot_L1_Busy"
-        Me.Pilot_L1_Busy.Size = New System.Drawing.Size(20, 15)
-        Me.Pilot_L1_Busy.SymbolHandle = CType(480163100, Long)
-        Me.Pilot_L1_Busy.TabIndex = 89
+        Me.Sig_Setpoints.AnalogIntValue1 = CType(0, Short)
+        Me.Sig_Setpoints.AnalogValue1 = 0R
+        Me.Sig_Setpoints.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sig_Setpoints.BackColor = System.Drawing.Color.Transparent
+        Me.Sig_Setpoints.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sig_Setpoints.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Sig_Setpoints.BlinkColor = System.Drawing.Color.Red
+        Me.Sig_Setpoints.Category = "1Btn.cat2"
+        Me.Sig_Setpoints.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sig_Setpoints.DebugData"))
+        Me.Sig_Setpoints.FillColor = System.Drawing.Color.Gray
+        Me.Sig_Setpoints.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sig_Setpoints.Location = New System.Drawing.Point(8, 65)
+        Me.Sig_Setpoints.Name = "Sig_Setpoints"
+        Me.Sig_Setpoints.Size = New System.Drawing.Size(20, 15)
+        Me.Sig_Setpoints.SymbolHandle = CType(480163100, Long)
+        Me.Sig_Setpoints.TabIndex = 89
         '
-        'Pilot_L1_BatchReady
+        'Sig_Dosifica
         '
-        Me.Pilot_L1_BatchReady.AnalogIntValue1 = CType(0, Short)
-        Me.Pilot_L1_BatchReady.AnalogValue1 = 0R
-        Me.Pilot_L1_BatchReady.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pilot_L1_BatchReady.BackColor = System.Drawing.Color.Transparent
-        Me.Pilot_L1_BatchReady.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pilot_L1_BatchReady.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pilot_L1_BatchReady.BlinkColor = System.Drawing.Color.Red
-        Me.Pilot_L1_BatchReady.Category = "1Btn.cat2"
-        Me.Pilot_L1_BatchReady.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pilot_L1_BatchReady.DebugData"))
-        Me.Pilot_L1_BatchReady.FillColor = System.Drawing.Color.Gray
-        Me.Pilot_L1_BatchReady.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pilot_L1_BatchReady.Location = New System.Drawing.Point(8, 77)
-        Me.Pilot_L1_BatchReady.Name = "Pilot_L1_BatchReady"
-        Me.Pilot_L1_BatchReady.Size = New System.Drawing.Size(20, 15)
-        Me.Pilot_L1_BatchReady.SymbolHandle = CType(480163100, Long)
-        Me.Pilot_L1_BatchReady.TabIndex = 91
+        Me.Sig_Dosifica.AnalogIntValue1 = CType(0, Short)
+        Me.Sig_Dosifica.AnalogValue1 = 0R
+        Me.Sig_Dosifica.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sig_Dosifica.BackColor = System.Drawing.Color.Transparent
+        Me.Sig_Dosifica.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sig_Dosifica.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Sig_Dosifica.BlinkColor = System.Drawing.Color.Red
+        Me.Sig_Dosifica.Category = "1Btn.cat2"
+        Me.Sig_Dosifica.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sig_Dosifica.DebugData"))
+        Me.Sig_Dosifica.FillColor = System.Drawing.Color.Gray
+        Me.Sig_Dosifica.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sig_Dosifica.Location = New System.Drawing.Point(176, 25)
+        Me.Sig_Dosifica.Name = "Sig_Dosifica"
+        Me.Sig_Dosifica.Size = New System.Drawing.Size(20, 15)
+        Me.Sig_Dosifica.SymbolHandle = CType(480163100, Long)
+        Me.Sig_Dosifica.TabIndex = 91
         '
         'GroupBox5
         '
@@ -1858,14 +1873,14 @@ Partial Class Proceso
         Me.Dgv_HR.AllowUserToDeleteRows = False
         Me.Dgv_HR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Dgv_HR.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dataGridViewTextBoxColumn1, Me.dataGridViewTextBoxColumn2})
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Dgv_HR.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Dgv_HR.DefaultCellStyle = DataGridViewCellStyle1
         Me.Dgv_HR.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Dgv_HR.Location = New System.Drawing.Point(3, 3)
         Me.Dgv_HR.Name = "Dgv_HR"
@@ -1895,7 +1910,7 @@ Partial Class Proceso
         Me.tabCoils.Location = New System.Drawing.Point(4, 22)
         Me.tabCoils.Name = "tabCoils"
         Me.tabCoils.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabCoils.Size = New System.Drawing.Size(130, 175)
+        Me.tabCoils.Size = New System.Drawing.Size(130, 104)
         Me.tabCoils.TabIndex = 4
         Me.tabCoils.Text = "Coils"
         Me.tabCoils.UseVisualStyleBackColor = True
@@ -1906,14 +1921,14 @@ Partial Class Proceso
         Me.Dgv_Coils.AllowUserToDeleteRows = False
         Me.Dgv_Coils.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Dgv_Coils.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dataGridViewTextBoxColumn3, Me.dataGridViewTextBoxColumn4})
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Dgv_Coils.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Dgv_Coils.DefaultCellStyle = DataGridViewCellStyle2
         Me.Dgv_Coils.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Dgv_Coils.Location = New System.Drawing.Point(3, 3)
         Me.Dgv_Coils.Name = "Dgv_Coils"
@@ -1921,7 +1936,7 @@ Partial Class Proceso
         Me.Dgv_Coils.RowHeadersVisible = False
         Me.Dgv_Coils.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.Dgv_Coils.ShowEditingIcon = False
-        Me.Dgv_Coils.Size = New System.Drawing.Size(124, 169)
+        Me.Dgv_Coils.Size = New System.Drawing.Size(124, 98)
         Me.Dgv_Coils.TabIndex = 2
         '
         'dataGridViewTextBoxColumn3
@@ -1936,6 +1951,96 @@ Partial Class Proceso
         Me.dataGridViewTextBoxColumn4.HeaderText = "Valor"
         Me.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4"
         Me.dataGridViewTextBoxColumn4.ReadOnly = True
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Label18.Location = New System.Drawing.Point(34, 85)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(46, 15)
+        Me.Label18.TabIndex = 114
+        Me.Label18.Text = "Tolva 1"
+        '
+        'Sig_Tolv1
+        '
+        Me.Sig_Tolv1.AnalogIntValue1 = CType(0, Short)
+        Me.Sig_Tolv1.AnalogValue1 = 0R
+        Me.Sig_Tolv1.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sig_Tolv1.BackColor = System.Drawing.Color.Transparent
+        Me.Sig_Tolv1.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sig_Tolv1.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Sig_Tolv1.BlinkColor = System.Drawing.Color.Red
+        Me.Sig_Tolv1.Category = "1Btn.cat2"
+        Me.Sig_Tolv1.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sig_Tolv1.DebugData"))
+        Me.Sig_Tolv1.FillColor = System.Drawing.Color.Gray
+        Me.Sig_Tolv1.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sig_Tolv1.Location = New System.Drawing.Point(8, 85)
+        Me.Sig_Tolv1.Name = "Sig_Tolv1"
+        Me.Sig_Tolv1.Size = New System.Drawing.Size(20, 15)
+        Me.Sig_Tolv1.SymbolHandle = CType(480163100, Long)
+        Me.Sig_Tolv1.TabIndex = 115
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Label20.Location = New System.Drawing.Point(34, 125)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(89, 15)
+        Me.Label20.TabIndex = 116
+        Me.Label20.Text = "Tolva Cemento"
+        '
+        'Sig_TolvCemento
+        '
+        Me.Sig_TolvCemento.AnalogIntValue1 = CType(0, Short)
+        Me.Sig_TolvCemento.AnalogValue1 = 0R
+        Me.Sig_TolvCemento.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sig_TolvCemento.BackColor = System.Drawing.Color.Transparent
+        Me.Sig_TolvCemento.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sig_TolvCemento.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Sig_TolvCemento.BlinkColor = System.Drawing.Color.Red
+        Me.Sig_TolvCemento.Category = "1Btn.cat2"
+        Me.Sig_TolvCemento.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sig_TolvCemento.DebugData"))
+        Me.Sig_TolvCemento.FillColor = System.Drawing.Color.Gray
+        Me.Sig_TolvCemento.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sig_TolvCemento.Location = New System.Drawing.Point(8, 125)
+        Me.Sig_TolvCemento.Name = "Sig_TolvCemento"
+        Me.Sig_TolvCemento.Size = New System.Drawing.Size(20, 15)
+        Me.Sig_TolvCemento.SymbolHandle = CType(480163100, Long)
+        Me.Sig_TolvCemento.TabIndex = 117
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label30.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Label30.Location = New System.Drawing.Point(34, 105)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(46, 15)
+        Me.Label30.TabIndex = 118
+        Me.Label30.Text = "Tolva 2"
+        '
+        'Sig_Tolv2
+        '
+        Me.Sig_Tolv2.AnalogIntValue1 = CType(0, Short)
+        Me.Sig_Tolv2.AnalogValue1 = 0R
+        Me.Sig_Tolv2.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sig_Tolv2.BackColor = System.Drawing.Color.Transparent
+        Me.Sig_Tolv2.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sig_Tolv2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Sig_Tolv2.BlinkColor = System.Drawing.Color.Red
+        Me.Sig_Tolv2.Category = "1Btn.cat2"
+        Me.Sig_Tolv2.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sig_Tolv2.DebugData"))
+        Me.Sig_Tolv2.FillColor = System.Drawing.Color.Gray
+        Me.Sig_Tolv2.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sig_Tolv2.Location = New System.Drawing.Point(8, 105)
+        Me.Sig_Tolv2.Name = "Sig_Tolv2"
+        Me.Sig_Tolv2.Size = New System.Drawing.Size(20, 15)
+        Me.Sig_Tolv2.SymbolHandle = CType(480163100, Long)
+        Me.Sig_Tolv2.TabIndex = 119
         '
         'Proceso
         '
@@ -2016,16 +2121,16 @@ Partial Class Proceso
         CType(Me.Tub_P4_02, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
-        CType(Me.Pilot_Scale1_ValveFlush, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pilot_FineP2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pilot_CoarseP2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pilot_L1Active, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pilot_FineP1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pilot_CoarseP1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pilot_Scale1_Empty, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pilot_AutoMode, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pilot_L1_Busy, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pilot_L1_BatchReady, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sig_DescargaT2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sig_Banda, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sig_Bomba, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sig_PLC, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sig_DesCemento, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sig_CargaCemento, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sig_DescargaT1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sig_ConfigSerial, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sig_Setpoints, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sig_Dosifica, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
         Me.GroupBox6.ResumeLayout(False)
@@ -2035,6 +2140,9 @@ Partial Class Proceso
         CType(Me.Dgv_HR, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabCoils.ResumeLayout(False)
         CType(Me.Dgv_Coils, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sig_Tolv1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sig_TolvCemento, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sig_Tolv2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2124,26 +2232,26 @@ Partial Class Proceso
     Friend WithEvents StandardControl8 As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Tub_P4_02 As SymbolFactoryDotNet.StandardControl
     Friend WithEvents GroupBox4 As GroupBox
-    Friend WithEvents Pilot_Scale1_ValveFlush As SymbolFactoryDotNet.StandardControl
+    Friend WithEvents Sig_DescargaT2 As SymbolFactoryDotNet.StandardControl
     Private WithEvents Label32 As Label
-    Friend WithEvents Pilot_FineP2 As SymbolFactoryDotNet.StandardControl
+    Friend WithEvents Sig_Banda As SymbolFactoryDotNet.StandardControl
     Private WithEvents Label10 As Label
     Private WithEvents Label11 As Label
-    Friend WithEvents Pilot_CoarseP2 As SymbolFactoryDotNet.StandardControl
+    Friend WithEvents Sig_Bomba As SymbolFactoryDotNet.StandardControl
     Private WithEvents Label12 As Label
     Private WithEvents Label13 As Label
-    Friend WithEvents Pilot_L1Active As SymbolFactoryDotNet.StandardControl
-    Friend WithEvents Pilot_FineP1 As SymbolFactoryDotNet.StandardControl
+    Friend WithEvents Sig_PLC As SymbolFactoryDotNet.StandardControl
+    Friend WithEvents Sig_DesCemento As SymbolFactoryDotNet.StandardControl
     Private WithEvents Label31 As Label
     Private WithEvents Label33 As Label
     Private WithEvents Label34 As Label
     Private WithEvents Label35 As Label
-    Friend WithEvents Pilot_CoarseP1 As SymbolFactoryDotNet.StandardControl
-    Friend WithEvents Pilot_Scale1_Empty As SymbolFactoryDotNet.StandardControl
+    Friend WithEvents Sig_CargaCemento As SymbolFactoryDotNet.StandardControl
+    Friend WithEvents Sig_DescargaT1 As SymbolFactoryDotNet.StandardControl
     Private WithEvents Label36 As Label
-    Friend WithEvents Pilot_AutoMode As SymbolFactoryDotNet.StandardControl
-    Friend WithEvents Pilot_L1_Busy As SymbolFactoryDotNet.StandardControl
-    Friend WithEvents Pilot_L1_BatchReady As SymbolFactoryDotNet.StandardControl
+    Friend WithEvents Sig_ConfigSerial As SymbolFactoryDotNet.StandardControl
+    Friend WithEvents Sig_Setpoints As SymbolFactoryDotNet.StandardControl
+    Friend WithEvents Sig_Dosifica As SymbolFactoryDotNet.StandardControl
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents Label27 As Label
     Friend WithEvents Label28 As Label
@@ -2176,4 +2284,10 @@ Partial Class Proceso
     Private WithEvents Dgv_Coils As DataGridView
     Private WithEvents dataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Private WithEvents dataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
+    Private WithEvents Label30 As Label
+    Friend WithEvents Sig_Tolv2 As SymbolFactoryDotNet.StandardControl
+    Private WithEvents Label20 As Label
+    Friend WithEvents Sig_TolvCemento As SymbolFactoryDotNet.StandardControl
+    Private WithEvents Label18 As Label
+    Friend WithEvents Sig_Tolv1 As SymbolFactoryDotNet.StandardControl
 End Class
