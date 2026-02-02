@@ -16,8 +16,10 @@ Module Funciones
     Public Const CSWSOCK10_LICENSE_KEY As String = "AnFJpHIoGSoBVlGQlEWtMOhFJsBIzP"
     Public WithEvents clientSocketCamara As New SocketTools.SocketWrench
 
-    Public IntentosSerial As Integer
-    Public IntentosSerialMax As Integer = 6
+    Public IntentosSerialT1 As Integer = 0
+    Public IntentosSerialT2 As Integer = 0
+    Public IntentosSerialCemento As Integer = 0
+    Public IntentosSerialMax As Integer = 3
     Private Const TIMEOUT_SERIAL_MS As Integer = 3000
 
     Public Sub Conectar_Indicador(IpAddress As String, Port As Integer)
@@ -370,7 +372,7 @@ Module Funciones
         Next
         Return False
     End Function
-    Public Function AbrirPuertoSerial(sp As IO.Ports.SerialPort, row As DataRow) As Boolean
+    Public Function AbrirPuertoSerial(sp As IO.Ports.SerialPort, row As DataRow, Tipo As Integer) As Boolean
         Try
             If row Is Nothing Then Return False
 
@@ -393,7 +395,17 @@ Module Funciones
             End With
 
             sp.Open()
-            IntentosSerial = 0
+            Select Case Tipo
+                Case 1
+                    IntentosSerialT1 = 0
+                    Proceso.Sig_Tolv1.DiscreteValue1 = True
+                Case 2
+                    IntentosSerialT2 = 0
+                    Proceso.Sig_Tolv2.DiscreteValue1 = True
+                Case 3
+                    IntentosSerialCemento = 0
+                    Proceso.Sig_TolvCemento.DiscreteValue1 = True
+            End Select
 
             Return sp.IsOpen
 
@@ -440,7 +452,9 @@ Module Funciones
             If PuertoSerie.IsOpen Then
                 rpta = True
             End If
-            IntentosSerial = 0
+            IntentosSerialT1 = 0
+            IntentosSerialT2 = 0
+            IntentosSerialCemento = 0
         Catch ex As Exception
             MessageBox.Show("Error al Abrir Puerto Serie: " & ex.Message, "Exepción SP Open", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             rpta = False
@@ -578,12 +592,24 @@ Module Funciones
         End Try
     End Sub
 
-    Public Sub LeerSerie(SP As SerialPort, Btt_ReCon As Button, Lb_Estado As Label, Lb_Peso As Label, Temporizador As System.Windows.Forms.Timer, Indicador As String)
+    Public Sub LeerSerie(SP As SerialPort, Btt_ReCon As Button, Lb_Estado As Label, Lb_Peso As Label, Temporizador As System.Windows.Forms.Timer, Indicador As String, tipo As Integer)
         Try
             Dim spLectura As String
             Dim spPeso As Decimal
             Dim pattern As String
+            Dim intentos As Integer
             pattern = ""
+
+            'Procesa intentos de cual tolva se comunica
+            Select Case tipo
+                Case 1
+                    intentos = IntentosSerialT1
+                Case 2
+                    intentos = IntentosSerialT2
+                Case 3
+                    intentos = IntentosSerialCemento
+            End Select
+
             Select Case Indicador
                 Case "Estándar"
                     pattern = "-?\d+(\.\d+)?"
@@ -593,7 +619,7 @@ Module Funciones
 
             Dim regex As New Regex(pattern)
             Dim encontrado As Match
-            If SP.IsOpen And IntentosSerial < IntentosSerialMax Then
+            If SP.IsOpen And intentos < IntentosSerialMax Then
                 Btt_ReCon.Visible = False
                 Lb_Estado.Text = "Conectado"
                 Lb_Estado.ForeColor = System.Drawing.Color.DarkGreen
@@ -606,21 +632,54 @@ Module Funciones
                     spPeso = Decimal.Parse(encontrado.Value)
                     'Lb_Peso.Text = spPeso.ToString
                     Lb_Peso.Text = (String.Format("{0:N3}", spPeso))
-                    IntentosSerial = 0
+                    intentos = 0
                 Else
-                    IntentosSerial += 1
-                    Exit Sub
+                    intentos += 1
+                    'Exit Sub
                 End If
             Else
                 If SP.IsOpen Then
                     SP.Close()
                 End If
+                'Procesa intentos de cual tolva se comunica
+                Select Case tipo
+                    Case 1
+                        Proceso.SerTol1_ok = False
+                        Proceso.Sig_Tolv1.DiscreteValue1 = False
+                    Case 2
+                        Proceso.SerTol2_ok = False
+                        Proceso.Sig_Tolv2.DiscreteValue1 = False
+                    Case 3
+                        Proceso.SerCemento_ok = False
+                        Proceso.Sig_TolvCemento.DiscreteValue1 = False
+                End Select
                 Lb_Estado.Text = "Desconectado"
                 Lb_Estado.ForeColor = System.Drawing.Color.DarkRed
                 Btt_ReCon.Visible = True
             End If
+            'Procesa intentos de cual tolva se comunica
+            Select Case tipo
+                Case 1
+                    IntentosSerialT1 = intentos
+                Case 2
+                    IntentosSerialT2 = intentos
+                Case 3
+                    IntentosSerialCemento = intentos
+            End Select
         Catch ex As System.TimeoutException
             Temporizador.Enabled = False
+            'Procesa intentos de cual tolva se comunica
+            Select Case tipo
+                Case 1
+                    Proceso.SerTol1_ok = False
+                    Proceso.Sig_Tolv1.DiscreteValue1 = False
+                Case 2
+                    Proceso.SerTol2_ok = False
+                    Proceso.Sig_Tolv2.DiscreteValue1 = False
+                Case 3
+                    Proceso.SerCemento_ok = False
+                    Proceso.Sig_TolvCemento.DiscreteValue1 = False
+            End Select
             Lb_Estado.Text = "Desconectado"
             Lb_Estado.ForeColor = System.Drawing.Color.DarkRed
             Btt_ReCon.Visible = True

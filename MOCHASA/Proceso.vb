@@ -12,17 +12,9 @@ Public Class Proceso
     Private font_Rtxt As System.Drawing.Font = New System.Drawing.Font("MicrosoftSansSerif", 8)
 
     '*-*-*- Variables manejo de PLC - *-* -* -**
-    Private PLC_LOGO As EasyModbus.ModbusServer
+    Private PLC_LOGO As EasyModbus.ModbusClient
     Private Block_lectura_HR() As Integer
     Private Block_lectura_Coils() As Boolean
-    ' Holdins Registers
-    Private preventInvokeHoldingRegisters As Boolean = False
-    Delegate Sub registersChangedCallback(ByVal register As Integer, ByVal numberOfRegisters As Integer)
-    Private registersChanegesLocked As Boolean = False
-    Private LockNumberOfConnectionsChanged As Boolean = False
-    Delegate Sub numberOfConnectionsCallback()
-    Delegate Sub coilsChangedCallback(ByVal coil As Integer, ByVal numberOfCoil As Integer)
-    Private preventInvokeCoils As Boolean = False
 
     '*-*-Variables para manejo del proceso-*-*-*-*-
     Private running As Boolean = False
@@ -32,21 +24,26 @@ Public Class Proceso
     Private nomIng As String
     Private codProd As String
     Private nomProd As String
-    Private valor As Double
     Private pesoSet As Double
     Private pesoReal As Double
     Private diferencia As Double
     Private pesoSet1, pesoSet2, pesoSet3, pesoSet4, pesoSet5 As Double
     Private pesoReal1, pesoReal2, pesoReal3, pesoReal4, pesoReal5 As Double
-    Private batchPlanificacion, batchActual, batchPendientes As Integer
+    Private NumBatchPlanificacion, batchActual, batchPendientes As Integer
     Private corteT1, corteT2, corteCemento, corteAgua As Double
+    Private LimiteT1, LimiteT2, LimiteCemento, LimiteAgua As Double
 
     Private flagConfigTolvas As Boolean = False
     Private flagConfigPLC As Boolean = False
     Private flagConfigSetpoints As Boolean = False
 
-    Private flagFinCemento As Boolean = False
-    Private flagFinAridos As Boolean = False
+    Private flagFinCargaCemento As Boolean = False
+    Private flagFinDesCargaCemento As Boolean = False
+
+    Private flagFinParcialTolv1 As Boolean = False
+    Private flagFinTolv1 As Boolean = False
+    Private flagFinParcialTolv2 As Boolean = False
+    Private flagFinTolv2 As Boolean = False
     Private flagFinAgua As Boolean = False
     Private flagFinParcial As Boolean = False
     Private flagSoltarProducto As Boolean = False
@@ -54,82 +51,117 @@ Public Class Proceso
     Private flagEnviadoParcialCemento As Boolean = False
     Private flagEnviadoParcialAgua As Boolean = False
 
-    Private SerTol1_ok, SerTol2_ok, SerCemento_ok As Boolean
-
-
-
+    Public SerTol1_ok, SerTol2_ok, SerCemento_ok As Boolean
 
     Private textoImprimir As String = ""
     Private nombreImpresora As String = ""
     Private flagUsaImpresora As Boolean = False
+
+    'Factor para la carga parcial
+    Private FactorParcialTolv1 As Integer = 50
+    Private FactorParcialTolv2 As Integer = 50
+    Private FactorParcialCement As Integer = 50
+    Private FactorParcialAgua As Integer = 50
+
+
+    Private CabeceraImpr As String = "EUFRATES "
 
     '*-*-*-*-**-*-*-*-*-*-*-*
     Private Sub Proceso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         flagConfigTolvas = Cargar_y_Configurar_Tolvas()
         Sig_ConfigSerial.DiscreteValue1 = flagConfigTolvas
         CargaProductos()
-        flagConfigPLC = Configura_PLC()
+        flagConfigPLC = Configura_Inicializa_PLC()
         Sig_PLC.DiscreteValue1 = flagConfigPLC
         LimpiarLabelsFormula()
         nombreImpresora = Funciones.Obtener_Valor_Configuracion("Nombre_Impresora")
         flagUsaImpresora = Convert.ToBoolean(Funciones.Obtener_Valor_Configuracion("UsaImpresora") = "1")
+        'Lectura de cortes
+        corteT1 = 50
+        corteT2 = 50
+        corteCemento = 50
+        corteAgua = 5
         'Inicializar Timers para lectura del peso
         Timer_Tolva1.Enabled = True
         Timer_Tolva2.Enabled = True
         TimerTolvCemento.Enabled = True
+        If flagConfigPLC Then
+            Tim_ReadHR.Enabled = True
+        End If
+
     End Sub
-    Private Function Configura_PLC() As Boolean
+    Private Function Configura_Inicializa_PLC() As Boolean
         Dim rpta As Boolean = False
         Try
-            PLC_LOGO = New EasyModbus.ModbusServer()
-            PLC_LOGO.UnitIdentifier = 255 'ID PC --Se configura en el PLC este ID de la maquina -- **Puede ser fijo***
+            PLC_LOGO = New EasyModbus.ModbusClient
+            If PLC_LOGO.Connected Then
+                PLC_LOGO.Disconnect()
+            End If
+            PLC_LOGO.IPAddress = "192.168.1.25"
             PLC_LOGO.Port = 502
-            PLC_LOGO.Listen()
-
-            '--Funcion de lectura de (HOLDING REGISTERS)
-            AddHandler PLC_LOGO.HoldingRegistersChanged, AddressOf HoldinRegistersChanged
-            '--Funcion de lectura de (NUMERO DE CONEXIONES)
-            AddHandler PLC_LOGO.NumberOfConnectedClientsChanged, AddressOf NumberOfConnectionsChanged
-            '--Funcion de lectura de Coils
-            AddHandler PLC_LOGO.CoilsChanged, AddressOf CoilsChanged
+            PLC_LOGO.SerialPort = Nothing
+            PLC_LOGO.Connect()
+            Lbl_Est_Conn.Text = "Conectado"
+            Lbl_Est_Conn.ForeColor = Color.Green
             rpta = True
-
         Catch ex As Exception
+            Rtx_Mensajes.AppendColoredText(
+                "Excepcion Configura PLC: " & ex.Message & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
             rpta = False
+            Lbl_Est_Conn.Text = "Desconectado"
+            Lbl_Est_Conn.ForeColor = Color.Red
         End Try
+        Sig_PLC.DiscreteValue1 = rpta
+        Return rpta
     End Function
-    Private Sub HoldinRegistersChanged(register As Integer, numberOfRegisters As Integer)
-        If preventInvokeHoldingRegisters Then Return
+    Private Sub Reconecta_PLC()
         Try
-            If Me.tabControl1.InvokeRequired Then
-                If Not registersChanegesLocked Then
-                    SyncLock Me
-                        registersChanegesLocked = True
-                        Dim d As New registersChangedCallback(AddressOf HoldinRegistersChanged)
-                        Me.Invoke(d, register, numberOfRegisters)
-                    End SyncLock
-                End If
-            Else
-                Dgv_HR.Rows.Clear()
-                For i As Integer = 1 To 4
-
-                    Dim hrField = GetType(EasyModbus.ModbusServer).GetField(
-                    "holdingRegisters",
-                    Reflection.BindingFlags.NonPublic Or Reflection.BindingFlags.Instance)
-
-                    Dim hr() As Integer = CType(hrField.GetValue(PLC_LOGO), Integer())
-
-                    Dgv_HR.Rows.Add(i, hr(i))
-                    'Guardar Informacion en el bloque de lectura
-                    Block_lectura_HR(i) = hr(i)
-                Next
-                '--Rutina de lectura y procesmiento de informacion
-                LecturaRegistros()
+            If Not flagConfigPLC And Lbl_Est_Conn.Text = "Desconectado" Then
+                Configura_Inicializa_PLC()
             End If
         Catch ex As Exception
-        Finally
-            registersChanegesLocked = False
+            Rtx_Mensajes.AppendColoredText(
+                "Excepcion Reconexion PLC: " & ex.Message & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
         End Try
+    End Sub
+    Private Sub HoldinRegistersChanged(register As Integer, numberOfRegisters As Integer)
+        'If preventInvokeHoldingRegisters Then Return
+        'Try
+        '    If Me.tabControl1.InvokeRequired Then
+        '        If Not registersChanegesLocked Then
+        '            SyncLock Me
+        '                registersChanegesLocked = True
+        '                Dim d As New registersChangedCallback(AddressOf HoldinRegistersChanged)
+        '                Me.Invoke(d, register, numberOfRegisters)
+        '            End SyncLock
+        '        End If
+        '    Else
+        '        Dgv_HR.Rows.Clear()
+        '        For i As Integer = 1 To 4
+
+        '            Dim hrField = GetType(EasyModbus.ModbusServer).GetField(
+        '            "holdingRegisters",
+        '            Reflection.BindingFlags.NonPublic Or Reflection.BindingFlags.Instance)
+
+        '            Dim hr() As Integer = CType(hrField.GetValue(PLC_LOGO), Integer())
+
+        '            Dgv_HR.Rows.Add(i, hr(i))
+        '            'Guardar Informacion en el bloque de lectura
+        '            Block_lectura_HR(i) = hr(i)
+        '        Next
+        '        '--Rutina de lectura y procesmiento de informacion
+        '        Lbl_Est_Conn.Text = "Conectado"
+        '        Lbl_Est_Conn.ForeColor = Color.Green
+        '        LecturaRegistros()
+        '    End If
+        'Catch ex As Exception
+        'Finally
+        '    registersChanegesLocked = False
+        'End Try
     End Sub
     Private Sub LecturaRegistros()
         Try
@@ -140,84 +172,84 @@ Public Class Proceso
         End Try
     End Sub
     Private Sub NumberOfConnectionsChanged()
-        If Lbl_Est_Conn.InvokeRequired AndAlso Not LockNumberOfConnectionsChanged Then
+        'If Lbl_Est_Conn.InvokeRequired AndAlso Not LockNumberOfConnectionsChanged Then
 
-            SyncLock Me
-                LockNumberOfConnectionsChanged = True
-                Dim d As New numberOfConnectionsCallback(AddressOf NumberOfConnectionsChanged)
+        '    SyncLock Me
+        '        LockNumberOfConnectionsChanged = True
+        '        Dim d As New numberOfConnectionsCallback(AddressOf NumberOfConnectionsChanged)
 
-                Try
-                    Me.Invoke(d)
-                Catch ex As Exception
-                    ' Ignorar excepción de invoke
-                Finally
-                    LockNumberOfConnectionsChanged = False
-                End Try
-            End SyncLock
+        '        Try
+        '            Me.Invoke(d)
+        '        Catch ex As Exception
+        '            ' Ignorar excepción de invoke
+        '        Finally
+        '            LockNumberOfConnectionsChanged = False
+        '        End Try
+        '    End SyncLock
 
-        Else
-            Try
-                ' Ejemplo de uso real:
-                ' Lbl_numConectados.Text = PLC_Logo.NumberOfConnections.ToString()
+        'Else
+        '    Try
+        '        ' Ejemplo de uso real:
+        '        ' Lbl_numConectados.Text = PLC_Logo.NumberOfConnections.ToString()
 
-            Catch ex As Exception
-                ' Lbl_numConectados.Text = "0"
-            End Try
-        End If
+        '    Catch ex As Exception
+        '        ' Lbl_numConectados.Text = "0"
+        '    End Try
+        'End If
     End Sub
     Private Sub CoilsChanged(coil As Integer, numberOfCoil As Integer)
 
-        If preventInvokeCoils Then Return
+        'If preventInvokeCoils Then Return
 
-        Try
-            If tabControl1.InvokeRequired Then
+        'Try
+        '    If tabControl1.InvokeRequired Then
 
-                Dim d As New coilsChangedCallback(AddressOf CoilsChanged)
-                Me.Invoke(d, coil, numberOfCoil)
+        '        Dim d As New coilsChangedCallback(AddressOf CoilsChanged)
+        '        Me.Invoke(d, coil, numberOfCoil)
 
-            Else
-                Dgv_Coils.Rows.Clear()
+        '    Else
+        '        Dgv_Coils.Rows.Clear()
 
-                For i As Integer = 1 To 3
+        '        For i As Integer = 1 To 3
 
-                    Dim hrField = GetType(EasyModbus.ModbusServer).GetField("coils", Reflection.BindingFlags.NonPublic Or Reflection.BindingFlags.Instance)
-                    Dim Coils() As Boolean = CType(hrField.GetValue(PLC_LOGO), Boolean())
+        '            Dim hrField = GetType(EasyModbus.ModbusServer).GetField("coils", Reflection.BindingFlags.NonPublic Or Reflection.BindingFlags.Instance)
+        '            Dim Coils() As Boolean = CType(hrField.GetValue(PLC_LOGO), Boolean())
 
-                    Dgv_Coils.Rows.Add(i, Coils(i))
+        '            Dgv_Coils.Rows.Add(i, Coils(i))
 
-                    ' Guardar la información en el bloque de lectura
-                    Block_lectura_Coils(i) = Coils(i)
+        '            ' Guardar la información en el bloque de lectura
+        '            Block_lectura_Coils(i) = Coils(i)
 
-                    ' Colorear según estado
-                    If Coils(i) Then
-                        Dgv_Coils(1, i - 1).Style.BackColor = Color.Green
-                    Else
-                        Dgv_Coils(1, i - 1).Style.BackColor = Color.Red
-                    End If
+        '            ' Colorear según estado
+        '            If Coils(i) Then
+        '                Dgv_Coils(1, i - 1).Style.BackColor = Color.Green
+        '            Else
+        '                Dgv_Coils(1, i - 1).Style.BackColor = Color.Red
+        '            End If
 
-                Next
+        '        Next
 
-                ProcesarCoils()
-            End If
+        '        ProcesarCoils()
+        '    End If
 
-        Catch ex As Exception
-            'MuestraNotificacion(
-            '500,
-            '"Error",
-            '"Excepción: Coils Changed",
-            'ex.Message
-            ')
-        End Try
+        'Catch ex As Exception
+        '    '    MuestraNotificacion(
+        '    '500,
+        '    '"Error",
+        '    '"Excepción: Coils Changed",
+        '    'ex.Message
+        '    ')
+        'End Try
 
     End Sub
-    Private Sub ProcesarCoils()
-        Try
+    'Private Sub ProcesarCoils()
+    '    Try
 
-            'Asignar valores de las coils leidas del PLC
-        Catch ex As Exception
+    '        'Asignar valores de las coils leidas del PLC
+    '    Catch ex As Exception
 
-        End Try
-    End Sub
+    '    End Try
+    'End Sub
 
     Private Function Cargar_y_Configurar_Tolvas() As Boolean
         Try
@@ -237,9 +269,9 @@ Public Class Proceso
             End If
 
             '2: Configurar Puertos seriales
-            SerTol1_ok = Funciones.AbrirPuertoSerial(SerialTolva1, tbTolvas.Rows(0))
-            SerTol2_ok = Funciones.AbrirPuertoSerial(SerialTolva2, tbTolvas.Rows(1))
-            SerCemento_ok = Funciones.AbrirPuertoSerial(SerialCemento, tbTolvas.Rows(2))
+            SerTol1_ok = Funciones.AbrirPuertoSerial(SerialTolva1, tbTolvas.Rows(0), 1)
+            SerTol2_ok = Funciones.AbrirPuertoSerial(SerialTolva2, tbTolvas.Rows(1), 2)
+            SerCemento_ok = Funciones.AbrirPuertoSerial(SerialCemento, tbTolvas.Rows(2), 3)
 
             Sig_Tolv1.DiscreteValue1 = SerTol1_ok
             Sig_Tolv2.DiscreteValue1 = SerTol2_ok
@@ -274,6 +306,112 @@ Public Class Proceso
         End Try
     End Function
 
+    Private Sub Tim_DescargaT1_Tick(sender As Object, e As EventArgs) Handles Tim_DescargaT1.Tick
+        Try
+            If flagFinParcialTolv1 Then
+
+            End If
+            If Convert.ToDouble(Lbl_Peso_T1.Text) > (LimiteT1 * FactorParcialTolv1 / 100) Then
+                'Enviar activacion de señal de PLC
+                PLC_LOGO.WriteSingleCoil(Variables.dir_DescargaTol1, True)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub ReadHoldingRegister()
+        Try
+            Block_lectura_HR = PLC_LOGO.ReadHoldingRegisters(0, 3)
+            Lbl_Agua.Text = Block_lectura_HR(Variables.dir_ContadorFlujometro)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Tim_ReadHR_Tick(sender As Object, e As EventArgs) Handles Tim_ReadHR.Tick
+        ReadHoldingRegister()
+    End Sub
+
+    Private Sub Tim_Carga_Agua_Tick(sender As Object, e As EventArgs) Handles Tim_Carga_Agua.Tick
+        Try
+            Dim Compara As Double = LimiteAgua * FactorParcialAgua / 100
+            If Convert.ToDouble(Lbl_Agua.Text) <= Compara Then
+                'Enviar activacion de señal de PLC
+                PLC_LOGO.WriteSingleCoil(3, True)
+            Else
+                PLC_LOGO.WriteSingleCoil(3, False)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Btt_Salir_Click(sender As Object, e As EventArgs) Handles Btt_Salir.Click
+        Try
+            Me.Close()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        'Reconecta_PLC()
+    End Sub
+
+    Private Sub Btt_Iniciar_Click(sender As Object, e As EventArgs) Handles Btt_Iniciar.Click
+        NumBatchPlanificacion = NumericBatchs.Value
+        If running Then
+            Rtx_Mensajes.AppendColoredText("Dosificacion en proceso" & Environment.NewLine,
+                Drawing.Color.Black,
+                font_Rtxt)
+            Exit Sub
+        End If
+
+        Dim valActualT1 As Double = 0
+        Dim valActualT2 As Double = 0
+        Dim valActualCemento As Double = 0
+        Dim Preparado As Boolean = False
+
+        valActualT1 = Convert.ToDouble(Lbl_Peso_T1.Text)
+        valActualT2 = Convert.ToDouble(Lbl_Peso_T2.Text)
+        valActualCemento = Convert.ToDouble(Lbl_Peso_Cem.Text)
+        'ACTIVAR
+        'If valActualT1 < pesoSet1 Then
+        '    MessageBox.Show("El peso en la Tolva 1 es menor al necesario, agregue más peso", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        '    Rtx_Mensajes.AppendColoredText("Peso de Tolva 1 inferior al necesario" & Environment.NewLine,
+        '        Drawing.Color.Black,
+        '        font_Rtxt)
+        '    Exit Sub
+        'End If
+        'If valActualT2 < pesoSet2 Then
+        '    MessageBox.Show("El peso en la Tolva 2 es menor al necesario, agregue más peso", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        '    Rtx_Mensajes.AppendColoredText("Peso de Tolva 2 inferior al necesario" & Environment.NewLine,
+        '        Drawing.Color.Black,
+        '        font_Rtxt)
+        '    Exit Sub
+        'End If
+        If flagConfigPLC And flagConfigSetpoints And SerTol1_ok And SerTol2_ok And SerCemento_ok Then
+            Preparado = True
+        End If
+        'Borrar- Solo para pruebas
+        Preparado = True
+        If Preparado Then
+            running = True
+            LimiteT1 = valActualT1 + corteT1 - pesoSet1
+            LimiteT2 = valActualT2 + corteT2 - pesoSet2
+            LimiteCemento = pesoSet3 - corteCemento
+            LimiteAgua = pesoSet4 - corteAgua
+            'Tim_Carga_Cem.Enabled = True
+            'Tim_DescargaT1.Enabled = True
+            Tim_Carga_Agua.Enabled = True
+        Else
+            MessageBox.Show("Sistema no cumple con los requisitos para iniciar, revise el estado de las señales", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Rtx_Mensajes.AppendColoredText("Sistema no cumple con los requisitos para iniciar" & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
+        End If
+    End Sub
 
     Private Sub CargaProductos()
         Try
@@ -380,7 +518,11 @@ Public Class Proceso
                 pesoSet2 = Convert.ToDouble(dt.Rows(1).Item("Cantidad")) '--Tolva 2
                 pesoSet3 = Convert.ToDouble(dt.Rows(2).Item("Cantidad")) '--Tolva Cemento
                 pesoSet4 = Convert.ToDouble(dt.Rows(3).Item("Cantidad")) '--Agua
-
+                flagConfigSetpoints = True
+                Sig_Setpoints.DiscreteValue1 = True
+            Else
+                flagConfigSetpoints = False
+                Sig_Setpoints.DiscreteValue1 = False
             End If
             'Rtx_Mensajes.AppendColoredText("PesoSet1 = " & pesoSet1.ToString & Environment.NewLine, Drawing.Color.Black, font_Rtxt)
             'Rtx_Mensajes.AppendColoredText("PesoSet2 = " & pesoSet2.ToString & Environment.NewLine, Drawing.Color.Black, font_Rtxt)
@@ -409,6 +551,8 @@ Public Class Proceso
 
 
         Catch ex As Exception
+            flagConfigSetpoints = False
+            Sig_Setpoints.DiscreteValue1 = False
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
@@ -469,19 +613,19 @@ Public Class Proceso
         e.HasMorePages = False
     End Sub
     Private Sub Timer_Tolva1_Tick(sender As Object, e As EventArgs) Handles Timer_Tolva1.Tick
-        Funciones.LeerSerie(SerialTolva1, Btt_ReCon_T1, Lbl_Est_T1, Lbl_Peso_T1, Timer_Tolva1, "Estandar")
+        Funciones.LeerSerie(SerialTolva1, Btt_ReCon_T1, Lbl_Est_T1, Lbl_Peso_T1, Timer_Tolva1, "Estandar", 1)
     End Sub
 
     Private Sub Timer_Tolva2_Tick(sender As Object, e As EventArgs) Handles Timer_Tolva2.Tick
-        Funciones.LeerSerie(SerialTolva2, Btt_ReCon_T2, Lbl_Est_T2, Lbl_Peso_T2, Timer_Tolva2, "Estandar")
+        Funciones.LeerSerie(SerialTolva2, Btt_ReCon_T2, Lbl_Est_T2, Lbl_Peso_T2, Timer_Tolva2, "Estandar", 2)
     End Sub
 
     Private Sub TimerTolvCemento_Tick(sender As Object, e As EventArgs) Handles TimerTolvCemento.Tick
-        Funciones.LeerSerie(SerialCemento, Btt_ReCon_Cemento, Lbl_Est_Cem, Lbl_Peso_Cem, TimerTolvCemento, "Estandar")
+        Funciones.LeerSerie(SerialCemento, Btt_ReCon_Cemento, Lbl_Est_Cem, Lbl_Peso_Cem, TimerTolvCemento, "Estandar", 3)
     End Sub
 
     Private Sub Btt_ReCon_T1_Click(sender As Object, e As EventArgs) Handles Btt_ReCon_T1.Click
-        SerTol1_ok = Funciones.AbrirPuertoSerial(SerialTolva1, tbTolvas.Rows(0))
+        SerTol1_ok = Funciones.AbrirPuertoSerial(SerialTolva1, tbTolvas.Rows(0), 1)
         If Not SerialTolva1.IsOpen Then
             'MessageBox.Show(String.Format("No se pudo abrir el puerto {0} " & "Verifique conexiones", SerialTolva1.PortName), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Rtx_Mensajes.AppendColoredText(
@@ -495,7 +639,7 @@ Public Class Proceso
     End Sub
 
     Private Sub Btt_ReCon_T2_Click(sender As Object, e As EventArgs) Handles Btt_ReCon_T2.Click
-        SerTol2_ok = Funciones.AbrirPuertoSerial(SerialTolva2, tbTolvas.Rows(1))
+        SerTol2_ok = Funciones.AbrirPuertoSerial(SerialTolva2, tbTolvas.Rows(1), 2)
         If Not SerialTolva2.IsOpen Then
             'MessageBox.Show(String.Format("No se pudo abrir el puerto {0} " & "Verifique conexiones", SerialTolva1.PortName), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Rtx_Mensajes.AppendColoredText(
@@ -509,7 +653,7 @@ Public Class Proceso
     End Sub
 
     Private Sub Btt_ReCon_Cemento_Click(sender As Object, e As EventArgs) Handles Btt_ReCon_Cemento.Click
-        SerCemento_ok = Funciones.AbrirPuertoSerial(SerialCemento, tbTolvas.Rows(2))
+        SerCemento_ok = Funciones.AbrirPuertoSerial(SerialCemento, tbTolvas.Rows(2), 3)
         If Not SerialCemento.IsOpen Then
             'MessageBox.Show(String.Format("No se pudo abrir el puerto {0} " & "Verifique conexiones", SerialTolva1.PortName), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Rtx_Mensajes.AppendColoredText(
