@@ -550,47 +550,6 @@ Module Funciones
             Application.Exit()
         End If
     End Sub
-    Public Sub LeerSerie_Nueva(SP As SerialPort, Estado As SerialState, Btt_ReCon As Button, Lb_Estado As Label, Lb_Peso As Label,
-                        Temporizador As System.Windows.Forms.Timer, Indicador As String)
-        Try
-            If Not SP.IsOpen Then Throw New TimeoutException()
-            'Cambia de estado al Label
-            Btt_ReCon.Visible = False
-            Lb_Estado.Text = "Conectado"
-            Lb_Estado.ForeColor = Color.DarkGreen
-
-            'Seleccion de patron
-            Dim pattern As String = ""
-            Select Case Indicador
-                Case "Estandar"
-                    pattern = "[-+]?\d+([.,]\d+)?"
-            End Select
-            'Leer buffer completo
-            Estado.Buffer &= SP.ReadExisting
-            Dim match As Match = Regex.Match(Estado.Buffer, pattern)
-            If match.Success Then
-                Dim valorStr = match.Value.Replace(",", ".")
-                Dim peso As Decimal = Decimal.Parse(valorStr, Globalization.CultureInfo.InvariantCulture)
-                Estado.Buffer = Estado.Buffer.Substring(match.Index + match.Length)
-                Estado.UltimaLecturaOk = DateTime.Now
-                Estado.Intentos = 0
-                Lb_Peso.Text = peso.ToString("N3")
-            Else
-                Estado.Intentos += 1
-            End If
-            If (DateTime.Now - Estado.UltimaLecturaOk).TotalMilliseconds > TIMEOUT_SERIAL_MS Then
-                Throw New TimeoutException()
-            End If
-        Catch ex As TimeoutException
-            Temporizador.Enabled = False
-
-            If SP.IsOpen Then SP.Close()
-
-            Lb_Estado.Text = "Desconectado"
-            Lb_Estado.ForeColor = Color.DarkRed
-            Btt_ReCon.Visible = True
-        End Try
-    End Sub
 
     Public Sub LeerSerie(SP As SerialPort, Btt_ReCon As Button, Lb_Estado As Label, Lb_Peso As Label, Temporizador As System.Windows.Forms.Timer, Indicador As String, tipo As Integer)
         Try
@@ -629,9 +588,9 @@ Module Funciones
                 encontrado = regex.Match(spLectura)
                 'Verificar si se encontró alguna coincidencia
                 If encontrado.Success Then
-                    spPeso = Decimal.Parse(encontrado.Value)
-                    'Lb_Peso.Text = spPeso.ToString
-                    Lb_Peso.Text = (String.Format("{0:N3}", spPeso))
+                    'spPeso = Decimal.Parse(encontrado.Value)
+                    Lb_Peso.Text = encontrado.Value.ToString
+                    'Lb_Peso.Text = (String.Format("{0:N3}", spPeso))
                     intentos = 0
                 Else
                     intentos += 1

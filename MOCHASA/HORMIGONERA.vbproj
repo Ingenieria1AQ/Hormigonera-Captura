@@ -151,6 +151,7 @@
     <Compile Include="frmReportes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Indicador_Serial.vb" />
     <Compile Include="Login.designer.vb">
       <DependentUpon>Login.vb</DependentUpon>
     </Compile>
