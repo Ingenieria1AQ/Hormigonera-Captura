@@ -249,7 +249,7 @@ Public Class Proceso
     '    Catch ex As Exception
 
     '    End Try
-    'End Sub
+    'End SubA
 
     Private Function Cargar_y_Configurar_Tolvas() As Boolean
         Try
@@ -313,7 +313,7 @@ Public Class Proceso
             End If
             If Convert.ToDouble(Lbl_Peso_T1.Text) > (LimiteT1 * FactorParcialTolv1 / 100) Then
                 'Enviar activacion de señal de PLC
-                PLC_LOGO.WriteSingleCoil(Variables.dir_DescargaTol1, True)
+                PLC_LOGO.WriteSingleCoil(Variables.coil_DescargaTol1, True)
             End If
         Catch ex As Exception
 
@@ -335,16 +335,24 @@ Public Class Proceso
 
     Private Sub Tim_Carga_Agua_Tick(sender As Object, e As EventArgs) Handles Tim_Carga_Agua.Tick
         Try
+            Dim ValActual As Double = Convert.ToDouble(Lbl_Agua.Text)
+            Pb_Tol4.Value = ValActual
             Dim Compara As Double = LimiteAgua * FactorParcialAgua / 100
-            If Convert.ToDouble(Lbl_Agua.Text) <= Compara Then
-                'Enviar activacion de señal de PLC
-                PLC_LOGO.WriteSingleCoil(3, True)
+            If ValActual >= Compara Then
+                PLC_LOGO.WriteSingleCoil(Variables.coil_BombaAgua, False)
+                Sig_Bomba.DiscreteValue1 = False
             Else
-                PLC_LOGO.WriteSingleCoil(3, False)
+
             End If
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If PLC_LOGO.Connected Then
+            PLC_LOGO.WriteSingleCoil(Variables.coil_Arranque, True)
+        End If
     End Sub
 
     Private Sub Btt_Salir_Click(sender As Object, e As EventArgs) Handles Btt_Salir.Click
@@ -404,7 +412,14 @@ Public Class Proceso
             LimiteAgua = pesoSet4 - corteAgua
             'Tim_Carga_Cem.Enabled = True
             'Tim_DescargaT1.Enabled = True
+            PLC_LOGO.WriteSingleCoil(Variables.coil_ResetContador, True)
+            PLC_LOGO.WriteSingleCoil(Variables.coil_Arranque, True)
+            Sig_Dosifica.DiscreteValue1 = True
+            PLC_LOGO.WriteSingleCoil(Variables.coil_BombaAgua, True)
+            Sig_Bomba.DiscreteValue1 = True
             Tim_Carga_Agua.Enabled = True
+            PLC_LOGO.WriteSingleCoil(Variables.coil_ResetContador, False)
+            Pb_Tol4.Maximum = Convert.ToInt32(pesoSet4)
         Else
             MessageBox.Show("Sistema no cumple con los requisitos para iniciar, revise el estado de las señales", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Rtx_Mensajes.AppendColoredText("Sistema no cumple con los requisitos para iniciar" & Environment.NewLine,
