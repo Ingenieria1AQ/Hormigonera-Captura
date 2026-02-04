@@ -231,7 +231,7 @@ Partial Class frmConfiguracion
         '
         Me.cboTipoInd1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboTipoInd1.FormattingEnabled = True
-        Me.cboTipoInd1.Items.AddRange(New Object() {"ZM301", "ZM201", "QW", "GW", "EDS"})
+        Me.cboTipoInd1.Items.AddRange(New Object() {"Estandar", "EDS"})
         Me.cboTipoInd1.Location = New System.Drawing.Point(105, 20)
         Me.cboTipoInd1.Name = "cboTipoInd1"
         Me.cboTipoInd1.Size = New System.Drawing.Size(231, 21)
@@ -380,7 +380,7 @@ Partial Class frmConfiguracion
         '
         Me.cboTipoInd2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboTipoInd2.FormattingEnabled = True
-        Me.cboTipoInd2.Items.AddRange(New Object() {"ZM301", "ZM201", "QW", "GW", "EDS"})
+        Me.cboTipoInd2.Items.AddRange(New Object() {"Estandar", "EDS"})
         Me.cboTipoInd2.Location = New System.Drawing.Point(105, 20)
         Me.cboTipoInd2.Name = "cboTipoInd2"
         Me.cboTipoInd2.Size = New System.Drawing.Size(231, 21)
@@ -541,7 +541,7 @@ Partial Class frmConfiguracion
         '
         Me.cboTipoInd3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboTipoInd3.FormattingEnabled = True
-        Me.cboTipoInd3.Items.AddRange(New Object() {"ZM301", "ZM201", "QW", "GW", "EDS"})
+        Me.cboTipoInd3.Items.AddRange(New Object() {"Estandar", "EDS"})
         Me.cboTipoInd3.Location = New System.Drawing.Point(105, 20)
         Me.cboTipoInd3.Name = "cboTipoInd3"
         Me.cboTipoInd3.Size = New System.Drawing.Size(231, 21)
