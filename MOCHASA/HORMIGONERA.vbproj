@@ -109,6 +109,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>datosreportes.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DelayHelper.vb" />
     <Compile Include="frmConfiguracion.Designer.vb">
       <DependentUpon>frmConfiguracion.vb</DependentUpon>
     </Compile>

@@ -44,7 +44,7 @@ Partial Class Proceso
         Me.Sym_Piedra = New SymbolFactoryDotNet.StandardControl()
         Me.Btt_Iniciar = New System.Windows.Forms.Button()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Btt_Detener = New System.Windows.Forms.Button()
         Me.cmbproductos = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.NumericBatchs = New System.Windows.Forms.NumericUpDown()
@@ -98,7 +98,7 @@ Partial Class Proceso
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Btt_Continuar = New System.Windows.Forms.Button()
         Me.StandardControl15 = New SymbolFactoryDotNet.StandardControl()
         Me.Sym_DescT2 = New SymbolFactoryDotNet.StandardControl()
         Me.Sym_Bomba_G1 = New SymbolFactoryDotNet.StandardControl()
@@ -540,14 +540,15 @@ Partial Class Proceso
         Me.Label14.TabIndex = 213
         Me.Label14.Text = "Producto"
         '
-        'Button2
+        'Btt_Detener
         '
-        Me.Button2.Location = New System.Drawing.Point(172, 77)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(85, 28)
-        Me.Button2.TabIndex = 214
-        Me.Button2.Text = "DETENER"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Btt_Detener.Enabled = False
+        Me.Btt_Detener.Location = New System.Drawing.Point(172, 77)
+        Me.Btt_Detener.Name = "Btt_Detener"
+        Me.Btt_Detener.Size = New System.Drawing.Size(85, 28)
+        Me.Btt_Detener.TabIndex = 214
+        Me.Btt_Detener.Text = "DETENER"
+        Me.Btt_Detener.UseVisualStyleBackColor = True
         '
         'cmbproductos
         '
@@ -600,7 +601,7 @@ Partial Class Proceso
         '
         Me.Btt_ReCon_T1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Btt_ReCon_T1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_ReCon_T1.Location = New System.Drawing.Point(4, 43)
+        Me.Btt_ReCon_T1.Location = New System.Drawing.Point(16, 196)
         Me.Btt_ReCon_T1.Name = "Btt_ReCon_T1"
         Me.Btt_ReCon_T1.Size = New System.Drawing.Size(71, 26)
         Me.Btt_ReCon_T1.TabIndex = 226
@@ -625,11 +626,10 @@ Partial Class Proceso
         '
         Me.GroupBox1.Controls.Add(Me.Lbl_Est_T1)
         Me.GroupBox1.Controls.Add(Me.Lbl_Peso_T1)
-        Me.GroupBox1.Controls.Add(Me.Btt_ReCon_T1)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(8, 127)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(88, 94)
+        Me.GroupBox1.Size = New System.Drawing.Size(88, 63)
         Me.GroupBox1.TabIndex = 227
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "TOLVA 1"
@@ -639,7 +639,7 @@ Partial Class Proceso
         Me.Lbl_Est_T1.AutoSize = True
         Me.Lbl_Est_T1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_Est_T1.ForeColor = System.Drawing.Color.DarkRed
-        Me.Lbl_Est_T1.Location = New System.Drawing.Point(5, 72)
+        Me.Lbl_Est_T1.Location = New System.Drawing.Point(4, 45)
         Me.Lbl_Est_T1.Name = "Lbl_Est_T1"
         Me.Lbl_Est_T1.Size = New System.Drawing.Size(77, 13)
         Me.Lbl_Est_T1.TabIndex = 243
@@ -649,11 +649,10 @@ Partial Class Proceso
         '
         Me.GroupBox2.Controls.Add(Me.Lbl_Est_T2)
         Me.GroupBox2.Controls.Add(Me.Lbl_Peso_T2)
-        Me.GroupBox2.Controls.Add(Me.Btt_ReCon_T2)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(102, 127)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(88, 94)
+        Me.GroupBox2.Size = New System.Drawing.Size(88, 63)
         Me.GroupBox2.TabIndex = 228
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "TOLVA 2"
@@ -663,7 +662,7 @@ Partial Class Proceso
         Me.Lbl_Est_T2.AutoSize = True
         Me.Lbl_Est_T2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_Est_T2.ForeColor = System.Drawing.Color.DarkRed
-        Me.Lbl_Est_T2.Location = New System.Drawing.Point(6, 72)
+        Me.Lbl_Est_T2.Location = New System.Drawing.Point(2, 45)
         Me.Lbl_Est_T2.Name = "Lbl_Est_T2"
         Me.Lbl_Est_T2.Size = New System.Drawing.Size(77, 13)
         Me.Lbl_Est_T2.TabIndex = 244
@@ -685,7 +684,7 @@ Partial Class Proceso
         '
         Me.Btt_ReCon_T2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Btt_ReCon_T2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_ReCon_T2.Location = New System.Drawing.Point(5, 43)
+        Me.Btt_ReCon_T2.Location = New System.Drawing.Point(107, 196)
         Me.Btt_ReCon_T2.Name = "Btt_ReCon_T2"
         Me.Btt_ReCon_T2.Size = New System.Drawing.Size(71, 26)
         Me.Btt_ReCon_T2.TabIndex = 226
@@ -698,11 +697,10 @@ Partial Class Proceso
         '
         Me.GroupBox3.Controls.Add(Me.Lbl_Est_Cem)
         Me.GroupBox3.Controls.Add(Me.Lbl_Peso_Cem)
-        Me.GroupBox3.Controls.Add(Me.Btt_ReCon_Cemento)
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(196, 127)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(88, 94)
+        Me.GroupBox3.Size = New System.Drawing.Size(88, 63)
         Me.GroupBox3.TabIndex = 228
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "CEMENTO"
@@ -712,7 +710,7 @@ Partial Class Proceso
         Me.Lbl_Est_Cem.AutoSize = True
         Me.Lbl_Est_Cem.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_Est_Cem.ForeColor = System.Drawing.Color.DarkRed
-        Me.Lbl_Est_Cem.Location = New System.Drawing.Point(2, 72)
+        Me.Lbl_Est_Cem.Location = New System.Drawing.Point(3, 45)
         Me.Lbl_Est_Cem.Name = "Lbl_Est_Cem"
         Me.Lbl_Est_Cem.Size = New System.Drawing.Size(77, 13)
         Me.Lbl_Est_Cem.TabIndex = 245
@@ -734,7 +732,7 @@ Partial Class Proceso
         '
         Me.Btt_ReCon_Cemento.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Btt_ReCon_Cemento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_ReCon_Cemento.Location = New System.Drawing.Point(5, 43)
+        Me.Btt_ReCon_Cemento.Location = New System.Drawing.Point(202, 196)
         Me.Btt_ReCon_Cemento.Name = "Btt_ReCon_Cemento"
         Me.Btt_ReCon_Cemento.Size = New System.Drawing.Size(71, 26)
         Me.Btt_ReCon_Cemento.TabIndex = 226
@@ -1159,14 +1157,15 @@ Partial Class Proceso
         Me.Label24.TabIndex = 2
         Me.Label24.Text = "Cant. " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Teórica"
         '
-        'Button5
+        'Btt_Continuar
         '
-        Me.Button5.Location = New System.Drawing.Point(88, 77)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(78, 28)
-        Me.Button5.TabIndex = 230
-        Me.Button5.Text = "PAUSA"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.Btt_Continuar.Location = New System.Drawing.Point(88, 77)
+        Me.Btt_Continuar.Name = "Btt_Continuar"
+        Me.Btt_Continuar.Size = New System.Drawing.Size(78, 28)
+        Me.Btt_Continuar.TabIndex = 230
+        Me.Btt_Continuar.Text = "CONTINUA"
+        Me.Btt_Continuar.UseVisualStyleBackColor = True
+        Me.Btt_Continuar.Visible = False
         '
         'StandardControl15
         '
@@ -2068,15 +2067,19 @@ Partial Class Proceso
         'Panel2
         '
         Me.Panel2.AutoScroll = True
+        Me.Panel2.BackColor = System.Drawing.SystemColors.Control
         Me.Panel2.Controls.Add(Me.standardControl6)
         Me.Panel2.Controls.Add(Me.Btt_Salir)
+        Me.Panel2.Controls.Add(Me.Btt_ReCon_Cemento)
+        Me.Panel2.Controls.Add(Me.Btt_ReCon_T2)
+        Me.Panel2.Controls.Add(Me.Btt_ReCon_T1)
         Me.Panel2.Controls.Add(Me.TableLayoutPanel1)
         Me.Panel2.Controls.Add(Me.Sym_Arena)
         Me.Panel2.Controls.Add(Me.Btt_Iniciar)
         Me.Panel2.Controls.Add(Me.Sym_Bomba_G9)
         Me.Panel2.Controls.Add(Me.Label14)
         Me.Panel2.Controls.Add(Me.Sym_Bomba_G8)
-        Me.Panel2.Controls.Add(Me.Button2)
+        Me.Panel2.Controls.Add(Me.Btt_Detener)
         Me.Panel2.Controls.Add(Me.Sym_Bomba_G7)
         Me.Panel2.Controls.Add(Me.cmbproductos)
         Me.Panel2.Controls.Add(Me.Sym_Bomba_G6)
@@ -2084,7 +2087,7 @@ Partial Class Proceso
         Me.Panel2.Controls.Add(Me.Sym_Bomba_G5)
         Me.Panel2.Controls.Add(Me.NumericBatchs)
         Me.Panel2.Controls.Add(Me.Label39)
-        Me.Panel2.Controls.Add(Me.Button5)
+        Me.Panel2.Controls.Add(Me.Btt_Continuar)
         Me.Panel2.Controls.Add(Me.Label38)
         Me.Panel2.Controls.Add(Me.GroupBox1)
         Me.Panel2.Controls.Add(Me.Label37)
@@ -2221,7 +2224,7 @@ Partial Class Proceso
     Friend WithEvents Sym_Piedra As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Btt_Iniciar As Button
     Friend WithEvents Label14 As Label
-    Friend WithEvents Button2 As Button
+    Friend WithEvents Btt_Detener As Button
     Friend WithEvents cmbproductos As ComboBox
     Friend WithEvents Label15 As Label
     Friend WithEvents NumericBatchs As NumericUpDown
@@ -2267,7 +2270,7 @@ Partial Class Proceso
     Friend WithEvents Pb_Tol3 As ProgressBar
     Friend WithEvents Pb_Tol1 As ProgressBar
     Friend WithEvents Label26 As Label
-    Friend WithEvents Button5 As Button
+    Friend WithEvents Btt_Continuar As Button
     Friend WithEvents StandardControl15 As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Sym_DescT2 As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Sym_Bomba_G1 As SymbolFactoryDotNet.StandardControl
