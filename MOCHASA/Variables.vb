@@ -24,21 +24,29 @@ Module Variables
     Public intentosLogin As Integer
     Public codOperador As String
     Public convertirFecha As Boolean
+    ''Variables de label de estado 
+    Public Const reg_Lbl_Tolv1 As Integer = 1
+    Public Const reg_Lbl_Tolv2 As Integer = 2
+    Public Const reg_Lbl_Cem As Integer = 3
+    Public Const reg_Lbl_Agua As Integer = 4
 
     'Direccionamiento de registros PLC LOGO
     '--DIGITAL INPUTS
-    Public Const coil_Arranque As Integer = 64
-    Public Const coil_Paro As Integer = 65
-    Public Const coil_WDConection As Integer = 66
-    Public Const coil_ResetContador As Integer = 67
+    Public Const coil_Arranque As Integer = 64                  'Registro 8.0
+    Public Const coil_Paro As Integer = 65                      'Registro 8.1
+    Public Const coil_WDConection As Integer = 66               'Registro 8.2
+    Public Const coil_ResetContador As Integer = 67             'Registro 8.3
 
-    Public Const coil_BombaAgua As Integer = 68
-    Public Const coil_DescargaTol1 As Integer = 69
-    Public Const coil_DescargaTol2 As Integer = 70
-    Public Const coil_CargaCemento As Integer = 71
-    Public Const coil_DescargaCemento As Integer = 72
-    Public Const coil_BandaTransport As Integer = 73
-
+    Public Const coil_BandaTransport As Integer = 68            'Registro 8.4
+    Public Const coil_Desactiva_DescargaTol1 As Integer = 69    'Registro 8.5
+    Public Const coil_Activa_DescargaTol1 As Integer = 70       'Registro 8.6
+    Public Const coil_Desactiva_DescargaTol2 As Integer = 71    'Registro 8.7
+    Public Const coil_Activa_DescargaTol2 As Integer = 72       'Registro 9.0
+    Public Const coil_CargaCem1_Comp_Gravedad As Integer = 73    'Registro 9.1
+    Public Const coil_Desc2_Transpor_Cemento As Integer = 74     'Registro 9.2
+    Public Const coil_Desc2_Compuerta_Cemento As Integer = 75    'Registro 9.3
+    Public Const coil_BombaAgua As Integer = 76                  'Registro 9.4
+    Public Const coil_CargaCem2_Tornillo As Integer = 77         'Registro 9.5
 
     '--
     Public Const dir_coil_Arranque As Integer = 1
