@@ -63,15 +63,20 @@ Partial Class Proceso
         Me.Lbl_Peso_Cem = New System.Windows.Forms.Label()
         Me.Btt_ReCon_Cemento = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Lbl_Estado5 = New System.Windows.Forms.Label()
         Me.Lbl_Tolv1 = New System.Windows.Forms.Label()
-        Me.Lbl_Ing1 = New System.Windows.Forms.Label()
-        Me.Pb_Tol1 = New System.Windows.Forms.ProgressBar()
-        Me.Pb_Tol2 = New System.Windows.Forms.ProgressBar()
-        Me.Pb_Tol3 = New System.Windows.Forms.ProgressBar()
-        Me.Pb_Tol4 = New System.Windows.Forms.ProgressBar()
+        Me.Lbl_Estado4 = New System.Windows.Forms.Label()
         Me.Pb_Tol5 = New System.Windows.Forms.ProgressBar()
+        Me.Lbl_Ing1 = New System.Windows.Forms.Label()
+        Me.Pb_Tol4 = New System.Windows.Forms.ProgressBar()
+        Me.Lbl_Estado3 = New System.Windows.Forms.Label()
+        Me.Pb_Tol3 = New System.Windows.Forms.ProgressBar()
         Me.Lbl_Tolv2 = New System.Windows.Forms.Label()
+        Me.Pb_Tol2 = New System.Windows.Forms.ProgressBar()
+        Me.Lbl_Estado2 = New System.Windows.Forms.Label()
+        Me.Pb_Tol1 = New System.Windows.Forms.ProgressBar()
         Me.Lbl_Tolv3 = New System.Windows.Forms.Label()
+        Me.Lbl_Estado1 = New System.Windows.Forms.Label()
         Me.Lbl_Tolv4 = New System.Windows.Forms.Label()
         Me.Lbl_Tolv5 = New System.Windows.Forms.Label()
         Me.Lbl_Ing2 = New System.Windows.Forms.Label()
@@ -168,14 +173,9 @@ Partial Class Proceso
         Me.Tim_Carga_Agua = New System.Windows.Forms.Timer(Me.components)
         Me.Tim_ReadHR = New System.Windows.Forms.Timer(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Chbx_CargaCemxTor = New System.Windows.Forms.CheckBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Lbl_Estado1 = New System.Windows.Forms.Label()
-        Me.Lbl_Estado2 = New System.Windows.Forms.Label()
-        Me.Lbl_Estado3 = New System.Windows.Forms.Label()
-        Me.Lbl_Estado4 = New System.Windows.Forms.Label()
-        Me.Lbl_Estado5 = New System.Windows.Forms.Label()
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -754,9 +754,9 @@ Partial Class Proceso
         Me.TableLayoutPanel1.ColumnCount = 7
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Lbl_Estado5, 4, 4)
@@ -805,6 +805,17 @@ Partial Class Proceso
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(580, 110)
         Me.TableLayoutPanel1.TabIndex = 229
         '
+        'Lbl_Estado5
+        '
+        Me.Lbl_Estado5.AutoSize = True
+        Me.Lbl_Estado5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Estado5.Location = New System.Drawing.Point(263, 88)
+        Me.Lbl_Estado5.Name = "Lbl_Estado5"
+        Me.Lbl_Estado5.Size = New System.Drawing.Size(49, 13)
+        Me.Lbl_Estado5.TabIndex = 266
+        Me.Lbl_Estado5.Text = "Estado 5"
+        Me.Lbl_Estado5.Visible = False
+        '
         'Lbl_Tolv1
         '
         Me.Lbl_Tolv1.AutoSize = True
@@ -815,6 +826,25 @@ Partial Class Proceso
         Me.Lbl_Tolv1.TabIndex = 5
         Me.Lbl_Tolv1.Text = "Tolva 1"
         Me.Lbl_Tolv1.Visible = False
+        '
+        'Lbl_Estado4
+        '
+        Me.Lbl_Estado4.AutoSize = True
+        Me.Lbl_Estado4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Estado4.Location = New System.Drawing.Point(263, 66)
+        Me.Lbl_Estado4.Name = "Lbl_Estado4"
+        Me.Lbl_Estado4.Size = New System.Drawing.Size(49, 13)
+        Me.Lbl_Estado4.TabIndex = 265
+        Me.Lbl_Estado4.Text = "Estado 4"
+        Me.Lbl_Estado4.Visible = False
+        '
+        'Pb_Tol5
+        '
+        Me.Pb_Tol5.Location = New System.Drawing.Point(466, 91)
+        Me.Pb_Tol5.Name = "Pb_Tol5"
+        Me.Pb_Tol5.Size = New System.Drawing.Size(109, 15)
+        Me.Pb_Tol5.TabIndex = 234
+        Me.Pb_Tol5.Visible = False
         '
         'Lbl_Ing1
         '
@@ -827,46 +857,32 @@ Partial Class Proceso
         Me.Lbl_Ing1.Text = "Ingre 1"
         Me.Lbl_Ing1.Visible = False
         '
-        'Pb_Tol1
-        '
-        Me.Pb_Tol1.Location = New System.Drawing.Point(465, 3)
-        Me.Pb_Tol1.Maximum = 1000
-        Me.Pb_Tol1.Name = "Pb_Tol1"
-        Me.Pb_Tol1.Size = New System.Drawing.Size(109, 14)
-        Me.Pb_Tol1.TabIndex = 231
-        Me.Pb_Tol1.Visible = False
-        '
-        'Pb_Tol2
-        '
-        Me.Pb_Tol2.Location = New System.Drawing.Point(465, 25)
-        Me.Pb_Tol2.Name = "Pb_Tol2"
-        Me.Pb_Tol2.Size = New System.Drawing.Size(109, 14)
-        Me.Pb_Tol2.TabIndex = 235
-        Me.Pb_Tol2.Visible = False
-        '
-        'Pb_Tol3
-        '
-        Me.Pb_Tol3.Location = New System.Drawing.Point(465, 47)
-        Me.Pb_Tol3.Name = "Pb_Tol3"
-        Me.Pb_Tol3.Size = New System.Drawing.Size(109, 14)
-        Me.Pb_Tol3.TabIndex = 232
-        Me.Pb_Tol3.Visible = False
-        '
         'Pb_Tol4
         '
-        Me.Pb_Tol4.Location = New System.Drawing.Point(465, 69)
+        Me.Pb_Tol4.Location = New System.Drawing.Point(466, 69)
         Me.Pb_Tol4.Name = "Pb_Tol4"
         Me.Pb_Tol4.Size = New System.Drawing.Size(109, 14)
         Me.Pb_Tol4.TabIndex = 233
         Me.Pb_Tol4.Visible = False
         '
-        'Pb_Tol5
+        'Lbl_Estado3
         '
-        Me.Pb_Tol5.Location = New System.Drawing.Point(465, 91)
-        Me.Pb_Tol5.Name = "Pb_Tol5"
-        Me.Pb_Tol5.Size = New System.Drawing.Size(109, 15)
-        Me.Pb_Tol5.TabIndex = 234
-        Me.Pb_Tol5.Visible = False
+        Me.Lbl_Estado3.AutoSize = True
+        Me.Lbl_Estado3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Estado3.Location = New System.Drawing.Point(263, 44)
+        Me.Lbl_Estado3.Name = "Lbl_Estado3"
+        Me.Lbl_Estado3.Size = New System.Drawing.Size(49, 13)
+        Me.Lbl_Estado3.TabIndex = 264
+        Me.Lbl_Estado3.Text = "Estado 3"
+        Me.Lbl_Estado3.Visible = False
+        '
+        'Pb_Tol3
+        '
+        Me.Pb_Tol3.Location = New System.Drawing.Point(466, 47)
+        Me.Pb_Tol3.Name = "Pb_Tol3"
+        Me.Pb_Tol3.Size = New System.Drawing.Size(109, 14)
+        Me.Pb_Tol3.TabIndex = 232
+        Me.Pb_Tol3.Visible = False
         '
         'Lbl_Tolv2
         '
@@ -879,6 +895,34 @@ Partial Class Proceso
         Me.Lbl_Tolv2.Text = "Tolva 2"
         Me.Lbl_Tolv2.Visible = False
         '
+        'Pb_Tol2
+        '
+        Me.Pb_Tol2.Location = New System.Drawing.Point(466, 25)
+        Me.Pb_Tol2.Name = "Pb_Tol2"
+        Me.Pb_Tol2.Size = New System.Drawing.Size(109, 14)
+        Me.Pb_Tol2.TabIndex = 235
+        Me.Pb_Tol2.Visible = False
+        '
+        'Lbl_Estado2
+        '
+        Me.Lbl_Estado2.AutoSize = True
+        Me.Lbl_Estado2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Estado2.Location = New System.Drawing.Point(263, 22)
+        Me.Lbl_Estado2.Name = "Lbl_Estado2"
+        Me.Lbl_Estado2.Size = New System.Drawing.Size(49, 13)
+        Me.Lbl_Estado2.TabIndex = 263
+        Me.Lbl_Estado2.Text = "Estado 2"
+        Me.Lbl_Estado2.Visible = False
+        '
+        'Pb_Tol1
+        '
+        Me.Pb_Tol1.Location = New System.Drawing.Point(466, 3)
+        Me.Pb_Tol1.Maximum = 1000
+        Me.Pb_Tol1.Name = "Pb_Tol1"
+        Me.Pb_Tol1.Size = New System.Drawing.Size(109, 14)
+        Me.Pb_Tol1.TabIndex = 231
+        Me.Pb_Tol1.Visible = False
+        '
         'Lbl_Tolv3
         '
         Me.Lbl_Tolv3.AutoSize = True
@@ -889,6 +933,17 @@ Partial Class Proceso
         Me.Lbl_Tolv3.TabIndex = 15
         Me.Lbl_Tolv3.Text = "Tolva 3"
         Me.Lbl_Tolv3.Visible = False
+        '
+        'Lbl_Estado1
+        '
+        Me.Lbl_Estado1.AutoSize = True
+        Me.Lbl_Estado1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Estado1.Location = New System.Drawing.Point(263, 0)
+        Me.Lbl_Estado1.Name = "Lbl_Estado1"
+        Me.Lbl_Estado1.Size = New System.Drawing.Size(49, 13)
+        Me.Lbl_Estado1.TabIndex = 262
+        Me.Lbl_Estado1.Text = "Estado 1"
+        Me.Lbl_Estado1.Visible = False
         '
         'Lbl_Tolv4
         '
@@ -962,7 +1017,7 @@ Partial Class Proceso
         Me.Lbl_CanTeo1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_CanTeo1.Location = New System.Drawing.Point(159, 0)
         Me.Lbl_CanTeo1.Name = "Lbl_CanTeo1"
-        Me.Lbl_CanTeo1.Size = New System.Drawing.Size(37, 22)
+        Me.Lbl_CanTeo1.Size = New System.Drawing.Size(46, 22)
         Me.Lbl_CanTeo1.TabIndex = 7
         Me.Lbl_CanTeo1.Text = "Teorica 1"
         Me.Lbl_CanTeo1.Visible = False
@@ -973,7 +1028,7 @@ Partial Class Proceso
         Me.Lbl_CanTeo2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_CanTeo2.Location = New System.Drawing.Point(159, 22)
         Me.Lbl_CanTeo2.Name = "Lbl_CanTeo2"
-        Me.Lbl_CanTeo2.Size = New System.Drawing.Size(37, 22)
+        Me.Lbl_CanTeo2.Size = New System.Drawing.Size(46, 22)
         Me.Lbl_CanTeo2.TabIndex = 12
         Me.Lbl_CanTeo2.Text = "Teorica 2"
         Me.Lbl_CanTeo2.Visible = False
@@ -984,7 +1039,7 @@ Partial Class Proceso
         Me.Lbl_CanTeo3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_CanTeo3.Location = New System.Drawing.Point(159, 44)
         Me.Lbl_CanTeo3.Name = "Lbl_CanTeo3"
-        Me.Lbl_CanTeo3.Size = New System.Drawing.Size(37, 22)
+        Me.Lbl_CanTeo3.Size = New System.Drawing.Size(46, 22)
         Me.Lbl_CanTeo3.TabIndex = 17
         Me.Lbl_CanTeo3.Text = "Teorica 3"
         Me.Lbl_CanTeo3.Visible = False
@@ -995,7 +1050,7 @@ Partial Class Proceso
         Me.Lbl_CanTeo4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_CanTeo4.Location = New System.Drawing.Point(159, 66)
         Me.Lbl_CanTeo4.Name = "Lbl_CanTeo4"
-        Me.Lbl_CanTeo4.Size = New System.Drawing.Size(37, 22)
+        Me.Lbl_CanTeo4.Size = New System.Drawing.Size(46, 22)
         Me.Lbl_CanTeo4.TabIndex = 22
         Me.Lbl_CanTeo4.Text = "Teorica 4"
         Me.Lbl_CanTeo4.Visible = False
@@ -1006,7 +1061,7 @@ Partial Class Proceso
         Me.Lbl_CanTeo5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_CanTeo5.Location = New System.Drawing.Point(159, 88)
         Me.Lbl_CanTeo5.Name = "Lbl_CanTeo5"
-        Me.Lbl_CanTeo5.Size = New System.Drawing.Size(37, 22)
+        Me.Lbl_CanTeo5.Size = New System.Drawing.Size(46, 22)
         Me.Lbl_CanTeo5.TabIndex = 27
         Me.Lbl_CanTeo5.Text = "Teorica 5"
         Me.Lbl_CanTeo5.Visible = False
@@ -1015,7 +1070,7 @@ Partial Class Proceso
         '
         Me.Lbl_CanRea1.AutoSize = True
         Me.Lbl_CanRea1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_CanRea1.Location = New System.Drawing.Point(205, 0)
+        Me.Lbl_CanRea1.Location = New System.Drawing.Point(211, 0)
         Me.Lbl_CanRea1.Name = "Lbl_CanRea1"
         Me.Lbl_CanRea1.Size = New System.Drawing.Size(38, 13)
         Me.Lbl_CanRea1.TabIndex = 8
@@ -1026,7 +1081,7 @@ Partial Class Proceso
         '
         Me.Lbl_CanRea2.AutoSize = True
         Me.Lbl_CanRea2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_CanRea2.Location = New System.Drawing.Point(205, 22)
+        Me.Lbl_CanRea2.Location = New System.Drawing.Point(211, 22)
         Me.Lbl_CanRea2.Name = "Lbl_CanRea2"
         Me.Lbl_CanRea2.Size = New System.Drawing.Size(38, 13)
         Me.Lbl_CanRea2.TabIndex = 13
@@ -1037,7 +1092,7 @@ Partial Class Proceso
         '
         Me.Lbl_CanRea3.AutoSize = True
         Me.Lbl_CanRea3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_CanRea3.Location = New System.Drawing.Point(205, 44)
+        Me.Lbl_CanRea3.Location = New System.Drawing.Point(211, 44)
         Me.Lbl_CanRea3.Name = "Lbl_CanRea3"
         Me.Lbl_CanRea3.Size = New System.Drawing.Size(38, 13)
         Me.Lbl_CanRea3.TabIndex = 18
@@ -1048,7 +1103,7 @@ Partial Class Proceso
         '
         Me.Lbl_CanRea4.AutoSize = True
         Me.Lbl_CanRea4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_CanRea4.Location = New System.Drawing.Point(205, 66)
+        Me.Lbl_CanRea4.Location = New System.Drawing.Point(211, 66)
         Me.Lbl_CanRea4.Name = "Lbl_CanRea4"
         Me.Lbl_CanRea4.Size = New System.Drawing.Size(38, 13)
         Me.Lbl_CanRea4.TabIndex = 23
@@ -1059,7 +1114,7 @@ Partial Class Proceso
         '
         Me.Lbl_CanRea5.AutoSize = True
         Me.Lbl_CanRea5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_CanRea5.Location = New System.Drawing.Point(205, 88)
+        Me.Lbl_CanRea5.Location = New System.Drawing.Point(211, 88)
         Me.Lbl_CanRea5.Name = "Lbl_CanRea5"
         Me.Lbl_CanRea5.Size = New System.Drawing.Size(38, 13)
         Me.Lbl_CanRea5.TabIndex = 28
@@ -1070,7 +1125,7 @@ Partial Class Proceso
         '
         Me.Lbl_Dif1.AutoSize = True
         Me.Lbl_Dif1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Dif1.Location = New System.Drawing.Point(407, 0)
+        Me.Lbl_Dif1.Location = New System.Drawing.Point(408, 0)
         Me.Lbl_Dif1.Name = "Lbl_Dif1"
         Me.Lbl_Dif1.Size = New System.Drawing.Size(29, 13)
         Me.Lbl_Dif1.TabIndex = 236
@@ -1081,7 +1136,7 @@ Partial Class Proceso
         '
         Me.Lbl_Dif2.AutoSize = True
         Me.Lbl_Dif2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Dif2.Location = New System.Drawing.Point(407, 22)
+        Me.Lbl_Dif2.Location = New System.Drawing.Point(408, 22)
         Me.Lbl_Dif2.Name = "Lbl_Dif2"
         Me.Lbl_Dif2.Size = New System.Drawing.Size(29, 13)
         Me.Lbl_Dif2.TabIndex = 240
@@ -1092,7 +1147,7 @@ Partial Class Proceso
         '
         Me.Lbl_Dif3.AutoSize = True
         Me.Lbl_Dif3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Dif3.Location = New System.Drawing.Point(407, 44)
+        Me.Lbl_Dif3.Location = New System.Drawing.Point(408, 44)
         Me.Lbl_Dif3.Name = "Lbl_Dif3"
         Me.Lbl_Dif3.Size = New System.Drawing.Size(29, 13)
         Me.Lbl_Dif3.TabIndex = 239
@@ -1103,7 +1158,7 @@ Partial Class Proceso
         '
         Me.Lbl_Dif4.AutoSize = True
         Me.Lbl_Dif4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Dif4.Location = New System.Drawing.Point(407, 66)
+        Me.Lbl_Dif4.Location = New System.Drawing.Point(408, 66)
         Me.Lbl_Dif4.Name = "Lbl_Dif4"
         Me.Lbl_Dif4.Size = New System.Drawing.Size(29, 13)
         Me.Lbl_Dif4.TabIndex = 241
@@ -1114,7 +1169,7 @@ Partial Class Proceso
         '
         Me.Lbl_Dif5.AutoSize = True
         Me.Lbl_Dif5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Dif5.Location = New System.Drawing.Point(407, 88)
+        Me.Lbl_Dif5.Location = New System.Drawing.Point(408, 88)
         Me.Lbl_Dif5.Name = "Lbl_Dif5"
         Me.Lbl_Dif5.Size = New System.Drawing.Size(29, 13)
         Me.Lbl_Dif5.TabIndex = 238
@@ -2156,6 +2211,16 @@ Partial Class Proceso
         Me.Panel2.Size = New System.Drawing.Size(1223, 614)
         Me.Panel2.TabIndex = 259
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(684, 21)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(51, 15)
+        Me.Label1.TabIndex = 261
+        Me.Label1.Text = "Estado"
+        '
         'TextBox1
         '
         Me.TextBox1.BackColor = System.Drawing.SystemColors.Info
@@ -2176,71 +2241,6 @@ Partial Class Proceso
         Me.Chbx_CargaCemxTor.TabIndex = 259
         Me.Chbx_CargaCemxTor.Text = "CARGA CEMENTO TORNILLO"
         Me.Chbx_CargaCemxTor.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(684, 21)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(51, 15)
-        Me.Label1.TabIndex = 261
-        Me.Label1.Text = "Estado"
-        '
-        'Lbl_Estado1
-        '
-        Me.Lbl_Estado1.AutoSize = True
-        Me.Lbl_Estado1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Estado1.Location = New System.Drawing.Point(251, 0)
-        Me.Lbl_Estado1.Name = "Lbl_Estado1"
-        Me.Lbl_Estado1.Size = New System.Drawing.Size(49, 13)
-        Me.Lbl_Estado1.TabIndex = 262
-        Me.Lbl_Estado1.Text = "Estado 1"
-        Me.Lbl_Estado1.Visible = False
-        '
-        'Lbl_Estado2
-        '
-        Me.Lbl_Estado2.AutoSize = True
-        Me.Lbl_Estado2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Estado2.Location = New System.Drawing.Point(251, 22)
-        Me.Lbl_Estado2.Name = "Lbl_Estado2"
-        Me.Lbl_Estado2.Size = New System.Drawing.Size(49, 13)
-        Me.Lbl_Estado2.TabIndex = 263
-        Me.Lbl_Estado2.Text = "Estado 2"
-        Me.Lbl_Estado2.Visible = False
-        '
-        'Lbl_Estado3
-        '
-        Me.Lbl_Estado3.AutoSize = True
-        Me.Lbl_Estado3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Estado3.Location = New System.Drawing.Point(251, 44)
-        Me.Lbl_Estado3.Name = "Lbl_Estado3"
-        Me.Lbl_Estado3.Size = New System.Drawing.Size(49, 13)
-        Me.Lbl_Estado3.TabIndex = 264
-        Me.Lbl_Estado3.Text = "Estado 3"
-        Me.Lbl_Estado3.Visible = False
-        '
-        'Lbl_Estado4
-        '
-        Me.Lbl_Estado4.AutoSize = True
-        Me.Lbl_Estado4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Estado4.Location = New System.Drawing.Point(251, 66)
-        Me.Lbl_Estado4.Name = "Lbl_Estado4"
-        Me.Lbl_Estado4.Size = New System.Drawing.Size(49, 13)
-        Me.Lbl_Estado4.TabIndex = 265
-        Me.Lbl_Estado4.Text = "Estado 4"
-        Me.Lbl_Estado4.Visible = False
-        '
-        'Lbl_Estado5
-        '
-        Me.Lbl_Estado5.AutoSize = True
-        Me.Lbl_Estado5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Estado5.Location = New System.Drawing.Point(251, 88)
-        Me.Lbl_Estado5.Name = "Lbl_Estado5"
-        Me.Lbl_Estado5.Size = New System.Drawing.Size(49, 13)
-        Me.Lbl_Estado5.TabIndex = 266
-        Me.Lbl_Estado5.Text = "Estado 5"
-        Me.Lbl_Estado5.Visible = False
         '
         'Proceso
         '

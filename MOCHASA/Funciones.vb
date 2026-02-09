@@ -362,6 +362,39 @@ Module Funciones
         End Try
     End Sub
 
+    Public Function GuardarPesada(NomOperador As String, batch As Integer, CodProducto As String, NomProducto As String,
+                                  CodIngrediente As String, NomIngrediente As String, Cant_Seteada As Double, Cant_Real As Double, Factor As Double) As Boolean
+        Dim Hora As TimeSpan = TimeSpan.Parse(DateTime.Now.ToString("HH:mm:ss"))
+        Dim Fecha As Date = Date.Today
+        Dim rpta As Boolean = False
+        Try
+            Using connection As New OleDbConnection(sConnString)
+                Using cmd As New OleDbCommand
+                    cmd.Connection = connection
+                    cmd.CommandText = "INSERT INTO Transacciones (Nom_Operador,Hora,Fecha,batch,Cod_Producto, Nom_Producto,Cod_Ingrediente,Nom_Ingrediente,
+                                   Cant_Seteada, Peso_Real,Fact_Multi) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+                    cmd.Parameters.AddWithValue("?", NomOperador)
+                    cmd.Parameters.AddWithValue("?", Hora)
+                    cmd.Parameters.AddWithValue("?", Fecha)
+                    cmd.Parameters.AddWithValue("?", batch)
+                    cmd.Parameters.AddWithValue("?", CodProducto)
+                    cmd.Parameters.AddWithValue("?", NomProducto)
+                    cmd.Parameters.AddWithValue("?", CodIngrediente)
+                    cmd.Parameters.AddWithValue("?", NomIngrediente)
+                    cmd.Parameters.AddWithValue("?", Cant_Seteada)
+                    cmd.Parameters.AddWithValue("?", Cant_Real)
+                    cmd.Parameters.AddWithValue("?", Factor)
+                    connection.Open()
+                    rpta = (cmd.ExecuteNonQuery() > 0)
+                End Using
+            End Using
+            Return rpta
+        Catch ex As Exception
+            MessageBox.Show("Error al guardar el registro de peso" & vbCrLf & ex.ToString, "Excepción: Guardar Pesada", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+
     Public Function IsFormOpen(_form As String) As Boolean
 
         For Each f As Form In Application.OpenForms

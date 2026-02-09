@@ -90,10 +90,10 @@ Public Class Login
                 intentosLogin = 0
 
                 'Extraer informacion del operador
-                nomOperador = tabla.Rows(0).Item("nomOperador")
-                codOperador = tabla.Rows(0).Item("codOperador")
-                tipoOperador = tabla.Rows(0).Item("tipoOperador")
-                idOperador = tabla.Rows(0).Item("idOperador")
+                Variables.nomOperador = tabla.Rows(0).Item("nomOperador")
+                Variables.codOperador = tabla.Rows(0).Item("codOperador")
+                Variables.tipoOperador = tabla.Rows(0).Item("tipoOperador")
+                Variables.idOperador = tabla.Rows(0).Item("idOperador")
                 Principal.Show()
                 Me.Close()
 

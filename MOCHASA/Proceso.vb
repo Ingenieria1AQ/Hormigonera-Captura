@@ -460,7 +460,7 @@ Public Class Proceso
             If Preparado Then
 
                 For i As Integer = 1 To registros
-                    CambiaEstado_Label(i, "PREPARADO")
+                    CambiaEstado_Label(i, "PREPARADO", Color.Black)
                 Next
 
                 Panel2.BackColor = Color.DarkSeaGreen
@@ -522,10 +522,21 @@ Public Class Proceso
         End Try
 
     End Sub
-    Private Sub CambiaEstado_Label(index As Integer, Valor As String)
+    Private Sub CambiaEstado_Label(index As Integer, Valor As String, Color As Color)
         Try
             Dim lblEstado As Label = BuscarLabel("Lbl_Estado" & index)
             lblEstado.Text = Valor
+            lblEstado.ForeColor = Color
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub CambiaProceso_Labels(index As Integer, PesoFinal As String, Diferencia As String)
+        Try
+            Dim lblCant_Real As Label = BuscarLabel("Lbl_CanRea" & index)
+            Dim lblCant_Dif As Label = BuscarLabel("Lbl_Dif" & index)
+            lblCant_Real.Text = PesoFinal
+            lblCant_Dif.Text = Diferencia
         Catch ex As Exception
 
         End Try
@@ -543,7 +554,7 @@ Public Class Proceso
     End Sub
     Private Async Sub IniciarCargaParcialAgua()
         'Iniciar carga del parcial del agua
-        CambiaEstado_Label(Variables.reg_Lbl_Agua, "CARGANDO...")
+        CambiaEstado_Label(Variables.reg_Lbl_Agua, "CARGANDO PARCIAL...", Color.Orange)
         Rtx_Mensajes.AppendColoredText("Iniciando carga parcial de agua" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
@@ -569,7 +580,7 @@ Public Class Proceso
     End Sub
     Private Sub IniciarCargaTotalAgua()
         'Iniciar carga del parcial del agua
-        CambiaEstado_Label(Variables.reg_Lbl_Agua, "CARGANDO...")
+        CambiaEstado_Label(Variables.reg_Lbl_Agua, "CARGANDO TOTAL...", Color.DarkGreen)
         Rtx_Mensajes.AppendColoredText("Iniciando carga total de agua" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
@@ -591,7 +602,7 @@ Public Class Proceso
     End Sub
 
     Private Sub FinalizaParcialAgua()
-        CambiaEstado_Label(Variables.reg_Lbl_Agua, "FIN PARCIAL")
+        CambiaEstado_Label(Variables.reg_Lbl_Agua, "FIN PARCIAL", Color.DarkRed)
         Rtx_Mensajes.AppendColoredText("Carga parcial de agua finalizada" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
@@ -616,35 +627,52 @@ Public Class Proceso
             Panel2.BackColor = Color.Moccasin
         End If
     End Sub
-    Private Sub FinalizaTotalAgua()
-        CambiaEstado_Label(Variables.reg_Lbl_Agua, "FINALIZADO")
-        flagFinAgua = True
-        PLC_LOGO.WriteSingleCoil(Variables.coil_BombaAgua, False)
-        Sig_Bomba.DiscreteValue1 = False
-        Sig_Bomba.DiscreteValue1 = False
-        Sym_Bomba.DiscreteValue1 = False
-        Sym_Bomba_G1.DiscreteValue1 = False
-        Sym_Bomba_G2.DiscreteValue1 = False
-        Sym_Bomba_G3.DiscreteValue1 = False
-        Sym_Bomba_G4.DiscreteValue1 = False
-        Sym_Bomba_G5.DiscreteValue1 = False
-        Sym_Bomba_G6.DiscreteValue1 = False
-        Sym_Bomba_G7.DiscreteValue1 = False
-        Sym_Bomba_G8.DiscreteValue1 = False
-        Sym_Bomba_G9.DiscreteValue1 = False
-        Tim_Carga_Agua.Enabled = False
-        Rtx_Mensajes.AppendColoredText("Carga Total de agua finalizada" & Environment.NewLine,
-                Drawing.Color.Black,
-                font_Rtxt)
-        'Verificar si es el ultimo ing
-        If flagFinTolv2 And flagFinAgua And flagFinCargaCemento Then
-            FinalizaBatch()
-        End If
+    Private Async Sub FinalizaTotalAgua()
+        Try
+            CambiaEstado_Label(Variables.reg_Lbl_Agua, "FINALIZADO", Color.Red)
+            flagFinAgua = True
+            PLC_LOGO.WriteSingleCoil(Variables.coil_BombaAgua, False)
+            Sig_Bomba.DiscreteValue1 = False
+            Sig_Bomba.DiscreteValue1 = False
+            Sym_Bomba.DiscreteValue1 = False
+            Sym_Bomba_G1.DiscreteValue1 = False
+            Sym_Bomba_G2.DiscreteValue1 = False
+            Sym_Bomba_G3.DiscreteValue1 = False
+            Sym_Bomba_G4.DiscreteValue1 = False
+            Sym_Bomba_G5.DiscreteValue1 = False
+            Sym_Bomba_G6.DiscreteValue1 = False
+            Sym_Bomba_G7.DiscreteValue1 = False
+            Sym_Bomba_G8.DiscreteValue1 = False
+            Sym_Bomba_G9.DiscreteValue1 = False
+            Tim_Carga_Agua.Enabled = False
+            Rtx_Mensajes.AppendColoredText("Carga Total de agua finalizada" & Environment.NewLine,
+                    Drawing.Color.Black,
+                    font_Rtxt)
+
+            'Procesar guardar peso
+            Await DelayMs(4000) '---Espera estabilidad del peso
+            pesoReal4 = Convert.ToDouble(Lbl_Agua.Text)
+            Dim Diferencia As Double = pesoSet4 - pesoReal4
+            'Guardar registro de pesada
+            Funciones.GuardarPesada(Variables.nomOperador, batchActual, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T4, Variables.NombreIngrediente_T4,
+                                    pesoSet4, pesoReal4, Variables.Factor)
+
+            Lbl_Dosif_Agua.Text = pesoReal4.ToString("N2")
+            CambiaProceso_Labels(Variables.reg_Lbl_Agua, pesoReal4.ToString("N2"), Diferencia.ToString("N2"))
+
+            'Verificar si es el ultimo ing
+            If flagFinTolv2 And flagFinAgua And flagFinCargaCemento Then
+                FinalizaBatch()
+            End If
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub IniciarCargaCemento()
         'Iniciar carga de cemento
-        CambiaEstado_Label(Variables.reg_Lbl_Cem, "CARGANDO...")
+        CambiaEstado_Label(Variables.reg_Lbl_Cem, "CARGANDO...", Color.Green)
         If Var_Carga_CEM_Tornillo = True Then
             PLC_LOGO.WriteSingleCoil(Variables.coil_CargaCem2_Tornillo, True)
         Else
@@ -661,8 +689,9 @@ Public Class Proceso
                 font_Rtxt)
     End Sub
     Private Async Sub FinalizarCargaCemento()
+        flagFinCargaCemento = True
         'Finalizar carga de cemento
-        CambiaEstado_Label(Variables.reg_Lbl_Agua, "FIN CARGA")
+        CambiaEstado_Label(Variables.reg_Lbl_Cem, "FIN CARGA", Color.DarkGreen)
         Rtx_Mensajes.AppendColoredText("Carga de cemento finalizada" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
@@ -676,16 +705,23 @@ Public Class Proceso
         Sym_CargaCem.DiscreteValue1 = False
         Tim_Carga_Cem.Enabled = False
         Sig_CargaCemento.DiscreteValue1 = False
-        Await DelayMs(5000) ' 4 segundos sin bloquear
-        flagFinCargaCemento = True
-        'Inicia Descarga de cemento
-        IniciarDescargaCemento()
-        'Guarda Registro
-        'Imprime Linea
+
+        'Procesar guardar peso
+        Await DelayMs(4000) '---Espera estabilidad del peso
+        pesoReal3 = Convert.ToDouble(Lbl_Peso_Cem.Text)
+        Dim Diferencia As Double = pesoSet3 - pesoReal3
+
+        'Guardar registro de pesada
+        Funciones.GuardarPesada(Variables.nomOperador, batchActual, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T3, Variables.NombreIngrediente_T3,
+                                    pesoSet3, pesoReal3, Variables.Factor)
+
+        Lbl_Dosif_Cemento.Text = pesoReal3.ToString("N2")
+        CambiaProceso_Labels(Variables.reg_Lbl_Cem, pesoReal3.ToString("N2"), Diferencia.ToString("N2"))
     End Sub
+
     Private Sub IniciarDescargaCemento()
         'Iniciar descarga de cemento
-        CambiaEstado_Label(Variables.reg_Lbl_Agua, "DESCARGANDO...")
+        CambiaEstado_Label(Variables.reg_Lbl_Cem, "DESCARGANDO...", Color.Orange)
         PLC_LOGO.WriteSingleCoil(Variables.coil_Desc2_Compuerta_Cemento, True)
         PLC_LOGO.WriteSingleCoil(Variables.coil_Desc2_Transpor_Cemento, True)
         Sig_DesCemento.DiscreteValue1 = True
@@ -698,7 +734,7 @@ Public Class Proceso
     End Sub
     Private Sub FinalizarDescargaCemento()
         'Finalizar carga de cemento
-        CambiaEstado_Label(Variables.reg_Lbl_Agua, "FINALIZADO")
+        CambiaEstado_Label(Variables.reg_Lbl_Cem, "FINALIZADO", Color.Red)
         Rtx_Mensajes.AppendColoredText("Descarga de cemento finalizada" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
@@ -734,6 +770,7 @@ Public Class Proceso
         If running Then
             If MessageBox.Show("Desea finalizar el proceso", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 DetenerProceso()
+                LimpiarLabelsFormula()
             End If
         End If
 
@@ -796,7 +833,9 @@ Public Class Proceso
                 'Lbl_Dosif_Cemento.Text = "0.00"
                 'Lbl_Dosif_Agua.Text = "0.00"
                 'Resetea valores de Controles de Formula
-                LimpiarLabelsFormula()
+                '*****************************************************
+                'LimpiarLabelsFormula()
+                '*****************************************************
                 'Control de botoner
                 Btt_Iniciar.Enabled = True
                 Btt_Continuar.Visible = False
@@ -829,7 +868,7 @@ Public Class Proceso
 
     Private Async Sub IniciarDescargaParcialT1()
         'Inicia descarga de Piedra -- Tolva 1
-        CambiaEstado_Label(Variables.reg_Lbl_Tolv1, "DESCARGANDO PARCIAL...")
+        CambiaEstado_Label(Variables.reg_Lbl_Tolv1, "DESCARGANDO PARCIAL...", Color.Orange)
         Rtx_Mensajes.AppendColoredText("Iniciando descarga parcial de Tolva 1" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
@@ -847,7 +886,7 @@ Public Class Proceso
     End Sub
     Private Async Sub IniciarDescargaTotalT1()
         'Inicia descarga de Piedra -- Tolva 1
-        CambiaEstado_Label(Variables.reg_Lbl_Tolv1, "DESCARGANDO TOTAL...")
+        CambiaEstado_Label(Variables.reg_Lbl_Tolv1, "DESCARGANDO TOTAL...", Color.DarkGreen)
         Rtx_Mensajes.AppendColoredText("Iniciando descarga Total de Tolva 1" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
@@ -864,7 +903,7 @@ Public Class Proceso
     End Sub
     Private Async Sub FinDescargaParcialT1()
         Try
-            CambiaEstado_Label(Variables.reg_Lbl_Tolv1, "FIN DESCARGA PARCIAL")
+            CambiaEstado_Label(Variables.reg_Lbl_Tolv1, "FIN DESCARGA PARCIAL", Color.DarkRed)
             flagFinParcialTolv1 = True
             Rtx_Mensajes.AppendColoredText("Descarga parcial de Tolva 1 Finalizada" & Environment.NewLine,
                     Drawing.Color.Black,
@@ -879,55 +918,44 @@ Public Class Proceso
             Sym_Piedra.DiscreteValue1 = False
             Tim_DescargaT1.Enabled = False
 
-            'Agregar la lectura final del peso
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Async Sub FinDescargaTotalT1()
+        Try
+            CambiaEstado_Label(Variables.reg_Lbl_Tolv1, "FINALIZADO", Color.Red)
+            flagFinTolv1 = True
+            Rtx_Mensajes.AppendColoredText("Descarga Total de Tolva 1 Finalizada" & Environment.NewLine,
+                    Drawing.Color.Black,
+                    font_Rtxt)
+            PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, False)
+            PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, True)
+            Await DelayMs(2000)
+            PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, False)
+            Sig_DescargaT1.DiscreteValue1 = False
+            Sym_DescT1.DiscreteValue1 = False
+            Sym_Piedra.Visible = False
+            Sym_Piedra.DiscreteValue1 = False
+            Tim_DescargaT1.Enabled = False
+
+            'Procesar guardar peso
+            Await DelayMs(4000) '---Espera estabilidad del peso
+            pesoReal1 = ValorInicialT1 - Convert.ToDouble(Lbl_Peso_T1.Text)
+            Dim Diferencia As Double = pesoSet1 - pesoReal1
+            Funciones.GuardarPesada(Variables.nomOperador, batchActual, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, Variables.NombreIngrediente_T1,
+                                    pesoSet1, pesoReal1, Variables.Factor)
+            Lbl_Dif1.Text = pesoReal1.ToString("N2")
+            CambiaProceso_Labels(Variables.reg_Lbl_Tolv1, pesoReal1.ToString("N2"), Diferencia.ToString("N2"))
+
 
         Catch ex As Exception
 
         End Try
-
-        ''
-        Try
-                Dim ValProceso As Double = ValorInicialT1 - Convert.ToDouble(Lbl_Peso_T1.Text)
-                Lbl_Dosif_T1.Text = ValProceso.ToString("N2")
-                Pb_Tol1.Value = ValProceso
-                If flagFinParcialTolv1 = False Then
-                    Dim Compara As Double = LimiteT1 * FactorParcialTolv1 / 100
-                    If ValProceso >= Compara Then
-                        FinDescargaParcialT1()
-                        IniciarDescargaParcialT2()
-                    End If
-                Else
-                    If flagFinTolv1 = False Then
-                        Dim Compara As Double = LimiteT1
-                        If ValProceso >= Compara Then
-                            FinDescargaTotalT1()
-                            IniciarDescargaTotalT2()
-                        End If
-                    End If
-                End If
-            Catch ex As Exception
-
-            End Try
-    End Sub
-    Private Async Sub FinDescargaTotalT1()
-        CambiaEstado_Label(Variables.reg_Lbl_Tolv1, "FINALIZADO")
-        flagFinTolv1 = True
-        Rtx_Mensajes.AppendColoredText("Descarga Total de Tolva 1 Finalizada" & Environment.NewLine,
-                Drawing.Color.Black,
-                font_Rtxt)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, False)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, True)
-        Await DelayMs(2000)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, False)
-        Sig_DescargaT1.DiscreteValue1 = False
-        Sym_DescT1.DiscreteValue1 = False
-        Sym_Piedra.Visible = False
-        Sym_Piedra.DiscreteValue1 = False
-        Tim_DescargaT1.Enabled = False
     End Sub
     Private Async Sub IniciarDescargaParcialT2()
         'Inicia descarga de Piedra -- Tolva 2
-        CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "DESCARGANDO PARCIAL...")
+        CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "DESCARGANDO PARCIAL...", Color.Orange)
         Rtx_Mensajes.AppendColoredText("Iniciando descarga parcial de Tolva 2" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
@@ -951,13 +979,9 @@ Public Class Proceso
         End If
     End Sub
 
-    Private Sub Chbx_CargaCemxCOM_CheckedChanged(sender As Object, e As EventArgs)
-
-    End Sub
-
     Private Async Sub IniciarDescargaTotalT2()
         'Inicia descarga de Piedra -- Tolva 2
-        CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "DESCARGANDO TOTAL...")
+        CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "DESCARGANDO TOTAL...", Color.DarkGreen)
         Rtx_Mensajes.AppendColoredText("Iniciando descarga Total de Tolva 2" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
@@ -973,7 +997,7 @@ Public Class Proceso
         Tim_DescargaT2.Enabled = True
     End Sub
     Private Async Sub FinDescargaParcialT2()
-        CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "FIN DESCARGA PARCIAL")
+        CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "FIN DESCARGA PARCIAL", Color.DarkRed)
         flagFinParcialTolv2 = True
         Rtx_Mensajes.AppendColoredText("Descarga parcial de Tolva 2 Finalizada" & Environment.NewLine,
                 Drawing.Color.Black,
@@ -995,7 +1019,7 @@ Public Class Proceso
         Tim_DescargaT2.Enabled = False
     End Sub
     Private Async Sub FinDescargaTotalT2()
-        CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "FINALIZADO")
+        CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "FINALIZADO", Color.Red)
         flagFinTolv2 = True
         Rtx_Mensajes.AppendColoredText("Descarga Total de Tolva 2 Finalizada" & Environment.NewLine,
                 Drawing.Color.Black,
@@ -1010,8 +1034,19 @@ Public Class Proceso
         Sym_Arena.Visible = False
         Sym_Arena.DiscreteValue1 = False
         Tim_DescargaT2.Enabled = False
+
+        'Procesar guardar peso
+        Await DelayMs(4000) '---Espera estabilidad del peso
+        pesoReal2 = ValorInicialT2 - Convert.ToDouble(Lbl_Peso_T2.Text)
+        Dim Diferencia As Double = pesoSet2 - pesoReal2
+        'Guardar registro de pesada
+        Funciones.GuardarPesada(Variables.nomOperador, batchActual, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T2, Variables.NombreIngrediente_T2,
+                                    pesoSet2, pesoReal2, Variables.Factor)
+        Lbl_Dosif_T2.Text = pesoReal1.ToString("N2")
+        CambiaProceso_Labels(Variables.reg_Lbl_Tolv2, pesoReal2.ToString("N2"), Diferencia.ToString("N2"))
+
         'Detener banda
-        Await DelayMs(8000) ' 4 segundos sin bloquear
+        Await DelayMs(6000) ' 6 segundos sin bloquear
         Iniciar_Apagar_Banda(False)
         'Verifica si es el ultimo ingrediente dosificado parcial
         If flagFinTolv2 And flagFinAgua And flagFinCargaCemento Then
@@ -1107,19 +1142,26 @@ Public Class Proceso
                 Using cmdd As New OleDbCommand
                     cmdd.Connection = conection
                     cmdd.CommandText = "SELECT 
-                                          DF.Num_Tolva AS [Num Tolva], 
-                                          NT.descripcion AS [Tolva],
-                                          DF.Id_ingrediente AS [Id Ingrediente], 
-                                          ING.Descripcion AS [Ingrediente],
-                                          DF.Cantidad, 
-                                          DF.Id_formula
-                                        FROM (DetalleFormulas AS DF 
+                                        DF.Num_Tolva AS [Num Tolva], 
+                                        NT.descripcion AS [Tolva],
+                                        DF.Id_ingrediente AS [Cod Ingrediente], 
+                                        ING.Descripcion AS [Ingrediente],
+                                        DF.Cantidad, 
+                                        DF.Id_formula AS [Cod Producto],
+                                        PR.Descripcion AS [Nombre Producto]
+
+                                    FROM 
+                                        ((DetalleFormulas AS DF 
                                         INNER JOIN NumeroTolvasTanques AS NT 
-                                             ON  DF.Num_Tolva= NT.id) 
+                                            ON DF.Num_Tolva = NT.id)
                                         INNER JOIN Ingredientes AS ING 
-                                             ON   DF.Id_ingrediente= ING.Id_ingrediente
-                                        WHERE Id_formula = ?
-                                        ORDER BY DF.Num_Tolva ASC"
+                                            ON DF.Id_ingrediente = ING.Id_ingrediente)
+                                        INNER JOIN Productos AS PR
+                                            ON DF.Id_formula = PR.Id_Producto
+                                    WHERE 
+                                        DF.Id_formula = ?
+                                    ORDER BY 
+                                        DF.Num_Tolva ASC;"
                     cmdd.Parameters.AddWithValue("?", idProducto)
                     Using da As New OleDbDataAdapter(cmdd)
                         da.Fill(dt)
@@ -1136,6 +1178,20 @@ Public Class Proceso
                 pesoSet2 = Convert.ToDouble(dt.Rows(1).Item("Cantidad")) '--Tolva 2
                 pesoSet3 = Convert.ToDouble(dt.Rows(2).Item("Cantidad")) '--Tolva Cemento
                 pesoSet4 = Convert.ToDouble(dt.Rows(3).Item("Cantidad")) '--Agua
+
+                'Llenar variables globales de dosificacion----------------------
+                Variables.NombreProducto = dt.Rows(0).Item("Nombre Producto")       '--Nombre Producto
+                Variables.CodigProducto = dt.Rows(0).Item("Cod Producto")           '--Codigo Producto
+                Variables.NombreIngrediente_T1 = dt.Rows(0).Item("Ingrediente")     '--Nombre Ingrediente 1
+                Variables.NombreIngrediente_T2 = dt.Rows(1).Item("Ingrediente")     '--Nombre Ingrediente 2
+                Variables.NombreIngrediente_T3 = dt.Rows(2).Item("Ingrediente")     '--Nombre Ingrediente 3
+                Variables.NombreIngrediente_T4 = dt.Rows(3).Item("Ingrediente")     '--Nombre Ingrediente 4
+                Variables.CodigIngrediente_T1 = dt.Rows(0).Item("Cod Ingrediente")  '--Codigo Ingrediente 1
+                Variables.CodigIngrediente_T2 = dt.Rows(1).Item("Cod Ingrediente")  '--Codigo Ingrediente 1
+                Variables.CodigIngrediente_T3 = dt.Rows(2).Item("Cod Ingrediente")  '--Codigo Ingrediente 1
+                Variables.CodigIngrediente_T4 = dt.Rows(3).Item("Cod Ingrediente")  '--Codigo Ingrediente 1
+
+                '---------------------------------------------------------------
                 flagConfigSetpoints = True
                 Sig_Setpoints.DiscreteValue1 = True
             Else
