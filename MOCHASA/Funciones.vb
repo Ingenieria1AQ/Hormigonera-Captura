@@ -431,13 +431,13 @@ Module Funciones
             Select Case Tipo
                 Case 1
                     IntentosSerialT1 = 0
-                    Proceso.Sig_Tolv1.DiscreteValue1 = True
+                    Proceso.Pil_Tolv1.DiscreteValue1 = True
                 Case 2
                     IntentosSerialT2 = 0
-                    Proceso.Sig_Tolv2.DiscreteValue1 = True
+                    Proceso.Pil_Tolv2.DiscreteValue1 = True
                 Case 3
                     IntentosSerialCemento = 0
-                    Proceso.Sig_TolvCemento.DiscreteValue1 = True
+                    Proceso.Pil_TolvCemento.DiscreteValue1 = True
             End Select
 
             Return sp.IsOpen
@@ -637,13 +637,13 @@ Module Funciones
                 Select Case tipo
                     Case 1
                         Proceso.SerTol1_ok = False
-                        Proceso.Sig_Tolv1.DiscreteValue1 = False
+                        Proceso.Pil_Tolv1.DiscreteValue1 = False
                     Case 2
                         Proceso.SerTol2_ok = False
-                        Proceso.Sig_Tolv2.DiscreteValue1 = False
+                        Proceso.Pil_Tolv2.DiscreteValue1 = False
                     Case 3
                         Proceso.SerCemento_ok = False
-                        Proceso.Sig_TolvCemento.DiscreteValue1 = False
+                        Proceso.Pil_TolvCemento.DiscreteValue1 = False
                 End Select
                 Lb_Estado.Text = "Desconectado"
                 Lb_Estado.ForeColor = System.Drawing.Color.DarkRed
@@ -664,13 +664,13 @@ Module Funciones
             Select Case tipo
                 Case 1
                     Proceso.SerTol1_ok = False
-                    Proceso.Sig_Tolv1.DiscreteValue1 = False
+                    Proceso.Pil_Tolv1.DiscreteValue1 = False
                 Case 2
                     Proceso.SerTol2_ok = False
-                    Proceso.Sig_Tolv2.DiscreteValue1 = False
+                    Proceso.Pil_Tolv2.DiscreteValue1 = False
                 Case 3
                     Proceso.SerCemento_ok = False
-                    Proceso.Sig_TolvCemento.DiscreteValue1 = False
+                    Proceso.Pil_TolvCemento.DiscreteValue1 = False
             End Select
             Lb_Estado.Text = "Desconectado"
             Lb_Estado.ForeColor = System.Drawing.Color.DarkRed

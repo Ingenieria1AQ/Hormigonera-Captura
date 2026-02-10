@@ -100,7 +100,7 @@ Public Class Proceso
 
         CargaProductos()
         flagConfigPLC = Configura_Inicializa_PLC()
-        Sig_PLC.DiscreteValue1 = flagConfigPLC
+        Pil_PLC.DiscreteValue1 = flagConfigPLC
         LimpiarLabelsFormula()
 
         If flagConfigPLC Then
@@ -135,7 +135,7 @@ Public Class Proceso
                                 Lbl_Est_T1.ForeColor = Color.DarkRed
                             End If
                             SerTol1_ok = conectado
-                            Sig_Tolv1.DiscreteValue1 = conectado
+                            Pil_Tolv1.DiscreteValue1 = conectado
                         End Sub)
         Catch ex As Exception
 
@@ -152,7 +152,7 @@ Public Class Proceso
                                 Lbl_Est_T2.ForeColor = Color.DarkRed
                             End If
                             SerTol2_ok = conectado
-                            Sig_Tolv2.DiscreteValue1 = conectado
+                            Pil_Tolv2.DiscreteValue1 = conectado
                         End Sub)
         Catch ex As Exception
 
@@ -169,7 +169,7 @@ Public Class Proceso
                                 Lbl_Est_Cem.ForeColor = Color.DarkRed
                             End If
                             SerCemento_ok = conectado
-                            Sig_TolvCemento.DiscreteValue1 = conectado
+                            Pil_TolvCemento.DiscreteValue1 = conectado
                         End Sub)
         Catch ex As Exception
 
@@ -204,7 +204,7 @@ Public Class Proceso
             Lbl_Est_Conn.Text = "Desconectado"
             Lbl_Est_Conn.ForeColor = Color.Red
         End Try
-        Sig_PLC.DiscreteValue1 = rpta
+        Pil_PLC.DiscreteValue1 = rpta
         Return rpta
     End Function
     Private Sub Reconecta_PLC()
@@ -352,14 +352,12 @@ Public Class Proceso
                 Dim Compara As Double = LimiteT1 * FactorParcialTolv1 / 100
                 If ValProceso >= Compara Then
                     FinDescargaParcialT1()
-                    IniciarDescargaParcialT2()
                 End If
             Else
                 If flagFinTolv1 = False Then
                     Dim Compara As Double = LimiteT1
                     If ValProceso >= Compara Then
                         FinDescargaTotalT1()
-                        IniciarDescargaTotalT2()
                     End If
                 End If
             End If
@@ -518,7 +516,7 @@ Public Class Proceso
         Catch ex As Exception
             running = False
             MessageBox.Show(ex.Message, "Excepcion Inicio Batch", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Sig_Dosifica.DiscreteValue1 = False
+            Pil_Dosifica.DiscreteValue1 = False
         End Try
 
     End Sub
@@ -559,22 +557,20 @@ Public Class Proceso
                 Drawing.Color.Black,
                 font_Rtxt)
         PLC_LOGO.WriteSingleCoil(Variables.coil_ResetContador, True) 'Reset Contador
-        Sig_Dosifica.DiscreteValue1 = True 'Revisar para enlazarse con los coils del PLC
+        Pil_Dosifica.DiscreteValue1 = True 'Revisar para enlazarse con los coils del PLC
         'System.Threading.Thread.Sleep(2000)
         Await DelayMs(4000) ' 4 segundos sin bloquear
         PLC_LOGO.WriteSingleCoil(Variables.coil_ResetContador, True) 'Reset Contador
         PLC_LOGO.WriteSingleCoil(Variables.coil_BombaAgua, True)
-        Sig_Bomba.DiscreteValue1 = True
+        Pil_Bomba.DiscreteValue1 = True
         Sym_Bomba.DiscreteValue1 = True
         Sym_Bomba_G1.DiscreteValue1 = True
         Sym_Bomba_G2.DiscreteValue1 = True
         Sym_Bomba_G3.DiscreteValue1 = True
-        Sym_Bomba_G4.DiscreteValue1 = True
         Sym_Bomba_G5.DiscreteValue1 = True
         Sym_Bomba_G6.DiscreteValue1 = True
+        Sym_Bomba_G3.DiscreteValue1 = True
         Sym_Bomba_G7.DiscreteValue1 = True
-        Sym_Bomba_G8.DiscreteValue1 = True
-        Sym_Bomba_G9.DiscreteValue1 = True
         Tim_Carga_Agua.Enabled = True
         Pb_Tol4.Maximum = Convert.ToInt32(pesoSet4)
     End Sub
@@ -585,19 +581,17 @@ Public Class Proceso
                 Drawing.Color.Black,
                 font_Rtxt)
 
-        Sig_Dosifica.DiscreteValue1 = True 'Revisar para enlazarse con los coils del PLC
+        Pil_Dosifica.DiscreteValue1 = True 'Revisar para enlazarse con los coils del PLC
         PLC_LOGO.WriteSingleCoil(Variables.coil_BombaAgua, True)
-        Sig_Bomba.DiscreteValue1 = True
+        Pil_Bomba.DiscreteValue1 = True
         Sym_Bomba.DiscreteValue1 = True
         Sym_Bomba_G1.DiscreteValue1 = True
         Sym_Bomba_G2.DiscreteValue1 = True
         Sym_Bomba_G3.DiscreteValue1 = True
-        Sym_Bomba_G4.DiscreteValue1 = True
         Sym_Bomba_G5.DiscreteValue1 = True
         Sym_Bomba_G6.DiscreteValue1 = True
+        Sym_Bomba_G3.DiscreteValue1 = True
         Sym_Bomba_G7.DiscreteValue1 = True
-        Sym_Bomba_G8.DiscreteValue1 = True
-        Sym_Bomba_G9.DiscreteValue1 = True
         Tim_Carga_Agua.Enabled = True
     End Sub
 
@@ -608,18 +602,16 @@ Public Class Proceso
                 font_Rtxt)
         flagFinParcialAgua = True
         PLC_LOGO.WriteSingleCoil(Variables.coil_BombaAgua, False)
-        Sig_Bomba.DiscreteValue1 = False
-        Sig_Bomba.DiscreteValue1 = False
+        Pil_Bomba.DiscreteValue1 = False
+        Pil_Bomba.DiscreteValue1 = False
         Sym_Bomba.DiscreteValue1 = False
         Sym_Bomba_G1.DiscreteValue1 = False
         Sym_Bomba_G2.DiscreteValue1 = False
         Sym_Bomba_G3.DiscreteValue1 = False
-        Sym_Bomba_G4.DiscreteValue1 = False
         Sym_Bomba_G5.DiscreteValue1 = False
         Sym_Bomba_G6.DiscreteValue1 = False
+        Sym_Bomba_G3.DiscreteValue1 = False
         Sym_Bomba_G7.DiscreteValue1 = False
-        Sym_Bomba_G8.DiscreteValue1 = False
-        Sym_Bomba_G9.DiscreteValue1 = False
         'Revisar si se debe detener el timer
         Tim_Carga_Agua.Enabled = False
         If flagFinParcialAgua And flagFinParcialTolv2 Then
@@ -632,18 +624,16 @@ Public Class Proceso
             CambiaEstado_Label(Variables.reg_Lbl_Agua, "FINALIZADO", Color.Red)
             flagFinAgua = True
             PLC_LOGO.WriteSingleCoil(Variables.coil_BombaAgua, False)
-            Sig_Bomba.DiscreteValue1 = False
-            Sig_Bomba.DiscreteValue1 = False
+            Pil_Bomba.DiscreteValue1 = False
+            Pil_Bomba.DiscreteValue1 = False
             Sym_Bomba.DiscreteValue1 = False
             Sym_Bomba_G1.DiscreteValue1 = False
             Sym_Bomba_G2.DiscreteValue1 = False
             Sym_Bomba_G3.DiscreteValue1 = False
-            Sym_Bomba_G4.DiscreteValue1 = False
             Sym_Bomba_G5.DiscreteValue1 = False
             Sym_Bomba_G6.DiscreteValue1 = False
+            Sym_Bomba_G3.DiscreteValue1 = False
             Sym_Bomba_G7.DiscreteValue1 = False
-            Sym_Bomba_G8.DiscreteValue1 = False
-            Sym_Bomba_G9.DiscreteValue1 = False
             Tim_Carga_Agua.Enabled = False
             Rtx_Mensajes.AppendColoredText("Carga Total de agua finalizada" & Environment.NewLine,
                     Drawing.Color.Black,
@@ -675,18 +665,25 @@ Public Class Proceso
         CambiaEstado_Label(Variables.reg_Lbl_Cem, "CARGANDO...", Color.Green)
         If Var_Carga_CEM_Tornillo = True Then
             PLC_LOGO.WriteSingleCoil(Variables.coil_CargaCem2_Tornillo, True)
+            Pil_CargaCemTor.DiscreteValue1 = True
+            Pil_Carga_Cem_Compuerta.DiscreteValue1 = False
+            Sym_Torn_Cem_Carga.DiscreteValue1 = True
+            Sym_CargaCem.DiscreteValue1 = False
         Else
             PLC_LOGO.WriteSingleCoil(Variables.coil_CargaCem1_Comp_Gravedad, True)
+            Pil_CargaCemTor.DiscreteValue1 = False
+            Pil_Carga_Cem_Compuerta.DiscreteValue1 = False
+            Sym_Torn_Cem_Carga.DiscreteValue1 = False
+            Sym_CargaCem.DiscreteValue1 = True
         End If
 
-        Sig_CargaCemento.DiscreteValue1 = True
-        Sym_CargaCem.DiscreteValue1 = True
-        Tim_Carga_Cem.Enabled = True
+        Pil_CargaCemento.DiscreteValue1 = True
         Pb_Tol3.Maximum = Convert.ToInt32(pesoSet3)
-        Sig_CargaCemento.DiscreteValue1 = True
+
         Rtx_Mensajes.AppendColoredText("Iniciando carga de cemento" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
+        Tim_Carga_Cem.Enabled = True
     End Sub
     Private Async Sub FinalizarCargaCemento()
         flagFinCargaCemento = True
@@ -701,10 +698,10 @@ Public Class Proceso
             PLC_LOGO.WriteSingleCoil(Variables.coil_CargaCem1_Comp_Gravedad, False)
         End If
 
-        Sig_CargaCemento.DiscreteValue1 = False
+        Pil_CargaCemento.DiscreteValue1 = False
         Sym_CargaCem.DiscreteValue1 = False
         Tim_Carga_Cem.Enabled = False
-        Sig_CargaCemento.DiscreteValue1 = False
+        Pil_CargaCemento.DiscreteValue1 = False
 
         'Procesar guardar peso
         Await DelayMs(4000) '---Espera estabilidad del peso
@@ -724,10 +721,10 @@ Public Class Proceso
         CambiaEstado_Label(Variables.reg_Lbl_Cem, "DESCARGANDO...", Color.Orange)
         PLC_LOGO.WriteSingleCoil(Variables.coil_Desc2_Compuerta_Cemento, True)
         PLC_LOGO.WriteSingleCoil(Variables.coil_Desc2_Transpor_Cemento, True)
-        Sig_DesCemento.DiscreteValue1 = True
+        Pil_DesCemento.DiscreteValue1 = True
         Sym_DescargaCem.DiscreteValue1 = True
         Tim_Desc_Cemento.Enabled = True
-        Sig_DesCemento.DiscreteValue1 = True
+        Pil_DesCemento.DiscreteValue1 = True
         Rtx_Mensajes.AppendColoredText("Iniciando descarga de cemento" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
@@ -740,10 +737,10 @@ Public Class Proceso
                 font_Rtxt)
         PLC_LOGO.WriteSingleCoil(Variables.coil_Desc2_Compuerta_Cemento, False)
         PLC_LOGO.WriteSingleCoil(Variables.coil_Desc2_Transpor_Cemento, False)
-        Sig_DesCemento.DiscreteValue1 = False
+        Pil_DesCemento.DiscreteValue1 = False
         Sym_DescargaCem.DiscreteValue1 = False
         Tim_Desc_Cemento.Enabled = False
-        Sig_DesCemento.DiscreteValue1 = False
+        Pil_DesCemento.DiscreteValue1 = False
         flagFinDesCargaCemento = True
         If flagFinTolv2 And flagFinAgua And flagFinCargaCemento Then
             FinalizaBatch()
@@ -752,7 +749,7 @@ Public Class Proceso
     Private Sub Iniciar_Apagar_Banda(estado As Boolean)
         'Controla encendido y apagado de banda transportadora
         PLC_LOGO.WriteSingleCoil(Variables.coil_BandaTransport, estado)
-        Sig_Banda.DiscreteValue1 = estado
+        Pil_Banda.DiscreteValue1 = estado
         Sym_Banda.DiscreteValue1 = estado
         Sym_MotorBanda.DiscreteValue1 = estado
         If estado = True Then
@@ -800,24 +797,22 @@ Public Class Proceso
                 '---------------------------------
                 Panel2.BackColor = SystemColors.Control
                 'Reset todas las controles
-                Sig_Bomba.DiscreteValue1 = False
-                Sig_DescargaT1.DiscreteValue1 = False
-                Sig_DescargaT2.DiscreteValue1 = False
-                Sig_CargaCemento.DiscreteValue1 = False
-                Sig_DesCemento.DiscreteValue1 = False
-                Sig_Banda.DiscreteValue1 = False
+                Pil_Bomba.DiscreteValue1 = False
+                Pil_DescargaT1.DiscreteValue1 = False
+                Pil_DescargaT2.DiscreteValue1 = False
+                Pil_CargaCemento.DiscreteValue1 = False
+                Pil_DesCemento.DiscreteValue1 = False
+                Pil_Banda.DiscreteValue1 = False
                 'Resetar visualizacion 
-                Sig_Bomba.DiscreteValue1 = False
+                Pil_Bomba.DiscreteValue1 = False
                 Sym_Bomba.DiscreteValue1 = False
                 Sym_Bomba_G1.DiscreteValue1 = False
                 Sym_Bomba_G2.DiscreteValue1 = False
                 Sym_Bomba_G3.DiscreteValue1 = False
-                Sym_Bomba_G4.DiscreteValue1 = False
                 Sym_Bomba_G5.DiscreteValue1 = False
                 Sym_Bomba_G6.DiscreteValue1 = False
+                Sym_Bomba_G3.DiscreteValue1 = False
                 Sym_Bomba_G7.DiscreteValue1 = False
-                Sym_Bomba_G8.DiscreteValue1 = False
-                Sym_Bomba_G9.DiscreteValue1 = False
                 Sym_DescT1.DiscreteValue1 = False
                 Sym_DescT2.DiscreteValue1 = False
                 Sym_CargaCem.DiscreteValue1 = False
@@ -867,173 +862,206 @@ Public Class Proceso
     End Sub
 
     Private Async Sub IniciarDescargaParcialT1()
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, False)
+        Pil_ApagaT1.DiscreteValue1 = False
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, True)
+        Pil_ActivaT1.DiscreteValue1 = True
+        Pil_DescargaT1.DiscreteValue1 = True 'Activa piloto de descarga de T1
+        Await DelayMs(2000)
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, False)
+        Pil_ActivaT1.DiscreteValue1 = False
+
+        Sym_DescT1.DiscreteValue1 = True
+        Sym_Piedra.Visible = True
+        Sym_Piedra.DiscreteValue1 = True
+        Pb_Tol1.Maximum = Convert.ToInt32(pesoSet1)
+        Tim_DescargaT1.Enabled = True
         'Inicia descarga de Piedra -- Tolva 1
         CambiaEstado_Label(Variables.reg_Lbl_Tolv1, "DESCARGANDO PARCIAL...", Color.Orange)
         Rtx_Mensajes.AppendColoredText("Iniciando descarga parcial de Tolva 1" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
+    End Sub
+    Private Async Sub IniciarDescargaTotalT1()
         PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, False)
+        Pil_ApagaT1.DiscreteValue1 = False
         PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, True)
+        Pil_ActivaT1.DiscreteValue1 = True
+        Pil_DescargaT1.DiscreteValue1 = True 'Activa piloto de descarga de T1
         Await DelayMs(2000)
         PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, False)
+        Pil_ActivaT1.DiscreteValue1 = False
 
-        Sig_DescargaT1.DiscreteValue1 = True
         Sym_DescT1.DiscreteValue1 = True
         Sym_Piedra.Visible = True
         Sym_Piedra.DiscreteValue1 = True
         Tim_DescargaT1.Enabled = True
-        Pb_Tol1.Maximum = Convert.ToInt32(pesoSet1)
-    End Sub
-    Private Async Sub IniciarDescargaTotalT1()
         'Inicia descarga de Piedra -- Tolva 1
         CambiaEstado_Label(Variables.reg_Lbl_Tolv1, "DESCARGANDO TOTAL...", Color.DarkGreen)
         Rtx_Mensajes.AppendColoredText("Iniciando descarga Total de Tolva 1" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, False)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, True)
-        Await DelayMs(2000)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, False)
-
-        Sig_DescargaT1.DiscreteValue1 = True
-        Sym_DescT1.DiscreteValue1 = True
-        Sym_Piedra.Visible = True
-        Sym_Piedra.DiscreteValue1 = True
-        Tim_DescargaT1.Enabled = True
     End Sub
     Private Async Sub FinDescargaParcialT1()
-        Try
-            CambiaEstado_Label(Variables.reg_Lbl_Tolv1, "FIN DESCARGA PARCIAL", Color.DarkRed)
-            flagFinParcialTolv1 = True
-            Rtx_Mensajes.AppendColoredText("Descarga parcial de Tolva 1 Finalizada" & Environment.NewLine,
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, False)
+        Pil_ActivaT1.DiscreteValue1 = False
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, True)
+        Pil_ApagaT1.DiscreteValue1 = True
+        Pil_DescargaT1.DiscreteValue1 = False
+        Await DelayMs(2000)
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, False)
+        Pil_ApagaT1.DiscreteValue1 = False
+        flagFinParcialTolv1 = True
+
+        Sym_DescT1.DiscreteValue1 = False
+        Sym_Piedra.Visible = False
+        Sym_Piedra.DiscreteValue1 = False
+        Tim_DescargaT1.Enabled = False
+        CambiaEstado_Label(Variables.reg_Lbl_Tolv1, "FIN DESCARGA PARCIAL", Color.DarkRed)
+
+        Rtx_Mensajes.AppendColoredText("Descarga parcial de Tolva 1 Finalizada" & Environment.NewLine,
                     Drawing.Color.Black,
                     font_Rtxt)
+        'Espera 4 segundos para activar la dosificacion parcial de T2
+        Await DelayMs(4000)
+        IniciarDescargaParcialT2()
+    End Sub
+
+    Private Async Sub FinDescargaTotalT1()
+        Try
+
             PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, False)
+            Pil_ActivaT1.DiscreteValue1 = False
             PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, True)
+            Pil_ApagaT1.DiscreteValue1 = True
+            Pil_DescargaT1.DiscreteValue1 = False
             Await DelayMs(2000)
             PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, False)
-            Sig_DescargaT1.DiscreteValue1 = False
+            Pil_ApagaT1.DiscreteValue1 = False
+
             Sym_DescT1.DiscreteValue1 = False
             Sym_Piedra.Visible = False
             Sym_Piedra.DiscreteValue1 = False
             Tim_DescargaT1.Enabled = False
 
-        Catch ex As Exception
-
-        End Try
-    End Sub
-    Private Async Sub FinDescargaTotalT1()
-        Try
             CambiaEstado_Label(Variables.reg_Lbl_Tolv1, "FINALIZADO", Color.Red)
             flagFinTolv1 = True
             Rtx_Mensajes.AppendColoredText("Descarga Total de Tolva 1 Finalizada" & Environment.NewLine,
                     Drawing.Color.Black,
                     font_Rtxt)
-            PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, False)
-            PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, True)
-            Await DelayMs(2000)
-            PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, False)
-            Sig_DescargaT1.DiscreteValue1 = False
-            Sym_DescT1.DiscreteValue1 = False
-            Sym_Piedra.Visible = False
-            Sym_Piedra.DiscreteValue1 = False
-            Tim_DescargaT1.Enabled = False
-
             'Procesar guardar peso
             Await DelayMs(4000) '---Espera estabilidad del peso
             pesoReal1 = ValorInicialT1 - Convert.ToDouble(Lbl_Peso_T1.Text)
             Dim Diferencia As Double = pesoSet1 - pesoReal1
             Funciones.GuardarPesada(Variables.nomOperador, batchActual, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, Variables.NombreIngrediente_T1,
                                     pesoSet1, pesoReal1, Variables.Factor)
-            Lbl_Dif1.Text = pesoReal1.ToString("N2")
+            Rtx_Mensajes.AppendColoredText("Peso T1 Registrado" & Environment.NewLine,
+                    Drawing.Color.Black,
+                    font_Rtxt)
+            Lbl_Dosif_T1.Text = pesoReal1.ToString("N2")
             CambiaProceso_Labels(Variables.reg_Lbl_Tolv1, pesoReal1.ToString("N2"), Diferencia.ToString("N2"))
-
-
+            'Espera 4 segundos para activar la dosificacion parcial de T2
+            Await DelayMs(4000)
+            IniciarDescargaParcialT2()
         Catch ex As Exception
 
         End Try
     End Sub
+    Private Sub RBtt_CargCemTornillo_CheckedChanged(sender As Object, e As EventArgs) Handles RBtt_CargCemTornillo.CheckedChanged
+        Var_Carga_CEM_Tornillo = RBtt_CargCemTornillo.Checked
+    End Sub
     Private Async Sub IniciarDescargaParcialT2()
         'Inicia descarga de Piedra -- Tolva 2
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol2, False)
+        Pil_ApagaT2.DiscreteValue1 = False
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol2, True)
+        Pil_ActivaT2.DiscreteValue1 = True
+        Pil_DescargaT2.DiscreteValue1 = True
+        Await DelayMs(2000)
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol2, False)
+        Pil_ActivaT2.DiscreteValue1 = False
+
+        Sym_DescT2.DiscreteValue1 = True
+        Sym_Arena.Visible = True
+        Sym_Arena.DiscreteValue1 = True
+        Pb_Tol2.Maximum = Convert.ToInt32(pesoSet2)
+
         CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "DESCARGANDO PARCIAL...", Color.Orange)
         Rtx_Mensajes.AppendColoredText("Iniciando descarga parcial de Tolva 2" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol2, False)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol2, True)
-        Await DelayMs(2000)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol2, False)
-        Sig_DescargaT2.DiscreteValue1 = True
-        Sym_DescT2.DiscreteValue1 = True
-        Sym_Arena.Visible = True
-        Sym_Arena.DiscreteValue1 = True
         Tim_DescargaT2.Enabled = True
-        Pb_Tol2.Maximum = Convert.ToInt32(pesoSet2)
-    End Sub
-
-    Private Sub Chbx_CargaCemxTor_CheckedChanged(sender As Object, e As EventArgs) Handles Chbx_CargaCemxTor.CheckedChanged
-        If Chbx_CargaCemxTor.CheckState = CheckState.Checked Then
-            Var_Carga_CEM_Tornillo = True
-        Else
-            Var_Carga_CEM_Tornillo = False
-        End If
     End Sub
 
     Private Async Sub IniciarDescargaTotalT2()
         'Inicia descarga de Piedra -- Tolva 2
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol2, False)
+        Pil_ApagaT2.DiscreteValue1 = False
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol2, True)
+        Pil_ActivaT2.DiscreteValue1 = True
+        Pil_DescargaT2.DiscreteValue1 = True
+        Await DelayMs(2000)
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol2, False)
+        Pil_ActivaT2.DiscreteValue1 = False
+
+        Sym_DescT2.DiscreteValue1 = True
+        Sym_Arena.Visible = True
+        Sym_Arena.DiscreteValue1 = True
+
         CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "DESCARGANDO TOTAL...", Color.DarkGreen)
         Rtx_Mensajes.AppendColoredText("Iniciando descarga Total de Tolva 2" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol2, False)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol2, True)
-        Await DelayMs(2000)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol2, False)
-
-        Sig_DescargaT2.DiscreteValue1 = True
-        Sym_DescT2.DiscreteValue1 = True
-        Sym_Arena.Visible = True
-        Sym_Arena.DiscreteValue1 = True
         Tim_DescargaT2.Enabled = True
     End Sub
     Private Async Sub FinDescargaParcialT2()
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol2, False)
+        Pil_ActivaT2.DiscreteValue1 = False
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol2, True)
+        Pil_ApagaT2.DiscreteValue1 = True
+        Pil_DescargaT2.DiscreteValue1 = False
+        Await DelayMs(2000)
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol2, False)
+        Pil_ApagaT2.DiscreteValue1 = False
+        flagFinParcialTolv2 = True
+
+
+        Sym_DescT2.DiscreteValue1 = False
+        Sym_Arena.Visible = False
+        Sym_Arena.DiscreteValue1 = False
+        Tim_DescargaT2.Enabled = False
         CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "FIN DESCARGA PARCIAL", Color.DarkRed)
         flagFinParcialTolv2 = True
         Rtx_Mensajes.AppendColoredText("Descarga parcial de Tolva 2 Finalizada" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol2, False)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol2, True)
-        Await DelayMs(2000)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol2, False)
-
-        Sig_DescargaT2.DiscreteValue1 = False
-        Sym_DescT2.DiscreteValue1 = False
-        Sym_Arena.Visible = False
-        Sym_Arena.DiscreteValue1 = False
         'Verifica si es el ultimo ingrediente dosificado parcial
         If flagFinParcialAgua And flagFinParcialTolv2 Then
             Btt_Continuar.Visible = True
             Panel2.BackColor = Color.Moccasin
         End If
-        Tim_DescargaT2.Enabled = False
     End Sub
     Private Async Sub FinDescargaTotalT2()
+
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol2, False)
+        Pil_ActivaT2.DiscreteValue1 = False
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol2, True)
+        Pil_ApagaT2.DiscreteValue1 = True
+        Pil_DescargaT2.DiscreteValue1 = False
+
+        Await DelayMs(2000)
+        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol2, False)
+
+        Sym_DescT2.DiscreteValue1 = False
+        Sym_Arena.Visible = False
+        Sym_Arena.DiscreteValue1 = False
+        Tim_DescargaT2.Enabled = False
+
         CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "FINALIZADO", Color.Red)
         flagFinTolv2 = True
         Rtx_Mensajes.AppendColoredText("Descarga Total de Tolva 2 Finalizada" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol2, False)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol2, True)
-        Await DelayMs(2000)
-        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol2, False)
-
-        Sig_DescargaT2.DiscreteValue1 = False
-        Sym_DescT2.DiscreteValue1 = False
-        Sym_Arena.Visible = False
-        Sym_Arena.DiscreteValue1 = False
-        Tim_DescargaT2.Enabled = False
 
         'Procesar guardar peso
         Await DelayMs(4000) '---Espera estabilidad del peso
@@ -1042,7 +1070,7 @@ Public Class Proceso
         'Guardar registro de pesada
         Funciones.GuardarPesada(Variables.nomOperador, batchActual, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T2, Variables.NombreIngrediente_T2,
                                     pesoSet2, pesoReal2, Variables.Factor)
-        Lbl_Dosif_T2.Text = pesoReal1.ToString("N2")
+        Lbl_Dosif_T2.Text = pesoReal2.ToString("N2")
         CambiaProceso_Labels(Variables.reg_Lbl_Tolv2, pesoReal2.ToString("N2"), Diferencia.ToString("N2"))
 
         'Detener banda
@@ -1052,7 +1080,6 @@ Public Class Proceso
         If flagFinTolv2 And flagFinAgua And flagFinCargaCemento Then
             FinalizaBatch()
         End If
-
     End Sub
     Private Sub FinalizaBatch()
         DetenerProceso()
@@ -1128,7 +1155,7 @@ Public Class Proceso
                 End If
             Next
             flagConfigSetpoints = False
-            Sig_Setpoints.DiscreteValue1 = False
+            Pil_Setpoints.DiscreteValue1 = False
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -1193,10 +1220,10 @@ Public Class Proceso
 
                 '---------------------------------------------------------------
                 flagConfigSetpoints = True
-                Sig_Setpoints.DiscreteValue1 = True
+                Pil_Setpoints.DiscreteValue1 = True
             Else
                 flagConfigSetpoints = False
-                Sig_Setpoints.DiscreteValue1 = False
+                Pil_Setpoints.DiscreteValue1 = False
             End If
 
             'Llenar los Labels
@@ -1225,7 +1252,7 @@ Public Class Proceso
 
         Catch ex As Exception
             flagConfigSetpoints = False
-            Sig_Setpoints.DiscreteValue1 = False
+            Pil_Setpoints.DiscreteValue1 = False
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
