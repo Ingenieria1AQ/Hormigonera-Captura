@@ -39,10 +39,14 @@ Public Class Proceso
     Private NumBatchPlanificacion, batchActual, batchPendientes, consecutivoBatch As Integer
     Private corteT1, corteT2, corteCemento, corteAgua As Double
     Private LimiteT1, LimiteT2, LimiteCemento, LimiteAgua As Double
+    Private CantidadM3 As Integer = 1
+    Private FactorHumedad_Arena As Double = 1
+    Private FactorHumedad_Ripio As Double = 1
 
     Private Var_Carga_CEM_Tornillo As Boolean = False
     Private Var_CArga_CEM_Compuerta As Boolean = False
 
+    Private Estado_WD As Boolean = False
     Private flagConfigTolvas As Boolean = False
     Private flagConfigPLC As Boolean = False
     Private flagConfigSetpoints As Boolean = False
@@ -65,7 +69,7 @@ Public Class Proceso
     Private flagUsaImpresora As Boolean = False
     Private DirPLC As String
     Private PuertoPLC As Integer
-
+    Private FactorAgua As Double = 1.0
     'Factor para la carga parcial
     Private FactorParcialTolv1 As Integer = 50
     Private FactorParcialTolv2 As Integer = 50
@@ -85,11 +89,14 @@ Public Class Proceso
     '*-*-*-*-**-*-*-*-*-*-*-*
     Private Sub Proceso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Obtener variables de la tabla de configuracion
+
+        Principal.Panel1.Visible = False
         Lbl_Info.Text = String.Empty
         nombreImpresora = Funciones.Obtener_Valor_Configuracion("Nombre_Impresora")
         flagUsaImpresora = Convert.ToBoolean(Funciones.Obtener_Valor_Configuracion("UsaImpresora") = "1")
         DirPLC = Funciones.Obtener_Valor_Configuracion("PLC_IP")
         PuertoPLC = Convert.ToInt32(Funciones.Obtener_Valor_Configuracion("PLC_Puerto"))
+        FactorAgua = Convert.ToDouble(Funciones.Obtener_Valor_Configuracion("FactorAgua"))
         'consecutivoBatch = Convert.ToInt32(Funciones.Obtener_Valor_Configuracion("ConsecutivoBatch"))
 
         'Muestra IP del PLC
@@ -280,7 +287,7 @@ Public Class Proceso
     Private Sub ReadHoldingRegister()
         Try
             Block_lectura_HR = PLC_LOGO.ReadHoldingRegisters(0, 3)
-            Lbl_Agua.Text = Block_lectura_HR(Variables.dir_ContadorFlujometro)
+            Lbl_Agua.Text = Block_lectura_HR(Variables.dir_ContadorFlujometro) * FactorAgua
         Catch ex As Exception
 
         End Try
@@ -431,6 +438,7 @@ Public Class Proceso
             If PLC_LOGO.Connected Then
                 PLC_LOGO.Disconnect()
             End If
+            Principal.Panel1.Visible = True
             Me.Close()
         Catch ex As Exception
 
@@ -455,8 +463,9 @@ Public Class Proceso
                     font_Rtxt)
                 Exit Sub
             End If
-
-            NumBatchPlanificacion = NumericBatchs.Value
+            'HABILITAR ESTA OPCION para controlar número de batch
+            'NumBatchPlanificacion = Num_BatchPlanificacion.Value
+            NumBatchPlanificacion = 1   'EUFRATES SOLAMENTE HACE UN BATCH
             Dim Preparado As Boolean = False
 
             ValorInicialT1 = Convert.ToDouble(Lbl_Peso_T1.Text)
@@ -521,7 +530,8 @@ Public Class Proceso
                 batchPendientes = NumBatchPlanificacion - batchActual
                 'Reset todas las señales
                 ResetTodasSignals()
-
+                'Inicia timer de WD 
+                Tim_Wd_PLC.Enabled = True
                 'DAR SEÑAL de ARRANQUE
                 PLC_LOGO.WriteSingleCoil(Variables.coil_Paro, False)
                 PLC_LOGO.WriteSingleCoil(Variables.coil_Arranque, True)
@@ -870,6 +880,8 @@ Public Class Proceso
                 'Envia señal de parada al PLC
                 ResetTodasSignals()
                 PLC_LOGO.WriteSingleCoil(Variables.coil_Paro, True)
+                'Detiene el timer de WD 
+                Tim_Wd_PLC.Enabled = False
                 running = False
                 'RESET DE VARIABLES DE PROCESO------
                 flagConfigSetpoints = False
@@ -1081,6 +1093,50 @@ Public Class Proceso
                 font_Rtxt)
         End Try
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            'DatosDespacho.TopLevel = False
+            'Panel2.Controls.Add(DatosDespacho)
+            DatosDespacho.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        idDespacho = txtNumDespacho.Text
+        Despacho_frm.Show()
+    End Sub
+
+    Private Sub Tim_Wd_PLC_Tick(sender As Object, e As EventArgs) Handles Tim_Wd_PLC.Tick
+        Estado_WD = Not Estado_WD
+        If PLC_LOGO.Connected Then
+            PLC_LOGO.WriteSingleCoil(Variables.coil_WDConection, Estado_WD)
+        End If
+    End Sub
+
+    Private Sub NumericM3_ValueChanged(sender As Object, e As EventArgs) Handles NumericM3.ValueChanged
+        If cmbproductos.SelectedIndex > -1 AndAlso cmbproductos.SelectedValue IsNot Nothing AndAlso
+            Not TypeOf cmbproductos.SelectedValue Is DataRowView Then
+            ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
+        End If
+    End Sub
+
+    Private Sub Num_Hum_Arena_ValueChanged(sender As Object, e As EventArgs) Handles Num_Hum_Arena.ValueChanged
+        If cmbproductos.SelectedIndex > -1 AndAlso cmbproductos.SelectedValue IsNot Nothing AndAlso
+            Not TypeOf cmbproductos.SelectedValue Is DataRowView Then
+            ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
+        End If
+    End Sub
+
+    Private Sub Num_Hum_Ripio_ValueChanged(sender As Object, e As EventArgs) Handles Num_Hum_Ripio.ValueChanged
+        If cmbproductos.SelectedIndex > -1 AndAlso cmbproductos.SelectedValue IsNot Nothing AndAlso
+            Not TypeOf cmbproductos.SelectedValue Is DataRowView Then
+            ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
+        End If
+    End Sub
+
     Private Sub RBtt_CargCemTornillo_CheckedChanged(sender As Object, e As EventArgs) Handles RBtt_CargCemTornillo.CheckedChanged
         Var_Carga_CEM_Tornillo = RBtt_CargCemTornillo.Checked
     End Sub
@@ -1297,6 +1353,11 @@ Public Class Proceso
     Private Sub ObtieneFormulaxProducto(idProducto As String)
         Dim dt As New DataTable
         Try
+            'Obtener la cantidad de m3 para el ajuste de la formula
+            CantidadM3 = NumericM3.Value
+            'Obtener el factor de humedad de arena y ripio
+            FactorHumedad_Arena = Num_Hum_Arena.Value
+            FactorHumedad_Ripio = Num_Hum_Ripio.Value
 
             Using conection As New OleDbConnection(sConnString)
                 Using cmdd As New OleDbCommand
@@ -1332,12 +1393,15 @@ Public Class Proceso
             'Limpiar todos los Labels
             LimpiarLabelsFormula()
 
+
             'Asignar valores de setpoints  
             If dt.Rows.Count >= registros Then
-                pesoSet1 = Convert.ToDouble(dt.Rows(0).Item("Cantidad")) '--Tolva 1
-                pesoSet2 = Convert.ToDouble(dt.Rows(1).Item("Cantidad")) '--Tolva 2
-                pesoSet3 = Convert.ToDouble(dt.Rows(2).Item("Cantidad")) '--Tolva Cemento
-                pesoSet4 = Convert.ToDouble(dt.Rows(3).Item("Cantidad")) '--Agua
+                pesoSet1 = Convert.ToDouble(dt.Rows(0).Item("Cantidad")) * CantidadM3 '--Tolva 1 : Arena
+                'Ingresar ajuste de humedad de arena
+                pesoSet2 = Convert.ToDouble(dt.Rows(1).Item("Cantidad")) * CantidadM3 '--Tolva 2 : Ripio
+                'Ingresar ajuste de humedad de ripio
+                pesoSet3 = Convert.ToDouble(dt.Rows(2).Item("Cantidad")) * CantidadM3 '--Tolva Cemento
+                pesoSet4 = Convert.ToDouble(dt.Rows(3).Item("Cantidad")) * CantidadM3 '--Agua
 
                 'Llenar variables globales de dosificacion----------------------
                 Variables.NombreProducto = dt.Rows(0).Item("Nombre Producto")       '--Nombre Producto
@@ -1374,7 +1438,7 @@ Public Class Proceso
 
                 lblTolva.Text = dt.Rows(i).Item("Tolva").ToString()
                 lblIng.Text = dt.Rows(i).Item("Ingrediente").ToString()
-                lblCanTeo.Text = dt.Rows(i).Item("Cantidad").ToString()
+                lblCanTeo.Text = (dt.Rows(i).Item("Cantidad") * CantidadM3).ToString()
                 lblCanReal.Text = "0"
                 lblEstado.Text = ""
                 lblDifer.Text = "0"

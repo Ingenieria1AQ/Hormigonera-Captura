@@ -510,8 +510,8 @@ Module Funciones
         Dim permitidos(40) As String
         permitidos(0) = "B86B23DD5373" 'PC AQ Ingematic
         permitidos(1) = "0068EB67CC95" 'PC AQ
-        permitidos(2) = ""
-        permitidos(3) = ""
+        permitidos(2) = "10A51D6C949B"   ' FP HP Z
+        permitidos(3) = "320302445467"  'PC EUFRATES
         permitidos(4) = ""
         permitidos(5) = ""
         permitidos(6) = ""

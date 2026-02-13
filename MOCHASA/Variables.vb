@@ -25,6 +25,11 @@ Module Variables
     Public codOperador As String
     Public convertirFecha As Boolean
 
+    Public tipoLista As String
+    Public destinoLista As String
+    Public idDespacho As String
+
+
     Public NombreProducto As String
     Public CodigProducto As String
     Public NombreIngrediente_T1 As String
@@ -76,5 +81,7 @@ Module Variables
     Public Const dir_LitrosFlujometro As Integer = 2
     '--Input Register
     Public Const dir_TiempoFalla As Integer = 1
+
+
 
 End Module

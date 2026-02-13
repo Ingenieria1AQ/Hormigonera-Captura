@@ -112,4 +112,22 @@ Public Class Principal
         clientSocketCamara.Disconnect()
         MsgBox("No se puede establecer conexión con el servidor", MsgBoxStyle.Exclamation)
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Clientes.TopLevel = False
+        Panel2.Controls.Add(Clientes)
+        Clientes.Show()
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Choferes.TopLevel = False
+        Panel2.Controls.Add(Choferes)
+        Choferes.Show()
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Mixers.TopLevel = False
+        Panel2.Controls.Add(Mixers)
+        Mixers.Show()
+    End Sub
 End Class

@@ -43,6 +43,7 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -56,8 +57,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>imagen_icono.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -104,6 +107,30 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Choferes.Designer.vb">
+      <DependentUpon>Choferes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Choferes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mixers.Designer.vb">
+      <DependentUpon>Mixers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Mixers.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes.Designer.vb">
+      <DependentUpon>Clientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatosDespacho.Designer.vb">
+      <DependentUpon>DatosDespacho.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DatosDespacho.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="datosreportes.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,6 +180,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Indicador_Serial.vb" />
+    <Compile Include="listas.Designer.vb">
+      <DependentUpon>listas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="listas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Login.designer.vb">
       <DependentUpon>Login.vb</DependentUpon>
     </Compile>
@@ -206,6 +239,18 @@
       <DependentUpon>crPorProducto.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\Despacho.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Despacho.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\Despacho_frm.Designer.vb">
+      <DependentUpon>Despacho_frm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Despacho_frm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reportes\frmPoringrediente.Designer.vb">
       <DependentUpon>frmPoringrediente.vb</DependentUpon>
     </Compile>
@@ -229,6 +274,18 @@
     <Compile Include="Variables.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Choferes.resx">
+      <DependentUpon>Choferes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mixers.resx">
+      <DependentUpon>Mixers.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clientes.resx">
+      <DependentUpon>Clientes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatosDespacho.resx">
+      <DependentUpon>DatosDespacho.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmConfiguracion.resx">
       <DependentUpon>frmConfiguracion.vb</DependentUpon>
     </EmbeddedResource>
@@ -255,6 +312,9 @@
     <EmbeddedResource Include="frmReportes.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmReportes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="listas.resx">
+      <DependentUpon>listas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
@@ -283,6 +343,13 @@
     <EmbeddedResource Include="Reportes\crPorProducto.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crPorProducto.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Despacho.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Despacho.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Despacho_frm.resx">
+      <DependentUpon>Despacho_frm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\frmPoringrediente.resx">
       <SubType>Designer</SubType>
@@ -433,9 +500,16 @@
     <None Include="Resources\Logo_Concretera.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="imagen_icono.ico" />
+    <Content Include="Resources\131694 - save.png" />
+    <Content Include="Resources\131713 - cancel close cross delete exit red.png" />
     <Content Include="Resources\131823 - arrow forward next right.png" />
     <Content Include="Resources\131823 - arrow forward next right_25X25.png" />
+    <Content Include="Resources\131844 - funnel.png" />
+    <Content Include="Resources\131849 - search.png" />
     <Content Include="Resources\131885 - close door exit log out logout user logout.png" />
+    <Content Include="Resources\131897 - file new.png" />
+    <Content Include="Resources\131907 - edit files page pen pencil text write.png" />
     <None Include="Resources\setting_tools.png" />
     <None Include="Resources\cog_edit.png" />
   </ItemGroup>

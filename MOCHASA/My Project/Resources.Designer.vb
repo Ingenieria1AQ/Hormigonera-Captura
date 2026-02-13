@@ -63,6 +63,16 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property _131694___save() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("131694 - save", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property _131823___arrow_forward_next_right() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("131823 - arrow forward next right", resourceCulture)
@@ -73,9 +83,39 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property _131844___funnel() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("131844 - funnel", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property _131885___close_door_exit_log_out_logout_user_logout() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("131885 - close door exit log out logout user logout", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property _131897___file_new() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("131897 - file new", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property _131907___edit_files_page_pen_pencil_text_write() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("131907 - edit files page pen pencil text write", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

@@ -21,8 +21,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4B1E0624C1E74436A35C2E5E803F7631"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_3E1005B7D2E07F1FC6B9A87BEA84ADC0"
+        "OwnerKey" = "8:_5DE5F6906D464A30A7FE28B694489998"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -63,8 +63,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8CC08E20CCD947B7823220419481795B"
+        "MsmKey" = "8:_79D288BCD8334ACBA59F682CE84E0D9B"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7E03AE651B5EAC49A9D35134593F2958"
+        "OwnerKey" = "8:_5DE5F6906D464A30A7FE28B694489998"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -93,8 +99,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C20D4D08EF71FAE1A9F848CF15F66C95"
-        "OwnerKey" = "8:_5DE5F6906D464A30A7FE28B694489998"
+        "MsmKey" = "8:_E00FEEA2BC624A82B3C432E03C019783"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -154,7 +160,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C20D4D08EF71FAE1A9F848CF15F66C95"
+        "OwnerKey" = "8:_3E1005B7D2E07F1FC6B9A87BEA84ADC0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7E03AE651B5EAC49A9D35134593F2958"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -165,7 +177,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\CM.msi"
+        "OutputFilename" = "8:Debug\\Hormigonera.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -184,16 +196,6 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:BusinessObjects.CrystalReports115.NET.2.0"
-                    {
-                    "Name" = "8:Crystal Reports XI Release 2"
-                    "ProductCode" = "8:BusinessObjects.CrystalReports115.NET.2.0"
-                    }
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.2.0"
-                    {
-                    "Name" = "8:.NET Framework 2.0"
-                    "ProductCode" = "8:Microsoft.Net.Framework.2.0"
-                    }
                 }
             }
         }
@@ -244,7 +246,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:2.0.50727  "
+                "FrameworkVersion" = "8:2.0.50727    "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=9832"
                 }
@@ -283,10 +285,21 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4B1E0624C1E74436A35C2E5E803F7631"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3E1005B7D2E07F1FC6B9A87BEA84ADC0"
             {
-            "SourcePath" = "8:..\\..\\imagen_icono.ico"
-            "TargetName" = "8:imagen_icono.ico"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SocketTools.SocketWrench, Version=10.0.1416.2256, Culture=neutral, PublicKeyToken=27cecfc1a941d5cd, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3E1005B7D2E07F1FC6B9A87BEA84ADC0"
+                    {
+                    "Name" = "8:SocketTools.SocketWrench.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:SocketTools.SocketWrench.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3BF852FFA6F24FE6A3CC076E72B293AD"
             "Condition" = "8:"
@@ -300,7 +313,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5A7D9A31CA204E6231FDD130D677D6B9"
@@ -365,10 +378,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8CC08E20CCD947B7823220419481795B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_79D288BCD8334ACBA59F682CE84E0D9B"
             {
-            "SourcePath" = "8:..\\MOCHASA\\bin\\Debug\\BDDMolinos.mdb"
-            "TargetName" = "8:BDDMolinos.mdb"
+            "SourcePath" = "8:..\\MOCHASA\\Resources\\imagen_icono.ico"
+            "TargetName" = "8:imagen_icono.ico"
             "Tag" = "8:"
             "Folder" = "8:_3BF852FFA6F24FE6A3CC076E72B293AD"
             "Condition" = "8:"
@@ -383,6 +396,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7E03AE651B5EAC49A9D35134593F2958"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:EasyModbus, Version=5.6.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_7E03AE651B5EAC49A9D35134593F2958"
+                    {
+                    "Name" = "8:EasyModbus.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:EasyModbus.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_3BF852FFA6F24FE6A3CC076E72B293AD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8E4F49524D9B0E247246C4FD01713B33"
@@ -478,21 +522,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C20D4D08EF71FAE1A9F848CF15F66C95"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E00FEEA2BC624A82B3C432E03C019783"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SocketTools.SocketWrench, Version=10.0.1416.2256, Culture=neutral, PublicKeyToken=27cecfc1a941d5cd, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_C20D4D08EF71FAE1A9F848CF15F66C95"
-                    {
-                    "Name" = "8:SocketTools.SocketWrench.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:SocketTools.SocketWrench.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\MOCHASA\\bin\\Debug\\BDDMolinos.mdb"
+            "TargetName" = "8:BDDMolinos.mdb"
             "Tag" = "8:"
             "Folder" = "8:_3BF852FFA6F24FE6A3CC076E72B293AD"
             "Condition" = "8:"
@@ -506,7 +539,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F83FC3C59D58F036BC5097C442FE9317"
@@ -570,7 +603,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_3BF852FFA6F24FE6A3CC076E72B293AD"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -606,9 +639,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Instalador CM"
+        "ProductName" = "8:Hormigonera"
         "ProductCode" = "8:{41BE3432-2C53-44A9-AC57-70C96C592762}"
-        "PackageCode" = "8:{AAFF6008-5AFB-4A17-8EEA-0DABC606E042}"
+        "PackageCode" = "8:{5B3641D3-4363-468D-A77D-8643DABF76BC}"
         "UpgradeCode" = "8:{6B8337C7-13AC-4DDE-BC5E-02F0C9A9070E}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -616,20 +649,20 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:INGELSOFT"
+        "Manufacturer" = "8:INGEMATIC"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Instalador CM"
+        "Title" = "8:HORMIGONERA"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Ing. Andrés Quishpe"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_79D288BCD8334ACBA59F682CE84E0D9B"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:1"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"
@@ -728,9 +761,9 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_8D154A74BBF145B69D2EF2387B70E0A8"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_45D0008F88BF4E029A55FCBEAF6AB6F8"
             {
-            "Name" = "8:CM CONSTRUCCIONES"
+            "Name" = "8:HORMIGONERA"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -739,12 +772,12 @@
             "Target" = "8:_5DE5F6906D464A30A7FE28B694489998"
             "Folder" = "8:_40193A463BD043568063F7A0F8167592"
             "WorkingFolder" = "8:_3BF852FFA6F24FE6A3CC076E72B293AD"
-            "Icon" = "8:_4B1E0624C1E74436A35C2E5E803F7631"
+            "Icon" = "8:_79D288BCD8334ACBA59F682CE84E0D9B"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B677228B7209466F9EE09A2059A3CE5B"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_AB2B0D0130854A5DB07282DA72481704"
             {
-            "Name" = "8:CM CONSTRUCCIONES"
+            "Name" = "8:HORMIGONERA"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -753,7 +786,7 @@
             "Target" = "8:_5DE5F6906D464A30A7FE28B694489998"
             "Folder" = "8:_5F76B9D417AB4283B0B0E83D8CB03104"
             "WorkingFolder" = "8:_3BF852FFA6F24FE6A3CC076E72B293AD"
-            "Icon" = "8:_4B1E0624C1E74436A35C2E5E803F7631"
+            "Icon" = "8:_79D288BCD8334ACBA59F682CE84E0D9B"
             "Feature" = "8:"
             }
         }
@@ -1157,7 +1190,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5DE5F6906D464A30A7FE28B694489998"
             {
-            "SourcePath" = "8:..\\MOCHASA\\obj\\Debug\\CM_Construcciones.exe"
+            "SourcePath" = "8:..\\MOCHASA\\obj\\Debug\\HORMIGONERA.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3BF852FFA6F24FE6A3CC076E72B293AD"
