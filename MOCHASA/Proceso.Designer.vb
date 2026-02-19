@@ -185,6 +185,8 @@ Partial Class Proceso
         Me.Tim_Carga_Agua = New System.Windows.Forms.Timer(Me.components)
         Me.Tim_ReadHR = New System.Windows.Forms.Timer(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label50 = New System.Windows.Forms.Label()
+        Me.Label49 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.txtNumDespacho = New System.Windows.Forms.TextBox()
         Me.Label47 = New System.Windows.Forms.Label()
@@ -194,6 +196,9 @@ Partial Class Proceso
         Me.RBtt_CargCemTornillo = New System.Windows.Forms.RadioButton()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.GBx_Preparacion = New System.Windows.Forms.GroupBox()
+        Me.Num_BatchPlanificacion = New System.Windows.Forms.NumericUpDown()
+        Me.Num_Hum_Ripio = New System.Windows.Forms.NumericUpDown()
+        Me.Label51 = New System.Windows.Forms.Label()
         Me.Num_Hum_Arena = New System.Windows.Forms.NumericUpDown()
         Me.Label48 = New System.Windows.Forms.Label()
         Me.Lbl_Info = New System.Windows.Forms.Label()
@@ -210,11 +215,6 @@ Partial Class Proceso
         Me.Sym_Torn_Cem_Desc = New SymbolFactoryDotNet.StandardControl()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Tim_Wd_PLC = New System.Windows.Forms.Timer(Me.components)
-        Me.Label49 = New System.Windows.Forms.Label()
-        Me.Label50 = New System.Windows.Forms.Label()
-        Me.Num_Hum_Ripio = New System.Windows.Forms.NumericUpDown()
-        Me.Label51 = New System.Windows.Forms.Label()
-        Me.Num_BatchPlanificacion = New System.Windows.Forms.NumericUpDown()
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -266,6 +266,8 @@ Partial Class Proceso
         Me.Panel2.SuspendLayout()
         Me.Gbx_ConfigCarg_Cemento.SuspendLayout()
         Me.GBx_Preparacion.SuspendLayout()
+        CType(Me.Num_BatchPlanificacion, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_Hum_Ripio, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Num_Hum_Arena, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.StandardControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Cemento, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -276,8 +278,6 @@ Partial Class Proceso
         CType(Me.Sym_Torn_Cem_Carga, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Num_Hum_Ripio, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Num_BatchPlanificacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label9
@@ -298,7 +298,7 @@ Partial Class Proceso
         Me.Label6.BackColor = System.Drawing.Color.Gainsboro
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(571, 275)
+        Me.Label6.Location = New System.Drawing.Point(481, 275)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(41, 13)
         Me.Label6.TabIndex = 173
@@ -310,7 +310,7 @@ Partial Class Proceso
         Me.label3.BackColor = System.Drawing.Color.Gainsboro
         Me.label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label3.ForeColor = System.Drawing.Color.Black
-        Me.label3.Location = New System.Drawing.Point(645, 390)
+        Me.label3.Location = New System.Drawing.Point(401, 419)
         Me.label3.Name = "label3"
         Me.label3.Size = New System.Drawing.Size(74, 26)
         Me.label3.TabIndex = 177
@@ -322,7 +322,7 @@ Partial Class Proceso
         Me.label2.BackColor = System.Drawing.Color.Gainsboro
         Me.label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label2.ForeColor = System.Drawing.Color.Black
-        Me.label2.Location = New System.Drawing.Point(396, 419)
+        Me.label2.Location = New System.Drawing.Point(647, 396)
         Me.label2.Name = "label2"
         Me.label2.Size = New System.Drawing.Size(74, 26)
         Me.label2.TabIndex = 176
@@ -362,7 +362,7 @@ Partial Class Proceso
         Me.Label5.BackColor = System.Drawing.Color.Gainsboro
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(473, 279)
+        Me.Label5.Location = New System.Drawing.Point(573, 274)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(49, 13)
         Me.Label5.TabIndex = 171
@@ -675,12 +675,12 @@ Partial Class Proceso
         Me.GroupBox1.Controls.Add(Me.Lbl_Est_T1)
         Me.GroupBox1.Controls.Add(Me.Lbl_Peso_T1)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(397, 7)
+        Me.GroupBox1.Location = New System.Drawing.Point(491, 7)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(88, 63)
         Me.GroupBox1.TabIndex = 227
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "ARENA"
+        Me.GroupBox1.Text = "1-PIEDRA"
         '
         'Lbl_Est_T1
         '
@@ -698,12 +698,12 @@ Partial Class Proceso
         Me.GroupBox2.Controls.Add(Me.Lbl_Est_T2)
         Me.GroupBox2.Controls.Add(Me.Lbl_Peso_T2)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(491, 7)
+        Me.GroupBox2.Location = New System.Drawing.Point(399, 7)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(88, 63)
         Me.GroupBox2.TabIndex = 228
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "RIPIO"
+        Me.GroupBox2.Text = "2-ARENA"
         '
         'Lbl_Est_T2
         '
@@ -748,10 +748,10 @@ Partial Class Proceso
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(585, 7)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(88, 63)
+        Me.GroupBox3.Size = New System.Drawing.Size(103, 63)
         Me.GroupBox3.TabIndex = 228
         Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "CEMENTO"
+        Me.GroupBox3.Text = "3-CEMENTO"
         '
         'Lbl_Est_Cem
         '
@@ -1492,9 +1492,9 @@ Partial Class Proceso
         Me.Label44.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Label44.Location = New System.Drawing.Point(300, 89)
         Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(62, 15)
+        Me.Label44.Size = New System.Drawing.Size(65, 15)
         Me.Label44.TabIndex = 134
-        Me.Label44.Text = "Ripio OFF"
+        Me.Label44.Text = "Arena OFF"
         '
         'Pil_ApagaT2
         '
@@ -1522,9 +1522,9 @@ Partial Class Proceso
         Me.Label45.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Label45.Location = New System.Drawing.Point(192, 89)
         Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(57, 15)
+        Me.Label45.Size = New System.Drawing.Size(60, 15)
         Me.Label45.TabIndex = 132
-        Me.Label45.Text = "Ripio ON"
+        Me.Label45.Text = "Arena ON"
         '
         'Pil_ActivaT2
         '
@@ -1552,9 +1552,9 @@ Partial Class Proceso
         Me.Label43.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Label43.Location = New System.Drawing.Point(300, 45)
         Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(65, 15)
+        Me.Label43.Size = New System.Drawing.Size(69, 15)
         Me.Label43.TabIndex = 130
-        Me.Label43.Text = "Arena OFF"
+        Me.Label43.Text = "Piedra OFF"
         '
         'Pil_ApagaT1
         '
@@ -1582,9 +1582,9 @@ Partial Class Proceso
         Me.Label42.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Label42.Location = New System.Drawing.Point(192, 45)
         Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(63, 15)
+        Me.Label42.Size = New System.Drawing.Size(67, 15)
         Me.Label42.TabIndex = 128
-        Me.Label42.Text = "Arena  ON"
+        Me.Label42.Text = "Piedra  ON"
         '
         'Pil_ActivaT1
         '
@@ -1841,9 +1841,9 @@ Partial Class Proceso
         Me.Label32.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Label32.Location = New System.Drawing.Point(194, 70)
         Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(92, 15)
+        Me.Label32.Size = New System.Drawing.Size(95, 15)
         Me.Label32.TabIndex = 112
-        Me.Label32.Text = "Descarga Ripio"
+        Me.Label32.Text = "Descarga Arena"
         '
         'Pil_Banda
         '
@@ -1983,9 +1983,9 @@ Partial Class Proceso
         Me.Label33.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Label33.Location = New System.Drawing.Point(192, 25)
         Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(95, 15)
+        Me.Label33.Size = New System.Drawing.Size(99, 15)
         Me.Label33.TabIndex = 92
-        Me.Label33.Text = "Descarga Arena"
+        Me.Label33.Text = "Descarga Piedra"
         '
         'Label34
         '
@@ -2290,7 +2290,7 @@ Partial Class Proceso
         '
         Me.GroupBox5.Controls.Add(Me.Lbl_Agua)
         Me.GroupBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox5.Location = New System.Drawing.Point(679, 7)
+        Me.GroupBox5.Location = New System.Drawing.Point(692, 8)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(88, 58)
         Me.GroupBox5.TabIndex = 246
@@ -2464,7 +2464,6 @@ Partial Class Proceso
         Me.Panel2.Controls.Add(Me.Sym_Piedra)
         Me.Panel2.Controls.Add(Me.Lbl_Dosif_T1)
         Me.Panel2.Controls.Add(Me.Label5)
-        Me.Panel2.Controls.Add(Me.StandardControl15)
         Me.Panel2.Controls.Add(Me.ValvulaDescarga)
         Me.Panel2.Controls.Add(Me.Label9)
         Me.Panel2.Controls.Add(Me.Sym_Banda)
@@ -2481,12 +2480,37 @@ Partial Class Proceso
         Me.Panel2.Controls.Add(Me.Sym_Torn_Cem_Carga)
         Me.Panel2.Controls.Add(Me.Sym_Bomba_G2)
         Me.Panel2.Controls.Add(Me.Sym_Torn_Cem_Desc)
+        Me.Panel2.Controls.Add(Me.StandardControl15)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(913, 487)
         Me.Panel2.TabIndex = 259
+        '
+        'Label50
+        '
+        Me.Label50.AutoSize = True
+        Me.Label50.BackColor = System.Drawing.Color.Gainsboro
+        Me.Label50.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label50.ForeColor = System.Drawing.Color.Black
+        Me.Label50.Location = New System.Drawing.Point(1250, 431)
+        Me.Label50.Name = "Label50"
+        Me.Label50.Size = New System.Drawing.Size(69, 13)
+        Me.Label50.TabIndex = 284
+        Me.Label50.Text = "TORNILLO"
+        '
+        'Label49
+        '
+        Me.Label49.AutoSize = True
+        Me.Label49.BackColor = System.Drawing.Color.Gainsboro
+        Me.Label49.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label49.ForeColor = System.Drawing.Color.Black
+        Me.Label49.Location = New System.Drawing.Point(1039, 324)
+        Me.Label49.Name = "Label49"
+        Me.Label49.Size = New System.Drawing.Size(84, 13)
+        Me.Label49.TabIndex = 283
+        Me.Label49.Text = "COMPUERTA"
         '
         'Button2
         '
@@ -2589,6 +2613,37 @@ Partial Class Proceso
         Me.GBx_Preparacion.TabIndex = 278
         Me.GBx_Preparacion.TabStop = False
         Me.GBx_Preparacion.Text = "Preparación de Dosificación"
+        '
+        'Num_BatchPlanificacion
+        '
+        Me.Num_BatchPlanificacion.Location = New System.Drawing.Point(109, 80)
+        Me.Num_BatchPlanificacion.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.Num_BatchPlanificacion.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.Num_BatchPlanificacion.Name = "Num_BatchPlanificacion"
+        Me.Num_BatchPlanificacion.Size = New System.Drawing.Size(69, 22)
+        Me.Num_BatchPlanificacion.TabIndex = 222
+        Me.Num_BatchPlanificacion.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.Num_BatchPlanificacion.Visible = False
+        '
+        'Num_Hum_Ripio
+        '
+        Me.Num_Hum_Ripio.Location = New System.Drawing.Point(307, 84)
+        Me.Num_Hum_Ripio.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.Num_Hum_Ripio.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.Num_Hum_Ripio.Name = "Num_Hum_Ripio"
+        Me.Num_Hum_Ripio.Size = New System.Drawing.Size(69, 22)
+        Me.Num_Hum_Ripio.TabIndex = 221
+        Me.Num_Hum_Ripio.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
+        'Label51
+        '
+        Me.Label51.AutoSize = True
+        Me.Label51.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label51.Location = New System.Drawing.Point(196, 86)
+        Me.Label51.Name = "Label51"
+        Me.Label51.Size = New System.Drawing.Size(91, 16)
+        Me.Label51.TabIndex = 220
+        Me.Label51.Text = "F. Hum. Ripio:"
         '
         'Num_Hum_Arena
         '
@@ -2814,61 +2869,6 @@ Partial Class Proceso
         '
         Me.Tim_Wd_PLC.Interval = 300
         '
-        'Label49
-        '
-        Me.Label49.AutoSize = True
-        Me.Label49.BackColor = System.Drawing.Color.Gainsboro
-        Me.Label49.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label49.ForeColor = System.Drawing.Color.Black
-        Me.Label49.Location = New System.Drawing.Point(1039, 324)
-        Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(84, 13)
-        Me.Label49.TabIndex = 283
-        Me.Label49.Text = "COMPUERTA"
-        '
-        'Label50
-        '
-        Me.Label50.AutoSize = True
-        Me.Label50.BackColor = System.Drawing.Color.Gainsboro
-        Me.Label50.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label50.ForeColor = System.Drawing.Color.Black
-        Me.Label50.Location = New System.Drawing.Point(1250, 431)
-        Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(69, 13)
-        Me.Label50.TabIndex = 284
-        Me.Label50.Text = "TORNILLO"
-        '
-        'Num_Hum_Ripio
-        '
-        Me.Num_Hum_Ripio.Location = New System.Drawing.Point(307, 84)
-        Me.Num_Hum_Ripio.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
-        Me.Num_Hum_Ripio.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.Num_Hum_Ripio.Name = "Num_Hum_Ripio"
-        Me.Num_Hum_Ripio.Size = New System.Drawing.Size(69, 22)
-        Me.Num_Hum_Ripio.TabIndex = 221
-        Me.Num_Hum_Ripio.Value = New Decimal(New Integer() {1, 0, 0, 0})
-        '
-        'Label51
-        '
-        Me.Label51.AutoSize = True
-        Me.Label51.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label51.Location = New System.Drawing.Point(196, 86)
-        Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(91, 16)
-        Me.Label51.TabIndex = 220
-        Me.Label51.Text = "F. Hum. Ripio:"
-        '
-        'Num_BatchPlanificacion
-        '
-        Me.Num_BatchPlanificacion.Location = New System.Drawing.Point(109, 80)
-        Me.Num_BatchPlanificacion.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
-        Me.Num_BatchPlanificacion.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.Num_BatchPlanificacion.Name = "Num_BatchPlanificacion"
-        Me.Num_BatchPlanificacion.Size = New System.Drawing.Size(69, 22)
-        Me.Num_BatchPlanificacion.TabIndex = 222
-        Me.Num_BatchPlanificacion.Value = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.Num_BatchPlanificacion.Visible = False
-        '
         'Proceso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2939,6 +2939,8 @@ Partial Class Proceso
         Me.Gbx_ConfigCarg_Cemento.PerformLayout()
         Me.GBx_Preparacion.ResumeLayout(False)
         Me.GBx_Preparacion.PerformLayout()
+        CType(Me.Num_BatchPlanificacion, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_Hum_Ripio, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Num_Hum_Arena, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.StandardControl8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Cemento, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2950,8 +2952,6 @@ Partial Class Proceso
         CType(Me.Sym_Torn_Cem_Carga, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Num_Hum_Ripio, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Num_BatchPlanificacion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

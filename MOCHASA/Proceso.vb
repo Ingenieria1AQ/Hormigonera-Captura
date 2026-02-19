@@ -716,7 +716,7 @@ Public Class Proceso
             CambiaProceso_Labels(Variables.reg_Lbl_Agua, pesoReal4.ToString("N2"), Diferencia.ToString("N2"))
             CambiaEstado_Label(Variables.reg_Lbl_Agua, "FINALIZADO", Color.Red)
             'Verificar si es el ultimo ing
-            If flagFinTolv2 And flagFinAgua And flagFinCargaCemento Then
+            If flagFinTolv2 And flagFinAgua And flagFinDesCargaCemento Then
                 FinalizaBatch()
             End If
         Catch ex As Exception
@@ -818,13 +818,16 @@ Public Class Proceso
                 font_Rtxt)
         Tim_Desc_Cemento.Enabled = True
     End Sub
-    Private Sub FinalizarDescargaCemento()
+    Private Async Sub FinalizarDescargaCemento()
         'Finalizar carga de cemento
         flagFinDesCargaCemento = True
+
         'Tim_Desc_Cemento.Enabled = False
 
         PLC_LOGO.WriteSingleCoil(Variables.coil_Desc2_Compuerta_Cemento, False)
         Pil_Desc_Cem_Compuerta.DiscreteValue1 = False
+        'Espera 60 segundos para apagar el tornillo
+        Await DelayMs(60000)
         PLC_LOGO.WriteSingleCoil(Variables.coil_Desc2_Transpor_Cemento, False)
         Pil_Desc_Cem_Tornillo.DiscreteValue1 = False
 
@@ -1250,7 +1253,7 @@ Public Class Proceso
         Await DelayMs(6000) ' 6 segundos sin bloquear
         Iniciar_Apagar_Banda(False)
         'Verifica si es el ultimo ingrediente dosificado parcial
-        If flagFinTolv2 And flagFinAgua And flagFinCargaCemento Then
+        If flagFinTolv2 And flagFinAgua And flagFinDesCargaCemento Then
             FinalizaBatch()
         End If
     End Sub

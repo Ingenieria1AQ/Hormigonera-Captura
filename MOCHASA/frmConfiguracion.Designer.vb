@@ -174,7 +174,7 @@ Partial Class frmConfiguracion
         Me.TP_Tolv1.Name = "TP_Tolv1"
         Me.TP_Tolv1.Size = New System.Drawing.Size(358, 226)
         Me.TP_Tolv1.TabIndex = 3
-        Me.TP_Tolv1.Text = "Tolva 1"
+        Me.TP_Tolv1.Text = "1- PIEDRA"
         Me.TP_Tolv1.UseVisualStyleBackColor = True
         '
         'Label15
@@ -336,7 +336,7 @@ Partial Class frmConfiguracion
         Me.TP_Tolv2.Padding = New System.Windows.Forms.Padding(3)
         Me.TP_Tolv2.Size = New System.Drawing.Size(358, 226)
         Me.TP_Tolv2.TabIndex = 5
-        Me.TP_Tolv2.Text = "Tolva 2"
+        Me.TP_Tolv2.Text = "2- ARENA"
         Me.TP_Tolv2.UseVisualStyleBackColor = True
         '
         'Label18
@@ -497,7 +497,7 @@ Partial Class frmConfiguracion
         Me.TP_Cemento.Name = "TP_Cemento"
         Me.TP_Cemento.Size = New System.Drawing.Size(358, 226)
         Me.TP_Cemento.TabIndex = 2
-        Me.TP_Cemento.Text = "Cemento"
+        Me.TP_Cemento.Text = "3- CEMENTO"
         Me.TP_Cemento.UseVisualStyleBackColor = True
         '
         'Label21
