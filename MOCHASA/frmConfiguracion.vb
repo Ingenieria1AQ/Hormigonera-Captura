@@ -35,6 +35,12 @@ Public Class frmConfiguracion
 
             Txt_IpAdd.Text = Funciones.Obtener_Valor_Configuracion("PLC_IP")
             Txt_Puerto.Text = Funciones.Obtener_Valor_Configuracion("PLC_Puerto")
+
+            Num_CPiedra.Value = Decimal.Parse(Funciones.Obtener_Valor_Configuracion("CortePiedra"))
+            Num_CArena.Value = Decimal.Parse(Funciones.Obtener_Valor_Configuracion("CorteArena"))
+            Num_CCemento.Value = Decimal.Parse(Funciones.Obtener_Valor_Configuracion("CorteCemento"))
+            Num_CAgua.Value = Decimal.Parse(Funciones.Obtener_Valor_Configuracion("CorteAgua"))
+
             Dim idx As Integer
             idx = cbx_impresora.FindString(Funciones.Obtener_Valor_Configuracion("Nombre_Impresora").ToString())
             If idx >= 0 Then cbx_impresora.SelectedIndex = idx
@@ -106,6 +112,11 @@ Public Class frmConfiguracion
             Dim Puerto_PLC As String = "0"
             Dim nombreImpresora As String = ""
             Dim usaImpresora As Integer = 0
+            Dim cortePiedra As Decimal = 0.0
+            Dim corteArena As Decimal = 0.0
+            Dim corteCemento As Decimal = 0.0
+            Dim corteAgua As Decimal = 0.0
+
             Select Case TabControl1.SelectedIndex
                 Case 0
                     NombreCom = cboSerialPort1.SelectedValue
@@ -141,12 +152,17 @@ Public Class frmConfiguracion
                     IP_PLC = Txt_IpAdd.Text
                     Puerto_PLC = Txt_Puerto.Text
                 Case 4
-                    tipo = "Impresora"
+                    tipo = "Parametros"
                     nombreImpresora = cbx_impresora.Text
                     usaImpresora = Convert.ToInt32(chBox_Hab_Imp.Checked)
+                    cortePiedra = Convert.ToDecimal(Num_CPiedra.Value)
+                    corteArena = Convert.ToDecimal(Num_CArena.Value)
+                    corteCemento = Convert.ToDecimal(Num_CCemento.Value)
+                    corteAgua = Convert.ToDecimal(Num_CAgua.Value)
 
             End Select
-            ActualizarConfiguracion(idTolva, NombreCom, Baud, bitsDatos, paridad, bitsParada, controlFlujo, NombreIndicador, tipo, IP_PLC, Puerto_PLC, nombreImpresora, usaImpresora)
+            ActualizarConfiguracion(idTolva, NombreCom, Baud, bitsDatos, paridad, bitsParada, controlFlujo, NombreIndicador, tipo, IP_PLC, Puerto_PLC,
+                                    nombreImpresora, usaImpresora, cortePiedra, corteArena, corteCemento, corteAgua)
 
         Catch ex As Exception
             MsgBox("Exepción Actualizar: " & ex.Message)
@@ -159,7 +175,8 @@ Public Class frmConfiguracion
 
     Private Sub ActualizarConfiguracion(idTolva As Integer, PuertoSerie As String, Baudrate As Integer, BitsDatos As String, Paridad As String,
                                         BitsParada As String, ControlFlujo As String, nombreIndicador As String, tipo As String, IP As String,
-                                        Puerto As String, nombreImpresora As String, usaImp As Integer)
+                                        Puerto As String, nombreImpresora As String, usaImp As Integer, cortePiedra As Decimal, corteArena As Decimal,
+                                        corteCemento As Decimal, corteAgua As Decimal)
         Try
             Select Case tipo
                 Case "PLC"
@@ -196,15 +213,20 @@ Public Class frmConfiguracion
                             End If
                         End Using
                     End Using
-                Case "Impresora"
-                    If Funciones.Actualizar_Valor_Configuracion("Nombre_Impresora", nombreImpresora) And Funciones.Actualizar_Valor_Configuracion("UsaImpresora", usaImp) Then
-                        MessageBox.Show("Registro de Impresora actualizado correctamente", "Mensaje",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Else
+                Case "Parametros"
+                    'Configura Cortes
+                    Dim mensajesPar As New List(Of String)
+                    If Funciones.Actualizar_Valor_Configuracion("CortePiedra", cortePiedra) Then mensajesPar.Add("Corte Piedra Guardado") Else mensajesPar.Add("Corte Piedra No Guardado")
+                    If Funciones.Actualizar_Valor_Configuracion("CorteArena", corteArena) Then mensajesPar.Add("Corte Arena Guardado") Else mensajesPar.Add("Corte Arena No Guardado")
+                    If Funciones.Actualizar_Valor_Configuracion("CorteCemento", corteCemento) Then mensajesPar.Add("Corte Cemento Guardado") Else mensajesPar.Add("Corte Cemento No Guardado")
+                    If Funciones.Actualizar_Valor_Configuracion("CorteAgua", corteAgua) Then mensajesPar.Add("Corte Agua Guardado") Else mensajesPar.Add("Corte Agua No Guardado")
+                    'Configura Impresora
+                    If Funciones.Actualizar_Valor_Configuracion("Nombre_Impresora", nombreImpresora) Then mensajesPar.Add("Impresora Guardado") Else mensajesPar.Add("Impresora No Guardado")
+                    If Funciones.Actualizar_Valor_Configuracion("UsaImpresora", usaImp) Then mensajesPar.Add("Usa Impresora Guardado") Else mensajesPar.Add("Usa Impresora No Guardado")
 
-                        MessageBox.Show("No se actualizó ningún registro de la Impresora", "Mensaje",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    End If
+                    Dim msg As String = "Actualización de Parámetros:" & vbCrLf & "- " & String.Join(vbCrLf & "- ", mensajesPar)
+
+                    MessageBox.Show(msg, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 
             End Select
         Catch ex As Exception

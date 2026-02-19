@@ -52,6 +52,7 @@ Public Class frmIngredientes
             If DataGridView1.Columns.Count > 0 Then
                 DataGridView1.Columns(0).HeaderText = "Código Ingrediente"
                 DataGridView1.Columns(1).HeaderText = "Descripción"
+                DataGridView1.Columns(2).HeaderText = "Densidad (kg/m3)"
             End If
             ' Dimensionar las columnas del DataGrid para ajustalarlas al contenido cargado
             'Me.DataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader)

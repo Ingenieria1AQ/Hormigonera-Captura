@@ -79,16 +79,34 @@ Partial Class frmConfiguracion
         Me.TP_PLC = New System.Windows.Forms.TabPage()
         Me.label11 = New System.Windows.Forms.Label()
         Me.label12 = New System.Windows.Forms.Label()
-        Me.TP_Impresora = New System.Windows.Forms.TabPage()
+        Me.TP_Parametros = New System.Windows.Forms.TabPage()
         Me.chBox_Hab_Imp = New System.Windows.Forms.CheckBox()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.cbx_impresora = New System.Windows.Forms.ComboBox()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Num_CPiedra = New System.Windows.Forms.NumericUpDown()
+        Me.Num_CArena = New System.Windows.Forms.NumericUpDown()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.Num_CCemento = New System.Windows.Forms.NumericUpDown()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Num_CAgua = New System.Windows.Forms.NumericUpDown()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.Label30 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TP_Tolv1.SuspendLayout()
         Me.TP_Tolv2.SuspendLayout()
         Me.TP_Cemento.SuspendLayout()
         Me.TP_PLC.SuspendLayout()
-        Me.TP_Impresora.SuspendLayout()
+        Me.TP_Parametros.SuspendLayout()
+        CType(Me.Num_CPiedra, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_CArena, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_CCemento, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_CAgua, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Btt_Cancelar
@@ -100,7 +118,7 @@ Partial Class frmConfiguracion
         Me.Btt_Cancelar.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Btt_Cancelar.Image = Global.HORMIGONERA.My.Resources.Resources.cancel
         Me.Btt_Cancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_Cancelar.Location = New System.Drawing.Point(374, 112)
+        Me.Btt_Cancelar.Location = New System.Drawing.Point(462, 112)
         Me.Btt_Cancelar.Name = "Btt_Cancelar"
         Me.Btt_Cancelar.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Btt_Cancelar.Size = New System.Drawing.Size(94, 41)
@@ -131,7 +149,7 @@ Partial Class frmConfiguracion
         Me.Btt_Conectar.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Btt_Conectar.Image = Global.HORMIGONERA.My.Resources.Resources.connect
         Me.Btt_Conectar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_Conectar.Location = New System.Drawing.Point(374, 54)
+        Me.Btt_Conectar.Location = New System.Drawing.Point(462, 54)
         Me.Btt_Conectar.Name = "Btt_Conectar"
         Me.Btt_Conectar.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Btt_Conectar.Size = New System.Drawing.Size(94, 41)
@@ -146,11 +164,11 @@ Partial Class frmConfiguracion
         Me.TabControl1.Controls.Add(Me.TP_Tolv2)
         Me.TabControl1.Controls.Add(Me.TP_Cemento)
         Me.TabControl1.Controls.Add(Me.TP_PLC)
-        Me.TabControl1.Controls.Add(Me.TP_Impresora)
+        Me.TabControl1.Controls.Add(Me.TP_Parametros)
         Me.TabControl1.Location = New System.Drawing.Point(2, 12)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(366, 252)
+        Me.TabControl1.Size = New System.Drawing.Size(454, 351)
         Me.TabControl1.TabIndex = 19
         '
         'TP_Tolv1
@@ -172,7 +190,7 @@ Partial Class frmConfiguracion
         Me.TP_Tolv1.Controls.Add(Me.cboSerialPort1)
         Me.TP_Tolv1.Location = New System.Drawing.Point(4, 22)
         Me.TP_Tolv1.Name = "TP_Tolv1"
-        Me.TP_Tolv1.Size = New System.Drawing.Size(358, 226)
+        Me.TP_Tolv1.Size = New System.Drawing.Size(446, 325)
         Me.TP_Tolv1.TabIndex = 3
         Me.TP_Tolv1.Text = "1- PIEDRA"
         Me.TP_Tolv1.UseVisualStyleBackColor = True
@@ -334,7 +352,7 @@ Partial Class frmConfiguracion
         Me.TP_Tolv2.Location = New System.Drawing.Point(4, 22)
         Me.TP_Tolv2.Name = "TP_Tolv2"
         Me.TP_Tolv2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TP_Tolv2.Size = New System.Drawing.Size(358, 226)
+        Me.TP_Tolv2.Size = New System.Drawing.Size(446, 325)
         Me.TP_Tolv2.TabIndex = 5
         Me.TP_Tolv2.Text = "2- ARENA"
         Me.TP_Tolv2.UseVisualStyleBackColor = True
@@ -495,7 +513,7 @@ Partial Class frmConfiguracion
         Me.TP_Cemento.Controls.Add(Me.cboSerialPort3)
         Me.TP_Cemento.Location = New System.Drawing.Point(4, 22)
         Me.TP_Cemento.Name = "TP_Cemento"
-        Me.TP_Cemento.Size = New System.Drawing.Size(358, 226)
+        Me.TP_Cemento.Size = New System.Drawing.Size(446, 325)
         Me.TP_Cemento.TabIndex = 2
         Me.TP_Cemento.Text = "3- CEMENTO"
         Me.TP_Cemento.UseVisualStyleBackColor = True
@@ -645,7 +663,7 @@ Partial Class frmConfiguracion
         Me.TP_PLC.Controls.Add(Me.Txt_IpAdd)
         Me.TP_PLC.Location = New System.Drawing.Point(4, 22)
         Me.TP_PLC.Name = "TP_PLC"
-        Me.TP_PLC.Size = New System.Drawing.Size(358, 226)
+        Me.TP_PLC.Size = New System.Drawing.Size(446, 325)
         Me.TP_PLC.TabIndex = 4
         Me.TP_PLC.Text = "PLC"
         Me.TP_PLC.UseVisualStyleBackColor = True
@@ -668,23 +686,22 @@ Partial Class frmConfiguracion
         Me.label12.TabIndex = 12
         Me.label12.Text = "Direccion IP-Servidor:"
         '
-        'TP_Impresora
+        'TP_Parametros
         '
-        Me.TP_Impresora.Controls.Add(Me.chBox_Hab_Imp)
-        Me.TP_Impresora.Controls.Add(Me.Label24)
-        Me.TP_Impresora.Controls.Add(Me.cbx_impresora)
-        Me.TP_Impresora.Location = New System.Drawing.Point(4, 22)
-        Me.TP_Impresora.Name = "TP_Impresora"
-        Me.TP_Impresora.Size = New System.Drawing.Size(358, 226)
-        Me.TP_Impresora.TabIndex = 6
-        Me.TP_Impresora.Text = "Impresora"
-        Me.TP_Impresora.UseVisualStyleBackColor = True
+        Me.TP_Parametros.Controls.Add(Me.GroupBox2)
+        Me.TP_Parametros.Controls.Add(Me.GroupBox1)
+        Me.TP_Parametros.Location = New System.Drawing.Point(4, 22)
+        Me.TP_Parametros.Name = "TP_Parametros"
+        Me.TP_Parametros.Size = New System.Drawing.Size(446, 325)
+        Me.TP_Parametros.TabIndex = 6
+        Me.TP_Parametros.Text = "PARÁMETROS"
+        Me.TP_Parametros.UseVisualStyleBackColor = True
         '
         'chBox_Hab_Imp
         '
         Me.chBox_Hab_Imp.AutoSize = True
         Me.chBox_Hab_Imp.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chBox_Hab_Imp.Location = New System.Drawing.Point(30, 90)
+        Me.chBox_Hab_Imp.Location = New System.Drawing.Point(35, 42)
         Me.chBox_Hab_Imp.Name = "chBox_Hab_Imp"
         Me.chBox_Hab_Imp.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.chBox_Hab_Imp.Size = New System.Drawing.Size(111, 17)
@@ -696,7 +713,7 @@ Partial Class frmConfiguracion
         '
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.Location = New System.Drawing.Point(27, 43)
+        Me.Label24.Location = New System.Drawing.Point(32, 23)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(66, 13)
         Me.Label24.TabIndex = 26
@@ -707,16 +724,146 @@ Partial Class frmConfiguracion
         Me.cbx_impresora.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbx_impresora.FormattingEnabled = True
         Me.cbx_impresora.Items.AddRange(New Object() {"ZM301", "ZM201", "QW", "GW", "EDS"})
-        Me.cbx_impresora.Location = New System.Drawing.Point(97, 40)
+        Me.cbx_impresora.Location = New System.Drawing.Point(118, 15)
         Me.cbx_impresora.Name = "cbx_impresora"
         Me.cbx_impresora.Size = New System.Drawing.Size(231, 21)
         Me.cbx_impresora.TabIndex = 25
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.Location = New System.Drawing.Point(19, 27)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(81, 13)
+        Me.Label25.TabIndex = 29
+        Me.Label25.Text = "Corte Piedra:"
+        '
+        'Num_CPiedra
+        '
+        Me.Num_CPiedra.DecimalPlaces = 1
+        Me.Num_CPiedra.Location = New System.Drawing.Point(108, 25)
+        Me.Num_CPiedra.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
+        Me.Num_CPiedra.Name = "Num_CPiedra"
+        Me.Num_CPiedra.Size = New System.Drawing.Size(120, 20)
+        Me.Num_CPiedra.TabIndex = 30
+        '
+        'Num_CArena
+        '
+        Me.Num_CArena.DecimalPlaces = 1
+        Me.Num_CArena.Location = New System.Drawing.Point(108, 51)
+        Me.Num_CArena.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
+        Me.Num_CArena.Name = "Num_CArena"
+        Me.Num_CArena.Size = New System.Drawing.Size(120, 20)
+        Me.Num_CArena.TabIndex = 32
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.Location = New System.Drawing.Point(22, 53)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(78, 13)
+        Me.Label26.TabIndex = 31
+        Me.Label26.Text = "Corte Arena:"
+        '
+        'Num_CCemento
+        '
+        Me.Num_CCemento.DecimalPlaces = 1
+        Me.Num_CCemento.Location = New System.Drawing.Point(108, 82)
+        Me.Num_CCemento.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
+        Me.Num_CCemento.Name = "Num_CCemento"
+        Me.Num_CCemento.Size = New System.Drawing.Size(120, 20)
+        Me.Num_CCemento.TabIndex = 34
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label27.Location = New System.Drawing.Point(6, 84)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(94, 13)
+        Me.Label27.TabIndex = 33
+        Me.Label27.Text = "Corte Cemento:"
+        '
+        'Num_CAgua
+        '
+        Me.Num_CAgua.DecimalPlaces = 1
+        Me.Num_CAgua.Location = New System.Drawing.Point(108, 110)
+        Me.Num_CAgua.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
+        Me.Num_CAgua.Name = "Num_CAgua"
+        Me.Num_CAgua.Size = New System.Drawing.Size(120, 20)
+        Me.Num_CAgua.TabIndex = 36
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label28.Location = New System.Drawing.Point(26, 112)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(74, 13)
+        Me.Label28.TabIndex = 35
+        Me.Label28.Text = "Corte Agua:"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Label30)
+        Me.GroupBox1.Controls.Add(Me.Label29)
+        Me.GroupBox1.Controls.Add(Me.Num_CAgua)
+        Me.GroupBox1.Controls.Add(Me.Label28)
+        Me.GroupBox1.Controls.Add(Me.Num_CCemento)
+        Me.GroupBox1.Controls.Add(Me.Label27)
+        Me.GroupBox1.Controls.Add(Me.Num_CArena)
+        Me.GroupBox1.Controls.Add(Me.Label26)
+        Me.GroupBox1.Controls.Add(Me.Num_CPiedra)
+        Me.GroupBox1.Controls.Add(Me.Label25)
+        Me.GroupBox1.Location = New System.Drawing.Point(17, 17)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(426, 138)
+        Me.GroupBox1.TabIndex = 37
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Valores de Corte"
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.chBox_Hab_Imp)
+        Me.GroupBox2.Controls.Add(Me.Label24)
+        Me.GroupBox2.Controls.Add(Me.cbx_impresora)
+        Me.GroupBox2.Location = New System.Drawing.Point(17, 161)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(364, 84)
+        Me.GroupBox2.TabIndex = 38
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Impresora"
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.BackColor = System.Drawing.SystemColors.Info
+        Me.Label29.Location = New System.Drawing.Point(243, 36)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(168, 78)
+        Me.Label29.TabIndex = 37
+        Me.Label29.Text = "Es el valor previo al peso objetivo " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "en el que el sistema detiene " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "o reduce la " &
+    "dosificación para " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "evitar sobrepeso considerando " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "la inercia y el material que" &
+    " aún " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "cae después del cierre."
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.BackColor = System.Drawing.SystemColors.Info
+        Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label30.Location = New System.Drawing.Point(243, 23)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(101, 13)
+        Me.Label30.TabIndex = 38
+        Me.Label30.Text = "* Punto de Corte"
         '
         'frmConfiguracion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(523, 276)
+        Me.ClientSize = New System.Drawing.Size(614, 412)
         Me.ControlBox = False
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Btt_Cancelar)
@@ -732,8 +879,15 @@ Partial Class frmConfiguracion
         Me.TP_Cemento.PerformLayout()
         Me.TP_PLC.ResumeLayout(False)
         Me.TP_PLC.PerformLayout()
-        Me.TP_Impresora.ResumeLayout(False)
-        Me.TP_Impresora.PerformLayout()
+        Me.TP_Parametros.ResumeLayout(False)
+        CType(Me.Num_CPiedra, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_CArena, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_CCemento, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_CAgua, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -793,8 +947,20 @@ Partial Class frmConfiguracion
     Friend WithEvents Label21 As Label
     Friend WithEvents Label22 As Label
     Friend WithEvents Label23 As Label
-    Friend WithEvents TP_Impresora As TabPage
+    Friend WithEvents TP_Parametros As TabPage
     Friend WithEvents Label24 As Label
     Friend WithEvents cbx_impresora As ComboBox
     Friend WithEvents chBox_Hab_Imp As CheckBox
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label30 As Label
+    Friend WithEvents Label29 As Label
+    Friend WithEvents Num_CAgua As NumericUpDown
+    Friend WithEvents Label28 As Label
+    Friend WithEvents Num_CCemento As NumericUpDown
+    Friend WithEvents Label27 As Label
+    Friend WithEvents Num_CArena As NumericUpDown
+    Friend WithEvents Label26 As Label
+    Friend WithEvents Num_CPiedra As NumericUpDown
+    Friend WithEvents Label25 As Label
 End Class

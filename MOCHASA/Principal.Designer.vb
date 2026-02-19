@@ -46,6 +46,7 @@ Partial Class Principal
         '
         'Panel1
         '
+        Me.Panel1.AutoScroll = True
         Me.Panel1.BackColor = System.Drawing.SystemColors.ScrollBar
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel1.Controls.Add(Me.FlowLayoutPanel1)
@@ -75,7 +76,7 @@ Partial Class Principal
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(131, 485)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(127, 573)
         Me.FlowLayoutPanel1.TabIndex = 14
         '
         'btnobtener

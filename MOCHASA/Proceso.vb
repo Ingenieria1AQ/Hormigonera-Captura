@@ -244,10 +244,16 @@ Public Class Proceso
                 font_Rtxt)
             End If
 
-            corteT1 = Convert.ToDouble(tbTolvas.Rows(0).Item("Corte"))
-            corteT2 = Convert.ToDouble(tbTolvas.Rows(1).Item("Corte"))
-            corteCemento = Convert.ToDouble(tbTolvas.Rows(2).Item("Corte"))
-            corteAgua = Convert.ToDouble(tbTolvas.Rows(3).Item("Corte"))
+            corteT1 = Double.Parse(Funciones.Obtener_Valor_Configuracion("CortePiedra"))
+            corteT2 = Double.Parse(Funciones.Obtener_Valor_Configuracion("CorteArena"))
+            corteCemento = Double.Parse(Funciones.Obtener_Valor_Configuracion("CorteCemento"))
+            corteAgua = Double.Parse(Funciones.Obtener_Valor_Configuracion("CorteAgua"))
+
+
+            'corteT1 = Convert.ToDouble(tbTolvas.Rows(0).Item("Corte"))
+            'corteT2 = Convert.ToDouble(tbTolvas.Rows(1).Item("Corte"))
+            'corteCemento = Convert.ToDouble(tbTolvas.Rows(2).Item("Corte"))
+            'corteAgua = Convert.ToDouble(tbTolvas.Rows(3).Item("Corte"))
 
             IndicadorTolv1 = New Indicador_Serial(tbTolvas.Rows(0).Item("PuertoCOM"), Convert.ToInt32(tbTolvas.Rows(0).Item("BaudRate")), tbTolvas.Rows(0).Item("TipoIndicador"))
             IndicadorTolv2 = New Indicador_Serial(tbTolvas.Rows(1).Item("PuertoCOM"), Convert.ToInt32(tbTolvas.Rows(1).Item("BaudRate")), tbTolvas.Rows(1).Item("TipoIndicador"))
@@ -435,6 +441,7 @@ Public Class Proceso
             IndicadorTolv1.Desconectar()
             IndicadorTolv2.Desconectar()
             IndicadorCemento.Desconectar()
+
             If PLC_LOGO.Connected Then
                 PLC_LOGO.Disconnect()
             End If

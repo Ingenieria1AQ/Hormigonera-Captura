@@ -1,6 +1,7 @@
 Imports System.Data
 Imports System.Data.OleDb
 Imports SocketTools.SocketWrench.ErrorCode
+Imports System.Globalization
 
 Public Class frmFormulas
     Dim da As OleDbDataAdapter
@@ -46,14 +47,15 @@ Public Class frmFormulas
          'Me.DataGridView1.Rows(i).Cells(2).Value = ds2.Tables(0).Rows(i).Item(2)            
       Next
 
-      'Finalmente pasmos al comboBox, hasta aqui nada del otro mundo
-      Me.cmbproductos.DataSource = objds_p.Tables(0).DefaultView
+        'Finalmente pasamos al comboBox, hasta aqui nada del otro mundo
+        Me.cmbproductos.DataSource = objds_p.Tables(0).DefaultView
       Me.cmbproductos.DisplayMember = "Descripcion"
-      Me.cmbproductos.ValueMember = "Id_Producto"
+        Me.cmbproductos.ValueMember = "Id_Producto"
 
-      ' Al iniciar el formulario abrimos la conexion y pasamos 
-      ' la =consulta al primer combobox
-      da = New OleDbDataAdapter("select * from Ingredientes order by Id_Ingrediente", sConnString)
+
+        ' Al iniciar el formulario abrimos la conexion y pasamos 
+        ' la =consulta al primer combobox
+        da = New OleDbDataAdapter("select * from Ingredientes order by Id_Ingrediente", sConnString)
       Dim objds As New DataSet()
 
       'Pasamos las columnas que deseamos al dataset
@@ -88,8 +90,8 @@ Public Class frmFormulas
 
       'objds.Tables(0).Rows.Add(fila_ing)
       Dim TxtTipoColumn As New DataGridViewTextBoxColumn
-      TxtTipoColumn.Name = "Tipo de Ingrediente"
-      Me.DataGridView1.Columns.Add(TxtTipoColumn)
+        TxtTipoColumn.Name = "Nombre Tolva"
+        Me.DataGridView1.Columns.Add(TxtTipoColumn)
 
       'Este es una columna de ComboBoxes
       Dim CboIngredientesColumn As New DataGridViewComboBoxColumn
@@ -103,8 +105,18 @@ Public Class frmFormulas
       Me.DataGridView1.Columns.Add(CboIngredientesColumn)
 
       Dim TxtCantidadColumn As New DataGridViewTextBoxColumn
-      TxtCantidadColumn.Name = "Cantidad"
-      Me.DataGridView1.Columns.Add(TxtCantidadColumn)
+        TxtCantidadColumn.Name = "Cantidad kg/m3"
+        Me.DataGridView1.Columns.Add(TxtCantidadColumn)
+
+        'AQ-Agregar columna para el Coeficiente de Absorcion
+        Dim TxtCAbsorcion As New DataGridViewTextBoxColumn
+        TxtCAbsorcion.Name = "CA"
+        TxtCAbsorcion.HeaderText = "Coeficiente Absorción (C.A)"
+        TxtCAbsorcion.ValueType = GetType(Double)
+        TxtCAbsorcion.DefaultCellStyle.Format = "N2" 'Dos decimales
+        Me.DataGridView1.Columns.Add(TxtCAbsorcion)
+
+
         Me.DataGridView1.Rows.Add(registros)
         Try
             Me.cmbproductos.SelectedIndex = 0
@@ -146,6 +158,7 @@ Public Class frmFormulas
                                 Me.DataGridView1.Rows(i).Cells(0).Value = tbTolvas.Rows(i).Item(1)
                                 Me.DataGridView1.Rows(i).Cells(1).Value = ds2.Tables(0).Rows(i).Item(2)
                                 Me.DataGridView1.Rows(i).Cells(2).Value = ds2.Tables(0).Rows(i).Item(3)
+                                Me.DataGridView1.Rows(i).Cells(3).Value = ds2.Tables(0).Rows(i).Item(5)
                             End If
                         Catch ex As ArgumentException
 
@@ -387,6 +400,11 @@ Public Class frmFormulas
     End Sub
 
     Private Sub Btt_GuardarFormula_Click(sender As Object, e As EventArgs) Handles Btt_GuardarFormula.Click
+        'Validad que se ingresen los coeficientes de absorcion para Piedra y Arena
+        If Not ValidarIngresoCoeficientes() Then
+            MessageBox.Show("Debe ingresar coeficientes de absorción para Piedra y Arena", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
         Try
             Using conection As New OleDbConnection(sConnString)
                 Using cmd As New OleDbCommand
@@ -406,15 +424,21 @@ Public Class frmFormulas
                 If CStr(DataGridView1.Rows(i).Cells(1).Value) = "" Then
                     DataGridView1.Rows(i).Cells(1).Value = 0
                 End If
+                If CStr(DataGridView1.Rows(i).Cells(3).Value) = "" Then
+                    DataGridView1.Rows(i).Cells(3).Value = 0.0
+                End If
                 Using conection As New OleDbConnection(sConnString)
                     Using cmd As New OleDbCommand
                         cmd.Connection = conection
-                        cmd.CommandText = "INSERT INTO DetalleFormulas (id_formula, id_ingrediente, cantidad, Num_Tolva) VALUES (?,?,?,?)"
+                        cmd.CommandText = "INSERT INTO DetalleFormulas (id_formula, id_ingrediente, cantidad, Num_Tolva,CoeficienteAbsorcion) VALUES (?,?,?,?,?)"
                         cmd.Parameters.AddWithValue("?", cmbproductos.SelectedValue.ToString)
                         cmd.Parameters.AddWithValue("?", DataGridView1.Rows(i).Cells(1).Value.ToString)
                         cmd.Parameters.AddWithValue("?", CInt(DataGridView1.Rows(i).Cells(2).Value))
                         cmd.Parameters.AddWithValue("?", CInt(tbTolvas.Rows(i).Item(0)))
-                        'cmd.Parameters.AddWithValue("?", DataGridView1.Rows(i).Cells(0).Value.ToString.Replace("Ingrediente ", ""))
+                        Dim coeficienteA As Decimal
+                        Decimal.TryParse(DataGridView1.Rows(i).Cells(3).Value.ToString(), coeficienteA)
+                        Math.Round(coeficienteA, 2)
+                        cmd.Parameters.AddWithValue("?", coeficienteA)
                         conection.Open()
                         cmd.ExecuteNonQuery()
                     End Using
@@ -431,4 +455,26 @@ Public Class frmFormulas
     Private Sub cmbproductos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbproductos.SelectedIndexChanged
         Actualizar_Formula_DG()
     End Sub
+
+    Private Function ValidarIngresoCoeficientes() As Boolean
+        For Each fila As DataGridViewRow In DataGridView1.Rows
+            ' Evitar fila nueva vacía
+            If fila.IsNewRow Then Continue For
+            Dim idProducto As Integer = 0
+            Dim coeficiente As String = ""
+
+            If fila.Cells("Ingredientes").Value IsNot Nothing Then
+                idProducto = Convert.ToInt32(fila.Cells("Ingredientes").Value)
+            End If
+
+            If fila.Cells("CA").Value IsNot Nothing Then
+                coeficiente = fila.Cells("CA").Value.ToString.Trim
+            End If
+
+            If (idProducto = 1 Or idProducto = 2) AndAlso String.IsNullOrEmpty(coeficiente) Then
+                Return False
+            End If
+        Next
+        Return True
+    End Function
 End Class
