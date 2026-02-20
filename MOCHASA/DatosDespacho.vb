@@ -226,7 +226,7 @@ Public Class DatosDespacho
                         Button3.Enabled = True
 
 
-                        MessageBox.Show("La información se ha almacenado con exito")
+                        MessageBox.Show("La información se ha almacenado con exito", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         'If lbltipo.Text = "INGRESO" Then
                         '    IngresoEntraFRM.Show()
                         'Else
@@ -234,7 +234,7 @@ Public Class DatosDespacho
                         'End If
 
                     Else
-                        MessageBox.Show("No se pudo almacenar la transaccion compruebe los datos")
+                        MessageBox.Show("No se pudo almacenar la transaccion compruebe los datos", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     End If
                 Catch ex As Exception
                     MsgBox(ex.Message)

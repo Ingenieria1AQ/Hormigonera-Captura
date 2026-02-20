@@ -18,7 +18,6 @@ Public Class Principal
         '709%s80.11%e             P709.80  Col09 cantseteada
         '710%s80.4%e              P710.80  Col10 Peso real
         '711%s80.60%e             P711.80  Col11 Factor de multiplicacion
-
     End Sub
     Private Sub SalirToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Application.Exit()
@@ -129,5 +128,15 @@ Public Class Principal
         Mixers.TopLevel = False
         Panel2.Controls.Add(Mixers)
         Mixers.Show()
+    End Sub
+
+    Private Sub Btt_OP_Click(sender As Object, e As EventArgs) Handles Btt_OP.Click
+        Try
+            DatosDespacho.TopLevel = False
+            Panel2.Controls.Add(DatosDespacho)
+            DatosDespacho.Show()
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

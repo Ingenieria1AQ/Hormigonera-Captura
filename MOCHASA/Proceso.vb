@@ -11,6 +11,10 @@ Public Class Proceso
     Private IndicadorTolv2 As Indicador_Serial
     Private IndicadorCemento As Indicador_Serial
 
+    'Variables de Formulacion
+    Private ID_OrdenDespacho As String
+    Private ID_ProductoFormula As String
+
     Private da As OleDbDataAdapter
     Private ds As New DataSet
     Private numTolvas_Serial As Integer = 3
@@ -716,7 +720,7 @@ Public Class Proceso
             Dim Diferencia As Double = pesoSet4 - pesoReal4
             'Guardar registro de pesada
             Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T4, Variables.NombreIngrediente_T4,
-                                    pesoSet4, pesoReal4, Variables.Factor)
+                                    pesoSet4, pesoReal4, Variables.Factor, ID_OrdenDespacho)
             Pb_Tol4.Maximum = pesoReal4
             Pb_Tol4.Value = pesoReal4
             Lbl_Dosif_Agua.Text = pesoReal4.ToString("N2")
@@ -788,7 +792,7 @@ Public Class Proceso
 
             'Guardar registro de pesada
             Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T3, Variables.NombreIngrediente_T3,
-                                        pesoSet3, pesoReal3, Variables.Factor)
+                                        pesoSet3, pesoReal3, Variables.Factor, ID_OrdenDespacho)
             Pb_Tol3.Maximum = CInt(pesoReal3)
             Pb_Tol3.Value = CInt(pesoReal3)
             Lbl_Dosif_Cemento.Text = pesoReal3.ToString("N2")
@@ -1088,7 +1092,7 @@ Public Class Proceso
             pesoReal1 = ValorInicialT1 - Convert.ToDouble(Lbl_Peso_T1.Text)
             Dim Diferencia As Double = pesoSet1 - pesoReal1
             Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, Variables.NombreIngrediente_T1,
-                                    pesoSet1, pesoReal1, Variables.Factor)
+                                    pesoSet1, pesoReal1, Variables.Factor, ID_OrdenDespacho)
             Rtx_Mensajes.AppendColoredText("Peso T1 Registrado" & Environment.NewLine,
                     Drawing.Color.Black,
                     font_Rtxt)
@@ -1104,7 +1108,7 @@ Public Class Proceso
         End Try
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
         Try
             'DatosDespacho.TopLevel = False
             'Panel2.Controls.Add(DatosDespacho)
@@ -1127,24 +1131,45 @@ Public Class Proceso
     End Sub
 
     Private Sub NumericM3_ValueChanged(sender As Object, e As EventArgs) Handles NumericM3.ValueChanged
-        If cmbproductos.SelectedIndex > -1 AndAlso cmbproductos.SelectedValue IsNot Nothing AndAlso
-            Not TypeOf cmbproductos.SelectedValue Is DataRowView Then
-            ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
+        'If cmbproductos.SelectedIndex > -1 AndAlso cmbproductos.SelectedValue IsNot Nothing AndAlso
+        '    Not TypeOf cmbproductos.SelectedValue Is DataRowView Then
+        '    ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
+        'End If
+        If Txt_CodOrdenDespacho.Text IsNot String.Empty Then
+            ObtieneFormulaxProducto(ID_ProductoFormula)
         End If
+
     End Sub
 
     Private Sub Num_Hum_Arena_ValueChanged(sender As Object, e As EventArgs) Handles Num_Hum_Arena.ValueChanged
-        If cmbproductos.SelectedIndex > -1 AndAlso cmbproductos.SelectedValue IsNot Nothing AndAlso
-            Not TypeOf cmbproductos.SelectedValue Is DataRowView Then
-            ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
+        'If cmbproductos.SelectedIndex > -1 AndAlso cmbproductos.SelectedValue IsNot Nothing AndAlso
+        '    Not TypeOf cmbproductos.SelectedValue Is DataRowView Then
+        '    ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
+        'End If
+        If Txt_CodOrdenDespacho.Text IsNot String.Empty Then
+            ObtieneFormulaxProducto(ID_ProductoFormula)
         End If
     End Sub
 
     Private Sub Num_Hum_Ripio_ValueChanged(sender As Object, e As EventArgs) Handles Num_Hum_Ripio.ValueChanged
-        If cmbproductos.SelectedIndex > -1 AndAlso cmbproductos.SelectedValue IsNot Nothing AndAlso
-            Not TypeOf cmbproductos.SelectedValue Is DataRowView Then
-            ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
+        'If cmbproductos.SelectedIndex > -1 AndAlso cmbproductos.SelectedValue IsNot Nothing AndAlso
+        '    Not TypeOf cmbproductos.SelectedValue Is DataRowView Then
+        '    ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
+        'End If
+        If Txt_CodOrdenDespacho.Text IsNot String.Empty Then
+            ObtieneFormulaxProducto(ID_ProductoFormula)
         End If
+    End Sub
+
+    Private Sub Btt_BuscarOrdDespacho_Click(sender As Object, e As EventArgs) Handles Btt_BuscarOrdDespacho.Click
+        ID_OrdenDespacho = Txt_CodOrdenDespacho.Text
+        ID_ProductoFormula = Obtiene_idProductoxIdOrdenDespacho(ID_OrdenDespacho)
+        If ID_ProductoFormula Is String.Empty Then
+            Rtx_Mensajes.AppendColoredText($"No se encuentra la órden de despacho: {ID_OrdenDespacho} " & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
+        End If
+        ObtieneFormulaxProducto(ID_ProductoFormula)
     End Sub
 
     Private Sub RBtt_CargCemTornillo_CheckedChanged(sender As Object, e As EventArgs) Handles RBtt_CargCemTornillo.CheckedChanged
@@ -1247,7 +1272,7 @@ Public Class Proceso
         Dim Diferencia As Double = pesoSet2 - pesoReal2
         'Guardar registro de pesada
         Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T2, Variables.NombreIngrediente_T2,
-                                    pesoSet2, pesoReal2, Variables.Factor)
+                                    pesoSet2, pesoReal2, Variables.Factor, ID_OrdenDespacho)
         Lbl_Dosif_T2.Text = pesoReal2.ToString("N2")
         CambiaProceso_Labels(Variables.reg_Lbl_Tolv2, pesoReal2.ToString("N2"), Diferencia.ToString("N2"))
         CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "FINALIZADO", Color.Red)
@@ -1313,6 +1338,31 @@ Public Class Proceso
             MessageBox.Show(ex.Message, "Excepcion Carga Inicial", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Function Obtiene_idProductoxIdOrdenDespacho(NumOrden As String) As String
+        Dim rpta As String = ""
+        Dim dt As New DataTable
+        Try
+            Using conection As New OleDbConnection(sConnString)
+                Using cmdd As New OleDbCommand
+                    cmdd.Connection = conection
+                    cmdd.CommandText = "SELECT CodProducto FROM CabeceraTransacciones WHERE Id = ?"
+                    cmdd.Parameters.AddWithValue("?", NumOrden)
+                    Using da As New OleDbDataAdapter(cmdd)
+                        da.Fill(dt)
+                    End Using
+                    If (dt.Rows.Count > 0) Then
+                        rpta = dt.Rows(0).Item("CodProducto")
+                    Else
+                        rpta = ""
+                    End If
+
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Excepcion Obtener Datos de la Orden de Despacho", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        Return rpta
+    End Function
     Private Sub LimpiarLabelsFormula()
         Try
             For i As Integer = 1 To registros
@@ -1368,6 +1418,17 @@ Public Class Proceso
             'Obtener el factor de humedad de arena y ripio
             FactorHumedad_Arena = Num_Hum_Arena.Value
             FactorHumedad_Ripio = Num_Hum_Ripio.Value
+
+            Dim CantAuxPiedra As Double
+            Dim CantAuxArena As Double
+            Dim CantAuxCemento As Double
+            Dim CantAuxAgua As Double
+            Dim AjustePiedra As Double
+            Dim AjusteArena As Double
+            Dim AjusteAguaPiedra As Double
+            Dim AjusteAguaArena As Double
+            Dim FactorCA_Piedra As Double
+            Dim FactorCA_Arena As Double
 
             Using conection As New OleDbConnection(sConnString)
                 Using cmdd As New OleDbCommand

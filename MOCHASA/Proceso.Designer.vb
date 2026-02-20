@@ -190,7 +190,6 @@ Partial Class Proceso
         Me.Button2 = New System.Windows.Forms.Button()
         Me.txtNumDespacho = New System.Windows.Forms.TextBox()
         Me.Label47 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Gbx_ConfigCarg_Cemento = New System.Windows.Forms.GroupBox()
         Me.RBtt_CargCemGravedad = New System.Windows.Forms.RadioButton()
         Me.RBtt_CargCemTornillo = New System.Windows.Forms.RadioButton()
@@ -215,6 +214,8 @@ Partial Class Proceso
         Me.Sym_Torn_Cem_Desc = New SymbolFactoryDotNet.StandardControl()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Tim_Wd_PLC = New System.Windows.Forms.Timer(Me.components)
+        Me.Btt_BuscarOrdDespacho = New System.Windows.Forms.Button()
+        Me.Txt_CodOrdenDespacho = New System.Windows.Forms.TextBox()
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -300,9 +301,9 @@ Partial Class Proceso
         Me.Label6.ForeColor = System.Drawing.Color.Black
         Me.Label6.Location = New System.Drawing.Point(481, 275)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(41, 13)
+        Me.Label6.Size = New System.Drawing.Size(53, 13)
         Me.Label6.TabIndex = 173
-        Me.Label6.Text = "RIPIO"
+        Me.Label6.Text = "PIEDRA"
         '
         'label3
         '
@@ -314,7 +315,7 @@ Partial Class Proceso
         Me.label3.Name = "label3"
         Me.label3.Size = New System.Drawing.Size(74, 26)
         Me.label3.TabIndex = 177
-        Me.label3.Text = "DESCARGA" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "RIPIO"
+        Me.label3.Text = "DESCARGA" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "RIEDRA"
         '
         'label2
         '
@@ -582,9 +583,9 @@ Partial Class Proceso
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.Location = New System.Drawing.Point(19, 25)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(65, 16)
+        Me.Label14.Size = New System.Drawing.Size(133, 16)
         Me.Label14.TabIndex = 213
-        Me.Label14.Text = "Producto:"
+        Me.Label14.Text = "Orden de Despacho:"
         '
         'Btt_Detener
         '
@@ -602,10 +603,11 @@ Partial Class Proceso
         '
         Me.cmbproductos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbproductos.FormattingEnabled = True
-        Me.cmbproductos.Location = New System.Drawing.Point(90, 24)
+        Me.cmbproductos.Location = New System.Drawing.Point(22, 83)
         Me.cmbproductos.Name = "cmbproductos"
-        Me.cmbproductos.Size = New System.Drawing.Size(281, 24)
+        Me.cmbproductos.Size = New System.Drawing.Size(33, 24)
         Me.cmbproductos.TabIndex = 215
+        Me.cmbproductos.Visible = False
         '
         'Label15
         '
@@ -619,8 +621,10 @@ Partial Class Proceso
         '
         'NumericM3
         '
-        Me.NumericM3.Location = New System.Drawing.Point(109, 56)
-        Me.NumericM3.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.NumericM3.DecimalPlaces = 1
+        Me.NumericM3.Increment = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.NumericM3.Location = New System.Drawing.Point(109, 57)
+        Me.NumericM3.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.NumericM3.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NumericM3.Name = "NumericM3"
         Me.NumericM3.Size = New System.Drawing.Size(69, 22)
@@ -1480,7 +1484,7 @@ Partial Class Proceso
         Me.GroupBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox4.Location = New System.Drawing.Point(10, 263)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(365, 269)
+        Me.GroupBox4.Size = New System.Drawing.Size(381, 269)
         Me.GroupBox4.TabIndex = 240
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Información Proceso"
@@ -2416,7 +2420,6 @@ Partial Class Proceso
         Me.Panel2.Controls.Add(Me.Button2)
         Me.Panel2.Controls.Add(Me.txtNumDespacho)
         Me.Panel2.Controls.Add(Me.Label47)
-        Me.Panel2.Controls.Add(Me.Button1)
         Me.Panel2.Controls.Add(Me.Gbx_ConfigCarg_Cemento)
         Me.Panel2.Controls.Add(Me.Label46)
         Me.Panel2.Controls.Add(Me.GBx_Preparacion)
@@ -2485,7 +2488,7 @@ Partial Class Proceso
         Me.Panel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(913, 487)
+        Me.Panel2.Size = New System.Drawing.Size(1338, 613)
         Me.Panel2.TabIndex = 259
         '
         'Label50
@@ -2540,16 +2543,6 @@ Partial Class Proceso
         Me.Label47.TabIndex = 218
         Me.Label47.Text = "Número:"
         '
-        'Button1
-        '
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(225, 126)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(101, 40)
-        Me.Button1.TabIndex = 280
-        Me.Button1.Text = "DATOS GUIA"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'Gbx_ConfigCarg_Cemento
         '
         Me.Gbx_ConfigCarg_Cemento.Controls.Add(Me.RBtt_CargCemGravedad)
@@ -2598,6 +2591,8 @@ Partial Class Proceso
         '
         'GBx_Preparacion
         '
+        Me.GBx_Preparacion.Controls.Add(Me.Txt_CodOrdenDespacho)
+        Me.GBx_Preparacion.Controls.Add(Me.Btt_BuscarOrdDespacho)
         Me.GBx_Preparacion.Controls.Add(Me.Num_BatchPlanificacion)
         Me.GBx_Preparacion.Controls.Add(Me.Num_Hum_Ripio)
         Me.GBx_Preparacion.Controls.Add(Me.Label51)
@@ -2616,7 +2611,7 @@ Partial Class Proceso
         '
         'Num_BatchPlanificacion
         '
-        Me.Num_BatchPlanificacion.Location = New System.Drawing.Point(109, 80)
+        Me.Num_BatchPlanificacion.Location = New System.Drawing.Point(61, 83)
         Me.Num_BatchPlanificacion.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
         Me.Num_BatchPlanificacion.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.Num_BatchPlanificacion.Name = "Num_BatchPlanificacion"
@@ -2627,8 +2622,9 @@ Partial Class Proceso
         '
         'Num_Hum_Ripio
         '
+        Me.Num_Hum_Ripio.DecimalPlaces = 1
         Me.Num_Hum_Ripio.Location = New System.Drawing.Point(307, 84)
-        Me.Num_Hum_Ripio.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.Num_Hum_Ripio.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.Num_Hum_Ripio.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.Num_Hum_Ripio.Name = "Num_Hum_Ripio"
         Me.Num_Hum_Ripio.Size = New System.Drawing.Size(69, 22)
@@ -2647,8 +2643,9 @@ Partial Class Proceso
         '
         'Num_Hum_Arena
         '
+        Me.Num_Hum_Arena.DecimalPlaces = 1
         Me.Num_Hum_Arena.Location = New System.Drawing.Point(308, 56)
-        Me.Num_Hum_Arena.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.Num_Hum_Arena.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.Num_Hum_Arena.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.Num_Hum_Arena.Name = "Num_Hum_Arena"
         Me.Num_Hum_Arena.Size = New System.Drawing.Size(69, 22)
@@ -2869,11 +2866,28 @@ Partial Class Proceso
         '
         Me.Tim_Wd_PLC.Interval = 300
         '
+        'Btt_BuscarOrdDespacho
+        '
+        Me.Btt_BuscarOrdDespacho.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btt_BuscarOrdDespacho.Location = New System.Drawing.Point(270, 19)
+        Me.Btt_BuscarOrdDespacho.Name = "Btt_BuscarOrdDespacho"
+        Me.Btt_BuscarOrdDespacho.Size = New System.Drawing.Size(60, 27)
+        Me.Btt_BuscarOrdDespacho.TabIndex = 285
+        Me.Btt_BuscarOrdDespacho.Text = "Buscar"
+        Me.Btt_BuscarOrdDespacho.UseVisualStyleBackColor = True
+        '
+        'Txt_CodOrdenDespacho
+        '
+        Me.Txt_CodOrdenDespacho.Location = New System.Drawing.Point(158, 21)
+        Me.Txt_CodOrdenDespacho.Name = "Txt_CodOrdenDespacho"
+        Me.Txt_CodOrdenDespacho.Size = New System.Drawing.Size(100, 22)
+        Me.Txt_CodOrdenDespacho.TabIndex = 286
+        '
         'Proceso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(913, 487)
+        Me.ClientSize = New System.Drawing.Size(1338, 613)
         Me.ControlBox = False
         Me.Controls.Add(Me.Panel2)
         Me.Name = "Proceso"
@@ -3137,7 +3151,6 @@ Partial Class Proceso
     Friend WithEvents Pil_ApagaT1 As SymbolFactoryDotNet.StandardControl
     Friend WithEvents GBx_Preparacion As GroupBox
     Private WithEvents Label46 As Label
-    Friend WithEvents Button1 As Button
     Friend WithEvents txtNumDespacho As TextBox
     Friend WithEvents Label47 As Label
     Friend WithEvents Button2 As Button
@@ -3149,4 +3162,6 @@ Partial Class Proceso
     Friend WithEvents Num_Hum_Ripio As NumericUpDown
     Friend WithEvents Label51 As Label
     Friend WithEvents Num_BatchPlanificacion As NumericUpDown
+    Friend WithEvents Txt_CodOrdenDespacho As TextBox
+    Friend WithEvents Btt_BuscarOrdDespacho As Button
 End Class

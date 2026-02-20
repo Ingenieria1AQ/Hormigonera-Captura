@@ -517,6 +517,7 @@
     <Content Include="Resources\anulart.ico" />
     <Content Include="Resources\añadir.ico" />
     <Content Include="Resources\añadir1.ico" />
+    <None Include="Resources\Formula_Pres.PNG" />
     <Content Include="Resources\icons\accept.png" />
     <Content Include="Resources\icons\add.png" />
     <Content Include="Resources\icons\anchor.png" />

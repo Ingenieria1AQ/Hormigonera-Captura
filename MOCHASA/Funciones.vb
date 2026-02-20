@@ -363,7 +363,7 @@ Module Funciones
     End Sub
 
     Public Function GuardarPesada(NomOperador As String, batch As Integer, CodProducto As String, NomProducto As String,
-                                  CodIngrediente As String, NomIngrediente As String, Cant_Seteada As Double, Cant_Real As Double, Factor As Double) As Boolean
+                                  CodIngrediente As String, NomIngrediente As String, Cant_Seteada As Double, Cant_Real As Double, Factor As Double, idCabecera As String) As Boolean
         Dim Hora As TimeSpan = TimeSpan.Parse(DateTime.Now.ToString("HH:mm:ss"))
         Dim Fecha As Date = Date.Today
         Dim rpta As Boolean = False
@@ -372,7 +372,7 @@ Module Funciones
                 Using cmd As New OleDbCommand
                     cmd.Connection = connection
                     cmd.CommandText = "INSERT INTO Transacciones (Nom_Operador,Hora,Fecha,batch,Cod_Producto, Nom_Producto,Cod_Ingrediente,Nom_Ingrediente,
-                                   Cant_Seteada, Peso_Real,Fact_Multi) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+                                   Cant_Seteada, Peso_Real,Fact_Multi,Id_Cabecera) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
                     cmd.Parameters.AddWithValue("?", NomOperador)
                     cmd.Parameters.AddWithValue("?", Hora)
                     cmd.Parameters.AddWithValue("?", Fecha)
@@ -384,6 +384,7 @@ Module Funciones
                     cmd.Parameters.AddWithValue("?", Cant_Seteada)
                     cmd.Parameters.AddWithValue("?", Cant_Real)
                     cmd.Parameters.AddWithValue("?", Factor)
+                    cmd.Parameters.AddWithValue("?", idCabecera)
                     connection.Open()
                     rpta = (cmd.ExecuteNonQuery() > 0)
                 End Using

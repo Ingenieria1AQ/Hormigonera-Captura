@@ -40,6 +40,7 @@ Public Class frmConfiguracion
             Num_CArena.Value = Decimal.Parse(Funciones.Obtener_Valor_Configuracion("CorteArena"))
             Num_CCemento.Value = Decimal.Parse(Funciones.Obtener_Valor_Configuracion("CorteCemento"))
             Num_CAgua.Value = Decimal.Parse(Funciones.Obtener_Valor_Configuracion("CorteAgua"))
+            Num_FactAgua.Value = Decimal.Parse(Funciones.Obtener_Valor_Configuracion("FactorAgua"))
 
             Dim idx As Integer
             idx = cbx_impresora.FindString(Funciones.Obtener_Valor_Configuracion("Nombre_Impresora").ToString())
@@ -116,6 +117,7 @@ Public Class frmConfiguracion
             Dim corteArena As Decimal = 0.0
             Dim corteCemento As Decimal = 0.0
             Dim corteAgua As Decimal = 0.0
+            Dim PresAgua As Decimal = 1.0
 
             Select Case TabControl1.SelectedIndex
                 Case 0
@@ -159,10 +161,11 @@ Public Class frmConfiguracion
                     corteArena = Convert.ToDecimal(Num_CArena.Value)
                     corteCemento = Convert.ToDecimal(Num_CCemento.Value)
                     corteAgua = Convert.ToDecimal(Num_CAgua.Value)
+                    PresAgua = Convert.ToDecimal(Num_FactAgua.Value)
 
             End Select
             ActualizarConfiguracion(idTolva, NombreCom, Baud, bitsDatos, paridad, bitsParada, controlFlujo, NombreIndicador, tipo, IP_PLC, Puerto_PLC,
-                                    nombreImpresora, usaImpresora, cortePiedra, corteArena, corteCemento, corteAgua)
+                                    nombreImpresora, usaImpresora, cortePiedra, corteArena, corteCemento, corteAgua, PresAgua)
 
         Catch ex As Exception
             MsgBox("Exepción Actualizar: " & ex.Message)
@@ -176,7 +179,7 @@ Public Class frmConfiguracion
     Private Sub ActualizarConfiguracion(idTolva As Integer, PuertoSerie As String, Baudrate As Integer, BitsDatos As String, Paridad As String,
                                         BitsParada As String, ControlFlujo As String, nombreIndicador As String, tipo As String, IP As String,
                                         Puerto As String, nombreImpresora As String, usaImp As Integer, cortePiedra As Decimal, corteArena As Decimal,
-                                        corteCemento As Decimal, corteAgua As Decimal)
+                                        corteCemento As Decimal, corteAgua As Decimal, PrEscalaAgua As Decimal)
         Try
             Select Case tipo
                 Case "PLC"
@@ -223,6 +226,8 @@ Public Class frmConfiguracion
                     'Configura Impresora
                     If Funciones.Actualizar_Valor_Configuracion("Nombre_Impresora", nombreImpresora) Then mensajesPar.Add("Impresora Guardado") Else mensajesPar.Add("Impresora No Guardado")
                     If Funciones.Actualizar_Valor_Configuracion("UsaImpresora", usaImp) Then mensajesPar.Add("Usa Impresora Guardado") Else mensajesPar.Add("Usa Impresora No Guardado")
+                    'Configurar PreScaler agua
+                    If Funciones.Actualizar_Valor_Configuracion("FactorAgua", PrEscalaAgua) Then mensajesPar.Add("Prescala Agua Guardado") Else mensajesPar.Add("Prescala Agua No Guardado")
 
                     Dim msg As String = "Actualización de Parámetros:" & vbCrLf & "- " & String.Join(vbCrLf & "- ", mensajesPar)
 
