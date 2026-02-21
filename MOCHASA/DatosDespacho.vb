@@ -212,8 +212,7 @@ Public Class DatosDespacho
                         txtidMixer.Text = ""
                         txtNomMixer.Text = ""
                         idDespacho = lblcomprobante.Text
-                        Proceso.txtNumDespacho.Text = lblcomprobante.Text
-
+                        Proceso.Txt_CodOrdenDespacho.Text = lblcomprobante.Text
                         codCliente.Enabled = False
                         codProducto.Enabled = False
                         codChofer.Enabled = False

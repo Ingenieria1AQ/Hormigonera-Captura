@@ -43,9 +43,11 @@ Public Class Proceso
     Private NumBatchPlanificacion, batchActual, batchPendientes, consecutivoBatch As Integer
     Private corteT1, corteT2, corteCemento, corteAgua As Double
     Private LimiteT1, LimiteT2, LimiteCemento, LimiteAgua As Double
-    Private CantidadM3 As Integer = 1
+    Private CantidadM3 As Double = 1.0
     Private FactorHumedad_Arena As Double = 1
-    Private FactorHumedad_Ripio As Double = 1
+    Private FactorHumedad_Piedra As Double = 1
+    Private FactorAbsorcion_Arena As Double = 1
+    Private FactorAbsorcion_Piedra As Double = 1
 
     Private Var_Carga_CEM_Tornillo As Boolean = False
     Private Var_CArga_CEM_Compuerta As Boolean = False
@@ -1119,8 +1121,10 @@ Public Class Proceso
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        idDespacho = txtNumDespacho.Text
-        Despacho_frm.Show()
+        If Txt_CodOrdenDespacho.Text IsNot String.Empty Then
+            idDespacho = Txt_CodOrdenDespacho.Text
+            Despacho_frm.Show()
+        End If
     End Sub
 
     Private Sub Tim_Wd_PLC_Tick(sender As Object, e As EventArgs) Handles Tim_Wd_PLC.Tick
@@ -1417,14 +1421,14 @@ Public Class Proceso
             CantidadM3 = NumericM3.Value
             'Obtener el factor de humedad de arena y ripio
             FactorHumedad_Arena = Num_Hum_Arena.Value
-            FactorHumedad_Ripio = Num_Hum_Ripio.Value
+            FactorHumedad_Piedra = Num_Hum_Ripio.Value
 
             Dim CantAuxPiedra As Double
             Dim CantAuxArena As Double
             Dim CantAuxCemento As Double
             Dim CantAuxAgua As Double
-            Dim AjustePiedra As Double
-            Dim AjusteArena As Double
+            Dim CorreccionPiedra As Double
+            Dim CorreccionArena As Double
             Dim AjusteAguaPiedra As Double
             Dim AjusteAguaArena As Double
             Dim FactorCA_Piedra As Double
@@ -1440,8 +1444,8 @@ Public Class Proceso
                                         ING.Descripcion AS [Ingrediente],
                                         DF.Cantidad, 
                                         DF.Id_formula AS [Cod Producto],
-                                        PR.Descripcion AS [Nombre Producto]
-
+                                        PR.Descripcion AS [Nombre Producto],
+                                        DF.CoeficienteAbsorcion AS [Coeficiente Absorcion]
                                     FROM 
                                         ((DetalleFormulas AS DF 
                                         INNER JOIN NumeroTolvasTanques AS NT 
@@ -1467,12 +1471,27 @@ Public Class Proceso
 
             'Asignar valores de setpoints  
             If dt.Rows.Count >= registros Then
-                pesoSet1 = Convert.ToDouble(dt.Rows(0).Item("Cantidad")) * CantidadM3 '--Tolva 1 : Arena
+                'Obtener valores de formula original
+                CantAuxPiedra = Convert.ToDouble(dt.Rows(0).Item("Cantidad"))
+                FactorAbsorcion_Piedra = Convert.ToDouble(dt.Rows(0).Item("Coeficiente Absorcion"))
+                CantAuxArena = Convert.ToDouble(dt.Rows(1).Item("Cantidad"))
+                FactorAbsorcion_Arena = Convert.ToDouble(dt.Rows(1).Item("Coeficiente Absorcion"))
+                CantAuxCemento = Convert.ToDouble(dt.Rows(2).Item("Cantidad"))
+                CantAuxAgua = Convert.ToDouble(dt.Rows(3).Item("Cantidad"))
+
+                'Formulas de Correccion por Humedad y Absorcion del material
+                CorreccionPiedra = CantAuxPiedra * (1 + (FactorHumedad_Piedra / 100.0))
+                CorreccionArena = CantAuxArena * (1 + (FactorHumedad_Arena / 100.0))
+
+                AjusteAguaPiedra = CantAuxPiedra * (FactorHumedad_Piedra - FactorAbsorcion_Piedra) / 100.0
+                AjusteAguaArena = CantAuxArena * (FactorHumedad_Arena - FactorAbsorcion_Arena) / 100.0
+
+                pesoSet1 = CorreccionPiedra * CantidadM3  '--Tolva 1 : Piedra
                 'Ingresar ajuste de humedad de arena
-                pesoSet2 = Convert.ToDouble(dt.Rows(1).Item("Cantidad")) * CantidadM3 '--Tolva 2 : Ripio
+                pesoSet2 = CorreccionArena * CantidadM3    '--Tolva 2 : Arena
                 'Ingresar ajuste de humedad de ripio
-                pesoSet3 = Convert.ToDouble(dt.Rows(2).Item("Cantidad")) * CantidadM3 '--Tolva Cemento
-                pesoSet4 = Convert.ToDouble(dt.Rows(3).Item("Cantidad")) * CantidadM3 '--Agua
+                pesoSet3 = CantAuxCemento * CantidadM3                      '--Tolva Cemento
+                pesoSet4 = (CantAuxAgua - AjusteAguaPiedra - AjusteAguaArena) * CantidadM3 '--Agua
 
                 'Llenar variables globales de dosificacion----------------------
                 Variables.NombreProducto = dt.Rows(0).Item("Nombre Producto")       '--Nombre Producto
@@ -1509,7 +1528,18 @@ Public Class Proceso
 
                 lblTolva.Text = dt.Rows(i).Item("Tolva").ToString()
                 lblIng.Text = dt.Rows(i).Item("Ingrediente").ToString()
-                lblCanTeo.Text = (dt.Rows(i).Item("Cantidad") * CantidadM3).ToString()
+                Select Case i
+                    Case 0
+                        lblCanTeo.Text = pesoSet1
+                    Case 1
+                        lblCanTeo.Text = pesoSet2
+                    Case 2
+                        lblCanTeo.Text = pesoSet3
+                    Case 3
+                        lblCanTeo.Text = pesoSet4
+
+                End Select
+
                 lblCanReal.Text = "0"
                 lblEstado.Text = ""
                 lblDifer.Text = "0"
