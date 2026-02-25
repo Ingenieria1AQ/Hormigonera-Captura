@@ -98,6 +98,9 @@ Public Class Proceso
 
         Principal.Panel1.Visible = False
         Lbl_Info.Text = String.Empty
+        Lbl_NombreFormula.Text = String.Empty
+        Lbl_Operador.Text = Variables.nomOperador
+
         nombreImpresora = Funciones.Obtener_Valor_Configuracion("Nombre_Impresora")
         flagUsaImpresora = Convert.ToBoolean(Funciones.Obtener_Valor_Configuracion("UsaImpresora") = "1")
         DirPLC = Funciones.Obtener_Valor_Configuracion("PLC_IP")
@@ -412,6 +415,18 @@ Public Class Proceso
 
         End Try
     End Sub
+    Private Async Sub DetenerTolva1()
+        If PLC_LOGO.Connected Then
+            PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, False)
+            Pil_ActivaT1.DiscreteValue1 = False
+            PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, True)
+            Pil_ApagaT1.DiscreteValue1 = True
+            Await DelayMs(2000)
+            PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, False)
+            Pil_ApagaT1.DiscreteValue1 = False
+        End If
+    End Sub
+
     Private Sub Tim_DescargaT2_Tick(sender As Object, e As EventArgs) Handles Tim_DescargaT2.Tick
         Try
             Dim ValProceso As Double = ValorInicialT2 - Convert.ToDouble(Lbl_Peso_T2.Text)
@@ -1409,6 +1424,7 @@ Public Class Proceso
             Next
             flagConfigSetpoints = False
             Pil_Setpoints.DiscreteValue1 = False
+            Lbl_NombreFormula.Text = String.Empty
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -1431,8 +1447,6 @@ Public Class Proceso
             Dim CorreccionArena As Double
             Dim AjusteAguaPiedra As Double
             Dim AjusteAguaArena As Double
-            Dim FactorCA_Piedra As Double
-            Dim FactorCA_Arena As Double
 
             Using conection As New OleDbConnection(sConnString)
                 Using cmdd As New OleDbCommand
@@ -1471,6 +1485,7 @@ Public Class Proceso
 
             'Asignar valores de setpoints  
             If dt.Rows.Count >= registros Then
+                Lbl_NombreFormula.Text = dt.Rows(0).Item("Nombre Producto")
                 'Obtener valores de formula original
                 CantAuxPiedra = Convert.ToDouble(dt.Rows(0).Item("Cantidad"))
                 FactorAbsorcion_Piedra = Convert.ToDouble(dt.Rows(0).Item("Coeficiente Absorcion"))

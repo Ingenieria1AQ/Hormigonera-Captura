@@ -81,7 +81,10 @@ Public Class Indicador_Serial
 
     Public Sub Desconectar()
         Try
-            If _sp.IsOpen Then _sp.Close()
+            If _sp.IsOpen Then
+                _sp.Close()
+                _sp.Dispose()
+            End If
             RaiseEvent EstadoCambiado(False, "Desconectado")
         Catch
         End Try

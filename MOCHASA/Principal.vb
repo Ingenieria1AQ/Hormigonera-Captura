@@ -4,8 +4,22 @@ Public Class Principal
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Application.EnableVisualStyles()
         Control.CheckForIllegalCrossThreadCalls = False
-
-
+        Lbl_Operador.Text = Variables.nomOperador
+        'Controla el acceso a los botones
+        Select Case Variables.tipoOperador
+            Case "Administrador"
+                Gbx_Datos.Visible = True
+                Gb_Formulacion.Visible = False
+                Btt_Proceso.Visible = True
+            Case "Laboratorio"
+                Gbx_Datos.Visible = False
+                Gb_Formulacion.Visible = True
+                Btt_Proceso.Visible = False
+            Case "Operador"
+                Gbx_Datos.Visible = False
+                Gb_Formulacion.Visible = False
+                Btt_Proceso.Visible = True
+        End Select
         '700%sMAEST%e             P700.    DBNam MAEST
         '701%s80.5%e              P701.80  Col01 nomoperador
         '702%s80.1%e              P702.80  Col02 Hora
@@ -87,7 +101,7 @@ Public Class Principal
         frmReportes.Show()
     End Sub
 
-    Private Sub btnobtener_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnobtener.Click
+    Private Sub Btt_Proceso_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btt_Proceso.Click
         Proceso.TopLevel = False
         Panel2.Controls.Add(Proceso)
         Proceso.Show()
@@ -138,5 +152,11 @@ Public Class Principal
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub Btt_Empresa_Click(sender As Object, e As EventArgs) Handles Btt_Empresa.Click
+        ConfigEmpresa.TopLevel = False
+        Panel2.Controls.Add(ConfigEmpresa)
+        ConfigEmpresa.Show()
     End Sub
 End Class

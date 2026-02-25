@@ -116,6 +116,12 @@
     <Compile Include="Clientes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ConfigEmpresa.designer.vb">
+      <DependentUpon>ConfigEmpresa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigEmpresa.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DatosDespacho.Designer.vb">
       <DependentUpon>DatosDespacho.vb</DependentUpon>
     </Compile>
@@ -276,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Clientes.resx">
       <DependentUpon>Clientes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigEmpresa.resx">
+      <DependentUpon>ConfigEmpresa.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DatosDespacho.resx">
       <DependentUpon>DatosDespacho.vb</DependentUpon>
