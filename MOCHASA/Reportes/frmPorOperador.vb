@@ -17,6 +17,10 @@ Public Class frmPorOperador
             dr("Ingrediente") = filtroingredienter
             dr("NomProducto") = NomProducto1
             dr("NomIngrediente") = NomIngrediente1
+            dr("OrdenDespacho") = filtroOrdenDespachor
+            dr("NombreEmpresa") = Variables.nombreEmpresa
+            dr("RUC") = Variables.RUCEmpresa
+            dr("ImagenEmpresa") = Variables.imagenEmpresa
             dspc.Tables("Encabezado").Rows.Add(dr)
 
             'Crear los DataAdapters

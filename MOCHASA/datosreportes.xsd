@@ -26,6 +26,7 @@
               <xs:element name="Cant_Seteada" msprop:Generator_ColumnVarNameInTable="columnCant_Seteada" msprop:Generator_ColumnPropNameInRow="Cant_Seteada" msprop:Generator_ColumnPropNameInTable="Cant_SeteadaColumn" msprop:Generator_UserColumnName="Cant_Seteada" type="xs:double" minOccurs="0" />
               <xs:element name="Peso_Real" msprop:Generator_ColumnVarNameInTable="columnPeso_Real" msprop:Generator_ColumnPropNameInRow="Peso_Real" msprop:Generator_ColumnPropNameInTable="Peso_RealColumn" msprop:Generator_UserColumnName="Peso_Real" type="xs:double" minOccurs="0" />
               <xs:element name="Fact_Multi" msprop:Generator_ColumnVarNameInTable="columnFact_Multi" msprop:Generator_ColumnPropNameInRow="Fact_Multi" msprop:Generator_ColumnPropNameInTable="Fact_MultiColumn" msprop:Generator_UserColumnName="Fact_Multi" type="xs:double" minOccurs="0" />
+              <xs:element name="Id_Cabecera" msprop:Generator_ColumnVarNameInTable="columnId_Cabecera" msprop:Generator_ColumnPropNameInRow="Id_Cabecera" msprop:Generator_ColumnPropNameInTable="Id_CabeceraColumn" msprop:Generator_UserColumnName="Id_Cabecera" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -38,6 +39,10 @@
               <xs:element name="Ingrediente" msprop:Generator_ColumnVarNameInTable="columnIngrediente" msprop:Generator_ColumnPropNameInRow="Ingrediente" msprop:Generator_ColumnPropNameInTable="IngredienteColumn" msprop:Generator_UserColumnName="Ingrediente" type="xs:string" minOccurs="0" />
               <xs:element name="NomProducto" msprop:Generator_ColumnVarNameInTable="columnNomProducto" msprop:Generator_ColumnPropNameInRow="NomProducto" msprop:Generator_ColumnPropNameInTable="NomProductoColumn" msprop:Generator_UserColumnName="NomProducto" type="xs:string" minOccurs="0" />
               <xs:element name="NomIngrediente" msprop:Generator_ColumnVarNameInTable="columnNomIngrediente" msprop:Generator_ColumnPropNameInRow="NomIngrediente" msprop:Generator_ColumnPropNameInTable="NomIngredienteColumn" msprop:Generator_UserColumnName="NomIngrediente" type="xs:string" minOccurs="0" />
+              <xs:element name="NombreEmpresa" msprop:Generator_ColumnVarNameInTable="columnNombreEmpresa" msprop:Generator_ColumnPropNameInRow="NombreEmpresa" msprop:Generator_ColumnPropNameInTable="NombreEmpresaColumn" msprop:Generator_UserColumnName="NombreEmpresa" type="xs:string" minOccurs="0" />
+              <xs:element name="RUC" msprop:Generator_ColumnVarNameInTable="columnRUC" msprop:Generator_ColumnPropNameInRow="RUC" msprop:Generator_ColumnPropNameInTable="RUCColumn" msprop:Generator_UserColumnName="RUC" type="xs:string" minOccurs="0" />
+              <xs:element name="ImagenEmpresa" msprop:Generator_ColumnVarNameInTable="columnImagenEmpresa" msprop:Generator_ColumnPropNameInRow="ImagenEmpresa" msprop:Generator_ColumnPropNameInTable="ImagenEmpresaColumn" msprop:Generator_UserColumnName="ImagenEmpresa" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="OrdenDespacho" msprop:Generator_ColumnVarNameInTable="columnOrdenDespacho" msprop:Generator_ColumnPropNameInRow="OrdenDespacho" msprop:Generator_ColumnPropNameInTable="OrdenDespachoColumn" msprop:Generator_UserColumnName="OrdenDespacho" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

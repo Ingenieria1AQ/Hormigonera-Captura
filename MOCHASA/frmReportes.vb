@@ -56,10 +56,15 @@ Public Class frmReportes
         Dim filtrooperador As String = ""
         Dim filtroingrediente As String = ""
         Dim filtroproducto As String = ""
+        'AQ
+        Dim filtroOrdenDespacho As String = ""
+
         filtrofechasr = "Todas"
         filtrooperadorr = "Todos"
         filtroproductor = "Todos"
         filtroingredienter = "Todos"
+        filtroOrdenDespachor = "Todos"
+
         NomIngrediente1 = ""
         NomProducto1 = ""
         Dim antes As Integer
@@ -84,8 +89,13 @@ Public Class frmReportes
             filtroproductor = txtproducto.Text
             NomProducto1 = txtNomProducto.Text
         End If
+        If cbOrdenDespacho.Checked = True Then
+            filtroOrdenDespacho = "((Id_Cabecera)='" & txtOrdenDespacho.Text & "')"
+            filtroOrdenDespachor = txtOrdenDespacho.Text
+            'Variables.IdOrdenDespacho = txtOrdenDespacho.Text
+        End If
         cadena2 = cadena1
-        If filtrofecha <> "" Or filtrooperador <> "" Or filtroingrediente <> "" Or filtroproducto <> "" Then
+        If filtrofecha <> "" Or filtrooperador <> "" Or filtroingrediente <> "" Or filtroproducto <> "" Or filtroOrdenDespacho <> "" Then
             cadena2 = cadena2 & " WHERE "
         End If
         antes = 0
@@ -119,6 +129,16 @@ Public Class frmReportes
             End If
             antes = 1
         End If
+        'AQ
+        If filtroOrdenDespacho <> "" Then
+            If antes = 1 Then
+                cadena2 = cadena2 & " AND " & filtroOrdenDespacho
+            Else
+                cadena2 = cadena2 & filtroOrdenDespacho
+            End If
+            antes = 1
+        End If
+
         cadenaseleccion = cadena2
         If rboperador.Checked = True Then
             frmPorOperador.Show()
@@ -158,5 +178,23 @@ Public Class frmReportes
 
     Private Sub frmReportes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    End Sub
+
+    Private Sub cbOrdenDespacho_CheckedChanged(sender As Object, e As EventArgs) Handles cbOrdenDespacho.CheckedChanged
+        If cbOrdenDespacho.Checked = True Then
+            txtOrdenDespacho.Enabled = True
+            btnOrdenDespacho.Enabled = True
+        Else
+            txtOrdenDespacho.Enabled = False
+            txtOrdenDespacho.Text = ""
+            btnOrdenDespacho.Enabled = False
+        End If
+    End Sub
+
+    Private Sub btnOrdenDespacho_Click(sender As Object, e As EventArgs) Handles btnOrdenDespacho.Click
+        tipoLista = "ORDEN_DESPACHO"
+        destinoLista = "FReportesOrdenDespacho"
+        'listas.MdiParent = Principal
+        listas.Show()
     End Sub
 End Class
