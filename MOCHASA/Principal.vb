@@ -1,4 +1,6 @@
 Imports SocketTools.InternetServer
+Imports System.Data.OleDb
+Imports System.IO
 
 Public Class Principal
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -32,6 +34,28 @@ Public Class Principal
         '709%s80.11%e             P709.80  Col09 cantseteada
         '710%s80.4%e              P710.80  Col10 Peso real
         '711%s80.60%e             P711.80  Col11 Factor de multiplicacion
+    End Sub
+    Private Sub LeerDatosEmpresa()
+        Try
+            Using connection As New OleDbConnection(sConnString)
+                Using cmd As New OleDbCommand
+                    cmd.Connection = connection
+                    cmd.CommandText = "SELECT * FROM Empresa"
+                    Dim tabla As DataTable
+                    Dim imageBytes() As Byte
+                    Dim nombreEmpresa As String
+                    Dim ruc As String
+                    Dim imagen_blanco() As Byte
+                    Using bmp As New Bitmap(1, 1)
+                        bmp.SetPixel(0, 0, Color.White)
+
+                    End Using
+
+                End Using
+            End Using
+        Catch ex As Exception
+
+        End Try
     End Sub
     Private Sub SalirToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Application.Exit()

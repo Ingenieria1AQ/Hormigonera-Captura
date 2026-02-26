@@ -2618,7 +2618,7 @@ Partial Class Proceso
         'Num_Hum_Ripio
         '
         Me.Num_Hum_Ripio.DecimalPlaces = 1
-        Me.Num_Hum_Ripio.Location = New System.Drawing.Point(307, 84)
+        Me.Num_Hum_Ripio.Location = New System.Drawing.Point(291, 84)
         Me.Num_Hum_Ripio.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.Num_Hum_Ripio.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.Num_Hum_Ripio.Name = "Num_Hum_Ripio"
@@ -2630,7 +2630,7 @@ Partial Class Proceso
         '
         Me.Label51.AutoSize = True
         Me.Label51.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label51.Location = New System.Drawing.Point(196, 86)
+        Me.Label51.Location = New System.Drawing.Point(190, 86)
         Me.Label51.Name = "Label51"
         Me.Label51.Size = New System.Drawing.Size(99, 16)
         Me.Label51.TabIndex = 220
@@ -2639,7 +2639,7 @@ Partial Class Proceso
         'Num_Hum_Arena
         '
         Me.Num_Hum_Arena.DecimalPlaces = 1
-        Me.Num_Hum_Arena.Location = New System.Drawing.Point(308, 56)
+        Me.Num_Hum_Arena.Location = New System.Drawing.Point(293, 56)
         Me.Num_Hum_Arena.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.Num_Hum_Arena.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.Num_Hum_Arena.Name = "Num_Hum_Arena"
@@ -2651,7 +2651,7 @@ Partial Class Proceso
         '
         Me.Label48.AutoSize = True
         Me.Label48.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label48.Location = New System.Drawing.Point(197, 58)
+        Me.Label48.Location = New System.Drawing.Point(194, 58)
         Me.Label48.Name = "Label48"
         Me.Label48.Size = New System.Drawing.Size(95, 16)
         Me.Label48.TabIndex = 218

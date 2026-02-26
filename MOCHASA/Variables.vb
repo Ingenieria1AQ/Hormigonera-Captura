@@ -5,12 +5,20 @@ Module Variables
 
     Public sConnString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\BDDMolinos.mdb;Persist Security Info=False"
     Public cadenaseleccion As String
+    'AQ
+    Public filtroOrdenDespachor As String
     Public filtrofechasr As String
     Public filtrooperadorr As String
     Public filtroproductor As String
     Public filtroingredienter As String
     Public NomProducto1 As String
     Public NomIngrediente1 As String
+    'AQ
+    Public IdOrdenDespacho As String
+    Public nombreEmpresa As String
+    Public RUCEmpresa As String
+    Public imagenEmpresa As Byte()
+
     Public datos() As String
     Public dato As String
     Public retardo As Integer = 100000000

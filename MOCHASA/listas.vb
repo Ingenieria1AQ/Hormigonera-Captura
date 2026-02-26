@@ -60,7 +60,10 @@ Public Class listas
                 Call cargarDatos("SELECT * FROM Mixers")
                 campoCodigo = "id"
                 campoNombre = "NombreMixer"
-
+            Case "ORDEN_DESPACHO"
+                Call cargarDatos("SELECT * FROM CabeceraTransacciones")
+                campoCodigo = "Id"
+                campoNombre = "Id"
         End Select
         'Call cargarproductos("SELECT * FROM Productos")
 
@@ -181,6 +184,9 @@ Public Class listas
             DatosDespacho.txtdocumento.Text = DataGridView1.CurrentRow.Cells(13).Value
             'DatosDespacho.txtpesoentra.Text = DataGridView1.CurrentRow.Cells(14).Value
         End If
+        If destinoLista = "FReportesOrdenDespacho" Then
+            frmReportes.txtOrdenDespacho.Text = DataGridView1.CurrentRow.Cells(0).Value
+        End If
         'If destinoLista = "TransaccionesVariasT1" Then
         '    EgresoSalida.lblcomprobante.Text = DataGridView1.CurrentRow.Cells(2).Value
         '    EgresoSalida.txtplaca.Text = DataGridView1.CurrentRow.Cells(4).Value
@@ -273,6 +279,10 @@ Public Class listas
                     Call cargarDatos("SELECT * FROM Obras")
                     campoCodigo = "CodObra"
                     campoNombre = "Nombre"
+                Case "ORDEN_DESPACHO"
+                    Call cargarDatos("SELECT * FROM CabeceraTransacciones")
+                    campoCodigo = "Id"
+                    campoNombre = "Id"
             End Select
 
         End If
