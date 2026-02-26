@@ -1096,6 +1096,8 @@ Partial Public Class datosreportes
         
         Private columnNombreMixer As Global.System.Data.DataColumn
         
+        Private columnVolumenTotal As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -1308,6 +1310,14 @@ Partial Public Class datosreportes
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property VolumenTotalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnVolumenTotal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1366,9 +1376,10 @@ Partial Public Class datosreportes
                     ByVal PtoLlegada As String,  _
                     ByVal Obra As String,  _
                     ByVal idMixer As String,  _
-                    ByVal NombreMixer As String) As CabeceraTransaccionesRow
+                    ByVal NombreMixer As String,  _
+                    ByVal VolumenTotal As Double) As CabeceraTransaccionesRow
             Dim rowCabeceraTransaccionesRow As CabeceraTransaccionesRow = CType(Me.NewRow,CabeceraTransaccionesRow)
-            Dim columnValuesArray() As Object = New Object() {id, Tipo, CodOperador, NomOperador, Fecha, CodCliente, NomCliente, DirCliente, CodProducto, NomProducto, Documento, Placa, CodChofer, NomChofer, Observaciones, Netom3, MotTraslado, PtoPartida, PtoLlegada, Obra, idMixer, NombreMixer}
+            Dim columnValuesArray() As Object = New Object() {id, Tipo, CodOperador, NomOperador, Fecha, CodCliente, NomCliente, DirCliente, CodProducto, NomProducto, Documento, Placa, CodChofer, NomChofer, Observaciones, Netom3, MotTraslado, PtoPartida, PtoLlegada, Obra, idMixer, NombreMixer, VolumenTotal}
             rowCabeceraTransaccionesRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCabeceraTransaccionesRow)
             Return rowCabeceraTransaccionesRow
@@ -1413,6 +1424,7 @@ Partial Public Class datosreportes
             Me.columnObra = MyBase.Columns("Obra")
             Me.columnidMixer = MyBase.Columns("idMixer")
             Me.columnNombreMixer = MyBase.Columns("NombreMixer")
+            Me.columnVolumenTotal = MyBase.Columns("VolumenTotal")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1462,6 +1474,8 @@ Partial Public Class datosreportes
             MyBase.Columns.Add(Me.columnidMixer)
             Me.columnNombreMixer = New Global.System.Data.DataColumn("NombreMixer", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNombreMixer)
+            Me.columnVolumenTotal = New Global.System.Data.DataColumn("VolumenTotal", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnVolumenTotal)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2444,6 +2458,22 @@ Partial Public Class datosreportes
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property VolumenTotal() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tableCabeceraTransacciones.VolumenTotalColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'VolumenTotal' de la tabla 'CabeceraTransacciones' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCabeceraTransacciones.VolumenTotalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsidNull() As Boolean
             Return Me.IsNull(Me.tableCabeceraTransacciones.idColumn)
         End Function
@@ -2704,6 +2734,18 @@ Partial Public Class datosreportes
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetNombreMixerNull()
             Me(Me.tableCabeceraTransacciones.NombreMixerColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsVolumenTotalNull() As Boolean
+            Return Me.IsNull(Me.tableCabeceraTransacciones.VolumenTotalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetVolumenTotalNull()
+            Me(Me.tableCabeceraTransacciones.VolumenTotalColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

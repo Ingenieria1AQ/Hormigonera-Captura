@@ -6,14 +6,31 @@ Public Class Despacho_frm
         Dim con As OleDbConnection
         Dim cmd As OleDbCommand
         Dim adapter As OleDbDataAdapter
+
         Try
             con = New OleDbConnection(sConnString)
-            Dim stringcomando As String = "SELECT CabeceraTransacciones.*, Mixers.Placa, Mixers.NombreMixer, Clientes.Nombre as NomCliente, Clientes.Direccion as DirCliente, Productos.Descripcion as NomProducto, Operadores.nomOperador, Choferes.Nombre as NomChofer
+            Dim stringcomando As String = "SELECT CabeceraTransacciones.*, Mixers.Placa, Mixers.NombreMixer, Clientes.Nombre as NomCliente, Clientes.Direccion as DirCliente, Productos.Descripcion as NomProducto, Operadores.nomOperador, Choferes.Nombre as NomChofer, 0.001 as VolumenTotal
 FROM Mixers INNER JOIN ((((Clientes INNER JOIN CabeceraTransacciones ON Clientes.CodCliente = CabeceraTransacciones.CodCliente) INNER JOIN Productos ON CabeceraTransacciones.CodProducto = Productos.Id_Producto) INNER JOIN Choferes ON CabeceraTransacciones.CodChofer = Choferes.CodChofer) INNER JOIN Operadores ON CabeceraTransacciones.CodOperador = Operadores.codOperador) ON Mixers.Id = CabeceraTransacciones.idMixer
 WHERE (((CabeceraTransacciones.Id)='" & idDespacho & "'));"
             cmd = New OleDbCommand(stringcomando, con)
             adapter = New OleDbDataAdapter(cmd)
             adapter.Fill(dspc.Tables("CabeceraTransacciones"))
+
+
+            stringcomando = "SELECT Sum([Peso_Real]/[Densidad]) AS VolumenTotal
+FROM CabeceraTransacciones INNER JOIN (Ingredientes INNER JOIN Transacciones ON Ingredientes.Id_ingrediente = Transacciones.Cod_Ingrediente) ON CabeceraTransacciones.Id = Transacciones.Id_Cabecera
+WHERE (((Transacciones.Id_Cabecera)='" & idDespacho & "'));"
+            cmd = New OleDbCommand(stringcomando, con)
+            con.Open()
+            cmd.Connection = con
+            cmd.CommandText = stringcomando
+            Dim dr As DataRow
+            'dr = dspc.Tables("DatosEmpresa").NewRow
+
+            If IsDBNull(cmd.ExecuteScalar) = False Then
+                dspc.Tables("CabeceraTransacciones").Rows(0).Item("VolumenTotal") = cmd.ExecuteScalar
+            End If
+
 
             'logo
             Try

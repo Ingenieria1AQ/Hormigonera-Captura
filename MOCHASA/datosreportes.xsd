@@ -41,7 +41,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CabeceraTransacciones" msprop:Generator_TableClassName="CabeceraTransaccionesDataTable" msprop:Generator_TableVarName="tableCabeceraTransacciones" msprop:Generator_TablePropName="CabeceraTransacciones" msprop:Generator_RowDeletingName="CabeceraTransaccionesRowDeleting" msprop:Generator_RowChangingName="CabeceraTransaccionesRowChanging" msprop:Generator_RowEvHandlerName="CabeceraTransaccionesRowChangeEventHandler" msprop:Generator_RowDeletedName="CabeceraTransaccionesRowDeleted" msprop:Generator_UserTableName="CabeceraTransacciones" msprop:Generator_RowChangedName="CabeceraTransaccionesRowChanged" msprop:Generator_RowEvArgName="CabeceraTransaccionesRowChangeEvent" msprop:Generator_RowClassName="CabeceraTransaccionesRow">
+        <xs:element name="CabeceraTransacciones" msprop:Generator_TableClassName="CabeceraTransaccionesDataTable" msprop:Generator_TableVarName="tableCabeceraTransacciones" msprop:Generator_RowChangedName="CabeceraTransaccionesRowChanged" msprop:Generator_TablePropName="CabeceraTransacciones" msprop:Generator_RowDeletingName="CabeceraTransaccionesRowDeleting" msprop:Generator_RowChangingName="CabeceraTransaccionesRowChanging" msprop:Generator_RowEvHandlerName="CabeceraTransaccionesRowChangeEventHandler" msprop:Generator_RowDeletedName="CabeceraTransaccionesRowDeleted" msprop:Generator_RowClassName="CabeceraTransaccionesRow" msprop:Generator_UserTableName="CabeceraTransacciones" msprop:Generator_RowEvArgName="CabeceraTransaccionesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:string" minOccurs="0" />
@@ -66,6 +66,7 @@
               <xs:element name="Obra" msprop:Generator_ColumnVarNameInTable="columnObra" msprop:Generator_ColumnPropNameInRow="Obra" msprop:Generator_ColumnPropNameInTable="ObraColumn" msprop:Generator_UserColumnName="Obra" type="xs:string" minOccurs="0" />
               <xs:element name="idMixer" msprop:Generator_ColumnVarNameInTable="columnidMixer" msprop:Generator_ColumnPropNameInRow="idMixer" msprop:Generator_ColumnPropNameInTable="idMixerColumn" msprop:Generator_UserColumnName="idMixer" type="xs:string" minOccurs="0" />
               <xs:element name="NombreMixer" msprop:Generator_ColumnVarNameInTable="columnNombreMixer" msprop:Generator_ColumnPropNameInRow="NombreMixer" msprop:Generator_ColumnPropNameInTable="NombreMixerColumn" msprop:Generator_UserColumnName="NombreMixer" type="xs:string" minOccurs="0" />
+              <xs:element name="VolumenTotal" msprop:Generator_ColumnVarNameInTable="columnVolumenTotal" msprop:Generator_ColumnPropNameInRow="VolumenTotal" msprop:Generator_ColumnPropNameInTable="VolumenTotalColumn" msprop:Generator_UserColumnName="VolumenTotal" type="xs:double" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
