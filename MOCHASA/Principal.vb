@@ -6,6 +6,7 @@ Public Class Principal
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Application.EnableVisualStyles()
         Control.CheckForIllegalCrossThreadCalls = False
+        LeerDatosEmpresa()
         Lbl_Operador.Text = Variables.nomOperador
         'Controla el acceso a los botones
         Select Case Variables.tipoOperador
@@ -41,21 +42,38 @@ Public Class Principal
                 Using cmd As New OleDbCommand
                     cmd.Connection = connection
                     cmd.CommandText = "SELECT * FROM Empresa"
-                    Dim tabla As DataTable
+                    Dim tabla As New DataTable
                     Dim imageBytes() As Byte
-                    Dim nombreEmpresa As String
-                    Dim ruc As String
                     Dim imagen_blanco() As Byte
                     Using bmp As New Bitmap(1, 1)
                         bmp.SetPixel(0, 0, Color.White)
-
+                        'Convierte el Bitmap a un arreglo de bytes
+                        Using ms As New MemoryStream
+                            bmp.Save(ms, Imaging.ImageFormat.Png) 'Guardar como png
+                            imagen_blanco = ms.ToArray() 'Retorna el arreglo de bytes
+                        End Using
                     End Using
 
+                    Using da As New OleDbDataAdapter(cmd)
+                        da.Fill(tabla)
+                    End Using
+
+                    If tabla.Rows.Count > 0 Then
+                        If Not IsDBNull(tabla.Rows(0).Item("LogoEmpresa")) Then
+                            imageBytes = CType(tabla.Rows(0).Item("LogoEmpresa"), Byte())
+                            Variables.imagenEmpresa = imageBytes
+                        Else
+                            Variables.imagenEmpresa = imagen_blanco
+                        End If
+                    End If
+                    Variables.nombreEmpresa = IIf(IsDBNull(tabla.Rows(0).Item("NombreEmpresa")), "", tabla.Rows(0).Item("NombreEmpresa"))
+                    Variables.RUCEmpresa = IIf(IsDBNull(tabla.Rows(0).Item("RUC")), "", tabla.Rows(0).Item("RUC"))
                 End Using
             End Using
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message, "Excepción: Leer datos de empresa", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+
     End Sub
     Private Sub SalirToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Application.Exit()

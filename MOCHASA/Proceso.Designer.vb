@@ -40,7 +40,6 @@ Partial Class Proceso
         Me.ValvulaDescarga = New SymbolFactoryDotNet.StandardControl()
         Me.Sym_Bomba_G2 = New SymbolFactoryDotNet.StandardControl()
         Me.Sym_DescT1 = New SymbolFactoryDotNet.StandardControl()
-        Me.Sym_Piedra = New SymbolFactoryDotNet.StandardControl()
         Me.Btt_Iniciar = New System.Windows.Forms.Button()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Btt_Detener = New System.Windows.Forms.Button()
@@ -184,9 +183,11 @@ Partial Class Proceso
         Me.Tim_Carga_Agua = New System.Windows.Forms.Timer(Me.components)
         Me.Tim_ReadHR = New System.Windows.Forms.Timer(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Lbl_Operador = New System.Windows.Forms.Label()
+        Me.Label47 = New System.Windows.Forms.Label()
         Me.Label50 = New System.Windows.Forms.Label()
         Me.Label49 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Btt_ImprimirGuia = New System.Windows.Forms.Button()
         Me.Gbx_ConfigCarg_Cemento = New System.Windows.Forms.GroupBox()
         Me.RBtt_CargCemGravedad = New System.Windows.Forms.RadioButton()
         Me.RBtt_CargCemTornillo = New System.Windows.Forms.RadioButton()
@@ -207,16 +208,15 @@ Partial Class Proceso
         Me.Sym_Bomba_G4 = New SymbolFactoryDotNet.StandardControl()
         Me.Sym_Bomba_G7 = New SymbolFactoryDotNet.StandardControl()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Lbl_NombreFormula = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Btt_Salir = New System.Windows.Forms.Button()
         Me.Sym_Torn_Cem_Carga = New SymbolFactoryDotNet.StandardControl()
         Me.Sym_Torn_Cem_Desc = New SymbolFactoryDotNet.StandardControl()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Tim_Wd_PLC = New System.Windows.Forms.Timer(Me.components)
-        Me.Label47 = New System.Windows.Forms.Label()
-        Me.Lbl_Operador = New System.Windows.Forms.Label()
-        Me.Lbl_NombreFormula = New System.Windows.Forms.Label()
-        Me.Btt_Salir = New System.Windows.Forms.Button()
+        Me.Sym_Piedra = New SymbolFactoryDotNet.StandardControl()
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -225,7 +225,6 @@ Partial Class Proceso
         CType(Me.ValvulaDescarga, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba_G2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_DescT1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Sym_Piedra, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericM3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -280,6 +279,7 @@ Partial Class Proceso
         CType(Me.Sym_Torn_Cem_Carga, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Sym_Piedra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label9
@@ -316,7 +316,7 @@ Partial Class Proceso
         Me.label3.Name = "label3"
         Me.label3.Size = New System.Drawing.Size(74, 26)
         Me.label3.TabIndex = 177
-        Me.label3.Text = "DESCARGA" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "RIEDRA"
+        Me.label3.Text = "DESCARGA" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "PIEDRA"
         '
         'label2
         '
@@ -551,26 +551,6 @@ Partial Class Proceso
         Me.Sym_DescT1.SymbolHandle = CType(629752431, Long)
         Me.Sym_DescT1.TabIndex = 188
         '
-        'Sym_Piedra
-        '
-        Me.Sym_Piedra.AnalogIntValue1 = CType(0, Short)
-        Me.Sym_Piedra.AnalogValue1 = 0R
-        Me.Sym_Piedra.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Sym_Piedra.BackColor = System.Drawing.Color.Transparent
-        Me.Sym_Piedra.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Sym_Piedra.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkInvisible, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer)), "Band1"))
-        Me.Sym_Piedra.BlinkColor = System.Drawing.Color.Red
-        Me.Sym_Piedra.Category = "1MH.cat2"
-        Me.Sym_Piedra.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Piedra.DebugData"))
-        Me.Sym_Piedra.FillColor = System.Drawing.Color.Black
-        Me.Sym_Piedra.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Shaded
-        Me.Sym_Piedra.Location = New System.Drawing.Point(467, 470)
-        Me.Sym_Piedra.Name = "Sym_Piedra"
-        Me.Sym_Piedra.Size = New System.Drawing.Size(80, 70)
-        Me.Sym_Piedra.SymbolHandle = CType(1426793514, Long)
-        Me.Sym_Piedra.TabIndex = 210
-        Me.Sym_Piedra.Visible = False
-        '
         'Btt_Iniciar
         '
         Me.Btt_Iniciar.BackColor = System.Drawing.Color.LimeGreen
@@ -684,7 +664,7 @@ Partial Class Proceso
         Me.GroupBox1.Controls.Add(Me.Lbl_Est_T1)
         Me.GroupBox1.Controls.Add(Me.Lbl_Peso_T1)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(491, 7)
+        Me.GroupBox1.Location = New System.Drawing.Point(405, 8)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(88, 63)
         Me.GroupBox1.TabIndex = 227
@@ -707,7 +687,7 @@ Partial Class Proceso
         Me.GroupBox2.Controls.Add(Me.Lbl_Est_T2)
         Me.GroupBox2.Controls.Add(Me.Lbl_Peso_T2)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(399, 7)
+        Me.GroupBox2.Location = New System.Drawing.Point(496, 8)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(88, 63)
         Me.GroupBox2.TabIndex = 228
@@ -755,7 +735,7 @@ Partial Class Proceso
         Me.GroupBox3.Controls.Add(Me.Lbl_Est_Cem)
         Me.GroupBox3.Controls.Add(Me.Lbl_Peso_Cem)
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(585, 7)
+        Me.GroupBox3.Location = New System.Drawing.Point(589, 7)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(103, 63)
         Me.GroupBox3.TabIndex = 228
@@ -2290,9 +2270,9 @@ Partial Class Proceso
         '
         Me.GroupBox5.Controls.Add(Me.Lbl_Agua)
         Me.GroupBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox5.Location = New System.Drawing.Point(692, 8)
+        Me.GroupBox5.Location = New System.Drawing.Point(694, 7)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(88, 58)
+        Me.GroupBox5.Size = New System.Drawing.Size(88, 62)
         Me.GroupBox5.TabIndex = 246
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "AGUA"
@@ -2411,11 +2391,12 @@ Partial Class Proceso
         '
         Me.Panel2.AutoScroll = True
         Me.Panel2.BackColor = System.Drawing.SystemColors.Control
+        Me.Panel2.Controls.Add(Me.Sym_Piedra)
         Me.Panel2.Controls.Add(Me.Lbl_Operador)
         Me.Panel2.Controls.Add(Me.Label47)
         Me.Panel2.Controls.Add(Me.Label50)
         Me.Panel2.Controls.Add(Me.Label49)
-        Me.Panel2.Controls.Add(Me.Button2)
+        Me.Panel2.Controls.Add(Me.Btt_ImprimirGuia)
         Me.Panel2.Controls.Add(Me.Gbx_ConfigCarg_Cemento)
         Me.Panel2.Controls.Add(Me.Label46)
         Me.Panel2.Controls.Add(Me.GBx_Preparacion)
@@ -2460,7 +2441,6 @@ Partial Class Proceso
         Me.Panel2.Controls.Add(Me.Sym_BalCemento)
         Me.Panel2.Controls.Add(Me.Sym_CargaCem)
         Me.Panel2.Controls.Add(Me.Sym_Bomba_G1)
-        Me.Panel2.Controls.Add(Me.Sym_Piedra)
         Me.Panel2.Controls.Add(Me.Lbl_Dosif_T1)
         Me.Panel2.Controls.Add(Me.Label5)
         Me.Panel2.Controls.Add(Me.ValvulaDescarga)
@@ -2487,6 +2467,26 @@ Partial Class Proceso
         Me.Panel2.Size = New System.Drawing.Size(1338, 565)
         Me.Panel2.TabIndex = 259
         '
+        'Lbl_Operador
+        '
+        Me.Lbl_Operador.AutoSize = True
+        Me.Lbl_Operador.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Operador.Location = New System.Drawing.Point(88, 11)
+        Me.Lbl_Operador.Name = "Lbl_Operador"
+        Me.Lbl_Operador.Size = New System.Drawing.Size(16, 16)
+        Me.Lbl_Operador.TabIndex = 286
+        Me.Lbl_Operador.Text = "--"
+        '
+        'Label47
+        '
+        Me.Label47.AutoSize = True
+        Me.Label47.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label47.Location = New System.Drawing.Point(20, 11)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(69, 16)
+        Me.Label47.TabIndex = 285
+        Me.Label47.Text = "Operador:"
+        '
         'Label50
         '
         Me.Label50.AutoSize = True
@@ -2511,15 +2511,15 @@ Partial Class Proceso
         Me.Label49.TabIndex = 283
         Me.Label49.Text = "COMPUERTA"
         '
-        'Button2
+        'Btt_ImprimirGuia
         '
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(244, 169)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(60, 40)
-        Me.Button2.TabIndex = 282
-        Me.Button2.Text = "PRINT"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Btt_ImprimirGuia.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btt_ImprimirGuia.Location = New System.Drawing.Point(244, 169)
+        Me.Btt_ImprimirGuia.Name = "Btt_ImprimirGuia"
+        Me.Btt_ImprimirGuia.Size = New System.Drawing.Size(84, 40)
+        Me.Btt_ImprimirGuia.TabIndex = 282
+        Me.Btt_ImprimirGuia.Text = "Imprimir Guía"
+        Me.Btt_ImprimirGuia.UseVisualStyleBackColor = True
         '
         'Gbx_ConfigCarg_Cemento
         '
@@ -2795,6 +2795,17 @@ Partial Class Proceso
         Me.Panel1.Size = New System.Drawing.Size(600, 196)
         Me.Panel1.TabIndex = 266
         '
+        'Lbl_NombreFormula
+        '
+        Me.Lbl_NombreFormula.AutoSize = True
+        Me.Lbl_NombreFormula.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_NombreFormula.ForeColor = System.Drawing.Color.White
+        Me.Lbl_NombreFormula.Location = New System.Drawing.Point(13, 10)
+        Me.Lbl_NombreFormula.Name = "Lbl_NombreFormula"
+        Me.Lbl_NombreFormula.Size = New System.Drawing.Size(95, 20)
+        Me.Lbl_NombreFormula.TabIndex = 287
+        Me.Lbl_NombreFormula.Text = "FORMULA"
+        '
         'Label27
         '
         Me.Label27.AutoSize = True
@@ -2814,6 +2825,19 @@ Partial Class Proceso
         Me.Label1.Size = New System.Drawing.Size(51, 15)
         Me.Label1.TabIndex = 261
         Me.Label1.Text = "Estado"
+        '
+        'Btt_Salir
+        '
+        Me.Btt_Salir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btt_Salir.Image = Global.HORMIGONERA.My.Resources.Resources._131885___close_door_exit_log_out_logout_user_logout
+        Me.Btt_Salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btt_Salir.Location = New System.Drawing.Point(275, 266)
+        Me.Btt_Salir.Name = "Btt_Salir"
+        Me.Btt_Salir.Size = New System.Drawing.Size(101, 49)
+        Me.Btt_Salir.TabIndex = 243
+        Me.Btt_Salir.Text = "SALIR"
+        Me.Btt_Salir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Btt_Salir.UseVisualStyleBackColor = True
         '
         'Sym_Torn_Cem_Carga
         '
@@ -2865,49 +2889,25 @@ Partial Class Proceso
         '
         Me.Tim_Wd_PLC.Interval = 300
         '
-        'Label47
+        'Sym_Piedra
         '
-        Me.Label47.AutoSize = True
-        Me.Label47.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label47.Location = New System.Drawing.Point(20, 11)
-        Me.Label47.Name = "Label47"
-        Me.Label47.Size = New System.Drawing.Size(69, 16)
-        Me.Label47.TabIndex = 285
-        Me.Label47.Text = "Operador:"
-        '
-        'Lbl_Operador
-        '
-        Me.Lbl_Operador.AutoSize = True
-        Me.Lbl_Operador.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Operador.Location = New System.Drawing.Point(88, 11)
-        Me.Lbl_Operador.Name = "Lbl_Operador"
-        Me.Lbl_Operador.Size = New System.Drawing.Size(16, 16)
-        Me.Lbl_Operador.TabIndex = 286
-        Me.Lbl_Operador.Text = "--"
-        '
-        'Lbl_NombreFormula
-        '
-        Me.Lbl_NombreFormula.AutoSize = True
-        Me.Lbl_NombreFormula.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_NombreFormula.ForeColor = System.Drawing.Color.White
-        Me.Lbl_NombreFormula.Location = New System.Drawing.Point(13, 10)
-        Me.Lbl_NombreFormula.Name = "Lbl_NombreFormula"
-        Me.Lbl_NombreFormula.Size = New System.Drawing.Size(95, 20)
-        Me.Lbl_NombreFormula.TabIndex = 287
-        Me.Lbl_NombreFormula.Text = "FORMULA"
-        '
-        'Btt_Salir
-        '
-        Me.Btt_Salir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Btt_Salir.Image = Global.HORMIGONERA.My.Resources.Resources._131885___close_door_exit_log_out_logout_user_logout
-        Me.Btt_Salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_Salir.Location = New System.Drawing.Point(275, 266)
-        Me.Btt_Salir.Name = "Btt_Salir"
-        Me.Btt_Salir.Size = New System.Drawing.Size(101, 49)
-        Me.Btt_Salir.TabIndex = 243
-        Me.Btt_Salir.Text = "SALIR"
-        Me.Btt_Salir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_Salir.UseVisualStyleBackColor = True
+        Me.Sym_Piedra.AnalogIntValue1 = CType(0, Short)
+        Me.Sym_Piedra.AnalogValue1 = 0R
+        Me.Sym_Piedra.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sym_Piedra.BackColor = System.Drawing.Color.Transparent
+        Me.Sym_Piedra.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sym_Piedra.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkInvisible, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer)), "Band1"))
+        Me.Sym_Piedra.BlinkColor = System.Drawing.Color.Red
+        Me.Sym_Piedra.Category = "1MH.cat2"
+        Me.Sym_Piedra.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Piedra.DebugData"))
+        Me.Sym_Piedra.FillColor = System.Drawing.Color.Black
+        Me.Sym_Piedra.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sym_Piedra.Location = New System.Drawing.Point(463, 471)
+        Me.Sym_Piedra.Name = "Sym_Piedra"
+        Me.Sym_Piedra.Size = New System.Drawing.Size(80, 70)
+        Me.Sym_Piedra.SymbolHandle = CType(1426793514, Long)
+        Me.Sym_Piedra.TabIndex = 287
+        Me.Sym_Piedra.Visible = False
         '
         'Proceso
         '
@@ -2927,7 +2927,6 @@ Partial Class Proceso
         CType(Me.ValvulaDescarga, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Bomba_G2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_DescT1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Sym_Piedra, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericM3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -2992,6 +2991,7 @@ Partial Class Proceso
         CType(Me.Sym_Torn_Cem_Carga, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Sym_Piedra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3012,7 +3012,6 @@ Partial Class Proceso
     Friend WithEvents ValvulaDescarga As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Sym_Bomba_G2 As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Sym_DescT1 As SymbolFactoryDotNet.StandardControl
-    Friend WithEvents Sym_Piedra As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Btt_Iniciar As Button
     Friend WithEvents Label14 As Label
     Friend WithEvents Btt_Detener As Button
@@ -3177,7 +3176,7 @@ Partial Class Proceso
     Friend WithEvents Pil_ApagaT1 As SymbolFactoryDotNet.StandardControl
     Friend WithEvents GBx_Preparacion As GroupBox
     Private WithEvents Label46 As Label
-    Friend WithEvents Button2 As Button
+    Friend WithEvents Btt_ImprimirGuia As Button
     Friend WithEvents Num_Hum_Arena As NumericUpDown
     Friend WithEvents Label48 As Label
     Friend WithEvents Tim_Wd_PLC As Timer
@@ -3191,4 +3190,5 @@ Partial Class Proceso
     Friend WithEvents Label47 As Label
     Friend WithEvents Lbl_Operador As Label
     Friend WithEvents Lbl_NombreFormula As Label
+    Friend WithEvents Sym_Piedra As SymbolFactoryDotNet.StandardControl
 End Class

@@ -302,7 +302,9 @@ Public Class Proceso
     Private Sub ReadHoldingRegister()
         Try
             Block_lectura_HR = PLC_LOGO.ReadHoldingRegisters(0, 3)
-            Lbl_Agua.Text = Block_lectura_HR(Variables.dir_ContadorFlujometro) * FactorAgua
+            Dim litros As Decimal
+            litros = Block_lectura_HR(Variables.dir_ContadorFlujometro) * FactorAgua
+            Lbl_Agua.Text = litros.ToString("N2") 'Litros con 2 decimales
         Catch ex As Exception
 
         End Try
@@ -315,11 +317,19 @@ Public Class Proceso
     Private Sub Tim_Carga_Agua_Tick(sender As Object, e As EventArgs) Handles Tim_Carga_Agua.Tick
         Try
             Dim ValActual As Double = Convert.ToDouble(Lbl_Agua.Text)
-            If ValActual <= Pb_Tol4.Maximum Then
+            If ValActual <= Pb_Tol4.Maximum And ValActual >= Pb_Tol4.Minimum Then
                 Pb_Tol4.Value = ValActual
+            ElseIf ValActual < Pb_Tol4.Minimum Then
+                Pb_Tol4.Value = Pb_Tol4.Minimum
             Else
                 Pb_Tol4.Value = Pb_Tol4.Maximum
             End If
+
+            'If ValActual <= Pb_Tol4.Maximum Then
+            '    Pb_Tol4.Value = ValActual
+            'Else
+            '    Pb_Tol4.Value = Pb_Tol4.Maximum
+            'End If
             Lbl_Dosif_Agua.Text = ValActual.ToString("N2")
             If flagFinParcialAgua = False Then
                 'Carga Parcial
@@ -340,7 +350,7 @@ Public Class Proceso
             End If
         Catch ex As Exception
             Rtx_Mensajes.AppendColoredText(
-                "Excepcion: Tim_Carga_Agua " & vbCrLf & ex.Message & Environment.NewLine,
+                "Excepcion: Carga Agua " & vbCrLf & ex.Message & Environment.NewLine,
                 Drawing.Color.Red,
                 font_Rtxt)
         End Try
@@ -349,11 +359,20 @@ Public Class Proceso
     Private Sub Tim_Carga_Cem_Tick(sender As Object, e As EventArgs) Handles Tim_Carga_Cem.Tick
         Try
             Dim valActual As Double = Convert.ToDouble(Lbl_Peso_Cem.Text)
-            If valActual <= Pb_Tol3.Maximum Then
+            'Validacion de ProgressBar
+            If valActual <= Pb_Tol3.Maximum And valActual >= Pb_Tol3.Minimum Then
                 Pb_Tol3.Value = valActual
+            ElseIf valActual < Pb_Tol3.Minimum Then
+                Pb_Tol3.Value = Pb_Tol3.Minimum
             Else
                 Pb_Tol3.Value = Pb_Tol3.Maximum
             End If
+
+            'If valActual <= Pb_Tol3.Maximum Then
+            '    Pb_Tol3.Value = valActual
+            'Else
+            '    Pb_Tol3.Value = Pb_Tol3.Maximum
+            'End If
 
             Lbl_Dosif_Cemento.Text = valActual.ToString("N2")
             Dim Compara As Double = LimiteCemento
@@ -363,7 +382,7 @@ Public Class Proceso
             End If
         Catch ex As Exception
             Rtx_Mensajes.AppendColoredText(
-                "Excepcion: Tim_Carga_Cemento " & vbCrLf & ex.Message & Environment.NewLine,
+                "Excepcion: Carga Cemento" & vbCrLf & ex.Message & Environment.NewLine,
                 Drawing.Color.Red,
                 font_Rtxt)
         End Try
@@ -371,11 +390,19 @@ Public Class Proceso
     Private Sub Tim_Desc_Cemento_Tick(sender As Object, e As EventArgs) Handles Tim_Desc_Cemento.Tick
         Try
             Dim valActual As Double = Convert.ToDouble(Lbl_Peso_Cem.Text)
-            If valActual <= Pb_Tol3.Maximum Then
+            If valActual <= Pb_Tol3.Maximum And valActual >= Pb_Tol3.Minimum Then
                 Pb_Tol3.Value = valActual
+            ElseIf valActual < Pb_Tol3.Minimum Then
+                Pb_Tol3.Value = Pb_Tol3.Minimum
             Else
                 Pb_Tol3.Value = Pb_Tol3.Maximum
             End If
+
+            'If valActual <= Pb_Tol3.Maximum Then
+            '    Pb_Tol3.Value = valActual
+            'Else
+            '    Pb_Tol3.Value = Pb_Tol3.Maximum
+            'End If
 
             Dim Compara As Double = 10
             If valActual <= Compara Then
@@ -383,15 +410,21 @@ Public Class Proceso
                 FinalizarDescargaCemento()
             End If
         Catch ex As Exception
-
+            Rtx_Mensajes.AppendColoredText(
+                "Excepcion: Descarga Cemento" & vbCrLf & ex.Message & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
         End Try
     End Sub
     Private Sub Tim_DescargaT1_Tick(sender As Object, e As EventArgs) Handles Tim_DescargaT1.Tick
         Try
             Dim ValProceso As Double = ValorInicialT1 - Convert.ToDouble(Lbl_Peso_T1.Text)
             Lbl_Dosif_T1.Text = ValProceso.ToString("N2")
-            If ValProceso <= Pb_Tol1.Maximum Then
+            'Validacion de ProgressBar
+            If ValProceso <= Pb_Tol1.Maximum And ValProceso >= Pb_Tol1.Minimum Then
                 Pb_Tol1.Value = ValProceso
+            ElseIf ValProceso < Pb_Tol1.Minimum Then
+                Pb_Tol1.Value = Pb_Tol1.Minimum
             Else
                 Pb_Tol1.Value = Pb_Tol1.Maximum
             End If
@@ -412,7 +445,10 @@ Public Class Proceso
                 End If
             End If
         Catch ex As Exception
-
+            Rtx_Mensajes.AppendColoredText(
+                "Excepcion: Descarga Piedra" & vbCrLf & ex.Message & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
         End Try
     End Sub
     Private Async Sub DetenerTolva1()
@@ -431,8 +467,11 @@ Public Class Proceso
         Try
             Dim ValProceso As Double = ValorInicialT2 - Convert.ToDouble(Lbl_Peso_T2.Text)
             Lbl_Dosif_T2.Text = ValProceso.ToString("N2")
-            If ValProceso <= Pb_Tol2.Maximum Then
+            'Validacion de ProgressBar
+            If ValProceso <= Pb_Tol2.Maximum And ValProceso >= Pb_Tol2.Minimum Then
                 Pb_Tol2.Value = ValProceso
+            ElseIf ValProceso < Pb_Tol2.Minimum Then
+                Pb_Tol2.Value = Pb_Tol2.Minimum
             Else
                 Pb_Tol2.Value = Pb_Tol2.Maximum
             End If
@@ -454,7 +493,10 @@ Public Class Proceso
             End If
 
         Catch ex As Exception
-
+            Rtx_Mensajes.AppendColoredText(
+                "Excepcion: Descarga Arena" & vbCrLf & ex.Message & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
         End Try
     End Sub
     Private Sub Btt_Salir_Click(sender As Object, e As EventArgs) Handles Btt_Salir.Click
@@ -534,6 +576,12 @@ Public Class Proceso
             'Borrar- Solo para pruebas
             'Preparado = True
             If Preparado Then
+                'Limpiar controles de dosificacion
+                Lbl_Dosif_T1.Text = "0.00"
+                Lbl_Dosif_T2.Text = "0.00"
+                Lbl_Dosif_Agua.Text = "0.00"
+                Lbl_Dosif_Cemento.Text = "0.00"
+
                 GBx_Preparacion.Enabled = False
                 Gbx_ConfigCarg_Cemento.Enabled = False
                 'Extrae el numero de batch de la base
@@ -854,6 +902,7 @@ Public Class Proceso
 
         PLC_LOGO.WriteSingleCoil(Variables.coil_Desc2_Compuerta_Cemento, False)
         Pil_Desc_Cem_Compuerta.DiscreteValue1 = False
+        Sym_DescargaCem.DiscreteValue1 = False
         'Espera 60 segundos para apagar el tornillo
         Await DelayMs(60000)
         PLC_LOGO.WriteSingleCoil(Variables.coil_Desc2_Transpor_Cemento, False)
@@ -861,7 +910,7 @@ Public Class Proceso
 
         Pil_DesCemento.DiscreteValue1 = False
 
-        Sym_DescargaCem.DiscreteValue1 = False
+
         Sym_Torn_Cem_Desc.DiscreteValue1 = False
 
         CambiaEstado_Label(Variables.reg_Lbl_Cem, "FINALIZADO", Color.Red)
@@ -983,6 +1032,9 @@ Public Class Proceso
                 Btt_Continuar.Visible = False
                 Btt_Detener.Enabled = False
                 Btt_Salir.Enabled = True
+                'Configuracion para Eufrates 1 solo batch
+                batchPendientes = 0
+                batchActual = 0
 
             End If
         Catch ex As Exception
@@ -1135,8 +1187,8 @@ Public Class Proceso
         End Try
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        If Txt_CodOrdenDespacho.Text IsNot String.Empty Then
+    Private Sub Btt_ImprimirGuia_Click(sender As Object, e As EventArgs) Handles Btt_ImprimirGuia.Click
+        If Txt_CodOrdenDespacho.Text IsNot String.Empty And running = False Then
             idDespacho = Txt_CodOrdenDespacho.Text
             Despacho_frm.Show()
         End If
@@ -1194,6 +1246,8 @@ Public Class Proceso
     Private Sub RBtt_CargCemTornillo_CheckedChanged(sender As Object, e As EventArgs) Handles RBtt_CargCemTornillo.CheckedChanged
         Var_Carga_CEM_Tornillo = RBtt_CargCemTornillo.Checked
     End Sub
+
+
     Private Async Sub IniciarDescargaParcialT2()
         'Inicia descarga de Piedra -- Tolva 2
         'Verifica que no se active si la formula corresponde a cero
