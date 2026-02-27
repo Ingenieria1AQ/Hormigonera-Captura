@@ -184,10 +184,12 @@ Public Class frmReportes
         If cbOrdenDespacho.Checked = True Then
             txtOrdenDespacho.Enabled = True
             btnOrdenDespacho.Enabled = True
+            Btt_PrintOD.Enabled = True
         Else
             txtOrdenDespacho.Enabled = False
             txtOrdenDespacho.Text = ""
             btnOrdenDespacho.Enabled = False
+            Btt_PrintOD.Enabled = False
         End If
     End Sub
 
@@ -196,5 +198,12 @@ Public Class frmReportes
         destinoLista = "FReportesOrdenDespacho"
         'listas.MdiParent = Principal
         listas.Show()
+    End Sub
+
+    Private Sub Btt_PrintOD_Click(sender As Object, e As EventArgs) Handles Btt_PrintOD.Click
+        If txtOrdenDespacho.Text IsNot String.Empty Then
+            idDespacho = txtOrdenDespacho.Text
+            Despacho_frm.Show()
+        End If
     End Sub
 End Class

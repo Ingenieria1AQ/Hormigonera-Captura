@@ -513,7 +513,7 @@ Module Funciones
         permitidos(1) = "0068EB67CC95" 'PC AQ
         permitidos(2) = "10A51D6C949B"   ' FP HP Z
         permitidos(3) = "320302445467"  'PC EUFRATES
-        permitidos(4) = ""
+        permitidos(4) = "F4B5201C4C77"  'PC EUFRATES 2
         permitidos(5) = ""
         permitidos(6) = ""
         permitidos(7) = ""

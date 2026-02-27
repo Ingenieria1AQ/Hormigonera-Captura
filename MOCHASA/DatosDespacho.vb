@@ -176,17 +176,20 @@ Public Class DatosDespacho
         Dim con As New OleDbConnection(sConnString)
         Dim cmd As OleDbCommand
         Dim complete As Integer
+        Dim valorM3 As Double
         If lblcomprobante.Text = "--" Or lblcomprobante.Text = "" Then 'Para que no se grabe el comprobante como "--"
             MessageBox.Show("La transacción no puede grabarse porque el sistema no pudo leer el número consecutivo del comprobante. Por favor cierre esta pantalla de ingreso de datos y vuelva a intentarlo. Si el error persiste, porfavor contáctese con su proveedor.")
             Exit Sub
         End If
-
-
+        'Valida error de ingreso de M3
+        If Not Double.TryParse(txtm3.Text, valorM3) Then
+            txtm3.Text = 0.0
+        End If
         If tipotrans = "Entra" Then
             If Me.codChofer.Text <> "" And Me.codCliente.Text <> "" And Me.codProducto.Text <> "" And Me.txtidMixer.Text <> "" Then
                 Try
                     'complete = guardartransaccion(lblcomprobante.Text, lbltipo.Text, codOperador, txtfecha.Text, txthora.Text, codCliente.Text, codProducto.Text, txtdocumento.Text, txtPlaca.Text, codChofer.Text, txtobservaciones.Text, txtm3.Text, "", "", "", "", txtidMixer.Text, False)
-                    complete = guardartransaccion(lblcomprobante.Text, "DESPACHO", codOperador, txtfecha.Text, txthora.Text, codCliente.Text, codProducto.Text, txtdocumento.Text, txtPlaca.Text, codChofer.Text, txtobservaciones.Text, txtm3.Text, "", "", "", "", txtidMixer.Text, False)
+                    complete = guardartransaccion(lblcomprobante.Text, "DESPACHO", codOperador, txtfecha.Text, txthora.Text, codCliente.Text, codProducto.Text, txtdocumento.Text, txtPlaca.Text, codChofer.Text, txtobservaciones.Text, NumericM3.Value, "", "", "", "", txtidMixer.Text, False)
                     If complete = 1 Then
                         Dim csave As Integer
                         csave = guardarconsecutivo("Despacho", codigo)
@@ -246,7 +249,7 @@ Public Class DatosDespacho
             End If
         ElseIf tipotrans = "Sale" Then
             If lblcomprobante.Text <> "--" Then
-                complete = actualizartransaccion(lblcomprobante.Text, codCliente.Text, codProducto.Text, txtdocumento.Text, txtPlaca.Text, codChofer.Text, txtobservaciones.Text, txtm3.Text, "", "", "", "", txtidMixer.Text)
+                complete = actualizartransaccion(lblcomprobante.Text, codCliente.Text, codProducto.Text, txtdocumento.Text, txtPlaca.Text, codChofer.Text, txtobservaciones.Text, NumericM3.Value, "", "", "", "", txtidMixer.Text)
                 If complete = 1 Then
                     Dim swy As StreamWriter = File.AppendText(Application.StartupPath & "\ingresos.txt")
                     swy.WriteLine(lblcomprobante.Text.Trim & "," & codProducto.Text.Trim & "," & codCliente.Text.Trim & "," & codChofer.Text.Trim & "," & Date.Now.ToShortDateString & " " & Date.Now.ToLongTimeString)

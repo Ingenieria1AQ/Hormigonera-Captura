@@ -20,6 +20,9 @@ Partial Class frmReportes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btnOrdenDespacho = New System.Windows.Forms.Button()
+        Me.txtOrdenDespacho = New System.Windows.Forms.TextBox()
+        Me.cbOrdenDespacho = New System.Windows.Forms.CheckBox()
         Me.txtNomIngrediente = New System.Windows.Forms.TextBox()
         Me.txtNomProducto = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -44,9 +47,7 @@ Partial Class frmReportes
         Me.dtpfehasta = New System.Windows.Forms.DateTimePicker()
         Me.Salir = New System.Windows.Forms.Button()
         Me.Reporte = New System.Windows.Forms.Button()
-        Me.cbOrdenDespacho = New System.Windows.Forms.CheckBox()
-        Me.btnOrdenDespacho = New System.Windows.Forms.Button()
-        Me.txtOrdenDespacho = New System.Windows.Forms.TextBox()
+        Me.Btt_PrintOD = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -55,6 +56,7 @@ Partial Class frmReportes
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.Btt_PrintOD)
         Me.Panel1.Controls.Add(Me.btnOrdenDespacho)
         Me.Panel1.Controls.Add(Me.txtOrdenDespacho)
         Me.Panel1.Controls.Add(Me.cbOrdenDespacho)
@@ -77,6 +79,34 @@ Partial Class frmReportes
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(364, 344)
         Me.Panel1.TabIndex = 11
+        '
+        'btnOrdenDespacho
+        '
+        Me.btnOrdenDespacho.Enabled = False
+        Me.btnOrdenDespacho.Location = New System.Drawing.Point(223, 33)
+        Me.btnOrdenDespacho.Name = "btnOrdenDespacho"
+        Me.btnOrdenDespacho.Size = New System.Drawing.Size(25, 23)
+        Me.btnOrdenDespacho.TabIndex = 32
+        Me.btnOrdenDespacho.Text = "..."
+        Me.btnOrdenDespacho.UseVisualStyleBackColor = True
+        '
+        'txtOrdenDespacho
+        '
+        Me.txtOrdenDespacho.Enabled = False
+        Me.txtOrdenDespacho.Location = New System.Drawing.Point(116, 35)
+        Me.txtOrdenDespacho.Name = "txtOrdenDespacho"
+        Me.txtOrdenDespacho.Size = New System.Drawing.Size(100, 20)
+        Me.txtOrdenDespacho.TabIndex = 31
+        '
+        'cbOrdenDespacho
+        '
+        Me.cbOrdenDespacho.AutoSize = True
+        Me.cbOrdenDespacho.Location = New System.Drawing.Point(18, 12)
+        Me.cbOrdenDespacho.Name = "cbOrdenDespacho"
+        Me.cbOrdenDespacho.Size = New System.Drawing.Size(141, 17)
+        Me.cbOrdenDespacho.TabIndex = 30
+        Me.cbOrdenDespacho.Text = "Por Orden de Despacho"
+        Me.cbOrdenDespacho.UseVisualStyleBackColor = True
         '
         'txtNomIngrediente
         '
@@ -309,33 +339,16 @@ Partial Class frmReportes
         Me.Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Reporte.UseVisualStyleBackColor = True
         '
-        'cbOrdenDespacho
+        'Btt_PrintOD
         '
-        Me.cbOrdenDespacho.AutoSize = True
-        Me.cbOrdenDespacho.Location = New System.Drawing.Point(18, 12)
-        Me.cbOrdenDespacho.Name = "cbOrdenDespacho"
-        Me.cbOrdenDespacho.Size = New System.Drawing.Size(141, 17)
-        Me.cbOrdenDespacho.TabIndex = 30
-        Me.cbOrdenDespacho.Text = "Por Orden de Despacho"
-        Me.cbOrdenDespacho.UseVisualStyleBackColor = True
-        '
-        'btnOrdenDespacho
-        '
-        Me.btnOrdenDespacho.Enabled = False
-        Me.btnOrdenDespacho.Location = New System.Drawing.Point(223, 33)
-        Me.btnOrdenDespacho.Name = "btnOrdenDespacho"
-        Me.btnOrdenDespacho.Size = New System.Drawing.Size(25, 23)
-        Me.btnOrdenDespacho.TabIndex = 32
-        Me.btnOrdenDespacho.Text = "..."
-        Me.btnOrdenDespacho.UseVisualStyleBackColor = True
-        '
-        'txtOrdenDespacho
-        '
-        Me.txtOrdenDespacho.Enabled = False
-        Me.txtOrdenDespacho.Location = New System.Drawing.Point(116, 35)
-        Me.txtOrdenDespacho.Name = "txtOrdenDespacho"
-        Me.txtOrdenDespacho.Size = New System.Drawing.Size(100, 20)
-        Me.txtOrdenDespacho.TabIndex = 31
+        Me.Btt_PrintOD.Enabled = False
+        Me.Btt_PrintOD.Image = Global.HORMIGONERA.My.Resources.Resources.printer
+        Me.Btt_PrintOD.Location = New System.Drawing.Point(254, 28)
+        Me.Btt_PrintOD.Name = "Btt_PrintOD"
+        Me.Btt_PrintOD.Size = New System.Drawing.Size(36, 33)
+        Me.Btt_PrintOD.TabIndex = 33
+        Me.Btt_PrintOD.Text = "..."
+        Me.Btt_PrintOD.UseVisualStyleBackColor = True
         '
         'frmReportes
         '
@@ -384,4 +397,5 @@ Partial Class frmReportes
     Friend WithEvents btnOrdenDespacho As Button
     Friend WithEvents txtOrdenDespacho As TextBox
     Friend WithEvents cbOrdenDespacho As CheckBox
+    Friend WithEvents Btt_PrintOD As Button
 End Class

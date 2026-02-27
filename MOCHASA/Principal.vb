@@ -9,16 +9,33 @@ Public Class Principal
         LeerDatosEmpresa()
         Lbl_Operador.Text = Variables.nomOperador
         'Controla el acceso a los botones
-        Select Case Variables.tipoOperador
-            Case "Administrador"
-                Gbx_Datos.Visible = True
+        Select Case Variables.tipoOperador.ToUpper
+            Case "SISTEMAS"
+                Gbx_Datos.Visible = False
                 Gb_Formulacion.Visible = False
+                Gbx_Config.Visible = True
                 Btt_Proceso.Visible = True
-            Case "Laboratorio"
+            Case "ADMINISTRADOR"
+                Gbx_Datos.Visible = True
+                Gb_Formulacion.Visible = True
+                Gbx_Config.Visible = True
+                Btt_Proceso.Visible = True
+            Case "LABORATORIO"
                 Gbx_Datos.Visible = False
                 Gb_Formulacion.Visible = True
+                Gbx_Config.Visible = False
                 Btt_Proceso.Visible = False
-            Case "Operador"
+            Case "OPERADOR"
+                Gbx_Datos.Visible = False
+                Gb_Formulacion.Visible = False
+                Gbx_Config.Visible = False
+                Btt_Proceso.Visible = True
+            Case "VENTAS"
+                Gb_Formulacion.Visible = False
+                Gbx_Config.Visible = False
+                Gbx_Datos.Visible = True
+                Btt_Proceso.Visible = False
+            Case Else
                 Gbx_Datos.Visible = False
                 Gb_Formulacion.Visible = False
                 Btt_Proceso.Visible = True

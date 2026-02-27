@@ -61,7 +61,9 @@ Partial Class DatosDespacho
         Me.btnsalir = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.btnguardar = New System.Windows.Forms.Button()
+        Me.NumericM3 = New System.Windows.Forms.NumericUpDown()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.NumericM3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -235,6 +237,7 @@ Partial Class DatosDespacho
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.NumericM3)
         Me.GroupBox2.Controls.Add(Me.Button4)
         Me.GroupBox2.Controls.Add(Me.txtNomMixer)
         Me.GroupBox2.Controls.Add(Me.txtidMixer)
@@ -321,16 +324,17 @@ Partial Class DatosDespacho
         '
         Me.txtm3.BackColor = System.Drawing.Color.White
         Me.txtm3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtm3.Location = New System.Drawing.Point(607, 126)
+        Me.txtm3.Location = New System.Drawing.Point(429, 136)
         Me.txtm3.Name = "txtm3"
         Me.txtm3.Size = New System.Drawing.Size(70, 20)
         Me.txtm3.TabIndex = 18
+        Me.txtm3.Visible = False
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(522, 126)
+        Me.Label5.Location = New System.Drawing.Point(521, 130)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(52, 13)
         Me.Label5.TabIndex = 17
@@ -478,6 +482,18 @@ Partial Class DatosDespacho
         Me.btnguardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnguardar.UseVisualStyleBackColor = True
         '
+        'NumericM3
+        '
+        Me.NumericM3.DecimalPlaces = 1
+        Me.NumericM3.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
+        Me.NumericM3.Location = New System.Drawing.Point(606, 126)
+        Me.NumericM3.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.NumericM3.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.NumericM3.Name = "NumericM3"
+        Me.NumericM3.Size = New System.Drawing.Size(71, 20)
+        Me.NumericM3.TabIndex = 218
+        Me.NumericM3.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
         'DatosDespacho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -503,6 +519,7 @@ Partial Class DatosDespacho
         Me.Text = "Orden de Despacho - Ingreso datos"
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.NumericM3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -547,4 +564,5 @@ Partial Class DatosDespacho
     Friend WithEvents txtidMixer As TextBox
     Friend WithEvents Label13 As Label
     Friend WithEvents Label12 As Label
+    Friend WithEvents NumericM3 As NumericUpDown
 End Class

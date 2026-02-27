@@ -508,8 +508,12 @@ Public Class Proceso
             If PLC_LOGO.Connected Then
                 PLC_LOGO.Disconnect()
             End If
-            Principal.Panel1.Visible = True
-            Me.Close()
+            System.Threading.Thread.Sleep(1000)
+            If PLC_LOGO.Connected = False Then
+                Principal.Panel1.Visible = True
+                Me.Close()
+            End If
+
         Catch ex As Exception
 
         End Try
@@ -1234,11 +1238,27 @@ Public Class Proceso
 
     Private Sub Btt_BuscarOrdDespacho_Click(sender As Object, e As EventArgs) Handles Btt_BuscarOrdDespacho.Click
         ID_OrdenDespacho = Txt_CodOrdenDespacho.Text
+        If ID_OrdenDespacho = String.Empty Then
+            Rtx_Mensajes.AppendColoredText("Ingrese el número de la órden de despacho " & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
+            Exit Sub
+        End If
         ID_ProductoFormula = Obtiene_idProductoxIdOrdenDespacho(ID_OrdenDespacho)
+        CantidadM3 = Obtiene_CantM3xIdOrdenDespacho(ID_OrdenDespacho)
+        Txt_NumM3.Text = CantidadM3.ToString
+
         If ID_ProductoFormula Is String.Empty Then
             Rtx_Mensajes.AppendColoredText($"No se encuentra la órden de despacho: {ID_OrdenDespacho} " & Environment.NewLine,
                 Drawing.Color.Red,
                 font_Rtxt)
+            Exit Sub
+        End If
+        If CantidadM3 < 1.0 Then
+            Rtx_Mensajes.AppendColoredText("Cantidad de m3 errónea:" & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
+            Exit Sub
         End If
         ObtieneFormulaxProducto(ID_ProductoFormula)
     End Sub
@@ -1436,6 +1456,33 @@ Public Class Proceso
         End Try
         Return rpta
     End Function
+    Private Function Obtiene_CantM3xIdOrdenDespacho(NumOrden As String) As Double
+        Dim rpta As Double = 1.0
+        Dim dt As New DataTable
+        Try
+            Using conection As New OleDbConnection(sConnString)
+                Using cmdd As New OleDbCommand
+                    cmdd.Connection = conection
+                    cmdd.CommandText = "SELECT NetoM3 FROM CabeceraTransacciones WHERE Id = ?"
+                    cmdd.Parameters.AddWithValue("?", NumOrden)
+                    Using da As New OleDbDataAdapter(cmdd)
+                        da.Fill(dt)
+                    End Using
+                    If (dt.Rows.Count > 0) Then
+                        If Not Double.TryParse(dt.Rows(0).Item("NetoM3"), rpta) Then
+                            rpta = 1.0
+                        End If
+                    End If
+                End Using
+            End Using
+            Return rpta
+        Catch ex As Exception
+
+            MessageBox.Show(ex.Message, "Excepcion Obtener Numero m3 de la Orden de Despacho", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return 1.0
+        End Try
+
+    End Function
     Private Sub LimpiarLabelsFormula()
         Try
             For i As Integer = 1 To registros
@@ -1488,7 +1535,7 @@ Public Class Proceso
         Dim dt As New DataTable
         Try
             'Obtener la cantidad de m3 para el ajuste de la formula
-            CantidadM3 = NumericM3.Value
+            'CantidadM3 = NumericM3.Value
             'Obtener el factor de humedad de arena y ripio
             FactorHumedad_Arena = Num_Hum_Arena.Value
             FactorHumedad_Piedra = Num_Hum_Ripio.Value

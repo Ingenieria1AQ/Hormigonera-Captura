@@ -18,9 +18,29 @@ Public Class Login
                 'formato_fecha --> "MM/dd/yyyy HH:mm:ss"
             End If
 
+            'Leer la cadena de conexión
+            If Not File.Exists(Application.StartupPath & "\ConexionBD.txt") = True Then
+                Dim sw As StreamWriter = File.CreateText(Application.StartupPath & "\Conexion.txt")
+                sw.Close()
+            End If
+            Dim sr As StreamReader = New StreamReader(Application.StartupPath & "\ConexionBD.txt")
+            Dim line As String
+            line = sr.ReadLine()
+            If Not line Is Nothing Then 'Verificar que la linea contiene datos
+                sConnString = line.Trim
+            Else
+                MessageBox.Show("Defina la cadena de conexión" & vbCr & "Consulte al administrador del sistema", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                sr.Close()
+                Me.Close()
+                'Threading.Thread.Sleep(200)
+                Application.Exit()
+            End If
+            sr.Close()
+
             'Cargar_imagen()
         Catch ex As Exception
             MessageBox.Show("Excepción", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Me.Close()
         End Try
 
     End Sub

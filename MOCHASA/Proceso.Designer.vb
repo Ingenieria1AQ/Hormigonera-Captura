@@ -183,6 +183,7 @@ Partial Class Proceso
         Me.Tim_Carga_Agua = New System.Windows.Forms.Timer(Me.components)
         Me.Tim_ReadHR = New System.Windows.Forms.Timer(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Sym_Piedra = New SymbolFactoryDotNet.StandardControl()
         Me.Lbl_Operador = New System.Windows.Forms.Label()
         Me.Label47 = New System.Windows.Forms.Label()
         Me.Label50 = New System.Windows.Forms.Label()
@@ -193,6 +194,7 @@ Partial Class Proceso
         Me.RBtt_CargCemTornillo = New System.Windows.Forms.RadioButton()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.GBx_Preparacion = New System.Windows.Forms.GroupBox()
+        Me.Txt_NumM3 = New System.Windows.Forms.TextBox()
         Me.Txt_CodOrdenDespacho = New System.Windows.Forms.TextBox()
         Me.Btt_BuscarOrdDespacho = New System.Windows.Forms.Button()
         Me.Num_BatchPlanificacion = New System.Windows.Forms.NumericUpDown()
@@ -216,7 +218,6 @@ Partial Class Proceso
         Me.Sym_Torn_Cem_Desc = New SymbolFactoryDotNet.StandardControl()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Tim_Wd_PLC = New System.Windows.Forms.Timer(Me.components)
-        Me.Sym_Piedra = New SymbolFactoryDotNet.StandardControl()
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -265,6 +266,7 @@ Partial Class Proceso
         CType(Me.Sym_Bomba_G3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Arena, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
+        CType(Me.Sym_Piedra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Gbx_ConfigCarg_Cemento.SuspendLayout()
         Me.GBx_Preparacion.SuspendLayout()
         CType(Me.Num_BatchPlanificacion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -279,7 +281,6 @@ Partial Class Proceso
         CType(Me.Sym_Torn_Cem_Carga, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Sym_Piedra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label9
@@ -588,7 +589,7 @@ Partial Class Proceso
         '
         Me.cmbproductos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbproductos.FormattingEnabled = True
-        Me.cmbproductos.Location = New System.Drawing.Point(22, 83)
+        Me.cmbproductos.Location = New System.Drawing.Point(6, 83)
         Me.cmbproductos.Name = "cmbproductos"
         Me.cmbproductos.Size = New System.Drawing.Size(33, 24)
         Me.cmbproductos.TabIndex = 215
@@ -598,7 +599,7 @@ Partial Class Proceso
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(19, 60)
+        Me.Label15.Location = New System.Drawing.Point(12, 58)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(86, 16)
         Me.Label15.TabIndex = 216
@@ -607,14 +608,15 @@ Partial Class Proceso
         'NumericM3
         '
         Me.NumericM3.DecimalPlaces = 1
-        Me.NumericM3.Increment = New Decimal(New Integer() {5, 0, 0, 0})
-        Me.NumericM3.Location = New System.Drawing.Point(109, 57)
+        Me.NumericM3.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
+        Me.NumericM3.Location = New System.Drawing.Point(109, 84)
         Me.NumericM3.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.NumericM3.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NumericM3.Name = "NumericM3"
-        Me.NumericM3.Size = New System.Drawing.Size(69, 22)
+        Me.NumericM3.Size = New System.Drawing.Size(43, 22)
         Me.NumericM3.TabIndex = 217
         Me.NumericM3.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.NumericM3.Visible = False
         '
         'Rtx_Mensajes
         '
@@ -2467,6 +2469,26 @@ Partial Class Proceso
         Me.Panel2.Size = New System.Drawing.Size(1338, 565)
         Me.Panel2.TabIndex = 259
         '
+        'Sym_Piedra
+        '
+        Me.Sym_Piedra.AnalogIntValue1 = CType(0, Short)
+        Me.Sym_Piedra.AnalogValue1 = 0R
+        Me.Sym_Piedra.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sym_Piedra.BackColor = System.Drawing.Color.Transparent
+        Me.Sym_Piedra.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sym_Piedra.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkInvisible, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer)), "Band1"))
+        Me.Sym_Piedra.BlinkColor = System.Drawing.Color.Red
+        Me.Sym_Piedra.Category = "1MH.cat2"
+        Me.Sym_Piedra.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Piedra.DebugData"))
+        Me.Sym_Piedra.FillColor = System.Drawing.Color.Black
+        Me.Sym_Piedra.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sym_Piedra.Location = New System.Drawing.Point(463, 471)
+        Me.Sym_Piedra.Name = "Sym_Piedra"
+        Me.Sym_Piedra.Size = New System.Drawing.Size(80, 70)
+        Me.Sym_Piedra.SymbolHandle = CType(1426793514, Long)
+        Me.Sym_Piedra.TabIndex = 287
+        Me.Sym_Piedra.Visible = False
+        '
         'Lbl_Operador
         '
         Me.Lbl_Operador.AutoSize = True
@@ -2514,11 +2536,14 @@ Partial Class Proceso
         'Btt_ImprimirGuia
         '
         Me.Btt_ImprimirGuia.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btt_ImprimirGuia.Image = Global.HORMIGONERA.My.Resources.Resources.printer
+        Me.Btt_ImprimirGuia.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_ImprimirGuia.Location = New System.Drawing.Point(244, 169)
         Me.Btt_ImprimirGuia.Name = "Btt_ImprimirGuia"
         Me.Btt_ImprimirGuia.Size = New System.Drawing.Size(84, 40)
         Me.Btt_ImprimirGuia.TabIndex = 282
-        Me.Btt_ImprimirGuia.Text = "Imprimir Guía"
+        Me.Btt_ImprimirGuia.Text = "Imprimir" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " Guía"
+        Me.Btt_ImprimirGuia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Btt_ImprimirGuia.UseVisualStyleBackColor = True
         '
         'Gbx_ConfigCarg_Cemento
@@ -2569,6 +2594,7 @@ Partial Class Proceso
         '
         'GBx_Preparacion
         '
+        Me.GBx_Preparacion.Controls.Add(Me.Txt_NumM3)
         Me.GBx_Preparacion.Controls.Add(Me.Txt_CodOrdenDespacho)
         Me.GBx_Preparacion.Controls.Add(Me.Btt_BuscarOrdDespacho)
         Me.GBx_Preparacion.Controls.Add(Me.Num_BatchPlanificacion)
@@ -2586,6 +2612,14 @@ Partial Class Proceso
         Me.GBx_Preparacion.TabIndex = 278
         Me.GBx_Preparacion.TabStop = False
         Me.GBx_Preparacion.Text = "Preparación de Dosificación"
+        '
+        'Txt_NumM3
+        '
+        Me.Txt_NumM3.Location = New System.Drawing.Point(99, 55)
+        Me.Txt_NumM3.Name = "Txt_NumM3"
+        Me.Txt_NumM3.ReadOnly = True
+        Me.Txt_NumM3.Size = New System.Drawing.Size(90, 22)
+        Me.Txt_NumM3.TabIndex = 287
         '
         'Txt_CodOrdenDespacho
         '
@@ -2606,11 +2640,11 @@ Partial Class Proceso
         '
         'Num_BatchPlanificacion
         '
-        Me.Num_BatchPlanificacion.Location = New System.Drawing.Point(61, 83)
+        Me.Num_BatchPlanificacion.Location = New System.Drawing.Point(49, 84)
         Me.Num_BatchPlanificacion.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
         Me.Num_BatchPlanificacion.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.Num_BatchPlanificacion.Name = "Num_BatchPlanificacion"
-        Me.Num_BatchPlanificacion.Size = New System.Drawing.Size(69, 22)
+        Me.Num_BatchPlanificacion.Size = New System.Drawing.Size(47, 22)
         Me.Num_BatchPlanificacion.TabIndex = 222
         Me.Num_BatchPlanificacion.Value = New Decimal(New Integer() {1, 0, 0, 0})
         Me.Num_BatchPlanificacion.Visible = False
@@ -2618,6 +2652,7 @@ Partial Class Proceso
         'Num_Hum_Ripio
         '
         Me.Num_Hum_Ripio.DecimalPlaces = 1
+        Me.Num_Hum_Ripio.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
         Me.Num_Hum_Ripio.Location = New System.Drawing.Point(291, 84)
         Me.Num_Hum_Ripio.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.Num_Hum_Ripio.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
@@ -2639,6 +2674,7 @@ Partial Class Proceso
         'Num_Hum_Arena
         '
         Me.Num_Hum_Arena.DecimalPlaces = 1
+        Me.Num_Hum_Arena.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
         Me.Num_Hum_Arena.Location = New System.Drawing.Point(293, 56)
         Me.Num_Hum_Arena.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.Num_Hum_Arena.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
@@ -2889,26 +2925,6 @@ Partial Class Proceso
         '
         Me.Tim_Wd_PLC.Interval = 300
         '
-        'Sym_Piedra
-        '
-        Me.Sym_Piedra.AnalogIntValue1 = CType(0, Short)
-        Me.Sym_Piedra.AnalogValue1 = 0R
-        Me.Sym_Piedra.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Sym_Piedra.BackColor = System.Drawing.Color.Transparent
-        Me.Sym_Piedra.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Sym_Piedra.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkInvisible, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer)), "Band1"))
-        Me.Sym_Piedra.BlinkColor = System.Drawing.Color.Red
-        Me.Sym_Piedra.Category = "1MH.cat2"
-        Me.Sym_Piedra.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Piedra.DebugData"))
-        Me.Sym_Piedra.FillColor = System.Drawing.Color.Black
-        Me.Sym_Piedra.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Sym_Piedra.Location = New System.Drawing.Point(463, 471)
-        Me.Sym_Piedra.Name = "Sym_Piedra"
-        Me.Sym_Piedra.Size = New System.Drawing.Size(80, 70)
-        Me.Sym_Piedra.SymbolHandle = CType(1426793514, Long)
-        Me.Sym_Piedra.TabIndex = 287
-        Me.Sym_Piedra.Visible = False
-        '
         'Proceso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2974,6 +2990,7 @@ Partial Class Proceso
         CType(Me.Sym_Arena, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        CType(Me.Sym_Piedra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Gbx_ConfigCarg_Cemento.ResumeLayout(False)
         Me.Gbx_ConfigCarg_Cemento.PerformLayout()
         Me.GBx_Preparacion.ResumeLayout(False)
@@ -2991,7 +3008,6 @@ Partial Class Proceso
         CType(Me.Sym_Torn_Cem_Carga, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Sym_Piedra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3191,4 +3207,5 @@ Partial Class Proceso
     Friend WithEvents Lbl_Operador As Label
     Friend WithEvents Lbl_NombreFormula As Label
     Friend WithEvents Sym_Piedra As SymbolFactoryDotNet.StandardControl
+    Friend WithEvents Txt_NumM3 As TextBox
 End Class

@@ -22,34 +22,37 @@ Partial Class Principal
         Me.components = New System.ComponentModel.Container()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.Gbx_Datos = New System.Windows.Forms.GroupBox()
-        Me.Gb_Formulacion = New System.Windows.Forms.GroupBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Txt_Mensj_Sistema = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Txt_EstadoCon = New System.Windows.Forms.TextBox()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Tmr_LeeCamara = New System.Windows.Forms.Timer(Me.components)
-        Me.Tmr_timeoutConn = New System.Windows.Forms.Timer(Me.components)
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Lbl_Operador = New System.Windows.Forms.Label()
         Me.Btt_Proceso = New System.Windows.Forms.Button()
+        Me.Gbx_Datos = New System.Windows.Forms.GroupBox()
         Me.Btt_Empresa = New System.Windows.Forms.Button()
         Me.btnEOperadores = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.btt_Con_Indicador = New System.Windows.Forms.Button()
-        Me.Btt_OP = New System.Windows.Forms.Button()
+        Me.Gb_Formulacion = New System.Windows.Forms.GroupBox()
         Me.btnEProductos = New System.Windows.Forms.Button()
         Me.btnEIngredientes = New System.Windows.Forms.Button()
         Me.btnformulas = New System.Windows.Forms.Button()
+        Me.Btt_OP = New System.Windows.Forms.Button()
         Me.btnReportes = New System.Windows.Forms.Button()
         Me.btnsalir = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Txt_EstadoCon = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Txt_Mensj_Sistema = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Lbl_Operador = New System.Windows.Forms.Label()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Tmr_LeeCamara = New System.Windows.Forms.Timer(Me.components)
+        Me.Tmr_timeoutConn = New System.Windows.Forms.Timer(Me.components)
+        Me.Gbx_Config = New System.Windows.Forms.GroupBox()
         Me.Panel1.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.Gbx_Datos.SuspendLayout()
         Me.Gb_Formulacion.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        Me.Gbx_Config.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -67,128 +70,25 @@ Partial Class Principal
         'FlowLayoutPanel1
         '
         Me.FlowLayoutPanel1.AutoScroll = True
+        Me.FlowLayoutPanel1.Controls.Add(Me.Label1)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Lbl_Operador)
         Me.FlowLayoutPanel1.Controls.Add(Me.Btt_Proceso)
         Me.FlowLayoutPanel1.Controls.Add(Me.Gbx_Datos)
         Me.FlowLayoutPanel1.Controls.Add(Me.Gb_Formulacion)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Gbx_Config)
         Me.FlowLayoutPanel1.Controls.Add(Me.btnReportes)
         Me.FlowLayoutPanel1.Controls.Add(Me.btnsalir)
-        Me.FlowLayoutPanel1.Controls.Add(Me.Label2)
-        Me.FlowLayoutPanel1.Controls.Add(Me.Txt_Mensj_Sistema)
-        Me.FlowLayoutPanel1.Controls.Add(Me.Label3)
-        Me.FlowLayoutPanel1.Controls.Add(Me.Txt_EstadoCon)
-        Me.FlowLayoutPanel1.Controls.Add(Me.Label1)
-        Me.FlowLayoutPanel1.Controls.Add(Me.Lbl_Operador)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(130, 540)
         Me.FlowLayoutPanel1.TabIndex = 14
         '
-        'Gbx_Datos
-        '
-        Me.Gbx_Datos.Controls.Add(Me.Btt_Empresa)
-        Me.Gbx_Datos.Controls.Add(Me.btnEOperadores)
-        Me.Gbx_Datos.Controls.Add(Me.Button1)
-        Me.Gbx_Datos.Controls.Add(Me.Button2)
-        Me.Gbx_Datos.Controls.Add(Me.Button3)
-        Me.Gbx_Datos.Controls.Add(Me.btt_Con_Indicador)
-        Me.Gbx_Datos.Location = New System.Drawing.Point(3, 45)
-        Me.Gbx_Datos.Name = "Gbx_Datos"
-        Me.Gbx_Datos.Size = New System.Drawing.Size(117, 277)
-        Me.Gbx_Datos.TabIndex = 15
-        Me.Gbx_Datos.TabStop = False
-        Me.Gbx_Datos.Text = "Datos"
-        '
-        'Gb_Formulacion
-        '
-        Me.Gb_Formulacion.Controls.Add(Me.Btt_OP)
-        Me.Gb_Formulacion.Controls.Add(Me.btnEProductos)
-        Me.Gb_Formulacion.Controls.Add(Me.btnEIngredientes)
-        Me.Gb_Formulacion.Controls.Add(Me.btnformulas)
-        Me.Gb_Formulacion.Location = New System.Drawing.Point(3, 328)
-        Me.Gb_Formulacion.Name = "Gb_Formulacion"
-        Me.Gb_Formulacion.Size = New System.Drawing.Size(117, 191)
-        Me.Gb_Formulacion.TabIndex = 14
-        Me.Gb_Formulacion.TabStop = False
-        Me.Gb_Formulacion.Text = "Formulación"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(3, 606)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(108, 13)
-        Me.Label2.TabIndex = 11
-        Me.Label2.Text = "Datos Comunicación:"
-        Me.Label2.Visible = False
-        '
-        'Txt_Mensj_Sistema
-        '
-        Me.Txt_Mensj_Sistema.Location = New System.Drawing.Point(3, 622)
-        Me.Txt_Mensj_Sistema.Multiline = True
-        Me.Txt_Mensj_Sistema.Name = "Txt_Mensj_Sistema"
-        Me.Txt_Mensj_Sistema.Size = New System.Drawing.Size(116, 31)
-        Me.Txt_Mensj_Sistema.TabIndex = 0
-        Me.Txt_Mensj_Sistema.Visible = False
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(3, 656)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(95, 13)
-        Me.Label3.TabIndex = 13
-        Me.Label3.Text = "Mensajes Sistema:"
-        Me.Label3.Visible = False
-        '
-        'Txt_EstadoCon
-        '
-        Me.Txt_EstadoCon.Location = New System.Drawing.Point(3, 672)
-        Me.Txt_EstadoCon.Multiline = True
-        Me.Txt_EstadoCon.Name = "Txt_EstadoCon"
-        Me.Txt_EstadoCon.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.Txt_EstadoCon.Size = New System.Drawing.Size(116, 64)
-        Me.Txt_EstadoCon.TabIndex = 12
-        Me.Txt_EstadoCon.Visible = False
-        '
-        'Panel2
-        '
-        Me.Panel2.BackColor = System.Drawing.SystemColors.ButtonShadow
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(132, 0)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(616, 542)
-        Me.Panel2.TabIndex = 3
-        '
-        'Tmr_LeeCamara
-        '
-        '
-        'Tmr_timeoutConn
-        '
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(3, 739)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(54, 13)
-        Me.Label1.TabIndex = 16
-        Me.Label1.Text = "Operador:"
-        '
-        'Lbl_Operador
-        '
-        Me.Lbl_Operador.AutoSize = True
-        Me.Lbl_Operador.Location = New System.Drawing.Point(63, 739)
-        Me.Lbl_Operador.Name = "Lbl_Operador"
-        Me.Lbl_Operador.Size = New System.Drawing.Size(13, 13)
-        Me.Lbl_Operador.TabIndex = 17
-        Me.Lbl_Operador.Text = "--"
-        '
         'Btt_Proceso
         '
         Me.Btt_Proceso.Image = Global.HORMIGONERA.My.Resources.Resources.application_form_magnify
         Me.Btt_Proceso.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_Proceso.Location = New System.Drawing.Point(3, 3)
+        Me.Btt_Proceso.Location = New System.Drawing.Point(3, 16)
         Me.Btt_Proceso.Name = "Btt_Proceso"
         Me.Btt_Proceso.Size = New System.Drawing.Size(111, 36)
         Me.Btt_Proceso.TabIndex = 9
@@ -196,11 +96,25 @@ Partial Class Principal
         Me.Btt_Proceso.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Btt_Proceso.UseVisualStyleBackColor = True
         '
+        'Gbx_Datos
+        '
+        Me.Gbx_Datos.Controls.Add(Me.btnEOperadores)
+        Me.Gbx_Datos.Controls.Add(Me.Btt_OP)
+        Me.Gbx_Datos.Controls.Add(Me.Button1)
+        Me.Gbx_Datos.Controls.Add(Me.Button2)
+        Me.Gbx_Datos.Controls.Add(Me.Button3)
+        Me.Gbx_Datos.Location = New System.Drawing.Point(3, 58)
+        Me.Gbx_Datos.Name = "Gbx_Datos"
+        Me.Gbx_Datos.Size = New System.Drawing.Size(117, 230)
+        Me.Gbx_Datos.TabIndex = 15
+        Me.Gbx_Datos.TabStop = False
+        Me.Gbx_Datos.Text = "Datos"
+        '
         'Btt_Empresa
         '
         Me.Btt_Empresa.Image = Global.HORMIGONERA.My.Resources.Resources.setting_tools
         Me.Btt_Empresa.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_Empresa.Location = New System.Drawing.Point(0, 229)
+        Me.Btt_Empresa.Location = New System.Drawing.Point(0, 59)
         Me.Btt_Empresa.Name = "Btt_Empresa"
         Me.Btt_Empresa.Size = New System.Drawing.Size(111, 42)
         Me.Btt_Empresa.TabIndex = 15
@@ -260,7 +174,7 @@ Partial Class Principal
         '
         Me.btt_Con_Indicador.Image = Global.HORMIGONERA.My.Resources.Resources.cog_edit
         Me.btt_Con_Indicador.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btt_Con_Indicador.Location = New System.Drawing.Point(0, 187)
+        Me.btt_Con_Indicador.Location = New System.Drawing.Point(0, 16)
         Me.btt_Con_Indicador.Name = "btt_Con_Indicador"
         Me.btt_Con_Indicador.Size = New System.Drawing.Size(111, 36)
         Me.btt_Con_Indicador.TabIndex = 0
@@ -268,17 +182,17 @@ Partial Class Principal
         Me.btt_Con_Indicador.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btt_Con_Indicador.UseVisualStyleBackColor = True
         '
-        'Btt_OP
+        'Gb_Formulacion
         '
-        Me.Btt_OP.Image = Global.HORMIGONERA.My.Resources.Resources.column_double
-        Me.Btt_OP.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_OP.Location = New System.Drawing.Point(0, 145)
-        Me.Btt_OP.Name = "Btt_OP"
-        Me.Btt_OP.Size = New System.Drawing.Size(111, 39)
-        Me.Btt_OP.TabIndex = 9
-        Me.Btt_OP.Text = "Orden de" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Despacho"
-        Me.Btt_OP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_OP.UseVisualStyleBackColor = True
+        Me.Gb_Formulacion.Controls.Add(Me.btnEProductos)
+        Me.Gb_Formulacion.Controls.Add(Me.btnEIngredientes)
+        Me.Gb_Formulacion.Controls.Add(Me.btnformulas)
+        Me.Gb_Formulacion.Location = New System.Drawing.Point(3, 294)
+        Me.Gb_Formulacion.Name = "Gb_Formulacion"
+        Me.Gb_Formulacion.Size = New System.Drawing.Size(117, 150)
+        Me.Gb_Formulacion.TabIndex = 14
+        Me.Gb_Formulacion.TabStop = False
+        Me.Gb_Formulacion.Text = "Formulación"
         '
         'btnEProductos
         '
@@ -316,11 +230,23 @@ Partial Class Principal
         Me.btnformulas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnformulas.UseVisualStyleBackColor = True
         '
+        'Btt_OP
+        '
+        Me.Btt_OP.Image = Global.HORMIGONERA.My.Resources.Resources.column_double
+        Me.Btt_OP.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Btt_OP.Location = New System.Drawing.Point(0, 185)
+        Me.Btt_OP.Name = "Btt_OP"
+        Me.Btt_OP.Size = New System.Drawing.Size(111, 39)
+        Me.Btt_OP.TabIndex = 9
+        Me.Btt_OP.Text = "Orden de" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Despacho"
+        Me.Btt_OP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btt_OP.UseVisualStyleBackColor = True
+        '
         'btnReportes
         '
         Me.btnReportes.Image = Global.HORMIGONERA.My.Resources.Resources.chart_curve
         Me.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnReportes.Location = New System.Drawing.Point(3, 525)
+        Me.btnReportes.Location = New System.Drawing.Point(3, 563)
         Me.btnReportes.Name = "btnReportes"
         Me.btnReportes.Size = New System.Drawing.Size(111, 36)
         Me.btnReportes.TabIndex = 10
@@ -332,13 +258,100 @@ Partial Class Principal
         '
         Me.btnsalir.Image = Global.HORMIGONERA.My.Resources.Resources.cancel
         Me.btnsalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnsalir.Location = New System.Drawing.Point(3, 567)
+        Me.btnsalir.Location = New System.Drawing.Point(3, 605)
         Me.btnsalir.Name = "btnsalir"
         Me.btnsalir.Size = New System.Drawing.Size(111, 36)
         Me.btnsalir.TabIndex = 1
         Me.btnsalir.Text = "Salir"
         Me.btnsalir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnsalir.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(28, 22)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(95, 13)
+        Me.Label3.TabIndex = 13
+        Me.Label3.Text = "Mensajes Sistema:"
+        Me.Label3.Visible = False
+        '
+        'Txt_EstadoCon
+        '
+        Me.Txt_EstadoCon.Location = New System.Drawing.Point(21, 41)
+        Me.Txt_EstadoCon.Multiline = True
+        Me.Txt_EstadoCon.Name = "Txt_EstadoCon"
+        Me.Txt_EstadoCon.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.Txt_EstadoCon.Size = New System.Drawing.Size(116, 64)
+        Me.Txt_EstadoCon.TabIndex = 12
+        Me.Txt_EstadoCon.Visible = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(39, 105)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(108, 13)
+        Me.Label2.TabIndex = 11
+        Me.Label2.Text = "Datos Comunicación:"
+        Me.Label2.Visible = False
+        '
+        'Txt_Mensj_Sistema
+        '
+        Me.Txt_Mensj_Sistema.Location = New System.Drawing.Point(21, 123)
+        Me.Txt_Mensj_Sistema.Multiline = True
+        Me.Txt_Mensj_Sistema.Name = "Txt_Mensj_Sistema"
+        Me.Txt_Mensj_Sistema.Size = New System.Drawing.Size(116, 31)
+        Me.Txt_Mensj_Sistema.TabIndex = 0
+        Me.Txt_Mensj_Sistema.Visible = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(3, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(54, 13)
+        Me.Label1.TabIndex = 16
+        Me.Label1.Text = "Operador:"
+        '
+        'Lbl_Operador
+        '
+        Me.Lbl_Operador.AutoSize = True
+        Me.Lbl_Operador.Location = New System.Drawing.Point(63, 0)
+        Me.Lbl_Operador.Name = "Lbl_Operador"
+        Me.Lbl_Operador.Size = New System.Drawing.Size(13, 13)
+        Me.Lbl_Operador.TabIndex = 17
+        Me.Lbl_Operador.Text = "--"
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.Panel2.Controls.Add(Me.Txt_Mensj_Sistema)
+        Me.Panel2.Controls.Add(Me.Label2)
+        Me.Panel2.Controls.Add(Me.Txt_EstadoCon)
+        Me.Panel2.Controls.Add(Me.Label3)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(132, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(616, 542)
+        Me.Panel2.TabIndex = 3
+        '
+        'Tmr_LeeCamara
+        '
+        '
+        'Tmr_timeoutConn
+        '
+        '
+        'Gbx_Config
+        '
+        Me.Gbx_Config.Controls.Add(Me.btt_Con_Indicador)
+        Me.Gbx_Config.Controls.Add(Me.Btt_Empresa)
+        Me.Gbx_Config.Location = New System.Drawing.Point(3, 450)
+        Me.Gbx_Config.Name = "Gbx_Config"
+        Me.Gbx_Config.Size = New System.Drawing.Size(121, 107)
+        Me.Gbx_Config.TabIndex = 16
+        Me.Gbx_Config.TabStop = False
+        Me.Gbx_Config.Text = "Configuración"
         '
         'Principal
         '
@@ -358,6 +371,9 @@ Partial Class Principal
         Me.FlowLayoutPanel1.PerformLayout()
         Me.Gbx_Datos.ResumeLayout(False)
         Me.Gb_Formulacion.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        Me.Gbx_Config.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -387,4 +403,5 @@ Partial Class Principal
     Friend WithEvents Label1 As Label
     Friend WithEvents Lbl_Operador As Label
     Friend WithEvents Btt_Empresa As Button
+    Friend WithEvents Gbx_Config As GroupBox
 End Class
