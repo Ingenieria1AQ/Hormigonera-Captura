@@ -67,10 +67,10 @@ Public Class ConfigEmpresa
             Dim ms As New MemoryStream()
             PBox_LogoInicio.Image.Save(ms, PBox_LogoInicio.Image.RawFormat)
             Dim imageBytes() As Byte = ms.ToArray()
-            cmd.CommandText = "UPDATE Empresa SET logoEmpresa= @Logo, NombreEmpresa = @NombreEmpresa, RUC =@Ruc WHERE Id =1"
-            cmd.Parameters.AddWithValue("@Logo", imageBytes)
-            cmd.Parameters.AddWithValue("NombreEmpresa", Txt_NombreEmpresa.Text)
-            cmd.Parameters.AddWithValue("RUC", Txt_RUC.Text)
+            cmd.CommandText = "UPDATE Empresa SET logoEmpresa= ?, NombreEmpresa = ?, RUC =? WHERE Id =1"
+            cmd.Parameters.AddWithValue("?", imageBytes)
+            cmd.Parameters.AddWithValue("?", Txt_NombreEmpresa.Text)
+            cmd.Parameters.AddWithValue("?", Txt_RUC.Text)
 
             If cmd.ExecuteNonQuery() > 0 Then
                 MessageBox.Show("Registro correcto", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

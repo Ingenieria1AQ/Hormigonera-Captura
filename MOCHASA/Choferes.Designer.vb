@@ -79,6 +79,7 @@ Partial Class Choferes
         Me.btnReporte.Text = "Reporte"
         Me.btnReporte.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnReporte.UseVisualStyleBackColor = True
+        Me.btnReporte.Visible = False
         '
         'btnsalir
         '

@@ -28,7 +28,7 @@ Public Class frmOperadores
             Dim cmdtxt As String = "SELECT * FROM Operadores order by idOperador"
             ' Crear un nuevo adaptador de datos vasado en el 'query' especificado
             Me.AdaptadorDeDatos = New OleDb.OleDbDataAdapter(cmdtxt, sConnString)
-            Me.DataGridView1.DataSource = Me.bindingSource1
+
             ' Crear un 'commandbuilder' que genere el SQL Update/Insert/Delete
             ' segun el 'selectcommand', usado para actualizar la BD
             Dim commandbuilder As New OleDb.OleDbCommandBuilder(Me.AdaptadorDeDatos)
@@ -37,9 +37,31 @@ Public Class frmOperadores
             Dim tabla As New DataTable()
             Me.AdaptadorDeDatos.Fill(tabla)
             Me.bindingSource1.DataSource = tabla
+            Me.DataGridView1.DataSource = Me.bindingSource1
             'Cambiar titulo de las columnas
             If DataGridView1.Columns.Count > 0 Then
-                DataGridView1.Columns(0).HeaderText = "Código Operador"
+                DataGridView1.Columns(0).Visible = False
+                'AQ Cambio de encabezados del Datagrid
+                DataGridView1.Columns(1).HeaderText = "Nombre"
+                DataGridView1.Columns(2).HeaderText = "Código"
+                DataGridView1.Columns(3).HeaderText = "Clave"
+                DataGridView1.Columns(4).HeaderText = "Tipo"
+                DataGridView1.Columns(5).HeaderText = "Habilitado"
+
+                'Converir a comboBox la columna del tipo de usuario
+                Dim indiceTipo As Integer = 4
+
+
+                Dim columnTipo As New DataGridViewComboBoxColumn
+                columnTipo.Name = "oper_Tipo"
+                columnTipo.HeaderText = "Tipo"
+                columnTipo.DataPropertyName = "tipoOperador"
+                columnTipo.DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton
+                'Agregar tipos de operador
+                columnTipo.Items.AddRange("SISTEMAS", "ADMINISTRADOR", "OPERADOR", "LABORATORIO", "VENTAS")
+                'Reemplazar la columna existente
+                DataGridView1.Columns.RemoveAt(indiceTipo)
+                DataGridView1.Columns.Insert(indiceTipo, columnTipo)
             End If
 
             ' Dimensionar las columnas del DataGrid para ajustalarlas al contenido cargado

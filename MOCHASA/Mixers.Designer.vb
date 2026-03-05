@@ -73,7 +73,7 @@ Partial Class Mixers
         Me.tab1.Controls.Add(Me.DataGridView1)
         Me.tab1.Location = New System.Drawing.Point(4, 22)
         Me.tab1.Name = "tab1"
-        Me.tab1.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.tab1.Padding = New System.Windows.Forms.Padding(3)
         Me.tab1.Size = New System.Drawing.Size(752, 511)
         Me.tab1.TabIndex = 0
         Me.tab1.Text = "Lista"
@@ -89,6 +89,7 @@ Partial Class Mixers
         Me.btnReporte.Text = "Reporte"
         Me.btnReporte.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnReporte.UseVisualStyleBackColor = True
+        Me.btnReporte.Visible = False
         '
         'btnsalir
         '
@@ -137,7 +138,7 @@ Partial Class Mixers
         Me.tab2.Controls.Add(Me.Label1)
         Me.tab2.Location = New System.Drawing.Point(4, 22)
         Me.tab2.Name = "tab2"
-        Me.tab2.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.tab2.Padding = New System.Windows.Forms.Padding(3)
         Me.tab2.Size = New System.Drawing.Size(752, 511)
         Me.tab2.TabIndex = 1
         Me.tab2.Text = "Detalles"

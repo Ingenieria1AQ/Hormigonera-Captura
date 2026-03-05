@@ -31,6 +31,7 @@ Partial Class frmConfiguracion
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.Btt_ActPuerto1 = New System.Windows.Forms.Button()
         Me.cboTipoInd1 = New System.Windows.Forms.ComboBox()
         Me.cboFlowControl1 = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -56,6 +57,7 @@ Partial Class frmConfiguracion
         Me.Txt_Baud2 = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.cboSerialPort2 = New System.Windows.Forms.ComboBox()
+        Me.Btt_ActPuerto2 = New System.Windows.Forms.Button()
         Me.TP_Cemento = New System.Windows.Forms.TabPage()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
@@ -71,10 +73,17 @@ Partial Class frmConfiguracion
         Me.Txt_Baud3 = New System.Windows.Forms.TextBox()
         Me.label6 = New System.Windows.Forms.Label()
         Me.cboSerialPort3 = New System.Windows.Forms.ComboBox()
+        Me.Btt_ActPuerto3 = New System.Windows.Forms.Button()
         Me.TP_PLC = New System.Windows.Forms.TabPage()
         Me.label11 = New System.Windows.Forms.Label()
         Me.label12 = New System.Windows.Forms.Label()
         Me.TP_Parametros = New System.Windows.Forms.TabPage()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.Num_FactAgua = New System.Windows.Forms.NumericUpDown()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.chBox_Hab_Imp = New System.Windows.Forms.CheckBox()
         Me.Label24 = New System.Windows.Forms.Label()
@@ -90,15 +99,6 @@ Partial Class frmConfiguracion
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Num_CPiedra = New System.Windows.Forms.NumericUpDown()
         Me.Label25 = New System.Windows.Forms.Label()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.Label31 = New System.Windows.Forms.Label()
-        Me.Num_FactAgua = New System.Windows.Forms.NumericUpDown()
-        Me.Label32 = New System.Windows.Forms.Label()
-        Me.Label33 = New System.Windows.Forms.Label()
-        Me.Btt_ActPuerto1 = New System.Windows.Forms.Button()
-        Me.Btt_ActPuerto2 = New System.Windows.Forms.Button()
-        Me.Btt_ActPuerto3 = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Btt_Cancelar = New System.Windows.Forms.Button()
         Me.Btt_Conectar = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
@@ -107,15 +107,15 @@ Partial Class frmConfiguracion
         Me.TP_Cemento.SuspendLayout()
         Me.TP_PLC.SuspendLayout()
         Me.TP_Parametros.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_FactAgua, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.Num_CAgua, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Num_CCemento, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Num_CArena, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Num_CPiedra, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox3.SuspendLayout()
-        CType(Me.Num_FactAgua, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Txt_IpAdd
@@ -205,6 +205,19 @@ Partial Class frmConfiguracion
         Me.Label5.Size = New System.Drawing.Size(64, 13)
         Me.Label5.TabIndex = 24
         Me.Label5.Text = "Indicador:"
+        '
+        'Btt_ActPuerto1
+        '
+        Me.Btt_ActPuerto1.BackgroundImage = CType(resources.GetObject("Btt_ActPuerto1.BackgroundImage"), System.Drawing.Image)
+        Me.Btt_ActPuerto1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Btt_ActPuerto1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btt_ActPuerto1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btt_ActPuerto1.Location = New System.Drawing.Point(150, 64)
+        Me.Btt_ActPuerto1.Name = "Btt_ActPuerto1"
+        Me.Btt_ActPuerto1.Size = New System.Drawing.Size(30, 27)
+        Me.Btt_ActPuerto1.TabIndex = 24
+        Me.Btt_ActPuerto1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Btt_ActPuerto1.UseVisualStyleBackColor = True
         '
         'cboTipoInd1
         '
@@ -442,6 +455,19 @@ Partial Class frmConfiguracion
         Me.cboSerialPort2.Size = New System.Drawing.Size(121, 21)
         Me.cboSerialPort2.TabIndex = 15
         '
+        'Btt_ActPuerto2
+        '
+        Me.Btt_ActPuerto2.BackgroundImage = CType(resources.GetObject("Btt_ActPuerto2.BackgroundImage"), System.Drawing.Image)
+        Me.Btt_ActPuerto2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Btt_ActPuerto2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btt_ActPuerto2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btt_ActPuerto2.Location = New System.Drawing.Point(150, 64)
+        Me.Btt_ActPuerto2.Name = "Btt_ActPuerto2"
+        Me.Btt_ActPuerto2.Size = New System.Drawing.Size(30, 27)
+        Me.Btt_ActPuerto2.TabIndex = 24
+        Me.Btt_ActPuerto2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Btt_ActPuerto2.UseVisualStyleBackColor = True
+        '
         'TP_Cemento
         '
         Me.TP_Cemento.Controls.Add(Me.Label21)
@@ -590,6 +616,19 @@ Partial Class frmConfiguracion
         Me.cboSerialPort3.Size = New System.Drawing.Size(121, 21)
         Me.cboSerialPort3.TabIndex = 15
         '
+        'Btt_ActPuerto3
+        '
+        Me.Btt_ActPuerto3.BackgroundImage = CType(resources.GetObject("Btt_ActPuerto3.BackgroundImage"), System.Drawing.Image)
+        Me.Btt_ActPuerto3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Btt_ActPuerto3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btt_ActPuerto3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btt_ActPuerto3.Location = New System.Drawing.Point(150, 64)
+        Me.Btt_ActPuerto3.Name = "Btt_ActPuerto3"
+        Me.Btt_ActPuerto3.Size = New System.Drawing.Size(30, 27)
+        Me.Btt_ActPuerto3.TabIndex = 24
+        Me.Btt_ActPuerto3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Btt_ActPuerto3.UseVisualStyleBackColor = True
+        '
         'TP_PLC
         '
         Me.TP_PLC.Controls.Add(Me.label11)
@@ -632,6 +671,70 @@ Partial Class frmConfiguracion
         Me.TP_Parametros.TabIndex = 6
         Me.TP_Parametros.Text = "PARÁMETROS"
         Me.TP_Parametros.UseVisualStyleBackColor = True
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.PictureBox1)
+        Me.GroupBox3.Controls.Add(Me.Label33)
+        Me.GroupBox3.Controls.Add(Me.Label31)
+        Me.GroupBox3.Controls.Add(Me.Label32)
+        Me.GroupBox3.Controls.Add(Me.Num_FactAgua)
+        Me.GroupBox3.Location = New System.Drawing.Point(17, 156)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(426, 76)
+        Me.GroupBox3.TabIndex = 39
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Factor de Agua"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.HORMIGONERA.My.Resources.Resources.Formula_Pres
+        Me.PictureBox1.Location = New System.Drawing.Point(307, 11)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(111, 59)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 42
+        Me.PictureBox1.TabStop = False
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.BackColor = System.Drawing.SystemColors.Info
+        Me.Label33.Location = New System.Drawing.Point(54, 49)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(249, 13)
+        Me.Label33.TabIndex = 39
+        Me.Label33.Text = "Valor de prescala para transformar de pulsos a litros"
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.BackColor = System.Drawing.SystemColors.Info
+        Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label31.Location = New System.Drawing.Point(6, 49)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(42, 13)
+        Me.Label31.TabIndex = 41
+        Me.Label31.Text = "* PrEs"
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label32.Location = New System.Drawing.Point(65, 21)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(37, 13)
+        Me.Label32.TabIndex = 39
+        Me.Label32.Text = "PrEs:"
+        '
+        'Num_FactAgua
+        '
+        Me.Num_FactAgua.DecimalPlaces = 4
+        Me.Num_FactAgua.Location = New System.Drawing.Point(108, 19)
+        Me.Num_FactAgua.Maximum = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.Num_FactAgua.Name = "Num_FactAgua"
+        Me.Num_FactAgua.Size = New System.Drawing.Size(120, 20)
+        Me.Num_FactAgua.TabIndex = 40
         '
         'GroupBox2
         '
@@ -795,109 +898,6 @@ Partial Class frmConfiguracion
         Me.Label25.TabIndex = 29
         Me.Label25.Text = "Corte Piedra:"
         '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.PictureBox1)
-        Me.GroupBox3.Controls.Add(Me.Label33)
-        Me.GroupBox3.Controls.Add(Me.Label31)
-        Me.GroupBox3.Controls.Add(Me.Label32)
-        Me.GroupBox3.Controls.Add(Me.Num_FactAgua)
-        Me.GroupBox3.Location = New System.Drawing.Point(17, 156)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(426, 76)
-        Me.GroupBox3.TabIndex = 39
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Factor de Agua"
-        '
-        'Label31
-        '
-        Me.Label31.AutoSize = True
-        Me.Label31.BackColor = System.Drawing.SystemColors.Info
-        Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label31.Location = New System.Drawing.Point(6, 49)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(42, 13)
-        Me.Label31.TabIndex = 41
-        Me.Label31.Text = "* PrEs"
-        '
-        'Num_FactAgua
-        '
-        Me.Num_FactAgua.DecimalPlaces = 4
-        Me.Num_FactAgua.Location = New System.Drawing.Point(108, 19)
-        Me.Num_FactAgua.Maximum = New Decimal(New Integer() {5, 0, 0, 0})
-        Me.Num_FactAgua.Name = "Num_FactAgua"
-        Me.Num_FactAgua.Size = New System.Drawing.Size(120, 20)
-        Me.Num_FactAgua.TabIndex = 40
-        '
-        'Label32
-        '
-        Me.Label32.AutoSize = True
-        Me.Label32.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label32.Location = New System.Drawing.Point(65, 21)
-        Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(37, 13)
-        Me.Label32.TabIndex = 39
-        Me.Label32.Text = "PrEs:"
-        '
-        'Label33
-        '
-        Me.Label33.AutoSize = True
-        Me.Label33.BackColor = System.Drawing.SystemColors.Info
-        Me.Label33.Location = New System.Drawing.Point(54, 49)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(249, 13)
-        Me.Label33.TabIndex = 39
-        Me.Label33.Text = "Valor de prescala para transformar de pulsos a litros"
-        '
-        'Btt_ActPuerto1
-        '
-        Me.Btt_ActPuerto1.BackgroundImage = CType(resources.GetObject("Btt_ActPuerto1.BackgroundImage"), System.Drawing.Image)
-        Me.Btt_ActPuerto1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Btt_ActPuerto1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Btt_ActPuerto1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_ActPuerto1.Location = New System.Drawing.Point(150, 64)
-        Me.Btt_ActPuerto1.Name = "Btt_ActPuerto1"
-        Me.Btt_ActPuerto1.Size = New System.Drawing.Size(30, 27)
-        Me.Btt_ActPuerto1.TabIndex = 24
-        Me.Btt_ActPuerto1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_ActPuerto1.UseVisualStyleBackColor = True
-        '
-        'Btt_ActPuerto2
-        '
-        Me.Btt_ActPuerto2.BackgroundImage = CType(resources.GetObject("Btt_ActPuerto2.BackgroundImage"), System.Drawing.Image)
-        Me.Btt_ActPuerto2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Btt_ActPuerto2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Btt_ActPuerto2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_ActPuerto2.Location = New System.Drawing.Point(150, 64)
-        Me.Btt_ActPuerto2.Name = "Btt_ActPuerto2"
-        Me.Btt_ActPuerto2.Size = New System.Drawing.Size(30, 27)
-        Me.Btt_ActPuerto2.TabIndex = 24
-        Me.Btt_ActPuerto2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_ActPuerto2.UseVisualStyleBackColor = True
-        '
-        'Btt_ActPuerto3
-        '
-        Me.Btt_ActPuerto3.BackgroundImage = CType(resources.GetObject("Btt_ActPuerto3.BackgroundImage"), System.Drawing.Image)
-        Me.Btt_ActPuerto3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Btt_ActPuerto3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Btt_ActPuerto3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_ActPuerto3.Location = New System.Drawing.Point(150, 64)
-        Me.Btt_ActPuerto3.Name = "Btt_ActPuerto3"
-        Me.Btt_ActPuerto3.Size = New System.Drawing.Size(30, 27)
-        Me.Btt_ActPuerto3.TabIndex = 24
-        Me.Btt_ActPuerto3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_ActPuerto3.UseVisualStyleBackColor = True
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.HORMIGONERA.My.Resources.Resources.Formula_Pres
-        Me.PictureBox1.Location = New System.Drawing.Point(307, 11)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(111, 59)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 42
-        Me.PictureBox1.TabStop = False
-        '
         'Btt_Cancelar
         '
         Me.Btt_Cancelar.BackColor = System.Drawing.SystemColors.Control
@@ -922,7 +922,7 @@ Partial Class frmConfiguracion
         Me.Btt_Conectar.Cursor = System.Windows.Forms.Cursors.Default
         Me.Btt_Conectar.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Btt_Conectar.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Btt_Conectar.Image = Global.HORMIGONERA.My.Resources.Resources.connect
+        Me.Btt_Conectar.Image = Global.HORMIGONERA.My.Resources.Resources._131694___save
         Me.Btt_Conectar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_Conectar.Location = New System.Drawing.Point(462, 54)
         Me.Btt_Conectar.Name = "Btt_Conectar"
@@ -954,6 +954,10 @@ Partial Class frmConfiguracion
         Me.TP_PLC.ResumeLayout(False)
         Me.TP_PLC.PerformLayout()
         Me.TP_Parametros.ResumeLayout(False)
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_FactAgua, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
@@ -962,10 +966,6 @@ Partial Class frmConfiguracion
         CType(Me.Num_CCemento, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Num_CArena, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Num_CPiedra, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
-        CType(Me.Num_FactAgua, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

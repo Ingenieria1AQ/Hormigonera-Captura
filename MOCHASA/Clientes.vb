@@ -64,14 +64,17 @@ Public Class Clientes
                 con.Open()
                 If opcion = 1 Then
                     If ClienteProveedor = "Cliente" Then
-                        'resp = guardarconsecutivo("Cliente", codigo)
                         cmd.CommandText = "insert into clientes (Nombre, Direccion, CedulaRUC) values('" & txtnombre.Text & "','" & txtdireccion.Text & "','" & txtcedruc.Text & "')"
+
+                        'resp = guardarconsecutivo("Cliente", codigo)
+
                     Else
                         '    'resp = guardarconsecutivo("Proveedor", codigo)
                         '    cmd.CommandText = "insert into Proveedores values('" & txtcodigo.Text &
                         '"','" & txtnombre.Text & "','" & txtdireccion.Text & "','" & txtcedruc.Text & "')"
 
                     End If
+
                 ElseIf opcion = 2 Then
                     If ClienteProveedor = "Cliente" Then
                         cmd.CommandText = "update clientes set Nombre = '" & txtnombre.Text & "', Direccion = '" &

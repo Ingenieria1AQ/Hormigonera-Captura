@@ -50,7 +50,6 @@ Public Class Mixers
                 cmd.Connection = con
                 con.Open()
                 If opcion = 1 Then
-
                     cmd.CommandText = "insert into Mixers (Placa,NombreMixer) values('" & txtPlaca.Text & "','" & txtNombreMixer.Text & "')"
 
                 ElseIf opcion = 2 Then

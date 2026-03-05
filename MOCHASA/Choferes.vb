@@ -41,21 +41,21 @@ Public Class Choferes
                 con.Open()
                 If opcion = 1 Then
                     'resp = guardarconsecutivo("Chofer", codigo)
-                    If sConnString.IndexOf(".mdb") >= 0 Then
-                        cmd.CommandText = "insert into Choferes (Nombre, Cedula, ChoferEmpresa, Habilitado) values('" & txtnombre.Text & "','" & txtcedula.Text & "'," & cbChoferEmpresa.Checked & "," & cbHabilitado.Checked & ")"
-                    Else
-                        cmd.CommandText = "insert into Choferes values('" & txtcodigo.Text &
-                      "','" & txtnombre.Text & "','" & txtcedula.Text & "'," & IIf(cbChoferEmpresa.Checked, 1, 0) & "," & IIf(cbHabilitado.Checked, 1, 0) & ")"
-                    End If
-
+                    Select Case Variables.tipoBD
+                        Case "ACCESS"
+                            cmd.CommandText = "insert into Choferes (Nombre, Cedula, ChoferEmpresa, Habilitado) values('" & txtnombre.Text & "','" & txtcedula.Text & "'," & cbChoferEmpresa.Checked & "," & cbHabilitado.Checked & ")"
+                        Case "SQLSERVER"
+                            cmd.CommandText = "insert into Choferes values('" & txtnombre.Text & "','" & txtcedula.Text & "'," & IIf(cbChoferEmpresa.Checked, 1, 0) & "," & IIf(cbHabilitado.Checked, 1, 0) & ")"
+                    End Select
                 ElseIf opcion = 2 Then
-                    If sConnString.IndexOf(".mdb") >= 0 Then
-                        cmd.CommandText = "update Choferes set Nombre = '" & txtnombre.Text & "', Cedula = '" & txtcedula.Text & "', ChoferEmpresa =" & cbChoferEmpresa.Checked & ", Habilitado =" & cbHabilitado.Checked & "" &
+                    Select Case Variables.tipoBD
+                        Case "ACCESS"
+                            cmd.CommandText = "update Choferes set Nombre = '" & txtnombre.Text & "', Cedula = '" & txtcedula.Text & "', ChoferEmpresa =" & cbChoferEmpresa.Checked & ", Habilitado =" & cbHabilitado.Checked & "" &
                                        " Where CodChofer = '" & txtcodigo.Text & "'"
-                    Else
-                        cmd.CommandText = "update Choferes set Nombre = '" & txtnombre.Text & "', Cedula = '" & txtcedula.Text & "', ChoferEmpresa =" & iif(cbChoferEmpresa.Checked,1,0) & ", Habilitado =" & IIf(cbHabilitado.Checked, 1, 0) & "" &
+                        Case "SQLSERVER"
+                            cmd.CommandText = "update Choferes set Nombre = '" & txtnombre.Text & "', Cedula = '" & txtcedula.Text & "', ChoferEmpresa =" & IIf(cbChoferEmpresa.Checked, 1, 0) & ", Habilitado =" & IIf(cbHabilitado.Checked, 1, 0) & "" &
                                   " Where CodChofer = '" & txtcodigo.Text & "'"
-                    End If
+                    End Select
 
                 End If
                 If resp = 1 Then

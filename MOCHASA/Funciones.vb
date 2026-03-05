@@ -584,6 +584,29 @@ Module Funciones
             Application.Exit()
         End If
     End Sub
+    Public Function ObtenerTipoBaseDatos(ByVal cadenaConexion As String) As String
+
+        If String.IsNullOrWhiteSpace(cadenaConexion) Then
+            Return "DESCONOCIDO"
+        End If
+
+        Dim conn As String = cadenaConexion.ToLower()
+
+        'Detectar Access
+        If conn.Contains("microsoft.ace.oledb") Or conn.Contains("microsoft.jet.oledb") _
+       Or conn.Contains(".mdb") Or conn.Contains(".accdb") Then
+            Return "ACCESS"
+        End If
+
+        'Detectar SQL Server
+        If conn.Contains("sqloledb") Or conn.Contains("sqlclient") _
+       Or conn.Contains("initial catalog") Or conn.Contains("data source=") Then
+            Return "SQLSERVER"
+        End If
+
+        Return "DESCONOCIDO"
+
+    End Function
 
     Public Sub LeerSerie(SP As SerialPort, Btt_ReCon As Button, Lb_Estado As Label, Lb_Peso As Label, Temporizador As System.Windows.Forms.Timer, Indicador As String, tipo As Integer)
         Try

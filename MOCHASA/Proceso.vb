@@ -1237,30 +1237,50 @@ Public Class Proceso
     End Sub
 
     Private Sub Btt_BuscarOrdDespacho_Click(sender As Object, e As EventArgs) Handles Btt_BuscarOrdDespacho.Click
-        ID_OrdenDespacho = Txt_CodOrdenDespacho.Text
-        If ID_OrdenDespacho = String.Empty Then
-            Rtx_Mensajes.AppendColoredText("Ingrese el número de la órden de despacho " & Environment.NewLine,
-                Drawing.Color.Red,
-                font_Rtxt)
-            Exit Sub
-        End If
-        ID_ProductoFormula = Obtiene_idProductoxIdOrdenDespacho(ID_OrdenDespacho)
-        CantidadM3 = Obtiene_CantM3xIdOrdenDespacho(ID_OrdenDespacho)
-        Txt_NumM3.Text = CantidadM3.ToString
+        Try
+            ID_OrdenDespacho = Txt_CodOrdenDespacho.Text
+            If ID_OrdenDespacho = String.Empty Then
+                Rtx_Mensajes.AppendColoredText("Ingrese el número de la órden de despacho " & Environment.NewLine,
+                    Drawing.Color.Red,
+                    font_Rtxt)
+                Exit Sub
+            End If
+            ID_ProductoFormula = Obtiene_idProductoxIdOrdenDespacho(ID_OrdenDespacho)
+            CantidadM3 = Obtiene_CantM3xIdOrdenDespacho(ID_OrdenDespacho)
+            Dim Verifica_OD_en_Trans As Boolean = Verifica_OrdenDespacho(ID_OrdenDespacho)
 
-        If ID_ProductoFormula Is String.Empty Then
-            Rtx_Mensajes.AppendColoredText($"No se encuentra la órden de despacho: {ID_OrdenDespacho} " & Environment.NewLine,
-                Drawing.Color.Red,
-                font_Rtxt)
+
+            Txt_NumM3.Text = CantidadM3.ToString
+
+            If CantidadM3 < 1.0 Then
+                Rtx_Mensajes.AppendColoredText("Cantidad de m3 errónea:" & Environment.NewLine,
+                    Drawing.Color.Red,
+                    font_Rtxt)
+                Exit Sub
+            End If
+            If ID_ProductoFormula Is String.Empty Then
+                Rtx_Mensajes.AppendColoredText($"No se encuentra la órden de despacho: {ID_OrdenDespacho} " & Environment.NewLine,
+                    Drawing.Color.Red,
+                    font_Rtxt)
+                Exit Sub
+            End If
+            If Not Verifica_OD_en_Trans Then
+                'Existen datos de la Orden de despacho en la tabla Transacciones
+                MessageBox.Show($"Orden de despacho: {ID_OrdenDespacho} ya fue procesada, seleccione otra Orden de Despacho", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Rtx_Mensajes.AppendColoredText($"Orden de despacho: {ID_OrdenDespacho} ya fue procesada, seleccione otra Orden de Despacho" & Environment.NewLine,
+                    Drawing.Color.Red,
+                    font_Rtxt)
+                Exit Sub
+            End If
+
+            ObtieneFormulaxProducto(ID_ProductoFormula)
+        Catch ex As Exception
+            Rtx_Mensajes.AppendColoredText("Exepción: Buscar Orden Despacho " & vbCrLf & ex.Message & Environment.NewLine,
+                    Drawing.Color.Red,
+                    font_Rtxt)
             Exit Sub
-        End If
-        If CantidadM3 < 1.0 Then
-            Rtx_Mensajes.AppendColoredText("Cantidad de m3 errónea:" & Environment.NewLine,
-                Drawing.Color.Red,
-                font_Rtxt)
-            Exit Sub
-        End If
-        ObtieneFormulaxProducto(ID_ProductoFormula)
+            MessageBox.Show(ex.Message, "Excepción: Buscar Orden Despacho", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub RBtt_CargCemTornillo_CheckedChanged(sender As Object, e As EventArgs) Handles RBtt_CargCemTornillo.CheckedChanged
@@ -1431,6 +1451,35 @@ Public Class Proceso
             MessageBox.Show(ex.Message, "Excepcion Carga Inicial", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Function Verifica_OrdenDespacho(numOrden As String) As Boolean
+        'Consulta si en la tabla de transacciones ya existen registros de esa OP
+        'Si **NO** hay datos retorna --> true y viceversa
+        Dim rpta As Boolean = False
+        Dim dt As New DataTable
+        Try
+            Using connection As New OleDbConnection(sConnString)
+                Using cmd As New OleDbCommand
+                    cmd.Connection = connection
+                    cmd.CommandText = "SELECT COUNT (*) AS Numero
+                                       FROM Transacciones
+                                       WHERE Id_Cabecera = ? "
+                    cmd.Parameters.AddWithValue("?", numOrden)
+                    Using da As New OleDbDataAdapter(cmd)
+                        da.Fill(dt)
+                    End Using
+                    If CInt(dt.Rows(0).Item("Numero")) = 0 Then
+                        rpta = True
+                    Else
+                        rpta = False
+                    End If
+                End Using
+            End Using
+            Return rpta
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Excepcion Obtener Datos de la Orden de Despacho", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
     Private Function Obtiene_idProductoxIdOrdenDespacho(NumOrden As String) As String
         Dim rpta As String = ""
         Dim dt As New DataTable
@@ -1451,11 +1500,13 @@ Public Class Proceso
 
                 End Using
             End Using
+            Return rpta
         Catch ex As Exception
+            Return ""
             MessageBox.Show(ex.Message, "Excepcion Obtener Datos de la Orden de Despacho", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-        Return rpta
     End Function
+
     Private Function Obtiene_CantM3xIdOrdenDespacho(NumOrden As String) As Double
         Dim rpta As Double = 1.0
         Dim dt As New DataTable

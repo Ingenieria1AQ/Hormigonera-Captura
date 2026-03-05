@@ -162,7 +162,7 @@ Public Class DatosDespacho
             'End If
         End If
         If egresoingreso = "INGRESO" Then
-            Label2.Text = "Proveedor:"
+            Label2.Text = "Cliente:"
         End If
     End Sub
 
@@ -477,9 +477,10 @@ Public Class DatosDespacho
             cmd.Connection = con
 
             cmd.CommandText = "INSERT INTO CabeceraTransacciones ( Id, Tipo, CodOperador, Fecha, Hora, CodCliente, CodProducto, Documento, CodChofer, Observaciones, NetoM3, MotTraslado, PtoPartida, PtoLlegada, Obra, idMixer, Eliminado )
-values ('" & IdTran & "','" & Tipo & "','" & CodOperador & "','" & (Fecha) & "','" & Fecha & " " & Hora & "','" & CodCliente & "','" &
-         CodProducto & " ','" & Documento & "','" & CodChofer & "','" & Observaciones & "'," & NetoM3.Trim & ",'" & MotTraslado &
-         "','" & PtoPartida & "','" & PtoLlegada & "','" & Obra & "'," & idMixer & "," & IIf(eliminado, 1, 0) & ")"
+            values ('" & IdTran & "','" & Tipo & "','" & CodOperador & "','" & (Fecha) & "','" & Fecha & " " & Hora & "','" & CodCliente & "','" &
+            CodProducto & " ','" & Documento & "','" & CodChofer & "','" & Observaciones & "'," & NetoM3.Trim & ",'" & MotTraslado &
+            "','" & PtoPartida & "','" & PtoLlegada & "','" & Obra & "'," & idMixer & "," & IIf(eliminado, 1, 0) & ")"
+
             'La fecha no tiene conversion en MYSQL, entra YYYY-MM-DD HH:MM:SS
 
             'MessageBox.Show(cmd.CommandText)

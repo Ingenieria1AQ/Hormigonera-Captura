@@ -116,7 +116,7 @@ Public Class listas
 
     Private Sub Salir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Salir.Click
         Dim respuesta As Integer
-        If tipooperador = "Administrador" Then
+        If tipoOperador = "ADMINISTRADOR" Then
             respuesta = MsgBox("Desea guardar los cambios antes de salir?", MsgBoxStyle.YesNo)
             If respuesta = 6 Then
                 Call actualizardatos()

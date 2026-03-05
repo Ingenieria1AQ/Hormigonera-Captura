@@ -244,7 +244,13 @@ Public Class frmConfiguracion
             Using conection As New OleDbConnection(sConnString)
                 Using cmd As New OleDbCommand
                     cmd.Connection = conection
-                    cmd.CommandText = "SELECT * FROM NumeroTolvasTanques WHERE usaSerial=true"
+
+                    Select Case Variables.tipoBD
+                        Case "ACCESS"
+                            cmd.CommandText = "SELECT * FROM NumeroTolvasTanques WHERE usaSerial=true"
+                        Case "SQLSERVER"
+                            cmd.CommandText = "SELECT * FROM NumeroTolvasTanques WHERE usaSerial=1"
+                    End Select
                     Using da As New OleDbDataAdapter(cmd)
                         da.Fill(dt)
                     End Using

@@ -6,6 +6,8 @@ Module Variables
     Public sConnString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\BDDMolinos.mdb;Persist Security Info=False"
     Public cadenaseleccion As String
     'AQ
+    Public tipoBD As String = "ACCESS" 'puede ser ACCESS o SQLSERVER 
+
     Public filtroOrdenDespachor As String
     Public filtrofechasr As String
     Public filtrooperadorr As String

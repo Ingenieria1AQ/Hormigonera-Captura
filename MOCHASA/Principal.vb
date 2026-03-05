@@ -120,7 +120,7 @@ Public Class Principal
     End Sub
 
     Private Sub btnEOperadores_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEOperadores.Click
-        If tipoOperador.Equals("Administrador") Then
+        If tipoOperador.Equals("ADMINISTRADOR") Then
             frmOperadores.TopLevel = False
             Panel2.Controls.Add(frmOperadores)
             frmOperadores.Show()

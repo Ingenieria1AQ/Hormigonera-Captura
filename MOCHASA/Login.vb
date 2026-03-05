@@ -28,6 +28,7 @@ Public Class Login
             line = sr.ReadLine()
             If Not line Is Nothing Then 'Verificar que la linea contiene datos
                 sConnString = line.Trim
+                Variables.tipoBD = Funciones.ObtenerTipoBaseDatos(sConnString)
             Else
                 MessageBox.Show("Defina la cadena de conexión" & vbCr & "Consulte al administrador del sistema", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 sr.Close()
@@ -72,6 +73,7 @@ Public Class Login
             MessageBox.Show("Ingrese Usuario y Clave", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
+
         'Consulta de parametros de login--> Usuario y Clave
         'Dim cmdtxt As String
         'Comando SQL Server
@@ -89,13 +91,25 @@ Public Class Login
         'Comando SQL ACCESS
         'cmdtxt = "SELECT * FROM Operadores
         '          WHERE StrComp(codOperador,'" & Txt_Usuario.Text & "',0)=0 AND StrComp(claveOperador,'" & Txt_Clave.Text & "',0)=0 AND estadoOperador= true"
-
+        Dim comandText As String = ""
         Try
+            Select Case Variables.tipoBD
+                Case "ACCESS"
+                    comandText = "SELECT * FROM Operadores
+                            WHERE StrComp(codOperador,?,0)=0 AND 
+                            StrComp(claveOperador,?,0)=0 AND
+                            estadoOperador= true"
+                Case "SQLSERVER"
+                    comandText = "SELECT * FROM Operadores
+                            WHERE codOperador = ?
+                            AND claveOperador = ?
+                            AND estadoOperador = 1"
+            End Select
+
             Using conection As New OleDbConnection(sConnString)
                 Using cmdd As New OleDbCommand
                     cmdd.Connection = conection
-                    cmdd.CommandText = "SELECT * FROM Operadores
-                  WHERE StrComp(codOperador,?,0)=0 AND StrComp(claveOperador,?,0)=0 AND estadoOperador= true"
+                    cmdd.CommandText = comandText
 
                     cmdd.Parameters.AddWithValue("?", Txt_Usuario.Text)
                     cmdd.Parameters.AddWithValue("?", Txt_Clave.Text)
