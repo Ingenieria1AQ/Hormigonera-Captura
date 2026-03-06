@@ -268,18 +268,49 @@ Public Class frmFormulas
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Try
             Dim i As Integer
-            Dim total As Double = 0
+            Dim totalMasa As Double = 0
+            Dim densidadProducto As Double
+            Dim masa As Double
+            Dim volumenAcumulado As Double = 0
+            Dim volumen As Double
             For i = 0 To Me.DataGridView1.Rows.Count - 1
-                total = total + Me.DataGridView1.Rows(i).Cells(2).Value
-
+                masa = Me.DataGridView1.Rows(i).Cells(2).Value
+                totalMasa += masa
+                densidadProducto = Obtiene_Densidad_Ingrediente(Me.DataGridView1.Rows(i).Cells(1).Value)
+                volumen = masa / densidadProducto
+                volumenAcumulado += volumen
             Next
-            txttotal.Text = total
+            txttotal.Text = totalMasa
+            txttotalM3.Text = volumenAcumulado.ToString("N3")
         Catch ex As Exception
             MessageBox.Show("Error:" & ex.Message)
         End Try
 
     End Sub
-
+    Private Function Obtiene_Densidad_Ingrediente(idIngrediente As String) As Double
+        Try
+            Dim densidad As Double = 1000.0
+            Dim dt As New DataTable
+            Using connection As New OleDbConnection(sConnString)
+                Using cmd As New OleDbCommand
+                    cmd.Connection = connection
+                    cmd.CommandText = "SELECT Densidad From Ingredientes
+                                        WHERE Id_ingrediente= ? "
+                    cmd.Parameters.AddWithValue("?", idIngrediente)
+                    Using da As New OleDbDataAdapter(cmd)
+                        da.Fill(dt)
+                    End Using
+                    If dt.Rows.Count > 0 Then
+                        densidad = Convert.ToDouble(dt.Rows(0).Item("Densidad"))
+                    End If
+                End Using
+            End Using
+            Return densidad
+        Catch ex As Exception
+            MessageBox.Show("Error:" & ex.Message, "Excepción: Obtener Densidad de Ingrediente", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return 1000.0
+        End Try
+    End Function
     Private Sub Btt_Env_AgregFormulas_Click(sender As Object, e As EventArgs) Handles Btt_Env_AgregFormulas.Click
         Btt_Env_AgregFormulas.Enabled = False
         Btt_Env_ReempFormulas.Enabled = False
@@ -454,6 +485,8 @@ Public Class frmFormulas
 
     Private Sub cmbproductos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbproductos.SelectedIndexChanged
         Actualizar_Formula_DG()
+        txttotal.Text = ""
+        txttotalM3.Text = ""
     End Sub
 
     Private Function ValidarIngresoCoeficientes() As Boolean

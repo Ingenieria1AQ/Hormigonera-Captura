@@ -71,6 +71,7 @@ Partial Class frmOperadores
         Me.Importar.Text = "Importar"
         Me.Importar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Importar.UseVisualStyleBackColor = True
+        Me.Importar.Visible = False
         '
         'Enviar
         '
@@ -144,6 +145,7 @@ Partial Class frmOperadores
         Me.Eliminart.Text = "   Eliminar Todos"
         Me.Eliminart.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Eliminart.UseVisualStyleBackColor = True
+        Me.Eliminart.Visible = False
         '
         'Label2
         '

@@ -118,7 +118,7 @@ Public Class DatosDespacho
 
         'datos por defecto
         lbltipo.Text = egresoingreso
-        lbloperador.Text = nomoperador
+        lbloperador.Text = Variables.nomOperador
         codCliente.Text = ""
         nomCliente.Text = ""
         codProducto.Text = ""

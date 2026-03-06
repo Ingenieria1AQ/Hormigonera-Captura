@@ -39,6 +39,9 @@ Partial Class frmFormulas
         Me.btnsalir = New System.Windows.Forms.Button()
         Me.btnGuardar = New System.Windows.Forms.Button()
         Me.Btt_GuardarFormula = New System.Windows.Forms.Button()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txttotalM3 = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -142,7 +145,7 @@ Partial Class frmFormulas
         '
         Me.txttotal.Location = New System.Drawing.Point(405, 300)
         Me.txttotal.Name = "txttotal"
-        Me.txttotal.Size = New System.Drawing.Size(116, 20)
+        Me.txttotal.Size = New System.Drawing.Size(95, 20)
         Me.txttotal.TabIndex = 31
         '
         'Label5
@@ -206,7 +209,7 @@ Partial Class frmFormulas
         '
         Me.btnGuardar.Image = Global.HORMIGONERA.My.Resources.Resources.application_put
         Me.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnGuardar.Location = New System.Drawing.Point(377, 342)
+        Me.btnGuardar.Location = New System.Drawing.Point(180, 342)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(144, 44)
         Me.btnGuardar.TabIndex = 22
@@ -227,11 +230,39 @@ Partial Class frmFormulas
         Me.Btt_GuardarFormula.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Btt_GuardarFormula.UseVisualStyleBackColor = True
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(506, 303)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(19, 13)
+        Me.Label6.TabIndex = 37
+        Me.Label6.Text = "kg"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(506, 329)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(21, 13)
+        Me.Label7.TabIndex = 39
+        Me.Label7.Text = "m3"
+        '
+        'txttotalM3
+        '
+        Me.txttotalM3.Location = New System.Drawing.Point(405, 326)
+        Me.txttotalM3.Name = "txttotalM3"
+        Me.txttotalM3.Size = New System.Drawing.Size(95, 20)
+        Me.txttotalM3.TabIndex = 38
+        '
         'frmFormulas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(639, 539)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.txttotalM3)
+        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Btt_GuardarFormula)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Txt_Estado)
@@ -277,4 +308,7 @@ Partial Class frmFormulas
     Friend WithEvents Label5 As Label
     Friend WithEvents Txt_Estado As TextBox
     Friend WithEvents Btt_GuardarFormula As Button
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents txttotalM3 As TextBox
 End Class

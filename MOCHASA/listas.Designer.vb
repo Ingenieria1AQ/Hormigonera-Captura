@@ -31,9 +31,9 @@ Partial Class listas
         Me.RadioButton6 = New System.Windows.Forms.RadioButton()
         Me.RadioButton4 = New System.Windows.Forms.RadioButton()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Salir = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.btnSeleccionar = New System.Windows.Forms.Button()
+        Me.Salir = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -48,6 +48,7 @@ Partial Class listas
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Location = New System.Drawing.Point(2, 3)
         Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.Size = New System.Drawing.Size(530, 396)
         Me.DataGridView1.TabIndex = 0
         '
@@ -161,20 +162,6 @@ Partial Class listas
         Me.TextBox1.Size = New System.Drawing.Size(181, 20)
         Me.TextBox1.TabIndex = 27
         '
-        'Salir
-        '
-        Me.Salir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Salir.Image = Global.HORMIGONERA.My.Resources.Resources._131885___close_door_exit_log_out_logout_user_logout
-        Me.Salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Salir.Location = New System.Drawing.Point(538, 288)
-        Me.Salir.Name = "Salir"
-        Me.Salir.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Salir.Size = New System.Drawing.Size(125, 40)
-        Me.Salir.TabIndex = 6
-        Me.Salir.Text = "Salir"
-        Me.Salir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Salir.UseVisualStyleBackColor = True
-        '
         'Button4
         '
         Me.Button4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -202,6 +189,20 @@ Partial Class listas
         Me.btnSeleccionar.Text = "Seleccionar"
         Me.btnSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnSeleccionar.UseVisualStyleBackColor = True
+        '
+        'Salir
+        '
+        Me.Salir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Salir.Image = Global.HORMIGONERA.My.Resources.Resources._131885___close_door_exit_log_out_logout_user_logout
+        Me.Salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Salir.Location = New System.Drawing.Point(538, 288)
+        Me.Salir.Name = "Salir"
+        Me.Salir.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Salir.Size = New System.Drawing.Size(125, 40)
+        Me.Salir.TabIndex = 6
+        Me.Salir.Text = "Salir"
+        Me.Salir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Salir.UseVisualStyleBackColor = True
         '
         'listas
         '
