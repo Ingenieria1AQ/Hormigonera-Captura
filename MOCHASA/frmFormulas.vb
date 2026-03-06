@@ -200,7 +200,8 @@ Public Class frmFormulas
             oOleDbConnection.Open()
 
         Catch ex As Exception
-            MsgBox(ex.Message, "::Error en conexión::")
+            'MsgBox(ex.Message, "::Error en conexión::")
+            MessageBox.Show(ex.Message, "Error en conexión")
             Exit Sub
         End Try
 
@@ -440,14 +441,15 @@ Public Class frmFormulas
             Using conection As New OleDbConnection(sConnString)
                 Using cmd As New OleDbCommand
                     cmd.Connection = conection
-                    cmd.CommandText = "DELETE * FROM DetalleFormulas where id_formula=?"
+                    cmd.CommandText = "DELETE FROM DetalleFormulas where id_formula= ? "
                     cmd.Parameters.AddWithValue("?", cmbproductos.SelectedValue.ToString)
                     conection.Open()
                     cmd.ExecuteNonQuery()
                 End Using
             End Using
         Catch ex As Exception
-            MsgBox(ex.Message, "::Error Eliminar Detalle Fórmula::")
+            'MsgBox(ex.Message, "::Error Eliminar Detalle Fórmula::")
+            MessageBox.Show(ex.Message, "Excepcion: Eliminar Detalle Fórmula")
             Exit Sub
         End Try
         Try
@@ -478,7 +480,8 @@ Public Class frmFormulas
             MessageBox.Show("Proceso Finalizado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         Catch ex As Exception
-            MsgBox(ex.Message, "::Error Registrar Fórmula::")
+            MessageBox.Show(ex.Message, "::Error Registrar Fórmula::")
+            'MsgBox(ex.Message, "::Error Registrar Fórmula::")
             Exit Sub
         End Try
     End Sub

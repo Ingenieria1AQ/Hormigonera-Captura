@@ -42,6 +42,7 @@ Partial Class frmFormulas
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.txttotalM3 = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -145,6 +146,7 @@ Partial Class frmFormulas
         '
         Me.txttotal.Location = New System.Drawing.Point(405, 300)
         Me.txttotal.Name = "txttotal"
+        Me.txttotal.ReadOnly = True
         Me.txttotal.Size = New System.Drawing.Size(95, 20)
         Me.txttotal.TabIndex = 31
         '
@@ -209,7 +211,7 @@ Partial Class frmFormulas
         '
         Me.btnGuardar.Image = Global.HORMIGONERA.My.Resources.Resources.application_put
         Me.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnGuardar.Location = New System.Drawing.Point(180, 342)
+        Me.btnGuardar.Location = New System.Drawing.Point(304, 218)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(144, 44)
         Me.btnGuardar.TabIndex = 22
@@ -252,14 +254,26 @@ Partial Class frmFormulas
         '
         Me.txttotalM3.Location = New System.Drawing.Point(405, 326)
         Me.txttotalM3.Name = "txttotalM3"
+        Me.txttotalM3.ReadOnly = True
         Me.txttotalM3.Size = New System.Drawing.Size(95, 20)
         Me.txttotalM3.TabIndex = 38
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.BackColor = System.Drawing.SystemColors.Info
+        Me.Label8.Location = New System.Drawing.Point(346, 349)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(155, 39)
+        Me.Label8.TabIndex = 40
+        Me.Label8.Text = "* Nota:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "La fórmula debe crearse para " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "obtener la equivalencia a 1m^3"
         '
         'frmFormulas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(639, 539)
+        Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.txttotalM3)
         Me.Controls.Add(Me.Label6)
@@ -311,4 +325,5 @@ Partial Class frmFormulas
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents txttotalM3 As TextBox
+    Friend WithEvents Label8 As Label
 End Class

@@ -201,15 +201,24 @@ Public Class Proceso
             End If
             PLC_LOGO.IPAddress = DirPLC
             PLC_LOGO.Port = PuertoPLC
-            PLC_LOGO.SerialPort = Nothing
+            'PLC_LOGO.SerialPort = Nothing
+
+            PLC_LOGO.ConnectionTimeout = 1000
+            'Registrar evento de cambio de conexion
             PLC_LOGO.Connect()
             If PLC_LOGO.Connected Then
                 Lbl_Est_Conn.Text = "Conectado"
                 Lbl_Est_Conn.ForeColor = Color.Green
+                Btt_ReconectaPLC.Enabled = False
+                flagConfigPLC = True
+                Pil_PLC.DiscreteValue1 = True
                 rpta = True
             Else
                 Lbl_Est_Conn.Text = "Desconectado"
                 Lbl_Est_Conn.ForeColor = Color.Red
+                Btt_ReconectaPLC.Enabled = True
+                flagConfigPLC = False
+                Pil_PLC.DiscreteValue1 = False
             End If
         Catch ex As Exception
             Rtx_Mensajes.AppendColoredText(
@@ -306,7 +315,15 @@ Public Class Proceso
             litros = Block_lectura_HR(Variables.dir_ContadorFlujometro) * FactorAgua
             Lbl_Agua.Text = litros.ToString("N2") 'Litros con 2 decimales
         Catch ex As Exception
-
+            If PLC_LOGO.Connected Then
+                PLC_LOGO.Disconnect()
+            End If
+            Lbl_Est_Conn.Text = "Desconectado"
+            Lbl_Est_Conn.ForeColor = Color.Red
+            Btt_ReconectaPLC.Enabled = True
+            Tim_ReadHR.Enabled = False
+            flagConfigPLC = False
+            Pil_PLC.DiscreteValue1 = False
         End Try
     End Sub
 
@@ -1336,6 +1353,14 @@ Public Class Proceso
                 font_Rtxt)
         Tim_DescargaT2.Enabled = True
     End Sub
+
+    Private Sub Proceso_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        'Valida que no se cierre la venta si la dosificacion esta activa
+        'If running = True Then
+        '    e.Cancel = False
+        'End If
+    End Sub
+
     Private Async Sub FinDescargaParcialT2()
         flagFinParcialTolv2 = True
         PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol2, False)
