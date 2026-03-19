@@ -2934,7 +2934,6 @@ Partial Class Proceso
         Me.Controls.Add(Me.Panel2)
         Me.Name = "Proceso"
         Me.Text = "Proceso"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Bomba, System.ComponentModel.ISupportInitialize).EndInit()

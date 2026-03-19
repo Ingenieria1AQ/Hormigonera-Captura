@@ -3,6 +3,8 @@ Imports System.Data.OleDb
 Imports System.IO
 
 Public Class Principal
+    Private ListaFormularios(12) As String
+
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Application.EnableVisualStyles()
         Control.CheckForIllegalCrossThreadCalls = False
@@ -40,6 +42,22 @@ Public Class Principal
                 Gb_Formulacion.Visible = False
                 Btt_Proceso.Visible = True
         End Select
+
+        'Llenar Lista con los nombres de los formularios para que solo un formulario se encuntre abierto
+        ListaFormularios(0) = "Proceso"
+        ListaFormularios(1) = "frmOperadores"
+        ListaFormularios(2) = "Clientes"
+        ListaFormularios(3) = "Choferes"
+        ListaFormularios(4) = "Mixers"
+        ListaFormularios(5) = "DatosDespacho"
+        ListaFormularios(6) = "frmProductos"
+        ListaFormularios(7) = "frmIngredientes"
+        ListaFormularios(8) = "frmFormulas"
+        ListaFormularios(9) = "frmConfiguracion"
+        ListaFormularios(10) = "ConfigEmpresa"
+        ListaFormularios(11) = "frmReportes"
+
+
         '700%sMAEST%e             P700.    DBNam MAEST
         '701%s80.5%e              P701.80  Col01 nomoperador
         '702%s80.1%e              P702.80  Col02 Hora
@@ -98,51 +116,42 @@ Public Class Principal
 
     Private Sub btnEIngredientes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEIngredientes.Click
         ' frmIngredientes.Show()
-        If Funciones.IsFormOpen("frmFormulas") Then
-            MessageBox.Show("Otro formulario está abierto, por favor cierre para iniciar otra ventana.")
-            Exit Sub
+        If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
+            frmIngredientes.TopLevel = False
+            Panel2.Controls.Add(frmIngredientes)
+            frmIngredientes.Show()
         End If
-        If Funciones.IsFormOpen("frmObtenerDatos") Then
-            MessageBox.Show("Otro formulario está abierto, por favor cierre para iniciar otra ventana.")
-            Exit Sub
-        End If
-        If Funciones.IsFormOpen("frmOperadores") Then
-            MessageBox.Show("Otro formulario está abierto, por favor cierre para iniciar otra ventana.")
-            Exit Sub
-        End If
-        If Funciones.IsFormOpen("frmProductos") Then
-            MessageBox.Show("Otro formulario está abierto, por favor cierre para iniciar otra ventana.")
-            Exit Sub
-        End If
-        frmIngredientes.TopLevel = False
-        Panel2.Controls.Add(frmIngredientes)
-        frmIngredientes.Show()
     End Sub
 
     Private Sub btnEOperadores_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEOperadores.Click
-        If tipoOperador.Equals("ADMINISTRADOR") Then
-            frmOperadores.TopLevel = False
-            Panel2.Controls.Add(frmOperadores)
-            frmOperadores.Show()
-        Else
-            MessageBox.Show("No tiene autorización para continuar", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
+            If tipoOperador.Equals("ADMINISTRADOR") Then
+                frmOperadores.TopLevel = False
+                Panel2.Controls.Add(frmOperadores)
+                frmOperadores.Show()
+            Else
+                MessageBox.Show("No tiene autorización para continuar", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+        End If
+    End Sub
+
+    Private Sub btnEProductos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEProductos.Click
+        If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
+            frmProductos.TopLevel = False
+            Panel2.Controls.Add(frmProductos)
+            frmProductos.Show()
         End If
 
     End Sub
 
-    Private Sub btnEProductos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEProductos.Click
-        frmProductos.TopLevel = False
-        Panel2.Controls.Add(frmProductos)
-        frmProductos.Show()
-    End Sub
-
     Private Sub btnformulas_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnformulas.Click
+
         Try
-
-            frmFormulas.TopLevel = False
-            Panel2.Controls.Add(frmFormulas)
-            frmFormulas.Show()
-
+            If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
+                frmFormulas.TopLevel = False
+                Panel2.Controls.Add(frmFormulas)
+                frmFormulas.Show()
+            End If
         Catch ex As Exception
 
         End Try
@@ -155,24 +164,40 @@ Public Class Principal
 
 
     Private Sub btnReportes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReportes.Click
-        frmReportes.TopLevel = False
-        Panel2.Controls.Add(frmReportes)
-        frmReportes.Show()
+        If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
+            frmReportes.TopLevel = False
+            Panel2.Controls.Add(frmReportes)
+            frmReportes.Show()
+        End If
+
     End Sub
 
     Private Sub Btt_Proceso_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btt_Proceso.Click
-        Proceso.TopLevel = False
-        Panel2.Controls.Add(Proceso)
-        Proceso.Show()
+        If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
+            Panel2.Controls.Clear()
+            Dim frm As New Proceso
+            frm.TopLevel = False
+            frm.FormBorderStyle = FormBorderStyle.None
+            frm.Dock = DockStyle.Fill
+
+            Panel2.Controls.Add(frm)
+            frm.BringToFront()
+            frm.Show()
+            frm.Dock = DockStyle.None
+            frm.Dock = DockStyle.Fill
+        End If
         'frmObtenerDatos.TopLevel = False
         'Panel2.Controls.Add(frmObtenerDatos)
         'frmObtenerDatos.Show()
     End Sub
 
     Private Sub btt_Con_Indicador_Click(sender As Object, e As EventArgs) Handles btt_Con_Indicador.Click
-        frmConfiguracion.TopLevel = False
-        Panel2.Controls.Add(frmConfiguracion)
-        frmConfiguracion.Show()
+        If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
+            frmConfiguracion.TopLevel = False
+            Panel2.Controls.Add(frmConfiguracion)
+            frmConfiguracion.Show()
+        End If
+
     End Sub
 
     Private Sub Tmr_LeeCamara_Tick(sender As Object, e As EventArgs) Handles Tmr_LeeCamara.Tick
@@ -186,36 +211,43 @@ Public Class Principal
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Clientes.TopLevel = False
-        Panel2.Controls.Add(Clientes)
-        Clientes.Show()
+        If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
+            Clientes.TopLevel = False
+            Panel2.Controls.Add(Clientes)
+            Clientes.Show()
+        End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Choferes.TopLevel = False
-        Panel2.Controls.Add(Choferes)
-        Choferes.Show()
+        If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
+            Choferes.TopLevel = False
+            Panel2.Controls.Add(Choferes)
+            Choferes.Show()
+        End If
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Mixers.TopLevel = False
-        Panel2.Controls.Add(Mixers)
-        Mixers.Show()
+        If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
+            Mixers.TopLevel = False
+            Panel2.Controls.Add(Mixers)
+            Mixers.Show()
+        End If
     End Sub
 
     Private Sub Btt_OP_Click(sender As Object, e As EventArgs) Handles Btt_OP.Click
-        Try
+        If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
             DatosDespacho.TopLevel = False
             Panel2.Controls.Add(DatosDespacho)
             DatosDespacho.Show()
-        Catch ex As Exception
-
-        End Try
+        End If
     End Sub
 
     Private Sub Btt_Empresa_Click(sender As Object, e As EventArgs) Handles Btt_Empresa.Click
-        ConfigEmpresa.TopLevel = False
-        Panel2.Controls.Add(ConfigEmpresa)
-        ConfigEmpresa.Show()
+        If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
+            ConfigEmpresa.TopLevel = False
+            Panel2.Controls.Add(ConfigEmpresa)
+            ConfigEmpresa.Show()
+        End If
+
     End Sub
 End Class

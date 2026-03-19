@@ -77,18 +77,21 @@ Module Variables
     Public Const coil_BombaAgua As Integer = 76                  'Registro 9.4
     Public Const coil_CargaCem2_Tornillo As Integer = 77         'Registro 9.5
 
-    '--
-    Public Const dir_coil_Arranque As Integer = 1
-    Public Const dir_coil_Bomba As Integer = 4
-    Public Const dir_coil_DescT1 As Integer = 5
-    Public Const dir_coil_DescT2 As Integer = 6
-    Public Const dir_coil_CargaCem As Integer = 7
-    Public Const dir_coil_DescCem As Integer = 8
-    Public Const dir_coil_Banda As Integer = 9
+    '--DIGITAL OUTPUTS
+    Public Const dir_coil_Banda As Integer = 1
+    Public Const dir_coil_CierraPiedra As Integer = 2
+    Public Const dir_coil_AbrePiedra As Integer = 3
+    Public Const dir_coil_CierraArena As Integer = 4
+    Public Const dir_coil_AbreArena As Integer = 9
+    Public Const dir_coil_CargaCem_Com As Integer = 10
+    Public Const dir_coil_DescCem_Tor As Integer = 11
+    Public Const dir_coil_DescCem_Com As Integer = 12
+    Public Const dir_coil_Bomba As Integer = 5
+    Public Const dir_coil_CargaCem_Tor As Integer = 6
 
     '--Holding Registers
     Public Const dir_ContadorFlujometro As Integer = 0
-    Public Const dir_LitrosFlujometro As Integer = 2
+
     '--Input Register
     Public Const dir_TiempoFalla As Integer = 1
 

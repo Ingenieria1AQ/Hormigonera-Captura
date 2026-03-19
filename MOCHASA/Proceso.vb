@@ -95,7 +95,7 @@ Public Class Proceso
     '*-*-*-*-**-*-*-*-*-*-*-*
     Private Sub Proceso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Obtener variables de la tabla de configuracion
-
+        Me.WindowState = WindowState.Maximized
         Principal.Panel1.Visible = False
         Lbl_Info.Text = String.Empty
         Lbl_NombreFormula.Text = String.Empty
@@ -326,6 +326,54 @@ Public Class Proceso
             Pil_PLC.DiscreteValue1 = False
         End Try
     End Sub
+    Private Sub ReadCoils()
+        Try
+            If PLC_LOGO.Connected Then
+                Block_lectura_Coils = PLC_LOGO.ReadCoils(0, 12)
+                ProcesaCoils()
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub ProcesaCoils()
+        Dim banda, cierraPiedra, abrePiedra, cierraArena, abreArena, cargaCem_Compuerta, cargaCem_Tornillo,
+        descargaCem_Comp, bomba, descargaCem_Tornillo As Boolean
+        'Lectura de estado de las salidas del PLC
+        banda = Block_lectura_Coils(Variables.dir_coil_Banda)
+        cierraPiedra = Block_lectura_Coils(Variables.dir_coil_CierraPiedra)
+        abrePiedra = Block_lectura_Coils(Variables.dir_coil_AbrePiedra)
+        cierraArena = Block_lectura_Coils(Variables.dir_coil_CierraArena)
+        abreArena = Block_lectura_Coils(Variables.dir_coil_AbreArena)
+        cargaCem_Compuerta = Block_lectura_Coils(Variables.dir_coil_CargaCem_Com)
+        cargaCem_Tornillo = Block_lectura_Coils(Variables.dir_coil_CargaCem_Tor)
+        descargaCem_Comp = Block_lectura_Coils(Variables.dir_coil_DescCem_Com)
+        bomba = Block_lectura_Coils(Variables.dir_coil_Bomba)
+        descargaCem_Tornillo = Block_lectura_Coils(Variables.dir_coil_DescCem_Tor)
+
+        'Representación grafica en los estados de la interfaz
+        Pil_ActivaT1.DiscreteValue1 = abrePiedra
+        Pil_ApagaT1.DiscreteValue1 = cierraPiedra
+        Pil_ActivaT2.DiscreteValue1 = abreArena
+        Pil_ApagaT2.DiscreteValue1 = cierraArena
+        Pil_Banda.DiscreteValue1 = banda
+        Pil_Carga_Cem_Compuerta.DiscreteValue1 = cargaCem_Compuerta
+        Pil_CargaCemTor.DiscreteValue1 = cargaCem_Tornillo
+        Pil_Desc_Cem_Compuerta.DiscreteValue1 = descargaCem_Comp
+        Pil_Desc_Cem_Tornillo.DiscreteValue1 = descargaCem_Tornillo
+
+        'Representación de agua
+        Pil_Bomba.DiscreteValue1 = bomba
+        Sym_Bomba.DiscreteValue1 = bomba
+        Sym_Bomba_G1.DiscreteValue1 = bomba
+        Sym_Bomba_G2.DiscreteValue1 = bomba
+        Sym_Bomba_G3.DiscreteValue1 = bomba
+        Sym_Bomba_G4.DiscreteValue1 = bomba
+        Sym_Bomba_G5.DiscreteValue1 = bomba
+        Sym_Bomba_G6.DiscreteValue1 = bomba
+        Sym_Bomba_G7.DiscreteValue1 = bomba
+    End Sub
 
     Private Sub Tim_ReadHR_Tick(sender As Object, e As EventArgs) Handles Tim_ReadHR.Tick
         ReadHoldingRegister()
@@ -468,17 +516,17 @@ Public Class Proceso
                 font_Rtxt)
         End Try
     End Sub
-    Private Async Sub DetenerTolva1()
-        If PLC_LOGO.Connected Then
-            PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, False)
-            Pil_ActivaT1.DiscreteValue1 = False
-            PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, True)
-            Pil_ApagaT1.DiscreteValue1 = True
-            Await DelayMs(2000)
-            PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, False)
-            Pil_ApagaT1.DiscreteValue1 = False
-        End If
-    End Sub
+    'Private Async Sub DetenerTolva1()
+    '    If PLC_LOGO.Connected Then
+    '        PLC_LOGO.WriteSingleCoil(Variables.coil_Activa_DescargaTol1, False)
+    '        'Pil_ActivaT1.DiscreteValue1 = False
+    '        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, True)
+    '        Pil_ApagaT1.DiscreteValue1 = True
+    '        Await DelayMs(2000)
+    '        PLC_LOGO.WriteSingleCoil(Variables.coil_Desactiva_DescargaTol1, False)
+    '        Pil_ApagaT1.DiscreteValue1 = False
+    '    End If
+    'End Sub
 
     Private Sub Tim_DescargaT2_Tick(sender As Object, e As EventArgs) Handles Tim_DescargaT2.Tick
         Try
@@ -717,15 +765,7 @@ Public Class Proceso
         'Validar que no arranque si la formula marca cero
         If pesoSet4 > 0 Then
             PLC_LOGO.WriteSingleCoil(Variables.coil_BombaAgua, True)
-            Pil_Bomba.DiscreteValue1 = True
-            Sym_Bomba.DiscreteValue1 = True
-            Sym_Bomba_G1.DiscreteValue1 = True
-            Sym_Bomba_G2.DiscreteValue1 = True
-            Sym_Bomba_G3.DiscreteValue1 = True
-            Sym_Bomba_G4.DiscreteValue1 = True
-            Sym_Bomba_G5.DiscreteValue1 = True
-            Sym_Bomba_G6.DiscreteValue1 = True
-            Sym_Bomba_G7.DiscreteValue1 = True
+
         End If
 
         'Activa timer

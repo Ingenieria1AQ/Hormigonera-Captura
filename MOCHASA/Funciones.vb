@@ -396,13 +396,14 @@ Module Funciones
         End Try
     End Function
 
-    Public Function IsFormOpen(_form As String) As Boolean
-
+    'Retorna un true si el nombre de la Lista esta abierto
+    Public Function IsFormOpen(ListaForms As String()) As Boolean
         For Each f As Form In Application.OpenForms
-            'MessageBox.Show(f.Name)
-            If f.Name = _form Then
-                Return True
-            End If
+            For Each lista As String In ListaForms
+                If f.Name = lista Then
+                    Return True
+                End If
+            Next
         Next
         Return False
     End Function

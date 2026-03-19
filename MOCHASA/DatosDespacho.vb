@@ -189,7 +189,7 @@ Public Class DatosDespacho
             If Me.codChofer.Text <> "" And Me.codCliente.Text <> "" And Me.codProducto.Text <> "" And Me.txtidMixer.Text <> "" Then
                 Try
                     'complete = guardartransaccion(lblcomprobante.Text, lbltipo.Text, codOperador, txtfecha.Text, txthora.Text, codCliente.Text, codProducto.Text, txtdocumento.Text, txtPlaca.Text, codChofer.Text, txtobservaciones.Text, txtm3.Text, "", "", "", "", txtidMixer.Text, False)
-                    complete = guardartransaccion(lblcomprobante.Text, "DESPACHO", codOperador, txtfecha.Text, txthora.Text, codCliente.Text, codProducto.Text, txtdocumento.Text, txtPlaca.Text, codChofer.Text, txtobservaciones.Text, NumericM3.Value, "", "", "", "", txtidMixer.Text, False)
+                    complete = guardartransaccion(lblcomprobante.Text, "DESPACHO", codOperador, Date.Today, Date.Now, Convert.ToInt32(codCliente.Text), codProducto.Text, txtdocumento.Text, txtPlaca.Text, Convert.ToInt32(codChofer.Text), txtobservaciones.Text, NumericM3.Value, "", "", "", "", Convert.ToInt32(txtidMixer.Text), False)
                     If complete = 1 Then
                         Dim csave As Integer
                         csave = guardarconsecutivo("Despacho", codigo)
@@ -249,7 +249,8 @@ Public Class DatosDespacho
             End If
         ElseIf tipotrans = "Sale" Then
             If lblcomprobante.Text <> "--" Then
-                complete = actualizartransaccion(lblcomprobante.Text, codCliente.Text, codProducto.Text, txtdocumento.Text, txtPlaca.Text, codChofer.Text, txtobservaciones.Text, NumericM3.Value, "", "", "", "", txtidMixer.Text)
+                'complete = actualizartransaccion(lblcomprobante.Text, codCliente.Text, codProducto.Text, txtdocumento.Text, txtPlaca.Text, codChofer.Text, txtobservaciones.Text, NumericM3.Value, "", "", "", "", txtidMixer.Text)
+                complete = guardartransaccion(lblcomprobante.Text, codCliente.Text, codOperador, Date.Today, Date.Now, Convert.ToInt32(codCliente.Text), codProducto.Text, txtdocumento.Text, txtPlaca.Text, Convert.ToInt32(codChofer.Text), txtobservaciones.Text, NumericM3.Value, "", "", "", "", Convert.ToInt32(txtidMixer.Text), False)
                 If complete = 1 Then
                     Dim swy As StreamWriter = File.AppendText(Application.StartupPath & "\ingresos.txt")
                     swy.WriteLine(lblcomprobante.Text.Trim & "," & codProducto.Text.Trim & "," & codCliente.Text.Trim & "," & codChofer.Text.Trim & "," & Date.Now.ToShortDateString & " " & Date.Now.ToLongTimeString)
@@ -467,34 +468,95 @@ Public Class DatosDespacho
         txthora.Text = CStr(Date.Now.Hour).PadLeft(2, "0") & ":" & CStr(Date.Now.Minute).PadLeft(2, "0") & ":" & CStr(Date.Now.Second).PadLeft(2, "0")
     End Sub
 
-    Public Function guardartransaccion(ByVal IdTran As String, ByVal Tipo As String, ByVal CodOperador As String, ByVal Fecha As String, ByVal Hora As String, ByVal CodCliente As String, ByVal CodProducto As String, ByVal Documento As String, ByVal Placa As String, ByVal CodChofer As String, ByVal Observaciones As String, ByVal NetoM3 As String, ByVal MotTraslado As String, ByVal PtoPartida As String, ByVal PtoLlegada As String, ByVal Obra As String, ByVal idMixer As String, ByVal eliminado As Boolean) As Integer
-        '                                 INSERT INTO CabeceraTransacciones ( Id, Tipo, CodOperador, Fecha, Hora, CodCliente, CodProducto, Documento, Placa, CodChofer, Observaciones, NetoM3, MotTraslado, PtoPartida, PtoLlegada, Obra, idMixer, Eliminado )
-        Dim con As New OleDb.OleDbConnection(sConnString)
-        Dim cmd As OleDb.OleDbCommand
+    'Public Function guardartransaccion(ByVal IdTran As String, ByVal Tipo As String, ByVal CodOperador As String, ByVal Fecha As String, ByVal Hora As String, ByVal CodCliente As String, ByVal CodProducto As String, ByVal Documento As String, ByVal Placa As String, ByVal CodChofer As String, ByVal Observaciones As String, ByVal NetoM3 As String, ByVal MotTraslado As String, ByVal PtoPartida As String, ByVal PtoLlegada As String, ByVal Obra As String, ByVal idMixer As String, ByVal eliminado As Boolean) As Integer
+    '    '                                 INSERT INTO CabeceraTransacciones ( Id, Tipo, CodOperador, Fecha, Hora, CodCliente, CodProducto, Documento, Placa, CodChofer, Observaciones, NetoM3, MotTraslado, PtoPartida, PtoLlegada, Obra, idMixer, Eliminado )
+    '    Dim con As New OleDb.OleDbConnection(sConnString)
+    '    Dim cmd As OleDb.OleDbCommand
+    '    Try
+    '        cmd = New OleDb.OleDbCommand
+    '        con.Open()
+    '        cmd.Connection = con
+
+    '        cmd.CommandText = "INSERT INTO CabeceraTransacciones ( Id, Tipo, CodOperador, Fecha, Hora, CodCliente, CodProducto, Documento, CodChofer, Observaciones, NetoM3, MotTraslado, PtoPartida, PtoLlegada, Obra, idMixer, Eliminado )
+    '        values ('" & IdTran & "','" & Tipo & "','" & CodOperador & "','" & (Fecha) & "','" & Fecha & " " & Hora & "','" & CodCliente & "','" &
+    '        CodProducto & " ','" & Documento & "','" & CodChofer & "','" & Observaciones & "'," & NetoM3.Trim & ",'" & MotTraslado &
+    '        "','" & PtoPartida & "','" & PtoLlegada & "','" & Obra & "'," & idMixer & "," & IIf(eliminado, 1, 0) & ")"
+
+    '        'La fecha no tiene conversion en MYSQL, entra YYYY-MM-DD HH:MM:SS
+
+    '        'MessageBox.Show(cmd.CommandText)
+    '        cmd.ExecuteNonQuery()
+    '        con.Close()
+    '        guardartransaccion = 1
+    '    Catch ex As Exception
+    '        MessageBox.Show("Error al guardar Transacción:" & ex.Message)
+    '        guardartransaccion = 0
+    '    Finally
+    '        con.Close()
+    '    End Try
+    'End Function
+
+    Public Function guardartransaccion(
+    ByVal IdTran As String,
+    ByVal Tipo As String,
+    ByVal CodOperador As String,
+    ByVal Fecha As Date,
+    ByVal Hora As Date,
+    ByVal CodCliente As String,
+    ByVal CodProducto As Integer,
+    ByVal Documento As String,
+    ByVal Placa As String,
+    ByVal CodChofer As Integer,
+    ByVal Observaciones As String,
+    ByVal NetoM3 As Decimal,
+    ByVal MotTraslado As String,
+    ByVal PtoPartida As String,
+    ByVal PtoLlegada As String,
+    ByVal Obra As String,
+    ByVal idMixer As Integer,
+    ByVal eliminado As Boolean) As Integer
+
         Try
-            cmd = New OleDb.OleDbCommand
-            con.Open()
-            cmd.Connection = con
+            Using con As New OleDb.OleDbConnection(sConnString)
+                Using cmd As New OleDb.OleDbCommand()
 
-            cmd.CommandText = "INSERT INTO CabeceraTransacciones ( Id, Tipo, CodOperador, Fecha, Hora, CodCliente, CodProducto, Documento, CodChofer, Observaciones, NetoM3, MotTraslado, PtoPartida, PtoLlegada, Obra, idMixer, Eliminado )
-            values ('" & IdTran & "','" & Tipo & "','" & CodOperador & "','" & (Fecha) & "','" & Fecha & " " & Hora & "','" & CodCliente & "','" &
-            CodProducto & " ','" & Documento & "','" & CodChofer & "','" & Observaciones & "'," & NetoM3.Trim & ",'" & MotTraslado &
-            "','" & PtoPartida & "','" & PtoLlegada & "','" & Obra & "'," & idMixer & "," & IIf(eliminado, 1, 0) & ")"
+                    cmd.Connection = con
+                    cmd.CommandText = "INSERT INTO CabeceraTransacciones 
+                (Id, Tipo, CodOperador, Fecha, Hora, CodCliente, CodProducto, Documento, CodChofer, Observaciones, NetoM3, MotTraslado, PtoPartida, PtoLlegada, Obra, idMixer, Eliminado)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
-            'La fecha no tiene conversion en MYSQL, entra YYYY-MM-DD HH:MM:SS
+                    ' Parámetros en orden (OleDb usa ?)
+                    cmd.Parameters.AddWithValue("?", IdTran)                                'ID
+                    cmd.Parameters.AddWithValue("?", Tipo)                                  'Tipo
+                    cmd.Parameters.AddWithValue("?", CodOperador)                           'CodOperador
+                    cmd.Parameters.AddWithValue("?", Fecha)                                 'Fecha
+                    cmd.Parameters.AddWithValue("?", Hora)                                  'Hora
+                    cmd.Parameters.AddWithValue("?", CodCliente)                            'CodCliente
+                    cmd.Parameters.AddWithValue("?", CodProducto)                           'CodProducto
+                    cmd.Parameters.AddWithValue("?", Documento)                             'Documento
+                    cmd.Parameters.AddWithValue("?", CodChofer)                             'CodChofer
+                    cmd.Parameters.AddWithValue("?", Observaciones)                         'Observaciones
+                    cmd.Parameters.AddWithValue("?", NetoM3)                                'NetoM3    
+                    cmd.Parameters.AddWithValue("?", MotTraslado)                           'MotTraslado
+                    cmd.Parameters.AddWithValue("?", PtoPartida)                            'PtoPartida
+                    cmd.Parameters.AddWithValue("?", PtoLlegada)                            'PtoLlegada
+                    cmd.Parameters.AddWithValue("?", Obra)                                  'Obra
+                    cmd.Parameters.AddWithValue("?", idMixer)                               'idMixer
+                    cmd.Parameters.AddWithValue("?", If(eliminado, 1, 0))                   'Eliminado
 
-            'MessageBox.Show(cmd.CommandText)
-            cmd.ExecuteNonQuery()
-            con.Close()
-            guardartransaccion = 1
+                    con.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+
+            Return 1
+
         Catch ex As Exception
-            MessageBox.Show("Error al guardar Transacción:" & ex.Message)
-            guardartransaccion = 0
-        Finally
-            con.Close()
+            MessageBox.Show("Error al guardar Transacción: " & ex.Message)
+            Return 0
         End Try
-    End Function
 
+    End Function
 
     Public Function actualizartransaccion(ByVal IdTran As String, ByVal CodCliente As String, ByVal CodProducto As String, ByVal Documento As String, ByVal Placa As String, ByVal CodChofer As String, ByVal Observaciones As String, ByVal NetoM3 As String, ByVal MotTraslado As String, ByVal PtoPartida As String, ByVal PtoLlegada As String, ByVal Obra As String, ByVal idMixer As String) As Integer
         '                                 
