@@ -253,6 +253,12 @@
       <DependentUpon>Despacho.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\Despacho_Formato.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Despacho_Formato.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\Despacho_frm.designer.vb">
       <DependentUpon>Despacho_frm.vb</DependentUpon>
     </Compile>
@@ -358,6 +364,10 @@
     <EmbeddedResource Include="Reportes\Despacho.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Despacho1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Despacho_Formato.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Despacho_Formato.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Despacho_frm.resx">
       <DependentUpon>Despacho_frm.vb</DependentUpon>
