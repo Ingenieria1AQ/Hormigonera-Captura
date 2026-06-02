@@ -164,8 +164,8 @@ Public Class listas
 
         If destinoLista = "DatosDespacho1" Then
             DatosDespacho.txtidMixer.Text = DataGridView1.CurrentRow.Cells(0).Value
-            DatosDespacho.txtNomMixer.Text = DataGridView1.CurrentRow.Cells(1).Value
-            DatosDespacho.txtPlaca.Text = DataGridView1.CurrentRow.Cells(2).Value
+            DatosDespacho.txtNomMixer.Text = DataGridView1.CurrentRow.Cells(2).Value
+            DatosDespacho.txtPlaca.Text = DataGridView1.CurrentRow.Cells(1).Value
             'DatosDespacho.txtdensidad.Text = DataGridView1.CurrentRow.Cells(4).Value
         End If
         ' hoy 05/04/2013

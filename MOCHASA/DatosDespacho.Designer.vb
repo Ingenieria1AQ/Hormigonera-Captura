@@ -39,6 +39,7 @@ Partial Class DatosDespacho
         Me.txtobservaciones = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.NumericM3 = New System.Windows.Forms.NumericUpDown()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.txtNomMixer = New System.Windows.Forms.TextBox()
         Me.txtidMixer = New System.Windows.Forms.TextBox()
@@ -58,19 +59,29 @@ Partial Class DatosDespacho
         Me.Label16 = New System.Windows.Forms.Label()
         Me.lbloperador = New System.Windows.Forms.Label()
         Me.btnokclave = New System.Windows.Forms.Button()
-        Me.btnsalir = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.btnguardar = New System.Windows.Forms.Button()
-        Me.NumericM3 = New System.Windows.Forms.NumericUpDown()
+        Me.btnReporte = New System.Windows.Forms.Button()
+        Me.btnsalir = New System.Windows.Forms.Button()
+        Me.btnmodificar = New System.Windows.Forms.Button()
+        Me.btnagregar = New System.Windows.Forms.Button()
+        Me.tab1 = New System.Windows.Forms.TabPage()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.tab2 = New System.Windows.Forms.TabPage()
         Me.GroupBox2.SuspendLayout()
         CType(Me.NumericM3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tab1.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControl1.SuspendLayout()
+        Me.tab2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(682, 53)
+        Me.Label1.Location = New System.Drawing.Point(664, 49)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(44, 18)
         Me.Label1.TabIndex = 0
@@ -82,7 +93,7 @@ Partial Class DatosDespacho
         Me.lbltipo.AutoSize = True
         Me.lbltipo.BackColor = System.Drawing.Color.White
         Me.lbltipo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbltipo.Location = New System.Drawing.Point(741, 53)
+        Me.lbltipo.Location = New System.Drawing.Point(723, 49)
         Me.lbltipo.Name = "lbltipo"
         Me.lbltipo.Size = New System.Drawing.Size(19, 20)
         Me.lbltipo.TabIndex = 1
@@ -93,7 +104,7 @@ Partial Class DatosDespacho
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(251, 67)
+        Me.Label3.Location = New System.Drawing.Point(233, 63)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(183, 18)
         Me.Label3.TabIndex = 2
@@ -104,7 +115,7 @@ Partial Class DatosDespacho
         Me.lblcomprobante.AutoSize = True
         Me.lblcomprobante.BackColor = System.Drawing.Color.White
         Me.lblcomprobante.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblcomprobante.Location = New System.Drawing.Point(469, 66)
+        Me.lblcomprobante.Location = New System.Drawing.Point(451, 62)
         Me.lblcomprobante.Name = "lblcomprobante"
         Me.lblcomprobante.Size = New System.Drawing.Size(19, 20)
         Me.lblcomprobante.TabIndex = 3
@@ -267,11 +278,23 @@ Partial Class DatosDespacho
         Me.GroupBox2.Controls.Add(Me.Label7)
         Me.GroupBox2.Controls.Add(Me.Label8)
         Me.GroupBox2.Controls.Add(Me.Label6)
-        Me.GroupBox2.Location = New System.Drawing.Point(18, 119)
+        Me.GroupBox2.Location = New System.Drawing.Point(0, 115)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(754, 197)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
+        '
+        'NumericM3
+        '
+        Me.NumericM3.DecimalPlaces = 1
+        Me.NumericM3.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
+        Me.NumericM3.Location = New System.Drawing.Point(606, 126)
+        Me.NumericM3.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.NumericM3.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.NumericM3.Name = "NumericM3"
+        Me.NumericM3.Size = New System.Drawing.Size(71, 20)
+        Me.NumericM3.TabIndex = 218
+        Me.NumericM3.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
         'Button4
         '
@@ -425,7 +448,7 @@ Partial Class DatosDespacho
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(12, 334)
+        Me.Label16.Location = New System.Drawing.Point(13, 330)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(69, 16)
         Me.Label16.TabIndex = 40
@@ -435,7 +458,7 @@ Partial Class DatosDespacho
         '
         Me.lbloperador.AutoSize = True
         Me.lbloperador.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbloperador.Location = New System.Drawing.Point(83, 334)
+        Me.lbloperador.Location = New System.Drawing.Point(84, 330)
         Me.lbloperador.Name = "lbloperador"
         Me.lbloperador.Size = New System.Drawing.Size(16, 16)
         Me.lbloperador.TabIndex = 41
@@ -444,7 +467,7 @@ Partial Class DatosDespacho
         'btnokclave
         '
         Me.btnokclave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnokclave.Location = New System.Drawing.Point(650, 9)
+        Me.btnokclave.Location = New System.Drawing.Point(632, 5)
         Me.btnokclave.Name = "btnokclave"
         Me.btnokclave.Size = New System.Drawing.Size(125, 40)
         Me.btnokclave.TabIndex = 1
@@ -452,18 +475,6 @@ Partial Class DatosDespacho
         Me.btnokclave.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnokclave.UseVisualStyleBackColor = True
         Me.btnokclave.Visible = False
-        '
-        'btnsalir
-        '
-        Me.btnsalir.Image = Global.HORMIGONERA.My.Resources.Resources.cancel
-        Me.btnsalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnsalir.Location = New System.Drawing.Point(647, 322)
-        Me.btnsalir.Name = "btnsalir"
-        Me.btnsalir.Size = New System.Drawing.Size(125, 40)
-        Me.btnsalir.TabIndex = 6
-        Me.btnsalir.Text = "Salir"
-        Me.btnsalir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnsalir.UseVisualStyleBackColor = True
         '
         'Timer1
         '
@@ -474,7 +485,7 @@ Partial Class DatosDespacho
         '
         Me.btnguardar.Image = Global.HORMIGONERA.My.Resources.Resources.application_form_add
         Me.btnguardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnguardar.Location = New System.Drawing.Point(505, 322)
+        Me.btnguardar.Location = New System.Drawing.Point(487, 318)
         Me.btnguardar.Name = "btnguardar"
         Me.btnguardar.Size = New System.Drawing.Size(125, 40)
         Me.btnguardar.TabIndex = 5
@@ -482,34 +493,119 @@ Partial Class DatosDespacho
         Me.btnguardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnguardar.UseVisualStyleBackColor = True
         '
-        'NumericM3
+        'btnReporte
         '
-        Me.NumericM3.DecimalPlaces = 1
-        Me.NumericM3.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
-        Me.NumericM3.Location = New System.Drawing.Point(606, 126)
-        Me.NumericM3.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
-        Me.NumericM3.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.NumericM3.Name = "NumericM3"
-        Me.NumericM3.Size = New System.Drawing.Size(71, 20)
-        Me.NumericM3.TabIndex = 218
-        Me.NumericM3.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.btnReporte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnReporte.Location = New System.Drawing.Point(607, 144)
+        Me.btnReporte.Name = "btnReporte"
+        Me.btnReporte.Size = New System.Drawing.Size(125, 40)
+        Me.btnReporte.TabIndex = 6
+        Me.btnReporte.Text = "Reporte"
+        Me.btnReporte.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnReporte.UseVisualStyleBackColor = True
+        Me.btnReporte.Visible = False
+        '
+        'btnsalir
+        '
+        Me.btnsalir.Image = Global.HORMIGONERA.My.Resources.Resources._131885___close_door_exit_log_out_logout_user_logout
+        Me.btnsalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnsalir.Location = New System.Drawing.Point(607, 341)
+        Me.btnsalir.Name = "btnsalir"
+        Me.btnsalir.Size = New System.Drawing.Size(125, 40)
+        Me.btnsalir.TabIndex = 3
+        Me.btnsalir.Text = "Salir"
+        Me.btnsalir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnsalir.UseVisualStyleBackColor = True
+        '
+        'btnmodificar
+        '
+        Me.btnmodificar.Image = Global.HORMIGONERA.My.Resources.Resources._131907___edit_files_page_pen_pencil_text_write
+        Me.btnmodificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnmodificar.Location = New System.Drawing.Point(607, 89)
+        Me.btnmodificar.Name = "btnmodificar"
+        Me.btnmodificar.Size = New System.Drawing.Size(125, 40)
+        Me.btnmodificar.TabIndex = 2
+        Me.btnmodificar.Text = "Modificar"
+        Me.btnmodificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnmodificar.UseVisualStyleBackColor = True
+        '
+        'btnagregar
+        '
+        Me.btnagregar.Image = Global.HORMIGONERA.My.Resources.Resources._131897___file_new
+        Me.btnagregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnagregar.Location = New System.Drawing.Point(607, 34)
+        Me.btnagregar.Name = "btnagregar"
+        Me.btnagregar.Size = New System.Drawing.Size(125, 40)
+        Me.btnagregar.TabIndex = 1
+        Me.btnagregar.Text = "Crear Nuevo"
+        Me.btnagregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnagregar.UseVisualStyleBackColor = True
+        '
+        'tab1
+        '
+        Me.tab1.Controls.Add(Me.btnReporte)
+        Me.tab1.Controls.Add(Me.btnsalir)
+        Me.tab1.Controls.Add(Me.btnmodificar)
+        Me.tab1.Controls.Add(Me.btnagregar)
+        Me.tab1.Controls.Add(Me.DataGridView1)
+        Me.tab1.Location = New System.Drawing.Point(4, 22)
+        Me.tab1.Name = "tab1"
+        Me.tab1.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab1.Size = New System.Drawing.Size(831, 506)
+        Me.tab1.TabIndex = 0
+        Me.tab1.Text = "Lista"
+        Me.tab1.UseVisualStyleBackColor = True
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToOrderColumns = True
+        Me.DataGridView1.AllowUserToResizeColumns = False
+        Me.DataGridView1.AllowUserToResizeRows = False
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(3, 6)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.Size = New System.Drawing.Size(567, 499)
+        Me.DataGridView1.TabIndex = 0
+        '
+        'TabControl1
+        '
+        Me.TabControl1.Controls.Add(Me.tab1)
+        Me.TabControl1.Controls.Add(Me.tab2)
+        Me.TabControl1.Location = New System.Drawing.Point(1, 3)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(839, 532)
+        Me.TabControl1.TabIndex = 42
+        '
+        'tab2
+        '
+        Me.tab2.Controls.Add(Me.lbloperador)
+        Me.tab2.Controls.Add(Me.Label3)
+        Me.tab2.Controls.Add(Me.Label16)
+        Me.tab2.Controls.Add(Me.Label1)
+        Me.tab2.Controls.Add(Me.btnokclave)
+        Me.tab2.Controls.Add(Me.lbltipo)
+        Me.tab2.Controls.Add(Me.lblcomprobante)
+        Me.tab2.Controls.Add(Me.btnguardar)
+        Me.tab2.Controls.Add(Me.GroupBox2)
+        Me.tab2.Location = New System.Drawing.Point(4, 22)
+        Me.tab2.Name = "tab2"
+        Me.tab2.Padding = New System.Windows.Forms.Padding(3)
+        Me.tab2.Size = New System.Drawing.Size(831, 506)
+        Me.tab2.TabIndex = 1
+        Me.tab2.Text = "Detalles"
+        Me.tab2.UseVisualStyleBackColor = True
         '
         'DatosDespacho
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.ClientSize = New System.Drawing.Size(784, 390)
-        Me.Controls.Add(Me.lbloperador)
-        Me.Controls.Add(Me.Label16)
-        Me.Controls.Add(Me.btnokclave)
-        Me.Controls.Add(Me.btnsalir)
-        Me.Controls.Add(Me.btnguardar)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.lblcomprobante)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.lbltipo)
-        Me.Controls.Add(Me.Label1)
+        Me.ClientSize = New System.Drawing.Size(882, 615)
+        Me.Controls.Add(Me.TabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
@@ -520,8 +616,12 @@ Partial Class DatosDespacho
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.NumericM3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tab1.ResumeLayout(False)
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControl1.ResumeLayout(False)
+        Me.tab2.ResumeLayout(False)
+        Me.tab2.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -542,7 +642,6 @@ Partial Class DatosDespacho
     Friend WithEvents txtobservaciones As System.Windows.Forms.TextBox
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents btnsalir As System.Windows.Forms.Button
     Friend WithEvents btnguardar As System.Windows.Forms.Button
     Friend WithEvents btnokclave As System.Windows.Forms.Button
     Friend WithEvents Label16 As System.Windows.Forms.Label
@@ -565,4 +664,12 @@ Partial Class DatosDespacho
     Friend WithEvents Label13 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents NumericM3 As NumericUpDown
+    Friend WithEvents btnReporte As Button
+    Friend WithEvents btnsalir As Button
+    Friend WithEvents btnmodificar As Button
+    Friend WithEvents btnagregar As Button
+    Friend WithEvents tab1 As TabPage
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents tab2 As TabPage
 End Class
