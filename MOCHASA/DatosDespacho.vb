@@ -565,14 +565,16 @@ Public Class DatosDespacho
     ByVal eliminado As Boolean) As Integer
 
         Try
+            'Variables fijas
             Dim estado As Boolean = True
+            Dim version As Integer = 1
             Using con As New OleDb.OleDbConnection(sConnString)
                 Using cmd As New OleDb.OleDbCommand()
 
                     cmd.Connection = con
                     cmd.CommandText = "INSERT INTO CabeceraTransacciones 
-                (Id, Tipo, CodOperador, Fecha, Hora, CodCliente, CodProducto, Documento, CodChofer, Observaciones, NetoM3, MotTraslado, PtoPartida, PtoLlegada, Obra, idMixer, Eliminado, Estado)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)"
+                (Id, Tipo, CodOperador, Fecha, Hora, CodCliente, CodProducto, Documento, CodChofer, Observaciones, NetoM3, MotTraslado, PtoPartida, PtoLlegada, Obra, idMixer, Eliminado, Estado, Version)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)"
 
                     ' Parámetros en orden (OleDb usa ?)
                     cmd.Parameters.AddWithValue("?", IdTran)                                'ID
@@ -592,7 +594,8 @@ Public Class DatosDespacho
                     cmd.Parameters.AddWithValue("?", Obra)                                  'Obra
                     cmd.Parameters.AddWithValue("?", idMixer)                               'idMixer
                     cmd.Parameters.AddWithValue("?", If(eliminado, 1, 0))                   'Eliminado
-                    cmd.Parameters.AddWithValue("?", estado)                                'Estado se crea con valor 1
+                    cmd.Parameters.AddWithValue("?", estado)                                'Estado se crea con valor true o 1
+                    cmd.Parameters.AddWithValue("?", version)                               'version se crea con valor 1
                     con.Open()
                     cmd.ExecuteNonQuery()
                 End Using
@@ -620,18 +623,20 @@ Public Class DatosDespacho
      ByVal PtoPartida As String,
      ByVal PtoLlegada As String,
      ByVal Obra As String,
-     ByVal idMixer As Integer) As Integer
+     ByVal idMixer As Integer,
+     ByVal versionAnterior As Integer) As Integer
 
         Try
             Using con As New OleDbConnection(sConnString)
                 con.Open()
-                'Validar que el estado actual del registro sea valido
+                'Validar que el estado actual del registro sea valido y la version sea la misma antes de la edicion
                 Dim estadoActual As Integer = 0
-                Using cmdValida As New OleDbCommand("SELECT Estado FROM CabeceraTransacciones WHERE Id = ?", con)
+                Using cmdValida As New OleDbCommand("SELECT Estado, Version FROM CabeceraTransacciones WHERE Id = ? AND Version= ?", con)
                     cmdValida.Parameters.AddWithValue("?", IdTran)
+                    cmdValida.Parameters.AddWithValue("?", versionAnterior)
                     Dim resultado = cmdValida.ExecuteScalar()
                     If resultado Is Nothing OrElse IsDBNull(resultado) Then
-                        MessageBox.Show("No se encontró la transacción seleccionada.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        MessageBox.Show("No se encontró la transacción seleccionada o" & vbCrLf & "Ya fue procesada desde la planta de Hormigón", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return 0
                     End If
 
