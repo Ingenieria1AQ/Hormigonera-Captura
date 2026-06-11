@@ -12,6 +12,7 @@ Public Class DatosDespacho
     DIM IdIngresoEntra As String
     Dim IdEgresoEntra As String
     Dim IdIngresoSale As String
+    Dim VersionActual As Integer
 
     Private Sub VentaEntrada_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Call cargarGrid()
@@ -241,8 +242,6 @@ Public Class DatosDespacho
     Private Sub btnguardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnguardar.Click
 
         'Validar campos antes de grabar
-
-
         Dim con As New OleDbConnection(sConnString)
         Dim cmd As OleDbCommand
         Dim complete As Integer
@@ -275,7 +274,7 @@ Public Class DatosDespacho
                             End If
                         Case 2
                             complete = ActualizarTransaccion(lblcomprobante.Text, "DESPACHO", Convert.ToInt32(codCliente.Text), codProducto.Text, txtdocumento.Text,
-                                                            Convert.ToInt32(codChofer.Text), txtobservaciones.Text, NumericM3.Value, "", "", "", "", Convert.ToInt32(txtidMixer.Text))
+                                                            Convert.ToInt32(codChofer.Text), txtobservaciones.Text, NumericM3.Value, "", "", "", "", Convert.ToInt32(txtidMixer.Text), VersionActual)
                             If complete = 1 Then
                                 LimpiarControles()
                                 MessageBox.Show("La información se ha actualizado con exito", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -330,6 +329,7 @@ Public Class DatosDespacho
                 End If
             End If
         End If
+        Call cargarGrid()
     End Sub
 
     Private Sub btnokclave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnokclave.Click
@@ -648,6 +648,7 @@ Public Class DatosDespacho
                     MessageBox.Show("La transacción ya fue procesada y no puede ser modificada.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     Return 0
                 End If
+                Dim versionNueva As Integer = versionAnterior + 1
                 'Actualizar registro
                 Using cmd As New OleDb.OleDbCommand()
 
@@ -666,7 +667,8 @@ Public Class DatosDespacho
                     "PtoPartida = ?, " &
                     "PtoLlegada = ?, " &
                     "Obra = ?, " &
-                    "idMixer = ? " &
+                    "idMixer = ?, " &
+                    "Version = ? " &
                     "WHERE Id = ?"
 
                     cmd.Parameters.AddWithValue("?", Tipo)
@@ -681,14 +683,15 @@ Public Class DatosDespacho
                     cmd.Parameters.AddWithValue("?", PtoLlegada)
                     cmd.Parameters.AddWithValue("?", Obra)
                     cmd.Parameters.AddWithValue("?", idMixer)
+                    cmd.Parameters.AddWithValue("?", versionNueva) 'Incrementar la version 
                     cmd.Parameters.AddWithValue("?", IdTran)
-                    cmd.ExecuteNonQuery()
-
+                    If cmd.ExecuteNonQuery() > 0 Then
+                        Return 1
+                    Else
+                        Return 0
+                    End If
                 End Using
-
             End Using
-
-            Return 1
         Catch ex As Exception
             MessageBox.Show("Error al guardar Transacción: " & ex.Message)
             Return 0
@@ -712,6 +715,27 @@ Public Class DatosDespacho
         'Finally
         '    con.Close()
         'End Try
+    End Function
+
+    Public Function ObtieneVersionActual(ByVal IdTran As String) As String
+        Try
+            Using con As New OleDbConnection(sConnString)
+                con.Open()
+                Dim estadoActual As Integer = 0
+                Using cmdValida As New OleDbCommand("SELECT Version FROM CabeceraTransacciones WHERE Id = ?", con)
+                    cmdValida.Parameters.AddWithValue("?", IdTran)
+                    Dim resultado = cmdValida.ExecuteScalar()
+                    If resultado Is Nothing OrElse IsDBNull(resultado) Then
+                        MessageBox.Show("No se encontró la transacción seleccionada", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return ""
+                    End If
+                    Return resultado
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Excepción: Obtener Version idTrans", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return ""
+        End Try
     End Function
 
     Public Function leerconsecutivo(ByVal descripcion As String) As Long
@@ -774,6 +798,8 @@ Public Class DatosDespacho
             cod = DataGridView1.SelectedCells(0).RowIndex
             Dim estado As Boolean
             estado = DataGridView1.Rows(cod).Cells("Estado").Value
+            'Obtiene version actual de la transaccion, esto es necesario para comprobar que no fue procesada ya por el operador
+            VersionActual = ObtieneVersionActual(DataGridView1.Rows(cod).Cells("Id").Value)
             If estado Then
                 opcion = 2
                 TabControl1.SelectedTab = tab2

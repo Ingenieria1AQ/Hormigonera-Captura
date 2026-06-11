@@ -56,6 +56,7 @@ Public Class Proceso
     Private flagConfigTolvas As Boolean = False
     Private flagConfigPLC As Boolean = False
     Private flagConfigSetpoints As Boolean = False
+    Private flagVersiones As Boolean = False
 
     Private flagFinCargaCemento As Boolean = False
     Private flagFinDesCargaCemento As Boolean = False
@@ -88,7 +89,8 @@ Public Class Proceso
     Private ValorInicialT2 As Double = 0
     Private ValorInicialCemento As Double = 0
 
-
+    Private VersionInicial As Integer
+    Private VersionFinal As Integer
     Private CabeceraImpr As String = "EUFRATES "
 
 
@@ -639,12 +641,24 @@ Public Class Proceso
                     font_Rtxt)
                 Exit Sub
             End If
-            If flagConfigPLC And flagConfigSetpoints And SerTol1_ok And SerTol2_ok And SerCemento_ok Then
+            'Validacion de version final 
+            VersionFinal = ObtieneVersionActual(ID_OrdenDespacho)
+            If VersionInicial <> VersionFinal Then
+                MessageBox.Show("La Orden fue modificada desde oficina, vuelva a ingresar la OP para aplicar los cambios", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Txt_CodOrdenDespacho.Text = String.Empty
+                flagVersiones = False
+                DetenerProceso()
+                LimpiarLabelsFormula()
+            Else
+                flagVersiones = True
+            End If
+            If flagConfigPLC And flagConfigSetpoints And SerTol1_ok And SerTol2_ok And SerCemento_ok And flagVersiones Then
                 Preparado = True
             End If
             'Borrar- Solo para pruebas
             'Preparado = True
             If Preparado Then
+
                 'Limpiar controles de dosificacion
                 Lbl_Dosif_T1.Text = "0.00"
                 Lbl_Dosif_T2.Text = "0.00"
@@ -661,6 +675,9 @@ Public Class Proceso
 
                 Panel2.BackColor = Color.DarkSeaGreen
                 running = True
+                'Cambiar estado de la Orden Para que no pueda ser modificada desde oficina
+                CambiaEstadodeOD(ID_OrdenDespacho)
+
                 'Aumenta el numero consecutivo del batch
                 consecutivoBatch += 1
                 'Guardamos el valor del Batch Actual
@@ -708,6 +725,7 @@ Public Class Proceso
                 If Not SerTol2_ok Then errores.Add("Tolva 2 - " & SerialTolva2.PortName)
                 If Not SerCemento_ok Then errores.Add("Tolva Cemento - " & SerialCemento.PortName)
                 If Not flagConfigSetpoints Then errores.Add("No se ha seleccionado Ninguna Fórmula")
+                If Not flagVersiones Then errores.Add("Orden Modificada desde oficina")
                 Dim msg As String = "Error en el arranque de la Dosificación:" & vbCrLf &
                 "- " & String.Join(vbCrLf & "- ", errores)
                 Rtx_Mensajes.AppendColoredText(msg & Environment.NewLine,
@@ -1302,6 +1320,9 @@ Public Class Proceso
                     font_Rtxt)
                 Exit Sub
             End If
+            'Obtiene la version actual de la Transaccion
+            VersionInicial = ObtieneVersionActual(ID_OrdenDespacho)
+            '----------------------------------------------------------
             ID_ProductoFormula = Obtiene_idProductoxIdOrdenDespacho(ID_OrdenDespacho)
             CantidadM3 = Obtiene_CantM3xIdOrdenDespacho(ID_OrdenDespacho)
             Dim Verifica_OD_en_Trans As Boolean = Verifica_OrdenDespacho(ID_OrdenDespacho)
@@ -1516,6 +1537,46 @@ Public Class Proceso
             MessageBox.Show(ex.Message, "Excepcion Carga Inicial", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Function ObtieneVersionActual(ByVal IdTran As String) As String
+        Try
+            Using con As New OleDbConnection(sConnString)
+                con.Open()
+                Dim estadoActual As Integer = 0
+                Using cmdValida As New OleDbCommand("SELECT Version FROM CabeceraTransacciones WHERE Id = ?", con)
+                    cmdValida.Parameters.AddWithValue("?", IdTran)
+                    Dim resultado = cmdValida.ExecuteScalar()
+                    If resultado Is Nothing OrElse IsDBNull(resultado) Then
+                        MessageBox.Show("No se encontró la transacción seleccionada", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return ""
+                    End If
+                    Return resultado
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Excepción: Obtener Version idTrans", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return ""
+        End Try
+    End Function
+    Private Function CambiaEstadodeOD(ByVal IdTran As String) As Boolean
+        Try
+            Using con As New OleDbConnection(sConnString)
+                con.Open()
+                Using cmd As New OleDb.OleDbCommand
+                    cmd.Connection = con
+                    cmd.CommandText = "UPDATE CabeceraTransacciones SET Estado=0 WHERE Id=?"
+                    cmd.Parameters.AddWithValue("?", IdTran)
+                    If cmd.ExecuteNonQuery() > 0 Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString, "Excepción: Actualizar estado Orden Despacho", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
     Private Function Verifica_OrdenDespacho(numOrden As String) As Boolean
         'Consulta si en la tabla de transacciones ya existen registros de esa OP
         'Si **NO** hay datos retorna --> true y viceversa
