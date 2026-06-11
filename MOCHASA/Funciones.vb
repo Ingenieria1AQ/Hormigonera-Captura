@@ -577,14 +577,26 @@ Module Funciones
 
         If tiene_licencia = 0 Then
             If direccion = "" Then
-                MsgBox("No se encontró una tarjeta de red en este computador(" & nombre_PC & "). El sistema no puede continuar", MsgBoxStyle.Critical, ".:Pesos Noperti:.")
+                MsgBox("No se encontró una tarjeta de red en este computador(" & nombre_PC & "). El sistema no puede continuar", MsgBoxStyle.Critical, Application.ProductName)
             Else
-                MsgBox("Este computador (" & nombre_PC & ") " & vbCrLf & "NO tiene licencia para el uso de este software" & vbCrLf & "Consulte a su proveedor", MsgBoxStyle.Critical, ".:Pesos Noperti:.")
+                MsgBox("Este computador (" & nombre_PC & ") " & vbCrLf & "NO tiene licencia para el uso de este software" & vbCrLf & "Consulte a su proveedor", MsgBoxStyle.Critical, Application.ProductName)
 
             End If
             Application.Exit()
         End If
     End Sub
+    'Funciones para cerrar la aplicación en un lapso determinado*********************************
+    Public Sub AplicacionVigente(ByVal fechaLimite As DateTime)
+        Dim validacion As Boolean
+        validacion = DateTime.Today <= fechaLimite.Date
+        If validacion = 0 Then
+
+            MsgBox("La Vigencia del Programa ha terminado" & vbCrLf & "Consulte a su proveedor", MsgBoxStyle.Critical, Application.ProductName)
+
+            Application.Exit()
+        End If
+    End Sub
+    '**********************************************************************************************
     Public Function ObtenerTipoBaseDatos(ByVal cadenaConexion As String) As String
 
         If String.IsNullOrWhiteSpace(cadenaConexion) Then

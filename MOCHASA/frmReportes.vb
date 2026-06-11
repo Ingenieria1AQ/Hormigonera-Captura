@@ -70,17 +70,19 @@ Public Class frmReportes
         Dim antes As Integer
         Dim cadena1 As String = "SELECT distinct * from Transacciones"
         Dim cadena2 As String
-        'Consulta ACCESS
-        'If cbfechas.Checked = True Then
-        '    ' filtrofecha = "((Fecha) Between #" & dtpfedesde.Value.Date & "# And #" & dtpfehasta.Value.Date & "#)"
-        '    filtrofecha = "((Fecha) Between # " & dtpfedesde.Value.Date.Month & "/" & dtpfedesde.Value.Date.Day & "/" & dtpfedesde.Value.Date.Year & "# And #" & dtpfehasta.Value.Date.Month & "/" & dtpfehasta.Value.Date.Day & "/" & dtpfehasta.Value.Date.Year & "#)"
-        '    filtrofechasr = " desde " & dtpfedesde.Value.Date & " hasta " & dtpfehasta.Value.Date
-        'End If
-        'Consulta SQL Server
+
+
         If cbfechas.Checked Then
-            filtrofecha = String.Format("(Fecha >= '{0:yyyy-MM-dd}' AND Fecha < '{1:yyyy-MM-dd}')", dtpfedesde.Value.Date, dtpfehasta.Value.Date.AddDays(1))
-            filtrofechasr = " desde " & dtpfedesde.Value.ToShortDateString() &
-                     " hasta " & dtpfehasta.Value.ToShortDateString()
+            Select Case tipoBD
+                Case "ACCESS"
+                    filtrofecha = "((Fecha) Between #" & dtpfedesde.Value.Date & "# And #" & dtpfehasta.Value.Date & "#)"
+                    filtrofecha = "((Fecha) Between # " & dtpfedesde.Value.Date.Month & "/" & dtpfedesde.Value.Date.Day & "/" & dtpfedesde.Value.Date.Year & "# And #" & dtpfehasta.Value.Date.Month & "/" & dtpfehasta.Value.Date.Day & "/" & dtpfehasta.Value.Date.Year & "#)"
+                    filtrofechasr = " desde " & dtpfedesde.Value.Date & " hasta " & dtpfehasta.Value.Date
+                Case Else
+                    'SQLSERVER
+                    filtrofecha = String.Format("(Fecha >= '{0:yyyy-MM-dd}' AND Fecha < '{1:yyyy-MM-dd}')", dtpfedesde.Value.Date, dtpfehasta.Value.Date.AddDays(1))
+                    filtrofechasr = " desde " & dtpfedesde.Value.ToShortDateString() & " hasta " & dtpfehasta.Value.ToShortDateString()
+            End Select
         End If
         If cboperador.Checked = True Then
             filtrooperador = "((Nom_Operador)='" & txtoperador.Text & "')"
