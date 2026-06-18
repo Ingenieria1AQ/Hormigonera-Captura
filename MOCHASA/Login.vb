@@ -2,6 +2,7 @@
 Imports System.IO
 Public Class Login
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         Try
             Dim path_Imagen As String = String.Concat(Application.StartupPath, "\logoEmpresa.txt")
 
