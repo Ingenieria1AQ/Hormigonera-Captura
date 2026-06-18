@@ -15,16 +15,7 @@ Public Class frmOperadores
     End Sub
 
     Private Sub cargaroperadores()
-        'Dim oOleDbConnection As OleDb.OleDbConnection
-
-        'oOleDbConnection = New OleDb.OleDbConnection(sConnString)
-        'oOleDbConnection.Open()
-        'da = New OleDbDataAdapter("SELECT * FROM Operadores", oOleDbConnection)
-        'da.Fill(ds)
-        'DataGridView1.DataSource = ds.Tables(0)
         Try
-            ' Especificar un 'connection string' valido
-            ' En este caso origen de la carpeta de la aplicacion BD1.mdb
             Dim cmdtxt As String = "SELECT * FROM Operadores order by idOperador"
             ' Crear un nuevo adaptador de datos vasado en el 'query' especificado
             Me.AdaptadorDeDatos = New OleDb.OleDbDataAdapter(cmdtxt, sConnString)
@@ -58,7 +49,8 @@ Public Class frmOperadores
                 columnTipo.DataPropertyName = "tipoOperador"
                 columnTipo.DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton
                 'Agregar tipos de operador
-                columnTipo.Items.AddRange("SISTEMAS", "ADMINISTRADOR", "OPERADOR", "LABORATORIO", "VENTAS")
+                'columnTipo.Items.AddRange("SISTEMAS", "ADMINISTRADOR", "OPERADOR", "LABORATORIO", "VENTAS")
+                columnTipo.Items.AddRange("ADMINISTRADOR", "OPERADOR")
                 'Reemplazar la columna existente
                 DataGridView1.Columns.RemoveAt(indiceTipo)
                 DataGridView1.Columns.Insert(indiceTipo, columnTipo)
@@ -160,7 +152,7 @@ Public Class frmOperadores
             oOleDbConnection.Open()
 
         Catch ex As Exception
-            MsgBox(ex.Message, "::Molinos Champion::")
+            MsgBox(ex.Message, Application.ProductName)
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try

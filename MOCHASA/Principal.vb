@@ -1,16 +1,16 @@
-Imports SocketTools.InternetServer
+'Imports SocketTools.InternetServer
 Imports System.Data.OleDb
 Imports System.IO
 
 Public Class Principal
-    Private ListaFormularios(12) As String
+    Private ListaFormularios(14) As String
 
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Application.EnableVisualStyles()
         Control.CheckForIllegalCrossThreadCalls = False
         LeerDatosEmpresa()
         Lbl_Operador.Text = Variables.nomOperador
-        'Controla el acceso a los botones
+        'Controla el acceso a los botones--------------
         Select Case Variables.tipoOperador.ToUpper
             Case "SISTEMAS"
                 Gbx_Datos.Visible = False
@@ -18,8 +18,9 @@ Public Class Principal
                 Gbx_Config.Visible = True
                 Btt_Proceso.Visible = True
             Case "ADMINISTRADOR"
-                Gbx_Datos.Visible = True
-                Gb_Formulacion.Visible = True
+                'No se usan los formularios dentro de los grupo Datos, 
+                'Gbx_Datos.Visible = True
+                'Gb_Formulacion.Visible = True
                 Gbx_Config.Visible = True
                 Btt_Proceso.Visible = True
             Case "LABORATORIO"
@@ -42,7 +43,7 @@ Public Class Principal
                 Gb_Formulacion.Visible = False
                 Btt_Proceso.Visible = True
         End Select
-
+        '-----------------------------------------------------------------------
         'Llenar Lista con los nombres de los formularios para que solo un formulario se encuntre abierto
         ListaFormularios(0) = "Proceso"
         ListaFormularios(1) = "frmOperadores"
@@ -56,6 +57,8 @@ Public Class Principal
         ListaFormularios(9) = "frmConfiguracion"
         ListaFormularios(10) = "ConfigEmpresa"
         ListaFormularios(11) = "frmReportes"
+        ListaFormularios(12) = "frmConfiguracion_Andina"
+        ListaFormularios(13) = "Proceso Andina"
 
 
         '700%sMAEST%e             P700.    DBNam MAEST
@@ -175,7 +178,7 @@ Public Class Principal
     Private Sub Btt_Proceso_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btt_Proceso.Click
         If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
             Panel2.Controls.Clear()
-            Dim frm As New Proceso
+            Dim frm As New Proceso_Andina
             frm.TopLevel = False
             frm.FormBorderStyle = FormBorderStyle.None
             frm.Dock = DockStyle.Fill
@@ -193,9 +196,9 @@ Public Class Principal
 
     Private Sub btt_Con_Indicador_Click(sender As Object, e As EventArgs) Handles btt_Con_Indicador.Click
         If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
-            frmConfiguracion.TopLevel = False
-            Panel2.Controls.Add(frmConfiguracion)
-            frmConfiguracion.Show()
+            frmConfiguracion_Andina.TopLevel = False
+            Panel2.Controls.Add(frmConfiguracion_Andina)
+            frmConfiguracion_Andina.Show()
         End If
 
     End Sub

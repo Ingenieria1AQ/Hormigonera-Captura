@@ -79,22 +79,6 @@ Public Class Login
         End If
 
         'Consulta de parametros de login--> Usuario y Clave
-        'Dim cmdtxt As String
-        'Comando SQL Server
-        'cmdtxt = "DECLARE @Usuario varchar(50), @Clave varchar(50)
-        'SET @Usuario = '" & Txt_Usuario.Text & "'
-        'SET @Clave= '" & Txt_Clave.Text & "'
-        'IF EXISTS (SELECT * FROM Operadores WHERE codOperador= @Usuario AND claveOperador=@Clave and estadoOperador=1)
-        ' BEGIN
-        '  SELECT 'OK' as Respuesta,codOperador,nomOperador,tipoOperador FROM Operadores WHERE codOperador= @Usuario AND claveOperador=@Clave and estadoOperador=1
-        ' END
-        'ELSE
-        ' BEGIN
-        '  SELECT 'NO EXISTE' AS Respuesta
-        ' END"
-        'Comando SQL ACCESS
-        'cmdtxt = "SELECT * FROM Operadores
-        '          WHERE StrComp(codOperador,'" & Txt_Usuario.Text & "',0)=0 AND StrComp(claveOperador,'" & Txt_Clave.Text & "',0)=0 AND estadoOperador= true"
         Dim comandText As String = ""
         Try
             Select Case Variables.tipoBD
