@@ -117,6 +117,7 @@ Partial Class Proceso_Andina
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Pil_ApagaT1 = New SymbolFactoryDotNet.StandardControl()
         Me.Label42 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.Pil_ActivaT1 = New SymbolFactoryDotNet.StandardControl()
         Me.Label40 = New System.Windows.Forms.Label()
         Me.Pil_Desc_Cem_Compuerta = New SymbolFactoryDotNet.StandardControl()
@@ -139,8 +140,6 @@ Partial Class Proceso_Andina
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Pil_Bomba = New SymbolFactoryDotNet.StandardControl()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Pil_PLC = New SymbolFactoryDotNet.StandardControl()
         Me.Pil_DesCemento = New SymbolFactoryDotNet.StandardControl()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
@@ -150,6 +149,7 @@ Partial Class Proceso_Andina
         Me.Pil_DescargaT1 = New SymbolFactoryDotNet.StandardControl()
         Me.Pil_Setpoints = New SymbolFactoryDotNet.StandardControl()
         Me.Pil_Dosifica = New SymbolFactoryDotNet.StandardControl()
+        Me.Pil_PLC = New SymbolFactoryDotNet.StandardControl()
         Me.SerialTolva1 = New System.IO.Ports.SerialPort(Me.components)
         Me.SerialTolva2 = New System.IO.Ports.SerialPort(Me.components)
         Me.SerialCemento = New System.IO.Ports.SerialPort(Me.components)
@@ -183,16 +183,38 @@ Partial Class Proceso_Andina
         Me.Tim_Carga_Agua = New System.Windows.Forms.Timer(Me.components)
         Me.Tim_ReadHR = New System.Windows.Forms.Timer(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Sym_Piedra = New SymbolFactoryDotNet.StandardControl()
-        Me.Lbl_Operador = New System.Windows.Forms.Label()
+        Me.btnagregar = New System.Windows.Forms.Button()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.MaskedTextBox4 = New System.Windows.Forms.MaskedTextBox()
+        Me.MaskedTextBox3 = New System.Windows.Forms.MaskedTextBox()
+        Me.MaskedTextBox2 = New System.Windows.Forms.MaskedTextBox()
+        Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox()
+        Me.Label54 = New System.Windows.Forms.Label()
+        Me.Label57 = New System.Windows.Forms.Label()
+        Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
+        Me.ProgressBar3 = New System.Windows.Forms.ProgressBar()
+        Me.Label61 = New System.Windows.Forms.Label()
+        Me.ProgressBar4 = New System.Windows.Forms.ProgressBar()
+        Me.ProgressBar5 = New System.Windows.Forms.ProgressBar()
+        Me.Label63 = New System.Windows.Forms.Label()
+        Me.Label66 = New System.Windows.Forms.Label()
+        Me.Label77 = New System.Windows.Forms.Label()
         Me.Label47 = New System.Windows.Forms.Label()
-        Me.Label50 = New System.Windows.Forms.Label()
-        Me.Label49 = New System.Windows.Forms.Label()
-        Me.Btt_ImprimirGuia = New System.Windows.Forms.Button()
-        Me.Gbx_ConfigCarg_Cemento = New System.Windows.Forms.GroupBox()
-        Me.RBtt_CargCemGravedad = New System.Windows.Forms.RadioButton()
-        Me.RBtt_CargCemTornillo = New System.Windows.Forms.RadioButton()
-        Me.Label46 = New System.Windows.Forms.Label()
+        Me.Label67 = New System.Windows.Forms.Label()
+        Me.Label68 = New System.Windows.Forms.Label()
+        Me.Label55 = New System.Windows.Forms.Label()
+        Me.Label58 = New System.Windows.Forms.Label()
+        Me.Label62 = New System.Windows.Forms.Label()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Button7 = New System.Windows.Forms.Button()
+        Me.Label65 = New System.Windows.Forms.Label()
+        Me.MaskedTextBox5 = New System.Windows.Forms.MaskedTextBox()
+        Me.Label69 = New System.Windows.Forms.Label()
+        Me.Label70 = New System.Windows.Forms.Label()
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.GBx_Preparacion = New System.Windows.Forms.GroupBox()
         Me.Txt_NumM3 = New System.Windows.Forms.TextBox()
         Me.Txt_CodOrdenDespacho = New System.Windows.Forms.TextBox()
@@ -202,6 +224,35 @@ Partial Class Proceso_Andina
         Me.Label51 = New System.Windows.Forms.Label()
         Me.Num_Hum_Arena = New System.Windows.Forms.NumericUpDown()
         Me.Label48 = New System.Windows.Forms.Label()
+        Me.Btt_ImprimirGuia = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Lbl_NombreFormula = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Gbx_ConfigCarg_Cemento = New System.Windows.Forms.GroupBox()
+        Me.RBtt_CargCemGravedad = New System.Windows.Forms.RadioButton()
+        Me.RBtt_CargCemTornillo = New System.Windows.Forms.RadioButton()
+        Me.Label49 = New System.Windows.Forms.Label()
+        Me.Label64 = New System.Windows.Forms.Label()
+        Me.Label52 = New System.Windows.Forms.Label()
+        Me.lblcomprobante = New System.Windows.Forms.Label()
+        Me.Gb_OrdenDespacho = New System.Windows.Forms.GroupBox()
+        Me.Label71 = New System.Windows.Forms.Label()
+        Me.txtPlaca = New System.Windows.Forms.TextBox()
+        Me.Btt_Sel_Mixer = New System.Windows.Forms.Button()
+        Me.txtNomMixer = New System.Windows.Forms.TextBox()
+        Me.txtidMixer = New System.Windows.Forms.TextBox()
+        Me.Label53 = New System.Windows.Forms.Label()
+        Me.Btt_Sel_Producto = New System.Windows.Forms.Button()
+        Me.nomProducto = New System.Windows.Forms.TextBox()
+        Me.codProducto = New System.Windows.Forms.TextBox()
+        Me.txtobservaciones = New System.Windows.Forms.TextBox()
+        Me.Label59 = New System.Windows.Forms.Label()
+        Me.Label60 = New System.Windows.Forms.Label()
+        Me.Sym_Piedra = New SymbolFactoryDotNet.StandardControl()
+        Me.Lbl_Operador = New System.Windows.Forms.Label()
+        Me.Label50 = New System.Windows.Forms.Label()
+        Me.Label46 = New System.Windows.Forms.Label()
         Me.Lbl_Info = New System.Windows.Forms.Label()
         Me.StandardControl8 = New SymbolFactoryDotNet.StandardControl()
         Me.Sym_Cemento = New SymbolFactoryDotNet.StandardControl()
@@ -209,10 +260,6 @@ Partial Class Proceso_Andina
         Me.StandardControl3 = New SymbolFactoryDotNet.StandardControl()
         Me.Sym_Bomba_G4 = New SymbolFactoryDotNet.StandardControl()
         Me.Sym_Bomba_G7 = New SymbolFactoryDotNet.StandardControl()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Lbl_NombreFormula = New System.Windows.Forms.Label()
-        Me.Label27 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Btt_Salir = New System.Windows.Forms.Button()
         Me.Sym_Torn_Cem_Carga = New SymbolFactoryDotNet.StandardControl()
         Me.Sym_Torn_Cem_Desc = New SymbolFactoryDotNet.StandardControl()
@@ -252,12 +299,12 @@ Partial Class Proceso_Andina
         CType(Me.Pil_DescargaT2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_Banda, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_Bomba, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pil_PLC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_DesCemento, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_CargaCemento, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_DescargaT1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_Setpoints, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_Dosifica, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Pil_PLC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox6.SuspendLayout()
         CType(Me.Sym_MotorBanda, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_DescargaCem, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -266,18 +313,22 @@ Partial Class Proceso_Andina
         CType(Me.Sym_Bomba_G3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Arena, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
-        CType(Me.Sym_Piedra, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Gbx_ConfigCarg_Cemento.SuspendLayout()
+        Me.TableLayoutPanel2.SuspendLayout()
+        Me.GroupBox8.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         Me.GBx_Preparacion.SuspendLayout()
         CType(Me.Num_BatchPlanificacion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Num_Hum_Ripio, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Num_Hum_Arena, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
+        Me.Gbx_ConfigCarg_Cemento.SuspendLayout()
+        Me.Gb_OrdenDespacho.SuspendLayout()
+        CType(Me.Sym_Piedra, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.StandardControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Cemento, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.StandardControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba_G4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba_G7, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
         CType(Me.Sym_Torn_Cem_Carga, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -289,7 +340,7 @@ Partial Class Proceso_Andina
         Me.Label9.BackColor = System.Drawing.Color.White
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(1103, 245)
+        Me.Label9.Location = New System.Drawing.Point(484, 190)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(67, 13)
         Me.Label9.TabIndex = 174
@@ -301,7 +352,7 @@ Partial Class Proceso_Andina
         Me.Label6.BackColor = System.Drawing.Color.White
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(478, 326)
+        Me.Label6.Location = New System.Drawing.Point(478, 353)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(53, 13)
         Me.Label6.TabIndex = 173
@@ -313,7 +364,7 @@ Partial Class Proceso_Andina
         Me.label3.BackColor = System.Drawing.Color.Gainsboro
         Me.label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label3.ForeColor = System.Drawing.Color.Black
-        Me.label3.Location = New System.Drawing.Point(398, 470)
+        Me.label3.Location = New System.Drawing.Point(398, 497)
         Me.label3.Name = "label3"
         Me.label3.Size = New System.Drawing.Size(74, 26)
         Me.label3.TabIndex = 177
@@ -325,7 +376,7 @@ Partial Class Proceso_Andina
         Me.label2.BackColor = System.Drawing.Color.Gainsboro
         Me.label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label2.ForeColor = System.Drawing.Color.Black
-        Me.label2.Location = New System.Drawing.Point(644, 447)
+        Me.label2.Location = New System.Drawing.Point(644, 474)
         Me.label2.Name = "label2"
         Me.label2.Size = New System.Drawing.Size(74, 26)
         Me.label2.TabIndex = 176
@@ -337,7 +388,7 @@ Partial Class Proceso_Andina
         Me.Lbl_Dosif_Cemento.BackColor = System.Drawing.Color.Gainsboro
         Me.Lbl_Dosif_Cemento.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_Dosif_Cemento.ForeColor = System.Drawing.Color.Red
-        Me.Lbl_Dosif_Cemento.Location = New System.Drawing.Point(1097, 458)
+        Me.Lbl_Dosif_Cemento.Location = New System.Drawing.Point(1097, 485)
         Me.Lbl_Dosif_Cemento.MinimumSize = New System.Drawing.Size(80, 20)
         Me.Lbl_Dosif_Cemento.Name = "Lbl_Dosif_Cemento"
         Me.Lbl_Dosif_Cemento.Size = New System.Drawing.Size(80, 20)
@@ -351,7 +402,7 @@ Partial Class Proceso_Andina
         Me.Lbl_Dosif_T2.BackColor = System.Drawing.Color.Gainsboro
         Me.Lbl_Dosif_T2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_Dosif_T2.ForeColor = System.Drawing.Color.Red
-        Me.Lbl_Dosif_T2.Location = New System.Drawing.Point(559, 347)
+        Me.Lbl_Dosif_T2.Location = New System.Drawing.Point(559, 374)
         Me.Lbl_Dosif_T2.MinimumSize = New System.Drawing.Size(80, 20)
         Me.Lbl_Dosif_T2.Name = "Lbl_Dosif_T2"
         Me.Lbl_Dosif_T2.Size = New System.Drawing.Size(80, 20)
@@ -365,7 +416,7 @@ Partial Class Proceso_Andina
         Me.Label5.BackColor = System.Drawing.Color.White
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(570, 325)
+        Me.Label5.Location = New System.Drawing.Point(570, 352)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(49, 13)
         Me.Label5.TabIndex = 171
@@ -377,7 +428,7 @@ Partial Class Proceso_Andina
         Me.Lbl_Dosif_T1.BackColor = System.Drawing.Color.Gainsboro
         Me.Lbl_Dosif_T1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_Dosif_T1.ForeColor = System.Drawing.Color.Red
-        Me.Lbl_Dosif_T1.Location = New System.Drawing.Point(462, 352)
+        Me.Lbl_Dosif_T1.Location = New System.Drawing.Point(462, 379)
         Me.Lbl_Dosif_T1.MinimumSize = New System.Drawing.Size(80, 15)
         Me.Lbl_Dosif_T1.Name = "Lbl_Dosif_T1"
         Me.Lbl_Dosif_T1.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -402,7 +453,7 @@ Partial Class Proceso_Andina
         Me.standardControl10.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("standardControl10.DebugData"))
         Me.standardControl10.FillColor = System.Drawing.Color.Silver
         Me.standardControl10.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.standardControl10.Location = New System.Drawing.Point(1076, 237)
+        Me.standardControl10.Location = New System.Drawing.Point(457, 182)
         Me.standardControl10.Name = "standardControl10"
         Me.standardControl10.Size = New System.Drawing.Size(123, 132)
         Me.standardControl10.SymbolHandle = CType(649651336, Long)
@@ -424,7 +475,7 @@ Partial Class Proceso_Andina
         Me.standardControl9.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("standardControl9.DebugData"))
         Me.standardControl9.FillColor = System.Drawing.Color.Silver
         Me.standardControl9.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.standardControl9.Location = New System.Drawing.Point(525, 316)
+        Me.standardControl9.Location = New System.Drawing.Point(525, 343)
         Me.standardControl9.Name = "standardControl9"
         Me.standardControl9.Size = New System.Drawing.Size(148, 128)
         Me.standardControl9.SymbolHandle = CType(649651336, Long)
@@ -442,7 +493,7 @@ Partial Class Proceso_Andina
         Me.Sym_Bomba.Category = "1PMP.cat2"
         Me.Sym_Bomba.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Bomba.DebugData"))
         Me.Sym_Bomba.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Sym_Bomba.Location = New System.Drawing.Point(669, 266)
+        Me.Sym_Bomba.Location = New System.Drawing.Point(669, 293)
         Me.Sym_Bomba.Name = "Sym_Bomba"
         Me.Sym_Bomba.Size = New System.Drawing.Size(89, 104)
         Me.Sym_Bomba.SymbolHandle = CType(1852304797, Long)
@@ -465,7 +516,7 @@ Partial Class Proceso_Andina
         Me.standardControl6.Category = "1veh.cat2"
         Me.standardControl6.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("standardControl6.DebugData"))
         Me.standardControl6.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.standardControl6.Location = New System.Drawing.Point(762, 518)
+        Me.standardControl6.Location = New System.Drawing.Point(762, 545)
         Me.standardControl6.Name = "standardControl6"
         Me.standardControl6.Size = New System.Drawing.Size(165, 156)
         Me.standardControl6.SymbolHandle = CType(750303753, Long)
@@ -485,7 +536,7 @@ Partial Class Proceso_Andina
         Me.Sym_Banda.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Banda.DebugData"))
         Me.Sym_Banda.FillColor = System.Drawing.Color.Silver
         Me.Sym_Banda.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Sym_Banda.Location = New System.Drawing.Point(450, 367)
+        Me.Sym_Banda.Location = New System.Drawing.Point(450, 394)
         Me.Sym_Banda.Name = "Sym_Banda"
         Me.Sym_Banda.Size = New System.Drawing.Size(435, 287)
         Me.Sym_Banda.SymbolHandle = CType(1286531200, Long)
@@ -504,7 +555,7 @@ Partial Class Proceso_Andina
         Me.ValvulaDescarga.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("ValvulaDescarga.DebugData"))
         Me.ValvulaDescarga.FillColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.ValvulaDescarga.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Shaded
-        Me.ValvulaDescarga.Location = New System.Drawing.Point(782, 273)
+        Me.ValvulaDescarga.Location = New System.Drawing.Point(782, 300)
         Me.ValvulaDescarga.Name = "ValvulaDescarga"
         Me.ValvulaDescarga.Size = New System.Drawing.Size(56, 64)
         Me.ValvulaDescarga.Stretch = True
@@ -523,7 +574,7 @@ Partial Class Proceso_Andina
         Me.Sym_Bomba_G2.Category = "1mp.cat2"
         Me.Sym_Bomba_G2.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Bomba_G2.DebugData"))
         Me.Sym_Bomba_G2.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Sym_Bomba_G2.Location = New System.Drawing.Point(813, 316)
+        Me.Sym_Bomba_G2.Location = New System.Drawing.Point(813, 343)
         Me.Sym_Bomba_G2.Name = "Sym_Bomba_G2"
         Me.Sym_Bomba_G2.Size = New System.Drawing.Size(52, 14)
         Me.Sym_Bomba_G2.SymbolHandle = CType(320265395, Long)
@@ -544,7 +595,7 @@ Partial Class Proceso_Andina
         Me.Sym_DescT1.FillColor = System.Drawing.Color.Gray
         Me.Sym_DescT1.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Shaded
         Me.Sym_DescT1.Flip = SymbolFactoryNetEngine.FlipOptions.Vertical
-        Me.Sym_DescT1.Location = New System.Drawing.Point(482, 455)
+        Me.Sym_DescT1.Location = New System.Drawing.Point(482, 482)
         Me.Sym_DescT1.Name = "Sym_DescT1"
         Me.Sym_DescT1.Rotation = SymbolFactoryNetEngine.RotationOptions.Rotate90
         Me.Sym_DescT1.Size = New System.Drawing.Size(56, 33)
@@ -556,7 +607,7 @@ Partial Class Proceso_Andina
         '
         Me.Btt_Iniciar.BackColor = System.Drawing.Color.LimeGreen
         Me.Btt_Iniciar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Btt_Iniciar.Location = New System.Drawing.Point(9, 266)
+        Me.Btt_Iniciar.Location = New System.Drawing.Point(7, 303)
         Me.Btt_Iniciar.Name = "Btt_Iniciar"
         Me.Btt_Iniciar.Size = New System.Drawing.Size(75, 49)
         Me.Btt_Iniciar.TabIndex = 211
@@ -578,7 +629,7 @@ Partial Class Proceso_Andina
         Me.Btt_Detener.BackColor = System.Drawing.Color.Red
         Me.Btt_Detener.Enabled = False
         Me.Btt_Detener.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Btt_Detener.Location = New System.Drawing.Point(182, 266)
+        Me.Btt_Detener.Location = New System.Drawing.Point(181, 303)
         Me.Btt_Detener.Name = "Btt_Detener"
         Me.Btt_Detener.Size = New System.Drawing.Size(85, 49)
         Me.Btt_Detener.TabIndex = 214
@@ -591,7 +642,7 @@ Partial Class Proceso_Andina
         Me.cmbproductos.FormattingEnabled = True
         Me.cmbproductos.Location = New System.Drawing.Point(6, 83)
         Me.cmbproductos.Name = "cmbproductos"
-        Me.cmbproductos.Size = New System.Drawing.Size(33, 24)
+        Me.cmbproductos.Size = New System.Drawing.Size(33, 23)
         Me.cmbproductos.TabIndex = 215
         Me.cmbproductos.Visible = False
         '
@@ -613,16 +664,16 @@ Partial Class Proceso_Andina
         Me.NumericM3.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.NumericM3.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NumericM3.Name = "NumericM3"
-        Me.NumericM3.Size = New System.Drawing.Size(43, 22)
+        Me.NumericM3.Size = New System.Drawing.Size(43, 21)
         Me.NumericM3.TabIndex = 217
         Me.NumericM3.Value = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NumericM3.Visible = False
         '
         'Rtx_Mensajes
         '
-        Me.Rtx_Mensajes.Location = New System.Drawing.Point(10, 618)
+        Me.Rtx_Mensajes.Location = New System.Drawing.Point(10, 403)
         Me.Rtx_Mensajes.Name = "Rtx_Mensajes"
-        Me.Rtx_Mensajes.Size = New System.Drawing.Size(363, 99)
+        Me.Rtx_Mensajes.Size = New System.Drawing.Size(363, 244)
         Me.Rtx_Mensajes.TabIndex = 219
         Me.Rtx_Mensajes.Text = ""
         '
@@ -630,17 +681,17 @@ Partial Class Proceso_Andina
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(12, 599)
+        Me.Label16.Location = New System.Drawing.Point(12, 374)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(70, 16)
+        Me.Label16.Size = New System.Drawing.Size(142, 16)
         Me.Label16.TabIndex = 220
-        Me.Label16.Text = "Mensajes:"
+        Me.Label16.Text = "Mensajes del sistema:"
         '
         'Btt_ReCon_T1
         '
         Me.Btt_ReCon_T1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Btt_ReCon_T1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_ReCon_T1.Location = New System.Drawing.Point(405, 76)
+        Me.Btt_ReCon_T1.Location = New System.Drawing.Point(774, 83)
         Me.Btt_ReCon_T1.Name = "Btt_ReCon_T1"
         Me.Btt_ReCon_T1.Size = New System.Drawing.Size(71, 26)
         Me.Btt_ReCon_T1.TabIndex = 226
@@ -665,13 +716,14 @@ Partial Class Proceso_Andina
         '
         Me.GroupBox1.Controls.Add(Me.Lbl_Est_T1)
         Me.GroupBox1.Controls.Add(Me.Lbl_Peso_T1)
+        Me.GroupBox1.Controls.Add(Me.Pil_Tolv1)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(405, 8)
+        Me.GroupBox1.Location = New System.Drawing.Point(774, 15)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(88, 63)
+        Me.GroupBox1.Size = New System.Drawing.Size(131, 63)
         Me.GroupBox1.TabIndex = 227
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "1-PIEDRA"
+        Me.GroupBox1.Text = "BLZ. ARIDOS"
         '
         'Lbl_Est_T1
         '
@@ -689,12 +741,13 @@ Partial Class Proceso_Andina
         Me.GroupBox2.Controls.Add(Me.Lbl_Est_T2)
         Me.GroupBox2.Controls.Add(Me.Lbl_Peso_T2)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(496, 8)
+        Me.GroupBox2.Location = New System.Drawing.Point(8, 5)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(88, 63)
+        Me.GroupBox2.Size = New System.Drawing.Size(95, 75)
         Me.GroupBox2.TabIndex = 228
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "2-ARENA"
+        Me.GroupBox2.Visible = False
         '
         'Lbl_Est_T2
         '
@@ -723,7 +776,7 @@ Partial Class Proceso_Andina
         '
         Me.Btt_ReCon_T2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Btt_ReCon_T2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_ReCon_T2.Location = New System.Drawing.Point(496, 76)
+        Me.Btt_ReCon_T2.Location = New System.Drawing.Point(13, 81)
         Me.Btt_ReCon_T2.Name = "Btt_ReCon_T2"
         Me.Btt_ReCon_T2.Size = New System.Drawing.Size(71, 26)
         Me.Btt_ReCon_T2.TabIndex = 226
@@ -736,13 +789,14 @@ Partial Class Proceso_Andina
         '
         Me.GroupBox3.Controls.Add(Me.Lbl_Est_Cem)
         Me.GroupBox3.Controls.Add(Me.Lbl_Peso_Cem)
+        Me.GroupBox3.Controls.Add(Me.Pil_TolvCemento)
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(589, 7)
+        Me.GroupBox3.Location = New System.Drawing.Point(911, 14)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(103, 63)
+        Me.GroupBox3.Size = New System.Drawing.Size(136, 63)
         Me.GroupBox3.TabIndex = 228
         Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "3-CEMENTO"
+        Me.GroupBox3.Text = "BLZ. CEMENTO"
         '
         'Lbl_Est_Cem
         '
@@ -771,7 +825,7 @@ Partial Class Proceso_Andina
         '
         Me.Btt_ReCon_Cemento.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Btt_ReCon_Cemento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_ReCon_Cemento.Location = New System.Drawing.Point(591, 76)
+        Me.Btt_ReCon_Cemento.Location = New System.Drawing.Point(911, 82)
         Me.Btt_ReCon_Cemento.Name = "Btt_ReCon_Cemento"
         Me.Btt_ReCon_Cemento.Size = New System.Drawing.Size(71, 26)
         Me.Btt_ReCon_Cemento.TabIndex = 226
@@ -1286,7 +1340,7 @@ Partial Class Proceso_Andina
         '
         Me.Btt_Continuar.BackColor = System.Drawing.Color.DarkOrange
         Me.Btt_Continuar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Btt_Continuar.Location = New System.Drawing.Point(90, 266)
+        Me.Btt_Continuar.Location = New System.Drawing.Point(89, 303)
         Me.Btt_Continuar.Name = "Btt_Continuar"
         Me.Btt_Continuar.Size = New System.Drawing.Size(86, 49)
         Me.Btt_Continuar.TabIndex = 230
@@ -1310,7 +1364,7 @@ Partial Class Proceso_Andina
         Me.StandardControl15.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("StandardControl15.DebugData"))
         Me.StandardControl15.FillColor = System.Drawing.Color.Silver
         Me.StandardControl15.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.StandardControl15.Location = New System.Drawing.Point(439, 316)
+        Me.StandardControl15.Location = New System.Drawing.Point(439, 343)
         Me.StandardControl15.Name = "StandardControl15"
         Me.StandardControl15.Size = New System.Drawing.Size(123, 148)
         Me.StandardControl15.SymbolHandle = CType(649651336, Long)
@@ -1331,7 +1385,7 @@ Partial Class Proceso_Andina
         Me.Sym_DescT2.FillColor = System.Drawing.Color.Gray
         Me.Sym_DescT2.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Shaded
         Me.Sym_DescT2.Flip = SymbolFactoryNetEngine.FlipOptions.Vertical
-        Me.Sym_DescT2.Location = New System.Drawing.Point(582, 436)
+        Me.Sym_DescT2.Location = New System.Drawing.Point(582, 463)
         Me.Sym_DescT2.Name = "Sym_DescT2"
         Me.Sym_DescT2.Rotation = SymbolFactoryNetEngine.RotationOptions.Rotate90
         Me.Sym_DescT2.Size = New System.Drawing.Size(56, 33)
@@ -1351,7 +1405,7 @@ Partial Class Proceso_Andina
         Me.Sym_Bomba_G1.Category = "1mp.cat2"
         Me.Sym_Bomba_G1.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Bomba_G1.DebugData"))
         Me.Sym_Bomba_G1.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Sym_Bomba_G1.Location = New System.Drawing.Point(742, 316)
+        Me.Sym_Bomba_G1.Location = New System.Drawing.Point(742, 343)
         Me.Sym_Bomba_G1.Name = "Sym_Bomba_G1"
         Me.Sym_Bomba_G1.Size = New System.Drawing.Size(52, 14)
         Me.Sym_Bomba_G1.SymbolHandle = CType(320265395, Long)
@@ -1370,7 +1424,7 @@ Partial Class Proceso_Andina
         Me.Sym_BalCemento.Category = "1TANK.cat2"
         Me.Sym_BalCemento.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_BalCemento.DebugData"))
         Me.Sym_BalCemento.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Sym_BalCemento.Location = New System.Drawing.Point(1065, 432)
+        Me.Sym_BalCemento.Location = New System.Drawing.Point(1065, 459)
         Me.Sym_BalCemento.Name = "Sym_BalCemento"
         Me.Sym_BalCemento.Size = New System.Drawing.Size(143, 70)
         Me.Sym_BalCemento.Stretch = True
@@ -1383,7 +1437,7 @@ Partial Class Proceso_Andina
         Me.Label4.BackColor = System.Drawing.Color.Gainsboro
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(1204, 392)
+        Me.Label4.Location = New System.Drawing.Point(1204, 419)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(113, 13)
         Me.Label4.TabIndex = 237
@@ -1403,7 +1457,7 @@ Partial Class Proceso_Andina
         Me.Sym_CargaCem.FillColor = System.Drawing.Color.Gray
         Me.Sym_CargaCem.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Shaded
         Me.Sym_CargaCem.Flip = SymbolFactoryNetEngine.FlipOptions.Vertical
-        Me.Sym_CargaCem.Location = New System.Drawing.Point(1119, 366)
+        Me.Sym_CargaCem.Location = New System.Drawing.Point(500, 311)
         Me.Sym_CargaCem.Name = "Sym_CargaCem"
         Me.Sym_CargaCem.Rotation = SymbolFactoryNetEngine.RotationOptions.Rotate90
         Me.Sym_CargaCem.Size = New System.Drawing.Size(56, 33)
@@ -1423,7 +1477,7 @@ Partial Class Proceso_Andina
         Me.Sym_Bomba_G5.Category = "1mp.cat2"
         Me.Sym_Bomba_G5.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Bomba_G5.DebugData"))
         Me.Sym_Bomba_G5.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Sym_Bomba_G5.Location = New System.Drawing.Point(859, 352)
+        Me.Sym_Bomba_G5.Location = New System.Drawing.Point(859, 379)
         Me.Sym_Bomba_G5.Name = "Sym_Bomba_G5"
         Me.Sym_Bomba_G5.Size = New System.Drawing.Size(14, 52)
         Me.Sym_Bomba_G5.SymbolHandle = CType(168083648, Long)
@@ -1433,11 +1487,13 @@ Partial Class Proceso_Andina
         '
         Me.GroupBox4.Controls.Add(Me.Label44)
         Me.GroupBox4.Controls.Add(Me.Pil_ApagaT2)
+        Me.GroupBox4.Controls.Add(Me.Pil_Tolv2)
         Me.GroupBox4.Controls.Add(Me.Label45)
         Me.GroupBox4.Controls.Add(Me.Pil_ActivaT2)
         Me.GroupBox4.Controls.Add(Me.Label43)
         Me.GroupBox4.Controls.Add(Me.Pil_ApagaT1)
         Me.GroupBox4.Controls.Add(Me.Label42)
+        Me.GroupBox4.Controls.Add(Me.Label13)
         Me.GroupBox4.Controls.Add(Me.Pil_ActivaT1)
         Me.GroupBox4.Controls.Add(Me.Label40)
         Me.GroupBox4.Controls.Add(Me.Pil_Desc_Cem_Compuerta)
@@ -1448,11 +1504,8 @@ Partial Class Proceso_Andina
         Me.GroupBox4.Controls.Add(Me.Label28)
         Me.GroupBox4.Controls.Add(Me.Pil_CargaCemTor)
         Me.GroupBox4.Controls.Add(Me.Label30)
-        Me.GroupBox4.Controls.Add(Me.Pil_Tolv2)
         Me.GroupBox4.Controls.Add(Me.Label20)
-        Me.GroupBox4.Controls.Add(Me.Pil_TolvCemento)
         Me.GroupBox4.Controls.Add(Me.Label18)
-        Me.GroupBox4.Controls.Add(Me.Pil_Tolv1)
         Me.GroupBox4.Controls.Add(Me.Pil_DescargaT2)
         Me.GroupBox4.Controls.Add(Me.Label32)
         Me.GroupBox4.Controls.Add(Me.Pil_Banda)
@@ -1460,8 +1513,6 @@ Partial Class Proceso_Andina
         Me.GroupBox4.Controls.Add(Me.Label11)
         Me.GroupBox4.Controls.Add(Me.Pil_Bomba)
         Me.GroupBox4.Controls.Add(Me.Label12)
-        Me.GroupBox4.Controls.Add(Me.Label13)
-        Me.GroupBox4.Controls.Add(Me.Pil_PLC)
         Me.GroupBox4.Controls.Add(Me.Pil_DesCemento)
         Me.GroupBox4.Controls.Add(Me.Label31)
         Me.GroupBox4.Controls.Add(Me.Label33)
@@ -1472,7 +1523,7 @@ Partial Class Proceso_Andina
         Me.GroupBox4.Controls.Add(Me.Pil_Setpoints)
         Me.GroupBox4.Controls.Add(Me.Pil_Dosifica)
         Me.GroupBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(11, 324)
+        Me.GroupBox4.Location = New System.Drawing.Point(10, 210)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(381, 269)
         Me.GroupBox4.TabIndex = 240
@@ -1579,6 +1630,17 @@ Partial Class Proceso_Andina
         Me.Label42.Size = New System.Drawing.Size(67, 15)
         Me.Label42.TabIndex = 128
         Me.Label42.Text = "Piedra  ON"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Label13.Location = New System.Drawing.Point(37, 24)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(71, 15)
+        Me.Label13.TabIndex = 96
+        Me.Label13.Text = "PLC Conect"
         '
         'Pil_ActivaT1
         '
@@ -1743,7 +1805,7 @@ Partial Class Proceso_Andina
         Me.Pil_Tolv2.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pil_Tolv2.DebugData"))
         Me.Pil_Tolv2.FillColor = System.Drawing.Color.Gray
         Me.Pil_Tolv2.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pil_Tolv2.Location = New System.Drawing.Point(8, 85)
+        Me.Pil_Tolv2.Location = New System.Drawing.Point(8, 66)
         Me.Pil_Tolv2.Name = "Pil_Tolv2"
         Me.Pil_Tolv2.Size = New System.Drawing.Size(20, 15)
         Me.Pil_Tolv2.SymbolHandle = CType(480163100, Long)
@@ -1773,7 +1835,7 @@ Partial Class Proceso_Andina
         Me.Pil_TolvCemento.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pil_TolvCemento.DebugData"))
         Me.Pil_TolvCemento.FillColor = System.Drawing.Color.Gray
         Me.Pil_TolvCemento.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pil_TolvCemento.Location = New System.Drawing.Point(8, 105)
+        Me.Pil_TolvCemento.Location = New System.Drawing.Point(86, 44)
         Me.Pil_TolvCemento.Name = "Pil_TolvCemento"
         Me.Pil_TolvCemento.Size = New System.Drawing.Size(20, 15)
         Me.Pil_TolvCemento.SymbolHandle = CType(480163100, Long)
@@ -1803,7 +1865,7 @@ Partial Class Proceso_Andina
         Me.Pil_Tolv1.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pil_Tolv1.DebugData"))
         Me.Pil_Tolv1.FillColor = System.Drawing.Color.Gray
         Me.Pil_Tolv1.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pil_Tolv1.Location = New System.Drawing.Point(8, 65)
+        Me.Pil_Tolv1.Location = New System.Drawing.Point(85, 43)
         Me.Pil_Tolv1.Name = "Pil_Tolv1"
         Me.Pil_Tolv1.Size = New System.Drawing.Size(20, 15)
         Me.Pil_Tolv1.SymbolHandle = CType(480163100, Long)
@@ -1909,36 +1971,6 @@ Partial Class Proceso_Andina
         Me.Label12.Size = New System.Drawing.Size(113, 15)
         Me.Label12.TabIndex = 98
         Me.Label12.Text = "Descarga Cemento"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label13.Location = New System.Drawing.Point(34, 25)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(71, 15)
-        Me.Label13.TabIndex = 96
-        Me.Label13.Text = "PLC Conect"
-        '
-        'Pil_PLC
-        '
-        Me.Pil_PLC.AnalogIntValue1 = CType(0, Short)
-        Me.Pil_PLC.AnalogValue1 = 0R
-        Me.Pil_PLC.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pil_PLC.BackColor = System.Drawing.Color.Transparent
-        Me.Pil_PLC.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pil_PLC.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pil_PLC.BlinkColor = System.Drawing.Color.Red
-        Me.Pil_PLC.Category = "1Btn.cat2"
-        Me.Pil_PLC.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pil_PLC.DebugData"))
-        Me.Pil_PLC.FillColor = System.Drawing.Color.Gray
-        Me.Pil_PLC.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pil_PLC.Location = New System.Drawing.Point(8, 25)
-        Me.Pil_PLC.Name = "Pil_PLC"
-        Me.Pil_PLC.Size = New System.Drawing.Size(20, 15)
-        Me.Pil_PLC.SymbolHandle = CType(480163100, Long)
-        Me.Pil_PLC.TabIndex = 97
         '
         'Pil_DesCemento
         '
@@ -2079,6 +2111,25 @@ Partial Class Proceso_Andina
         Me.Pil_Dosifica.SymbolHandle = CType(480163100, Long)
         Me.Pil_Dosifica.TabIndex = 91
         '
+        'Pil_PLC
+        '
+        Me.Pil_PLC.AnalogIntValue1 = CType(0, Short)
+        Me.Pil_PLC.AnalogValue1 = 0R
+        Me.Pil_PLC.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Pil_PLC.BackColor = System.Drawing.Color.Transparent
+        Me.Pil_PLC.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Pil_PLC.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Pil_PLC.BlinkColor = System.Drawing.Color.Red
+        Me.Pil_PLC.Category = "1Btn.cat2"
+        Me.Pil_PLC.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pil_PLC.DebugData"))
+        Me.Pil_PLC.FillColor = System.Drawing.Color.Gray
+        Me.Pil_PLC.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Pil_PLC.Location = New System.Drawing.Point(51, 56)
+        Me.Pil_PLC.Name = "Pil_PLC"
+        Me.Pil_PLC.Size = New System.Drawing.Size(20, 15)
+        Me.Pil_PLC.SymbolHandle = CType(480163100, Long)
+        Me.Pil_PLC.TabIndex = 97
+        '
         'GroupBox6
         '
         Me.GroupBox6.Controls.Add(Me.Lbl_Puerto)
@@ -2088,8 +2139,9 @@ Partial Class Proceso_Andina
         Me.GroupBox6.Controls.Add(Me.Label8)
         Me.GroupBox6.Controls.Add(Me.Label29)
         Me.GroupBox6.Controls.Add(Me.Btt_ReconectaPLC)
+        Me.GroupBox6.Controls.Add(Me.Pil_PLC)
         Me.GroupBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox6.Location = New System.Drawing.Point(406, 113)
+        Me.GroupBox6.Location = New System.Drawing.Point(513, 20)
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.Size = New System.Drawing.Size(255, 79)
         Me.GroupBox6.TabIndex = 241
@@ -2110,7 +2162,7 @@ Partial Class Proceso_Andina
         '
         Me.Lbl_Est_Conn.AutoSize = True
         Me.Lbl_Est_Conn.ForeColor = System.Drawing.Color.Red
-        Me.Lbl_Est_Conn.Location = New System.Drawing.Point(48, 57)
+        Me.Lbl_Est_Conn.Location = New System.Drawing.Point(75, 56)
         Me.Lbl_Est_Conn.Name = "Lbl_Est_Conn"
         Me.Lbl_Est_Conn.Size = New System.Drawing.Size(77, 13)
         Me.Lbl_Est_Conn.TabIndex = 0
@@ -2168,7 +2220,7 @@ Partial Class Proceso_Andina
         'btn_impresion
         '
         Me.btn_impresion.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_impresion.Location = New System.Drawing.Point(396, 633)
+        Me.btn_impresion.Location = New System.Drawing.Point(1155, 227)
         Me.btn_impresion.Name = "btn_impresion"
         Me.btn_impresion.Size = New System.Drawing.Size(121, 23)
         Me.btn_impresion.TabIndex = 241
@@ -2190,7 +2242,7 @@ Partial Class Proceso_Andina
         Me.Sym_MotorBanda.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_MotorBanda.DebugData"))
         Me.Sym_MotorBanda.FillColor = System.Drawing.Color.Silver
         Me.Sym_MotorBanda.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Shaded
-        Me.Sym_MotorBanda.Location = New System.Drawing.Point(396, 529)
+        Me.Sym_MotorBanda.Location = New System.Drawing.Point(396, 556)
         Me.Sym_MotorBanda.Name = "Sym_MotorBanda"
         Me.Sym_MotorBanda.Size = New System.Drawing.Size(79, 54)
         Me.Sym_MotorBanda.SymbolHandle = CType(2122271508, Long)
@@ -2210,7 +2262,7 @@ Partial Class Proceso_Andina
         Me.Sym_DescargaCem.FillColor = System.Drawing.Color.Gray
         Me.Sym_DescargaCem.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Shaded
         Me.Sym_DescargaCem.Flip = SymbolFactoryNetEngine.FlipOptions.Vertical
-        Me.Sym_DescargaCem.Location = New System.Drawing.Point(1117, 502)
+        Me.Sym_DescargaCem.Location = New System.Drawing.Point(1117, 529)
         Me.Sym_DescargaCem.Name = "Sym_DescargaCem"
         Me.Sym_DescargaCem.Rotation = SymbolFactoryNetEngine.RotationOptions.Rotate90
         Me.Sym_DescargaCem.Size = New System.Drawing.Size(56, 33)
@@ -2224,7 +2276,7 @@ Partial Class Proceso_Andina
         Me.Label17.BackColor = System.Drawing.Color.Gainsboro
         Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.ForeColor = System.Drawing.Color.Black
-        Me.Label17.Location = New System.Drawing.Point(1055, 538)
+        Me.Label17.Location = New System.Drawing.Point(1055, 565)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(142, 13)
         Me.Label17.TabIndex = 247
@@ -2236,7 +2288,7 @@ Partial Class Proceso_Andina
         Me.Label19.BackColor = System.Drawing.Color.Gainsboro
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label19.ForeColor = System.Drawing.Color.Black
-        Me.Label19.Location = New System.Drawing.Point(400, 580)
+        Me.Label19.Location = New System.Drawing.Point(400, 607)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(75, 13)
         Me.Label19.TabIndex = 248
@@ -2248,7 +2300,7 @@ Partial Class Proceso_Andina
         Me.Lbl_Dosif_Agua.BackColor = System.Drawing.Color.Gainsboro
         Me.Lbl_Dosif_Agua.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_Dosif_Agua.ForeColor = System.Drawing.Color.Red
-        Me.Lbl_Dosif_Agua.Location = New System.Drawing.Point(830, 274)
+        Me.Lbl_Dosif_Agua.Location = New System.Drawing.Point(830, 301)
         Me.Lbl_Dosif_Agua.MinimumSize = New System.Drawing.Size(80, 20)
         Me.Lbl_Dosif_Agua.Name = "Lbl_Dosif_Agua"
         Me.Lbl_Dosif_Agua.Size = New System.Drawing.Size(80, 20)
@@ -2262,7 +2314,7 @@ Partial Class Proceso_Andina
         Me.Label37.BackColor = System.Drawing.Color.Gainsboro
         Me.Label37.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label37.ForeColor = System.Drawing.Color.Black
-        Me.Label37.Location = New System.Drawing.Point(916, 279)
+        Me.Label37.Location = New System.Drawing.Point(916, 306)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(38, 13)
         Me.Label37.TabIndex = 250
@@ -2272,7 +2324,7 @@ Partial Class Proceso_Andina
         '
         Me.GroupBox5.Controls.Add(Me.Lbl_Agua)
         Me.GroupBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox5.Location = New System.Drawing.Point(694, 7)
+        Me.GroupBox5.Location = New System.Drawing.Point(8, 133)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(88, 62)
         Me.GroupBox5.TabIndex = 246
@@ -2297,7 +2349,7 @@ Partial Class Proceso_Andina
         Me.Label38.BackColor = System.Drawing.Color.Gainsboro
         Me.Label38.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label38.ForeColor = System.Drawing.Color.Black
-        Me.Label38.Location = New System.Drawing.Point(783, 257)
+        Me.Label38.Location = New System.Drawing.Point(783, 284)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(41, 13)
         Me.Label38.TabIndex = 251
@@ -2309,7 +2361,7 @@ Partial Class Proceso_Andina
         Me.Label39.BackColor = System.Drawing.Color.Gainsboro
         Me.Label39.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label39.ForeColor = System.Drawing.Color.Black
-        Me.Label39.Location = New System.Drawing.Point(723, 296)
+        Me.Label39.Location = New System.Drawing.Point(723, 323)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(50, 13)
         Me.Label39.TabIndex = 252
@@ -2327,7 +2379,7 @@ Partial Class Proceso_Andina
         Me.Sym_Bomba_G6.Category = "1mp.cat2"
         Me.Sym_Bomba_G6.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Bomba_G6.DebugData"))
         Me.Sym_Bomba_G6.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Sym_Bomba_G6.Location = New System.Drawing.Point(859, 376)
+        Me.Sym_Bomba_G6.Location = New System.Drawing.Point(859, 403)
         Me.Sym_Bomba_G6.Name = "Sym_Bomba_G6"
         Me.Sym_Bomba_G6.Size = New System.Drawing.Size(14, 52)
         Me.Sym_Bomba_G6.SymbolHandle = CType(168083648, Long)
@@ -2345,7 +2397,7 @@ Partial Class Proceso_Andina
         Me.Sym_Bomba_G3.Category = "1mp.cat2"
         Me.Sym_Bomba_G3.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Bomba_G3.DebugData"))
         Me.Sym_Bomba_G3.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Sym_Bomba_G3.Location = New System.Drawing.Point(850, 315)
+        Me.Sym_Bomba_G3.Location = New System.Drawing.Point(850, 342)
         Me.Sym_Bomba_G3.Name = "Sym_Bomba_G3"
         Me.Sym_Bomba_G3.Rotation = SymbolFactoryNetEngine.RotationOptions.Rotate90
         Me.Sym_Bomba_G3.Size = New System.Drawing.Size(23, 24)
@@ -2364,7 +2416,7 @@ Partial Class Proceso_Andina
         Me.Sym_Arena.Category = "1MH.cat2"
         Me.Sym_Arena.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Arena.DebugData"))
         Me.Sym_Arena.FillColor = System.Drawing.Color.FromArgb(CType(CType(145, Byte), Integer), CType(CType(47, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Sym_Arena.Location = New System.Drawing.Point(562, 450)
+        Me.Sym_Arena.Location = New System.Drawing.Point(562, 477)
         Me.Sym_Arena.Name = "Sym_Arena"
         Me.Sym_Arena.Size = New System.Drawing.Size(80, 70)
         Me.Sym_Arena.SymbolHandle = CType(1426793514, Long)
@@ -2393,15 +2445,17 @@ Partial Class Proceso_Andina
         '
         Me.Panel2.AutoScroll = True
         Me.Panel2.BackColor = System.Drawing.SystemColors.Control
+        Me.Panel2.Controls.Add(Me.btnagregar)
+        Me.Panel2.Controls.Add(Me.TableLayoutPanel2)
+        Me.Panel2.Controls.Add(Me.GroupBox8)
+        Me.Panel2.Controls.Add(Me.Label64)
+        Me.Panel2.Controls.Add(Me.Label52)
+        Me.Panel2.Controls.Add(Me.lblcomprobante)
+        Me.Panel2.Controls.Add(Me.Gb_OrdenDespacho)
         Me.Panel2.Controls.Add(Me.Sym_Piedra)
         Me.Panel2.Controls.Add(Me.Lbl_Operador)
-        Me.Panel2.Controls.Add(Me.Label47)
         Me.Panel2.Controls.Add(Me.Label50)
-        Me.Panel2.Controls.Add(Me.Label49)
-        Me.Panel2.Controls.Add(Me.Btt_ImprimirGuia)
-        Me.Panel2.Controls.Add(Me.Gbx_ConfigCarg_Cemento)
         Me.Panel2.Controls.Add(Me.Label46)
-        Me.Panel2.Controls.Add(Me.GBx_Preparacion)
         Me.Panel2.Controls.Add(Me.Lbl_Info)
         Me.Panel2.Controls.Add(Me.StandardControl8)
         Me.Panel2.Controls.Add(Me.Sym_Cemento)
@@ -2409,11 +2463,9 @@ Partial Class Proceso_Andina
         Me.Panel2.Controls.Add(Me.StandardControl3)
         Me.Panel2.Controls.Add(Me.Sym_Bomba_G4)
         Me.Panel2.Controls.Add(Me.Sym_Bomba_G7)
-        Me.Panel2.Controls.Add(Me.Panel1)
         Me.Panel2.Controls.Add(Me.standardControl6)
         Me.Panel2.Controls.Add(Me.Btt_Salir)
         Me.Panel2.Controls.Add(Me.Btt_ReCon_Cemento)
-        Me.Panel2.Controls.Add(Me.Btt_ReCon_T2)
         Me.Panel2.Controls.Add(Me.Btt_ReCon_T1)
         Me.Panel2.Controls.Add(Me.Sym_Arena)
         Me.Panel2.Controls.Add(Me.Btt_Iniciar)
@@ -2425,9 +2477,7 @@ Partial Class Proceso_Andina
         Me.Panel2.Controls.Add(Me.Label38)
         Me.Panel2.Controls.Add(Me.GroupBox1)
         Me.Panel2.Controls.Add(Me.Label37)
-        Me.Panel2.Controls.Add(Me.GroupBox2)
         Me.Panel2.Controls.Add(Me.Lbl_Dosif_Agua)
-        Me.Panel2.Controls.Add(Me.GroupBox5)
         Me.Panel2.Controls.Add(Me.Label19)
         Me.Panel2.Controls.Add(Me.GroupBox3)
         Me.Panel2.Controls.Add(Me.Label17)
@@ -2438,15 +2488,12 @@ Partial Class Proceso_Andina
         Me.Panel2.Controls.Add(Me.Sym_Bomba_G5)
         Me.Panel2.Controls.Add(Me.Rtx_Mensajes)
         Me.Panel2.Controls.Add(Me.Label4)
-        Me.Panel2.Controls.Add(Me.GroupBox4)
         Me.Panel2.Controls.Add(Me.Lbl_Dosif_Cemento)
         Me.Panel2.Controls.Add(Me.Sym_BalCemento)
-        Me.Panel2.Controls.Add(Me.Sym_CargaCem)
         Me.Panel2.Controls.Add(Me.Sym_Bomba_G1)
         Me.Panel2.Controls.Add(Me.Lbl_Dosif_T1)
         Me.Panel2.Controls.Add(Me.Label5)
         Me.Panel2.Controls.Add(Me.ValvulaDescarga)
-        Me.Panel2.Controls.Add(Me.Label9)
         Me.Panel2.Controls.Add(Me.Sym_Banda)
         Me.Panel2.Controls.Add(Me.Label6)
         Me.Panel2.Controls.Add(Me.label3)
@@ -2454,7 +2501,6 @@ Partial Class Proceso_Andina
         Me.Panel2.Controls.Add(Me.Sym_Bomba)
         Me.Panel2.Controls.Add(Me.Lbl_Dosif_T2)
         Me.Panel2.Controls.Add(Me.standardControl9)
-        Me.Panel2.Controls.Add(Me.standardControl10)
         Me.Panel2.Controls.Add(Me.Sym_DescargaCem)
         Me.Panel2.Controls.Add(Me.Sym_DescT2)
         Me.Panel2.Controls.Add(Me.Sym_Torn_Cem_Carga)
@@ -2469,128 +2515,413 @@ Partial Class Proceso_Andina
         Me.Panel2.Size = New System.Drawing.Size(1338, 565)
         Me.Panel2.TabIndex = 259
         '
-        'Sym_Piedra
+        'btnagregar
         '
-        Me.Sym_Piedra.AnalogIntValue1 = CType(0, Short)
-        Me.Sym_Piedra.AnalogValue1 = 0R
-        Me.Sym_Piedra.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Sym_Piedra.BackColor = System.Drawing.Color.Transparent
-        Me.Sym_Piedra.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Sym_Piedra.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkInvisible, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer)), "Band1"))
-        Me.Sym_Piedra.BlinkColor = System.Drawing.Color.Red
-        Me.Sym_Piedra.Category = "1MH.cat2"
-        Me.Sym_Piedra.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Piedra.DebugData"))
-        Me.Sym_Piedra.FillColor = System.Drawing.Color.Black
-        Me.Sym_Piedra.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Sym_Piedra.Location = New System.Drawing.Point(463, 471)
-        Me.Sym_Piedra.Name = "Sym_Piedra"
-        Me.Sym_Piedra.Size = New System.Drawing.Size(80, 70)
-        Me.Sym_Piedra.SymbolHandle = CType(1426793514, Long)
-        Me.Sym_Piedra.TabIndex = 287
-        Me.Sym_Piedra.Visible = False
+        Me.btnagregar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnagregar.Image = Global.HORMIGONERA.My.Resources.Resources._131897___file_new
+        Me.btnagregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnagregar.Location = New System.Drawing.Point(9, 221)
+        Me.btnagregar.Name = "btnagregar"
+        Me.btnagregar.Size = New System.Drawing.Size(120, 40)
+        Me.btnagregar.TabIndex = 293
+        Me.btnagregar.Text = "Crear Nuevo"
+        Me.btnagregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnagregar.UseVisualStyleBackColor = True
         '
-        'Lbl_Operador
+        'TableLayoutPanel2
         '
-        Me.Lbl_Operador.AutoSize = True
-        Me.Lbl_Operador.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Operador.Location = New System.Drawing.Point(88, 11)
-        Me.Lbl_Operador.Name = "Lbl_Operador"
-        Me.Lbl_Operador.Size = New System.Drawing.Size(16, 16)
-        Me.Lbl_Operador.TabIndex = 286
-        Me.Lbl_Operador.Text = "--"
+        Me.TableLayoutPanel2.ColumnCount = 7
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.64293!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.89594!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.71803!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.3483!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.71259!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.68221!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel2.Controls.Add(Me.Button1, 5, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.MaskedTextBox4, 2, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.MaskedTextBox3, 2, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.MaskedTextBox2, 2, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.MaskedTextBox1, 2, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label54, 0, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label57, 1, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar2, 6, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar3, 6, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label61, 0, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar4, 6, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar5, 6, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label63, 0, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label66, 0, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label77, 3, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label47, 1, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label67, 1, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label68, 1, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label55, 3, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label58, 3, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label62, 3, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.Button5, 5, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.Button6, 5, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.Button7, 5, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label65, 4, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.MaskedTextBox5, 4, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label69, 4, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label70, 4, 2)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(514, 121)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 4
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(614, 142)
+        Me.TableLayoutPanel2.TabIndex = 292
+        '
+        'Button1
+        '
+        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Button1.Location = New System.Drawing.Point(412, 6)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(82, 23)
+        Me.Button1.TabIndex = 293
+        Me.Button1.Text = "Capturar"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'MaskedTextBox4
+        '
+        Me.MaskedTextBox4.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.MaskedTextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MaskedTextBox4.Location = New System.Drawing.Point(173, 112)
+        Me.MaskedTextBox4.Mask = "99999.99"
+        Me.MaskedTextBox4.Name = "MaskedTextBox4"
+        Me.MaskedTextBox4.Size = New System.Drawing.Size(71, 22)
+        Me.MaskedTextBox4.TabIndex = 296
+        '
+        'MaskedTextBox3
+        '
+        Me.MaskedTextBox3.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.MaskedTextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MaskedTextBox3.Location = New System.Drawing.Point(173, 76)
+        Me.MaskedTextBox3.Mask = "99999.99"
+        Me.MaskedTextBox3.Name = "MaskedTextBox3"
+        Me.MaskedTextBox3.Size = New System.Drawing.Size(71, 22)
+        Me.MaskedTextBox3.TabIndex = 295
+        '
+        'MaskedTextBox2
+        '
+        Me.MaskedTextBox2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.MaskedTextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MaskedTextBox2.Location = New System.Drawing.Point(173, 41)
+        Me.MaskedTextBox2.Mask = "99999.99"
+        Me.MaskedTextBox2.Name = "MaskedTextBox2"
+        Me.MaskedTextBox2.Size = New System.Drawing.Size(71, 22)
+        Me.MaskedTextBox2.TabIndex = 294
+        '
+        'MaskedTextBox1
+        '
+        Me.MaskedTextBox1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.MaskedTextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MaskedTextBox1.Location = New System.Drawing.Point(173, 6)
+        Me.MaskedTextBox1.Mask = "99999.99"
+        Me.MaskedTextBox1.Name = "MaskedTextBox1"
+        Me.MaskedTextBox1.Size = New System.Drawing.Size(71, 22)
+        Me.MaskedTextBox1.TabIndex = 293
+        '
+        'Label54
+        '
+        Me.Label54.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label54.AutoSize = True
+        Me.Label54.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label54.ForeColor = System.Drawing.Color.Black
+        Me.Label54.Location = New System.Drawing.Point(10, 11)
+        Me.Label54.Name = "Label54"
+        Me.Label54.Size = New System.Drawing.Size(47, 13)
+        Me.Label54.TabIndex = 5
+        Me.Label54.Text = "PIEDRA"
+        '
+        'Label57
+        '
+        Me.Label57.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label57.AutoSize = True
+        Me.Label57.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label57.ForeColor = System.Drawing.Color.Black
+        Me.Label57.Location = New System.Drawing.Point(80, 11)
+        Me.Label57.Name = "Label57"
+        Me.Label57.Size = New System.Drawing.Size(74, 13)
+        Me.Label57.TabIndex = 6
+        Me.Label57.Text = "Cant. Teórica:"
+        '
+        'ProgressBar2
+        '
+        Me.ProgressBar2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.ProgressBar2.Location = New System.Drawing.Point(501, 116)
+        Me.ProgressBar2.Name = "ProgressBar2"
+        Me.ProgressBar2.Size = New System.Drawing.Size(109, 14)
+        Me.ProgressBar2.TabIndex = 233
+        '
+        'ProgressBar3
+        '
+        Me.ProgressBar3.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.ProgressBar3.Location = New System.Drawing.Point(501, 80)
+        Me.ProgressBar3.Name = "ProgressBar3"
+        Me.ProgressBar3.Size = New System.Drawing.Size(109, 14)
+        Me.ProgressBar3.TabIndex = 232
+        '
+        'Label61
+        '
+        Me.Label61.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label61.AutoSize = True
+        Me.Label61.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label61.ForeColor = System.Drawing.Color.Black
+        Me.Label61.Location = New System.Drawing.Point(12, 46)
+        Me.Label61.Name = "Label61"
+        Me.Label61.Size = New System.Drawing.Size(44, 13)
+        Me.Label61.TabIndex = 10
+        Me.Label61.Text = "ARENA"
+        '
+        'ProgressBar4
+        '
+        Me.ProgressBar4.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.ProgressBar4.Location = New System.Drawing.Point(501, 45)
+        Me.ProgressBar4.Name = "ProgressBar4"
+        Me.ProgressBar4.Size = New System.Drawing.Size(109, 14)
+        Me.ProgressBar4.TabIndex = 235
+        '
+        'ProgressBar5
+        '
+        Me.ProgressBar5.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.ProgressBar5.Location = New System.Drawing.Point(501, 10)
+        Me.ProgressBar5.Maximum = 1000
+        Me.ProgressBar5.Name = "ProgressBar5"
+        Me.ProgressBar5.Size = New System.Drawing.Size(109, 14)
+        Me.ProgressBar5.TabIndex = 231
+        '
+        'Label63
+        '
+        Me.Label63.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label63.AutoSize = True
+        Me.Label63.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label63.ForeColor = System.Drawing.Color.Black
+        Me.Label63.Location = New System.Drawing.Point(4, 81)
+        Me.Label63.Name = "Label63"
+        Me.Label63.Size = New System.Drawing.Size(60, 13)
+        Me.Label63.TabIndex = 15
+        Me.Label63.Text = "CEMENTO"
+        '
+        'Label66
+        '
+        Me.Label66.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label66.AutoSize = True
+        Me.Label66.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label66.ForeColor = System.Drawing.Color.Black
+        Me.Label66.Location = New System.Drawing.Point(15, 117)
+        Me.Label66.Name = "Label66"
+        Me.Label66.Size = New System.Drawing.Size(37, 13)
+        Me.Label66.TabIndex = 20
+        Me.Label66.Text = "AGUA"
+        '
+        'Label77
+        '
+        Me.Label77.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label77.AutoSize = True
+        Me.Label77.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label77.ForeColor = System.Drawing.Color.Black
+        Me.Label77.Location = New System.Drawing.Point(258, 11)
+        Me.Label77.Name = "Label77"
+        Me.Label77.Size = New System.Drawing.Size(60, 13)
+        Me.Label77.TabIndex = 8
+        Me.Label77.Text = "Cant. Real:"
         '
         'Label47
         '
+        Me.Label47.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label47.AutoSize = True
-        Me.Label47.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label47.Location = New System.Drawing.Point(20, 11)
+        Me.Label47.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label47.ForeColor = System.Drawing.Color.Black
+        Me.Label47.Location = New System.Drawing.Point(80, 46)
         Me.Label47.Name = "Label47"
-        Me.Label47.Size = New System.Drawing.Size(69, 16)
-        Me.Label47.TabIndex = 285
-        Me.Label47.Text = "Operador:"
+        Me.Label47.Size = New System.Drawing.Size(74, 13)
+        Me.Label47.TabIndex = 266
+        Me.Label47.Text = "Cant. Teórica:"
         '
-        'Label50
+        'Label67
         '
-        Me.Label50.AutoSize = True
-        Me.Label50.BackColor = System.Drawing.Color.Gainsboro
-        Me.Label50.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label50.ForeColor = System.Drawing.Color.Black
-        Me.Label50.Location = New System.Drawing.Point(1247, 482)
-        Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(69, 13)
-        Me.Label50.TabIndex = 284
-        Me.Label50.Text = "TORNILLO"
+        Me.Label67.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label67.AutoSize = True
+        Me.Label67.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label67.ForeColor = System.Drawing.Color.Black
+        Me.Label67.Location = New System.Drawing.Point(80, 81)
+        Me.Label67.Name = "Label67"
+        Me.Label67.Size = New System.Drawing.Size(74, 13)
+        Me.Label67.TabIndex = 267
+        Me.Label67.Text = "Cant. Teórica:"
         '
-        'Label49
+        'Label68
         '
-        Me.Label49.AutoSize = True
-        Me.Label49.BackColor = System.Drawing.Color.Gainsboro
-        Me.Label49.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label49.ForeColor = System.Drawing.Color.Black
-        Me.Label49.Location = New System.Drawing.Point(1036, 375)
-        Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(84, 13)
-        Me.Label49.TabIndex = 283
-        Me.Label49.Text = "COMPUERTA"
+        Me.Label68.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label68.AutoSize = True
+        Me.Label68.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label68.ForeColor = System.Drawing.Color.Black
+        Me.Label68.Location = New System.Drawing.Point(80, 117)
+        Me.Label68.Name = "Label68"
+        Me.Label68.Size = New System.Drawing.Size(74, 13)
+        Me.Label68.TabIndex = 268
+        Me.Label68.Text = "Cant. Teórica:"
         '
-        'Btt_ImprimirGuia
+        'Label55
         '
-        Me.Btt_ImprimirGuia.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Btt_ImprimirGuia.Image = Global.HORMIGONERA.My.Resources.Resources.printer
-        Me.Btt_ImprimirGuia.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_ImprimirGuia.Location = New System.Drawing.Point(244, 169)
-        Me.Btt_ImprimirGuia.Name = "Btt_ImprimirGuia"
-        Me.Btt_ImprimirGuia.Size = New System.Drawing.Size(84, 40)
-        Me.Btt_ImprimirGuia.TabIndex = 282
-        Me.Btt_ImprimirGuia.Text = "Imprimir" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " Guía"
-        Me.Btt_ImprimirGuia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_ImprimirGuia.UseVisualStyleBackColor = True
+        Me.Label55.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label55.AutoSize = True
+        Me.Label55.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label55.ForeColor = System.Drawing.Color.Black
+        Me.Label55.Location = New System.Drawing.Point(258, 46)
+        Me.Label55.Name = "Label55"
+        Me.Label55.Size = New System.Drawing.Size(60, 13)
+        Me.Label55.TabIndex = 8
+        Me.Label55.Text = "Cant. Real:"
         '
-        'Gbx_ConfigCarg_Cemento
+        'Label58
         '
-        Me.Gbx_ConfigCarg_Cemento.Controls.Add(Me.RBtt_CargCemGravedad)
-        Me.Gbx_ConfigCarg_Cemento.Controls.Add(Me.RBtt_CargCemTornillo)
-        Me.Gbx_ConfigCarg_Cemento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Gbx_ConfigCarg_Cemento.Location = New System.Drawing.Point(18, 163)
-        Me.Gbx_ConfigCarg_Cemento.Name = "Gbx_ConfigCarg_Cemento"
-        Me.Gbx_ConfigCarg_Cemento.Size = New System.Drawing.Size(217, 69)
-        Me.Gbx_ConfigCarg_Cemento.TabIndex = 265
-        Me.Gbx_ConfigCarg_Cemento.TabStop = False
-        Me.Gbx_ConfigCarg_Cemento.Text = "Configuración: Carga de Cemento"
+        Me.Label58.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label58.AutoSize = True
+        Me.Label58.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label58.ForeColor = System.Drawing.Color.Black
+        Me.Label58.Location = New System.Drawing.Point(258, 81)
+        Me.Label58.Name = "Label58"
+        Me.Label58.Size = New System.Drawing.Size(60, 13)
+        Me.Label58.TabIndex = 8
+        Me.Label58.Text = "Cant. Real:"
         '
-        'RBtt_CargCemGravedad
+        'Label62
         '
-        Me.RBtt_CargCemGravedad.AutoSize = True
-        Me.RBtt_CargCemGravedad.Checked = True
-        Me.RBtt_CargCemGravedad.Location = New System.Drawing.Point(15, 32)
-        Me.RBtt_CargCemGravedad.Name = "RBtt_CargCemGravedad"
-        Me.RBtt_CargCemGravedad.Size = New System.Drawing.Size(86, 19)
-        Me.RBtt_CargCemGravedad.TabIndex = 1
-        Me.RBtt_CargCemGravedad.TabStop = True
-        Me.RBtt_CargCemGravedad.Text = "Compuerta"
-        Me.RBtt_CargCemGravedad.UseVisualStyleBackColor = True
+        Me.Label62.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label62.AutoSize = True
+        Me.Label62.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label62.ForeColor = System.Drawing.Color.Black
+        Me.Label62.Location = New System.Drawing.Point(258, 117)
+        Me.Label62.Name = "Label62"
+        Me.Label62.Size = New System.Drawing.Size(60, 13)
+        Me.Label62.TabIndex = 8
+        Me.Label62.Text = "Cant. Real:"
         '
-        'RBtt_CargCemTornillo
+        'Button5
         '
-        Me.RBtt_CargCemTornillo.AutoSize = True
-        Me.RBtt_CargCemTornillo.Location = New System.Drawing.Point(123, 32)
-        Me.RBtt_CargCemTornillo.Name = "RBtt_CargCemTornillo"
-        Me.RBtt_CargCemTornillo.Size = New System.Drawing.Size(66, 19)
-        Me.RBtt_CargCemTornillo.TabIndex = 0
-        Me.RBtt_CargCemTornillo.Text = "Tornillo"
-        Me.RBtt_CargCemTornillo.UseVisualStyleBackColor = True
+        Me.Button5.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Button5.Location = New System.Drawing.Point(412, 41)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(82, 23)
+        Me.Button5.TabIndex = 293
+        Me.Button5.Text = "Capturar"
+        Me.Button5.UseVisualStyleBackColor = True
         '
-        'Label46
+        'Button6
         '
-        Me.Label46.AutoSize = True
-        Me.Label46.BackColor = System.Drawing.Color.Gainsboro
-        Me.Label46.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label46.ForeColor = System.Drawing.Color.Black
-        Me.Label46.Location = New System.Drawing.Point(1103, 445)
-        Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(67, 13)
-        Me.Label46.TabIndex = 279
-        Me.Label46.Text = "CEMENTO"
+        Me.Button6.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Button6.Location = New System.Drawing.Point(412, 76)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(82, 23)
+        Me.Button6.TabIndex = 293
+        Me.Button6.Text = "Capturar"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
+        'Button7
+        '
+        Me.Button7.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Button7.Location = New System.Drawing.Point(412, 112)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(82, 23)
+        Me.Button7.TabIndex = 293
+        Me.Button7.Text = "Capturar"
+        Me.Button7.UseVisualStyleBackColor = True
+        '
+        'Label65
+        '
+        Me.Label65.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label65.AutoSize = True
+        Me.Label65.BackColor = System.Drawing.Color.Gainsboro
+        Me.Label65.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label65.ForeColor = System.Drawing.Color.SteelBlue
+        Me.Label65.Location = New System.Drawing.Point(332, 7)
+        Me.Label65.MinimumSize = New System.Drawing.Size(70, 20)
+        Me.Label65.Name = "Label65"
+        Me.Label65.Size = New System.Drawing.Size(70, 20)
+        Me.Label65.TabIndex = 249
+        Me.Label65.Text = "0,000"
+        Me.Label65.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'MaskedTextBox5
+        '
+        Me.MaskedTextBox5.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.MaskedTextBox5.BackColor = System.Drawing.Color.Gainsboro
+        Me.MaskedTextBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MaskedTextBox5.ForeColor = System.Drawing.Color.SteelBlue
+        Me.MaskedTextBox5.Location = New System.Drawing.Point(332, 113)
+        Me.MaskedTextBox5.Mask = "99999.99"
+        Me.MaskedTextBox5.Name = "MaskedTextBox5"
+        Me.MaskedTextBox5.Size = New System.Drawing.Size(71, 21)
+        Me.MaskedTextBox5.TabIndex = 296
+        '
+        'Label69
+        '
+        Me.Label69.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label69.AutoSize = True
+        Me.Label69.BackColor = System.Drawing.Color.Gainsboro
+        Me.Label69.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label69.ForeColor = System.Drawing.Color.SteelBlue
+        Me.Label69.Location = New System.Drawing.Point(332, 42)
+        Me.Label69.MinimumSize = New System.Drawing.Size(70, 20)
+        Me.Label69.Name = "Label69"
+        Me.Label69.Size = New System.Drawing.Size(70, 20)
+        Me.Label69.TabIndex = 249
+        Me.Label69.Text = "0,000"
+        Me.Label69.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label70
+        '
+        Me.Label70.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label70.AutoSize = True
+        Me.Label70.BackColor = System.Drawing.Color.Gainsboro
+        Me.Label70.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label70.ForeColor = System.Drawing.Color.SteelBlue
+        Me.Label70.Location = New System.Drawing.Point(332, 77)
+        Me.Label70.MinimumSize = New System.Drawing.Size(70, 20)
+        Me.Label70.Name = "Label70"
+        Me.Label70.Size = New System.Drawing.Size(70, 20)
+        Me.Label70.TabIndex = 249
+        Me.Label70.Text = "0,000"
+        Me.Label70.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'GroupBox8
+        '
+        Me.GroupBox8.Controls.Add(Me.Panel3)
+        Me.GroupBox8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox8.Location = New System.Drawing.Point(1151, 6)
+        Me.GroupBox8.Name = "GroupBox8"
+        Me.GroupBox8.Size = New System.Drawing.Size(326, 213)
+        Me.GroupBox8.TabIndex = 266
+        Me.GroupBox8.TabStop = False
+        Me.GroupBox8.Text = "Controles omitidos"
+        Me.GroupBox8.Visible = False
+        '
+        'Panel3
+        '
+        Me.Panel3.AutoScroll = True
+        Me.Panel3.Controls.Add(Me.GroupBox2)
+        Me.Panel3.Controls.Add(Me.GBx_Preparacion)
+        Me.Panel3.Controls.Add(Me.Btt_ReCon_T2)
+        Me.Panel3.Controls.Add(Me.GroupBox5)
+        Me.Panel3.Controls.Add(Me.Btt_ImprimirGuia)
+        Me.Panel3.Controls.Add(Me.Panel1)
+        Me.Panel3.Controls.Add(Me.Gbx_ConfigCarg_Cemento)
+        Me.Panel3.Controls.Add(Me.GroupBox4)
+        Me.Panel3.Controls.Add(Me.Label49)
+        Me.Panel3.Controls.Add(Me.Label9)
+        Me.Panel3.Controls.Add(Me.standardControl10)
+        Me.Panel3.Controls.Add(Me.Sym_CargaCem)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel3.Location = New System.Drawing.Point(3, 17)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(320, 193)
+        Me.Panel3.TabIndex = 283
         '
         'GBx_Preparacion
         '
@@ -2606,26 +2937,27 @@ Partial Class Proceso_Andina
         Me.GBx_Preparacion.Controls.Add(Me.Label15)
         Me.GBx_Preparacion.Controls.Add(Me.cmbproductos)
         Me.GBx_Preparacion.Controls.Add(Me.Label14)
-        Me.GBx_Preparacion.Location = New System.Drawing.Point(20, 37)
+        Me.GBx_Preparacion.Location = New System.Drawing.Point(109, 5)
         Me.GBx_Preparacion.Name = "GBx_Preparacion"
-        Me.GBx_Preparacion.Size = New System.Drawing.Size(373, 120)
+        Me.GBx_Preparacion.Size = New System.Drawing.Size(392, 123)
         Me.GBx_Preparacion.TabIndex = 278
         Me.GBx_Preparacion.TabStop = False
         Me.GBx_Preparacion.Text = "Preparación de Dosificación"
+        Me.GBx_Preparacion.Visible = False
         '
         'Txt_NumM3
         '
         Me.Txt_NumM3.Location = New System.Drawing.Point(99, 55)
         Me.Txt_NumM3.Name = "Txt_NumM3"
         Me.Txt_NumM3.ReadOnly = True
-        Me.Txt_NumM3.Size = New System.Drawing.Size(90, 22)
+        Me.Txt_NumM3.Size = New System.Drawing.Size(90, 21)
         Me.Txt_NumM3.TabIndex = 287
         '
         'Txt_CodOrdenDespacho
         '
         Me.Txt_CodOrdenDespacho.Location = New System.Drawing.Point(158, 21)
         Me.Txt_CodOrdenDespacho.Name = "Txt_CodOrdenDespacho"
-        Me.Txt_CodOrdenDespacho.Size = New System.Drawing.Size(100, 22)
+        Me.Txt_CodOrdenDespacho.Size = New System.Drawing.Size(100, 21)
         Me.Txt_CodOrdenDespacho.TabIndex = 286
         '
         'Btt_BuscarOrdDespacho
@@ -2644,7 +2976,7 @@ Partial Class Proceso_Andina
         Me.Num_BatchPlanificacion.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
         Me.Num_BatchPlanificacion.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.Num_BatchPlanificacion.Name = "Num_BatchPlanificacion"
-        Me.Num_BatchPlanificacion.Size = New System.Drawing.Size(47, 22)
+        Me.Num_BatchPlanificacion.Size = New System.Drawing.Size(47, 21)
         Me.Num_BatchPlanificacion.TabIndex = 222
         Me.Num_BatchPlanificacion.Value = New Decimal(New Integer() {1, 0, 0, 0})
         Me.Num_BatchPlanificacion.Visible = False
@@ -2657,7 +2989,7 @@ Partial Class Proceso_Andina
         Me.Num_Hum_Ripio.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.Num_Hum_Ripio.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.Num_Hum_Ripio.Name = "Num_Hum_Ripio"
-        Me.Num_Hum_Ripio.Size = New System.Drawing.Size(69, 22)
+        Me.Num_Hum_Ripio.Size = New System.Drawing.Size(69, 21)
         Me.Num_Hum_Ripio.TabIndex = 221
         Me.Num_Hum_Ripio.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
@@ -2679,7 +3011,7 @@ Partial Class Proceso_Andina
         Me.Num_Hum_Arena.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.Num_Hum_Arena.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.Num_Hum_Arena.Name = "Num_Hum_Arena"
-        Me.Num_Hum_Arena.Size = New System.Drawing.Size(69, 22)
+        Me.Num_Hum_Arena.Size = New System.Drawing.Size(69, 21)
         Me.Num_Hum_Arena.TabIndex = 219
         Me.Num_Hum_Arena.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
@@ -2693,126 +3025,19 @@ Partial Class Proceso_Andina
         Me.Label48.TabIndex = 218
         Me.Label48.Text = "F. Hum. Arena:"
         '
-        'Lbl_Info
+        'Btt_ImprimirGuia
         '
-        Me.Lbl_Info.AutoSize = True
-        Me.Lbl_Info.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Info.Location = New System.Drawing.Point(12, 242)
-        Me.Lbl_Info.Name = "Lbl_Info"
-        Me.Lbl_Info.Size = New System.Drawing.Size(118, 16)
-        Me.Lbl_Info.TabIndex = 277
-        Me.Lbl_Info.Text = "EN PROCESO..."
-        '
-        'StandardControl8
-        '
-        Me.StandardControl8.AnalogIntValue1 = CType(0, Short)
-        Me.StandardControl8.AnalogValue1 = 0R
-        Me.StandardControl8.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.StandardControl8.BackColor = System.Drawing.Color.Transparent
-        Me.StandardControl8.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.StandardControl8.BandsCollection.Add(New SymbolFactoryNetEngine.Band(90.0R, 90, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.Green, "Band1"))
-        Me.StandardControl8.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band2"))
-        Me.StandardControl8.BlinkColor = System.Drawing.Color.Red
-        Me.StandardControl8.Category = "1TANK.cat2"
-        Me.StandardControl8.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("StandardControl8.DebugData"))
-        Me.StandardControl8.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.StandardControl8.Location = New System.Drawing.Point(782, 475)
-        Me.StandardControl8.Name = "StandardControl8"
-        Me.StandardControl8.Size = New System.Drawing.Size(123, 43)
-        Me.StandardControl8.Stretch = True
-        Me.StandardControl8.SymbolHandle = CType(219493888, Long)
-        Me.StandardControl8.TabIndex = 275
-        '
-        'Sym_Cemento
-        '
-        Me.Sym_Cemento.AnalogIntValue1 = CType(0, Short)
-        Me.Sym_Cemento.AnalogValue1 = 0R
-        Me.Sym_Cemento.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Sym_Cemento.BackColor = System.Drawing.Color.Transparent
-        Me.Sym_Cemento.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Sym_Cemento.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkInvisible, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer)), "Band1"))
-        Me.Sym_Cemento.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band2"))
-        Me.Sym_Cemento.BlinkColor = System.Drawing.Color.Red
-        Me.Sym_Cemento.Category = "1MH.cat2"
-        Me.Sym_Cemento.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Cemento.DebugData"))
-        Me.Sym_Cemento.FillColor = System.Drawing.Color.Silver
-        Me.Sym_Cemento.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Sym_Cemento.Location = New System.Drawing.Point(1093, 385)
-        Me.Sym_Cemento.Name = "Sym_Cemento"
-        Me.Sym_Cemento.Size = New System.Drawing.Size(80, 70)
-        Me.Sym_Cemento.SymbolHandle = CType(1426793514, Long)
-        Me.Sym_Cemento.TabIndex = 273
-        Me.Sym_Cemento.Visible = False
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.BackColor = System.Drawing.Color.White
-        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.ForeColor = System.Drawing.Color.Black
-        Me.Label21.Location = New System.Drawing.Point(1355, 321)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(67, 13)
-        Me.Label21.TabIndex = 270
-        Me.Label21.Text = "CEMENTO"
-        '
-        'StandardControl3
-        '
-        Me.StandardControl3.AnalogIntValue1 = CType(0, Short)
-        Me.StandardControl3.AnalogValue1 = 0R
-        Me.StandardControl3.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.StandardControl3.BackColor = System.Drawing.Color.Transparent
-        Me.StandardControl3.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.StandardControl3.BandsCollection.Add(New SymbolFactoryNetEngine.Band(90.0R, 90, False, SymbolFactoryNetEngine.BandStyleOptions.Original, System.Drawing.Color.Red, "Band1"))
-        Me.StandardControl3.BandsCollection.Add(New SymbolFactoryNetEngine.Band(80.0R, 80, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band2"))
-        Me.StandardControl3.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.Red, "Band3"))
-        Me.StandardControl3.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band4"))
-        Me.StandardControl3.BlinkColor = System.Drawing.Color.Red
-        Me.StandardControl3.Category = "1MH.cat2"
-        Me.StandardControl3.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("StandardControl3.DebugData"))
-        Me.StandardControl3.FillColor = System.Drawing.Color.Silver
-        Me.StandardControl3.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Shaded
-        Me.StandardControl3.Location = New System.Drawing.Point(1323, 234)
-        Me.StandardControl3.Name = "StandardControl3"
-        Me.StandardControl3.Size = New System.Drawing.Size(123, 274)
-        Me.StandardControl3.SymbolHandle = CType(760670432, Long)
-        Me.StandardControl3.TabIndex = 269
-        '
-        'Sym_Bomba_G4
-        '
-        Me.Sym_Bomba_G4.AnalogIntValue1 = CType(0, Short)
-        Me.Sym_Bomba_G4.AnalogValue1 = 0R
-        Me.Sym_Bomba_G4.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Sym_Bomba_G4.BackColor = System.Drawing.Color.Transparent
-        Me.Sym_Bomba_G4.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Sym_Bomba_G4.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer)), "Band1"))
-        Me.Sym_Bomba_G4.BlinkColor = System.Drawing.Color.Red
-        Me.Sym_Bomba_G4.Category = "1mp.cat2"
-        Me.Sym_Bomba_G4.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Bomba_G4.DebugData"))
-        Me.Sym_Bomba_G4.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Sym_Bomba_G4.Location = New System.Drawing.Point(859, 325)
-        Me.Sym_Bomba_G4.Name = "Sym_Bomba_G4"
-        Me.Sym_Bomba_G4.Size = New System.Drawing.Size(14, 52)
-        Me.Sym_Bomba_G4.SymbolHandle = CType(168083648, Long)
-        Me.Sym_Bomba_G4.TabIndex = 268
-        '
-        'Sym_Bomba_G7
-        '
-        Me.Sym_Bomba_G7.AnalogIntValue1 = CType(0, Short)
-        Me.Sym_Bomba_G7.AnalogValue1 = 0R
-        Me.Sym_Bomba_G7.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Sym_Bomba_G7.BackColor = System.Drawing.Color.Transparent
-        Me.Sym_Bomba_G7.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Sym_Bomba_G7.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer)), "Band1"))
-        Me.Sym_Bomba_G7.BlinkColor = System.Drawing.Color.Red
-        Me.Sym_Bomba_G7.Category = "1mp.cat2"
-        Me.Sym_Bomba_G7.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Bomba_G7.DebugData"))
-        Me.Sym_Bomba_G7.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Sym_Bomba_G7.Location = New System.Drawing.Point(859, 403)
-        Me.Sym_Bomba_G7.Name = "Sym_Bomba_G7"
-        Me.Sym_Bomba_G7.Size = New System.Drawing.Size(14, 52)
-        Me.Sym_Bomba_G7.SymbolHandle = CType(168083648, Long)
-        Me.Sym_Bomba_G7.TabIndex = 267
+        Me.Btt_ImprimirGuia.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btt_ImprimirGuia.Image = Global.HORMIGONERA.My.Resources.Resources.printer
+        Me.Btt_ImprimirGuia.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Btt_ImprimirGuia.Location = New System.Drawing.Point(414, 132)
+        Me.Btt_ImprimirGuia.Name = "Btt_ImprimirGuia"
+        Me.Btt_ImprimirGuia.Size = New System.Drawing.Size(84, 40)
+        Me.Btt_ImprimirGuia.TabIndex = 282
+        Me.Btt_ImprimirGuia.Text = "Imprimir" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " Guía"
+        Me.Btt_ImprimirGuia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btt_ImprimirGuia.UseVisualStyleBackColor = True
+        Me.Btt_ImprimirGuia.Visible = False
         '
         'Panel1
         '
@@ -2826,7 +3051,7 @@ Partial Class Proceso_Andina
         Me.Panel1.Controls.Add(Me.Label22)
         Me.Panel1.Controls.Add(Me.Label23)
         Me.Panel1.Controls.Add(Me.TableLayoutPanel1)
-        Me.Panel1.Location = New System.Drawing.Point(786, 8)
+        Me.Panel1.Location = New System.Drawing.Point(10, 487)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(600, 196)
         Me.Panel1.TabIndex = 266
@@ -2862,12 +3087,397 @@ Partial Class Proceso_Andina
         Me.Label1.TabIndex = 261
         Me.Label1.Text = "Estado"
         '
+        'Gbx_ConfigCarg_Cemento
+        '
+        Me.Gbx_ConfigCarg_Cemento.Controls.Add(Me.RBtt_CargCemGravedad)
+        Me.Gbx_ConfigCarg_Cemento.Controls.Add(Me.RBtt_CargCemTornillo)
+        Me.Gbx_ConfigCarg_Cemento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Gbx_ConfigCarg_Cemento.Location = New System.Drawing.Point(109, 134)
+        Me.Gbx_ConfigCarg_Cemento.Name = "Gbx_ConfigCarg_Cemento"
+        Me.Gbx_ConfigCarg_Cemento.Size = New System.Drawing.Size(217, 69)
+        Me.Gbx_ConfigCarg_Cemento.TabIndex = 265
+        Me.Gbx_ConfigCarg_Cemento.TabStop = False
+        Me.Gbx_ConfigCarg_Cemento.Text = "Configuración: Carga de Cemento"
+        '
+        'RBtt_CargCemGravedad
+        '
+        Me.RBtt_CargCemGravedad.AutoSize = True
+        Me.RBtt_CargCemGravedad.Checked = True
+        Me.RBtt_CargCemGravedad.Location = New System.Drawing.Point(15, 32)
+        Me.RBtt_CargCemGravedad.Name = "RBtt_CargCemGravedad"
+        Me.RBtt_CargCemGravedad.Size = New System.Drawing.Size(86, 19)
+        Me.RBtt_CargCemGravedad.TabIndex = 1
+        Me.RBtt_CargCemGravedad.TabStop = True
+        Me.RBtt_CargCemGravedad.Text = "Compuerta"
+        Me.RBtt_CargCemGravedad.UseVisualStyleBackColor = True
+        '
+        'RBtt_CargCemTornillo
+        '
+        Me.RBtt_CargCemTornillo.AutoSize = True
+        Me.RBtt_CargCemTornillo.Location = New System.Drawing.Point(123, 32)
+        Me.RBtt_CargCemTornillo.Name = "RBtt_CargCemTornillo"
+        Me.RBtt_CargCemTornillo.Size = New System.Drawing.Size(66, 19)
+        Me.RBtt_CargCemTornillo.TabIndex = 0
+        Me.RBtt_CargCemTornillo.Text = "Tornillo"
+        Me.RBtt_CargCemTornillo.UseVisualStyleBackColor = True
+        '
+        'Label49
+        '
+        Me.Label49.AutoSize = True
+        Me.Label49.BackColor = System.Drawing.Color.Gainsboro
+        Me.Label49.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label49.ForeColor = System.Drawing.Color.Black
+        Me.Label49.Location = New System.Drawing.Point(417, 320)
+        Me.Label49.Name = "Label49"
+        Me.Label49.Size = New System.Drawing.Size(84, 13)
+        Me.Label49.TabIndex = 283
+        Me.Label49.Text = "COMPUERTA"
+        '
+        'Label64
+        '
+        Me.Label64.AutoSize = True
+        Me.Label64.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label64.Location = New System.Drawing.Point(12, 10)
+        Me.Label64.Name = "Label64"
+        Me.Label64.Size = New System.Drawing.Size(67, 18)
+        Me.Label64.TabIndex = 291
+        Me.Label64.Text = "Usuario:"
+        '
+        'Label52
+        '
+        Me.Label52.AutoSize = True
+        Me.Label52.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label52.Location = New System.Drawing.Point(11, 31)
+        Me.Label52.Name = "Label52"
+        Me.Label52.Size = New System.Drawing.Size(183, 18)
+        Me.Label52.TabIndex = 288
+        Me.Label52.Text = "Comprobante Despacho:"
+        '
+        'lblcomprobante
+        '
+        Me.lblcomprobante.AutoSize = True
+        Me.lblcomprobante.BackColor = System.Drawing.Color.White
+        Me.lblcomprobante.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblcomprobante.Location = New System.Drawing.Point(200, 29)
+        Me.lblcomprobante.Name = "lblcomprobante"
+        Me.lblcomprobante.Size = New System.Drawing.Size(19, 20)
+        Me.lblcomprobante.TabIndex = 289
+        Me.lblcomprobante.Text = "--"
+        '
+        'Gb_OrdenDespacho
+        '
+        Me.Gb_OrdenDespacho.Controls.Add(Me.Label71)
+        Me.Gb_OrdenDespacho.Controls.Add(Me.txtPlaca)
+        Me.Gb_OrdenDespacho.Controls.Add(Me.Btt_Sel_Mixer)
+        Me.Gb_OrdenDespacho.Controls.Add(Me.txtNomMixer)
+        Me.Gb_OrdenDespacho.Controls.Add(Me.txtidMixer)
+        Me.Gb_OrdenDespacho.Controls.Add(Me.Label53)
+        Me.Gb_OrdenDespacho.Controls.Add(Me.Btt_Sel_Producto)
+        Me.Gb_OrdenDespacho.Controls.Add(Me.nomProducto)
+        Me.Gb_OrdenDespacho.Controls.Add(Me.codProducto)
+        Me.Gb_OrdenDespacho.Controls.Add(Me.txtobservaciones)
+        Me.Gb_OrdenDespacho.Controls.Add(Me.Label59)
+        Me.Gb_OrdenDespacho.Controls.Add(Me.Label60)
+        Me.Gb_OrdenDespacho.Enabled = False
+        Me.Gb_OrdenDespacho.Location = New System.Drawing.Point(9, 52)
+        Me.Gb_OrdenDespacho.Name = "Gb_OrdenDespacho"
+        Me.Gb_OrdenDespacho.Size = New System.Drawing.Size(484, 163)
+        Me.Gb_OrdenDespacho.TabIndex = 290
+        Me.Gb_OrdenDespacho.TabStop = False
+        '
+        'Label71
+        '
+        Me.Label71.AutoSize = True
+        Me.Label71.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label71.Location = New System.Drawing.Point(26, 71)
+        Me.Label71.Name = "Label71"
+        Me.Label71.Size = New System.Drawing.Size(37, 13)
+        Me.Label71.TabIndex = 24
+        Me.Label71.Text = "Placa:"
+        '
+        'txtPlaca
+        '
+        Me.txtPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtPlaca.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPlaca.Location = New System.Drawing.Point(111, 68)
+        Me.txtPlaca.Name = "txtPlaca"
+        Me.txtPlaca.Size = New System.Drawing.Size(128, 20)
+        Me.txtPlaca.TabIndex = 25
+        '
+        'Btt_Sel_Mixer
+        '
+        Me.Btt_Sel_Mixer.Location = New System.Drawing.Point(443, 42)
+        Me.Btt_Sel_Mixer.Name = "Btt_Sel_Mixer"
+        Me.Btt_Sel_Mixer.Size = New System.Drawing.Size(27, 21)
+        Me.Btt_Sel_Mixer.TabIndex = 23
+        Me.Btt_Sel_Mixer.Text = "..."
+        Me.Btt_Sel_Mixer.UseVisualStyleBackColor = True
+        '
+        'txtNomMixer
+        '
+        Me.txtNomMixer.BackColor = System.Drawing.Color.White
+        Me.txtNomMixer.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNomMixer.Location = New System.Drawing.Point(188, 41)
+        Me.txtNomMixer.Name = "txtNomMixer"
+        Me.txtNomMixer.Size = New System.Drawing.Size(238, 21)
+        Me.txtNomMixer.TabIndex = 22
+        '
+        'txtidMixer
+        '
+        Me.txtidMixer.BackColor = System.Drawing.Color.White
+        Me.txtidMixer.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtidMixer.Location = New System.Drawing.Point(111, 41)
+        Me.txtidMixer.Name = "txtidMixer"
+        Me.txtidMixer.Size = New System.Drawing.Size(70, 21)
+        Me.txtidMixer.TabIndex = 21
+        '
+        'Label53
+        '
+        Me.Label53.AutoSize = True
+        Me.Label53.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label53.Location = New System.Drawing.Point(19, 41)
+        Me.Label53.Name = "Label53"
+        Me.Label53.Size = New System.Drawing.Size(41, 15)
+        Me.Label53.TabIndex = 20
+        Me.Label53.Text = "Mixer:"
+        '
+        'Btt_Sel_Producto
+        '
+        Me.Btt_Sel_Producto.Location = New System.Drawing.Point(443, 15)
+        Me.Btt_Sel_Producto.Name = "Btt_Sel_Producto"
+        Me.Btt_Sel_Producto.Size = New System.Drawing.Size(27, 21)
+        Me.Btt_Sel_Producto.TabIndex = 5
+        Me.Btt_Sel_Producto.Text = "..."
+        Me.Btt_Sel_Producto.UseVisualStyleBackColor = True
+        '
+        'nomProducto
+        '
+        Me.nomProducto.BackColor = System.Drawing.Color.White
+        Me.nomProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.nomProducto.Location = New System.Drawing.Point(188, 14)
+        Me.nomProducto.Name = "nomProducto"
+        Me.nomProducto.Size = New System.Drawing.Size(238, 21)
+        Me.nomProducto.TabIndex = 3
+        '
+        'codProducto
+        '
+        Me.codProducto.BackColor = System.Drawing.Color.White
+        Me.codProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.codProducto.Location = New System.Drawing.Point(111, 14)
+        Me.codProducto.Name = "codProducto"
+        Me.codProducto.Size = New System.Drawing.Size(70, 21)
+        Me.codProducto.TabIndex = 2
+        '
+        'txtobservaciones
+        '
+        Me.txtobservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtobservaciones.Location = New System.Drawing.Point(109, 94)
+        Me.txtobservaciones.Multiline = True
+        Me.txtobservaciones.Name = "txtobservaciones"
+        Me.txtobservaciones.Size = New System.Drawing.Size(317, 54)
+        Me.txtobservaciones.TabIndex = 11
+        '
+        'Label59
+        '
+        Me.Label59.AutoSize = True
+        Me.Label59.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label59.Location = New System.Drawing.Point(17, 97)
+        Me.Label59.Name = "Label59"
+        Me.Label59.Size = New System.Drawing.Size(91, 15)
+        Me.Label59.TabIndex = 4
+        Me.Label59.Text = "Observaciones:"
+        '
+        'Label60
+        '
+        Me.Label60.AutoSize = True
+        Me.Label60.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label60.Location = New System.Drawing.Point(19, 15)
+        Me.Label60.Name = "Label60"
+        Me.Label60.Size = New System.Drawing.Size(59, 15)
+        Me.Label60.TabIndex = 1
+        Me.Label60.Text = "Producto:"
+        '
+        'Sym_Piedra
+        '
+        Me.Sym_Piedra.AnalogIntValue1 = CType(0, Short)
+        Me.Sym_Piedra.AnalogValue1 = 0R
+        Me.Sym_Piedra.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sym_Piedra.BackColor = System.Drawing.Color.Transparent
+        Me.Sym_Piedra.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sym_Piedra.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkInvisible, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer)), "Band1"))
+        Me.Sym_Piedra.BlinkColor = System.Drawing.Color.Red
+        Me.Sym_Piedra.Category = "1MH.cat2"
+        Me.Sym_Piedra.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Piedra.DebugData"))
+        Me.Sym_Piedra.FillColor = System.Drawing.Color.Black
+        Me.Sym_Piedra.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sym_Piedra.Location = New System.Drawing.Point(463, 498)
+        Me.Sym_Piedra.Name = "Sym_Piedra"
+        Me.Sym_Piedra.Size = New System.Drawing.Size(80, 70)
+        Me.Sym_Piedra.SymbolHandle = CType(1426793514, Long)
+        Me.Sym_Piedra.TabIndex = 287
+        Me.Sym_Piedra.Visible = False
+        '
+        'Lbl_Operador
+        '
+        Me.Lbl_Operador.AutoSize = True
+        Me.Lbl_Operador.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Operador.Location = New System.Drawing.Point(100, 11)
+        Me.Lbl_Operador.Name = "Lbl_Operador"
+        Me.Lbl_Operador.Size = New System.Drawing.Size(16, 16)
+        Me.Lbl_Operador.TabIndex = 286
+        Me.Lbl_Operador.Text = "--"
+        '
+        'Label50
+        '
+        Me.Label50.AutoSize = True
+        Me.Label50.BackColor = System.Drawing.Color.Gainsboro
+        Me.Label50.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label50.ForeColor = System.Drawing.Color.Black
+        Me.Label50.Location = New System.Drawing.Point(1247, 509)
+        Me.Label50.Name = "Label50"
+        Me.Label50.Size = New System.Drawing.Size(69, 13)
+        Me.Label50.TabIndex = 284
+        Me.Label50.Text = "TORNILLO"
+        '
+        'Label46
+        '
+        Me.Label46.AutoSize = True
+        Me.Label46.BackColor = System.Drawing.Color.Gainsboro
+        Me.Label46.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label46.ForeColor = System.Drawing.Color.Black
+        Me.Label46.Location = New System.Drawing.Point(1103, 472)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(67, 13)
+        Me.Label46.TabIndex = 279
+        Me.Label46.Text = "CEMENTO"
+        '
+        'Lbl_Info
+        '
+        Me.Lbl_Info.AutoSize = True
+        Me.Lbl_Info.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Info.Location = New System.Drawing.Point(11, 277)
+        Me.Lbl_Info.Name = "Lbl_Info"
+        Me.Lbl_Info.Size = New System.Drawing.Size(118, 16)
+        Me.Lbl_Info.TabIndex = 277
+        Me.Lbl_Info.Text = "EN PROCESO..."
+        '
+        'StandardControl8
+        '
+        Me.StandardControl8.AnalogIntValue1 = CType(0, Short)
+        Me.StandardControl8.AnalogValue1 = 0R
+        Me.StandardControl8.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.StandardControl8.BackColor = System.Drawing.Color.Transparent
+        Me.StandardControl8.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.StandardControl8.BandsCollection.Add(New SymbolFactoryNetEngine.Band(90.0R, 90, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.Green, "Band1"))
+        Me.StandardControl8.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band2"))
+        Me.StandardControl8.BlinkColor = System.Drawing.Color.Red
+        Me.StandardControl8.Category = "1TANK.cat2"
+        Me.StandardControl8.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("StandardControl8.DebugData"))
+        Me.StandardControl8.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.StandardControl8.Location = New System.Drawing.Point(782, 502)
+        Me.StandardControl8.Name = "StandardControl8"
+        Me.StandardControl8.Size = New System.Drawing.Size(123, 43)
+        Me.StandardControl8.Stretch = True
+        Me.StandardControl8.SymbolHandle = CType(219493888, Long)
+        Me.StandardControl8.TabIndex = 275
+        '
+        'Sym_Cemento
+        '
+        Me.Sym_Cemento.AnalogIntValue1 = CType(0, Short)
+        Me.Sym_Cemento.AnalogValue1 = 0R
+        Me.Sym_Cemento.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sym_Cemento.BackColor = System.Drawing.Color.Transparent
+        Me.Sym_Cemento.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sym_Cemento.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkInvisible, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer)), "Band1"))
+        Me.Sym_Cemento.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band2"))
+        Me.Sym_Cemento.BlinkColor = System.Drawing.Color.Red
+        Me.Sym_Cemento.Category = "1MH.cat2"
+        Me.Sym_Cemento.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Cemento.DebugData"))
+        Me.Sym_Cemento.FillColor = System.Drawing.Color.Silver
+        Me.Sym_Cemento.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Sym_Cemento.Location = New System.Drawing.Point(1093, 412)
+        Me.Sym_Cemento.Name = "Sym_Cemento"
+        Me.Sym_Cemento.Size = New System.Drawing.Size(80, 70)
+        Me.Sym_Cemento.SymbolHandle = CType(1426793514, Long)
+        Me.Sym_Cemento.TabIndex = 273
+        Me.Sym_Cemento.Visible = False
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.BackColor = System.Drawing.Color.White
+        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.ForeColor = System.Drawing.Color.Black
+        Me.Label21.Location = New System.Drawing.Point(1355, 348)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(67, 13)
+        Me.Label21.TabIndex = 270
+        Me.Label21.Text = "CEMENTO"
+        '
+        'StandardControl3
+        '
+        Me.StandardControl3.AnalogIntValue1 = CType(0, Short)
+        Me.StandardControl3.AnalogValue1 = 0R
+        Me.StandardControl3.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.StandardControl3.BackColor = System.Drawing.Color.Transparent
+        Me.StandardControl3.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.StandardControl3.BandsCollection.Add(New SymbolFactoryNetEngine.Band(90.0R, 90, False, SymbolFactoryNetEngine.BandStyleOptions.Original, System.Drawing.Color.Red, "Band1"))
+        Me.StandardControl3.BandsCollection.Add(New SymbolFactoryNetEngine.Band(80.0R, 80, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band2"))
+        Me.StandardControl3.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.Red, "Band3"))
+        Me.StandardControl3.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band4"))
+        Me.StandardControl3.BlinkColor = System.Drawing.Color.Red
+        Me.StandardControl3.Category = "1MH.cat2"
+        Me.StandardControl3.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("StandardControl3.DebugData"))
+        Me.StandardControl3.FillColor = System.Drawing.Color.Silver
+        Me.StandardControl3.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Shaded
+        Me.StandardControl3.Location = New System.Drawing.Point(1323, 261)
+        Me.StandardControl3.Name = "StandardControl3"
+        Me.StandardControl3.Size = New System.Drawing.Size(123, 274)
+        Me.StandardControl3.SymbolHandle = CType(760670432, Long)
+        Me.StandardControl3.TabIndex = 269
+        '
+        'Sym_Bomba_G4
+        '
+        Me.Sym_Bomba_G4.AnalogIntValue1 = CType(0, Short)
+        Me.Sym_Bomba_G4.AnalogValue1 = 0R
+        Me.Sym_Bomba_G4.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sym_Bomba_G4.BackColor = System.Drawing.Color.Transparent
+        Me.Sym_Bomba_G4.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sym_Bomba_G4.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer)), "Band1"))
+        Me.Sym_Bomba_G4.BlinkColor = System.Drawing.Color.Red
+        Me.Sym_Bomba_G4.Category = "1mp.cat2"
+        Me.Sym_Bomba_G4.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Bomba_G4.DebugData"))
+        Me.Sym_Bomba_G4.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Sym_Bomba_G4.Location = New System.Drawing.Point(859, 352)
+        Me.Sym_Bomba_G4.Name = "Sym_Bomba_G4"
+        Me.Sym_Bomba_G4.Size = New System.Drawing.Size(14, 52)
+        Me.Sym_Bomba_G4.SymbolHandle = CType(168083648, Long)
+        Me.Sym_Bomba_G4.TabIndex = 268
+        '
+        'Sym_Bomba_G7
+        '
+        Me.Sym_Bomba_G7.AnalogIntValue1 = CType(0, Short)
+        Me.Sym_Bomba_G7.AnalogValue1 = 0R
+        Me.Sym_Bomba_G7.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Sym_Bomba_G7.BackColor = System.Drawing.Color.Transparent
+        Me.Sym_Bomba_G7.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Sym_Bomba_G7.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(192, Byte), Integer)), "Band1"))
+        Me.Sym_Bomba_G7.BlinkColor = System.Drawing.Color.Red
+        Me.Sym_Bomba_G7.Category = "1mp.cat2"
+        Me.Sym_Bomba_G7.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_Bomba_G7.DebugData"))
+        Me.Sym_Bomba_G7.FillColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Sym_Bomba_G7.Location = New System.Drawing.Point(859, 430)
+        Me.Sym_Bomba_G7.Name = "Sym_Bomba_G7"
+        Me.Sym_Bomba_G7.Size = New System.Drawing.Size(14, 52)
+        Me.Sym_Bomba_G7.SymbolHandle = CType(168083648, Long)
+        Me.Sym_Bomba_G7.TabIndex = 267
+        '
         'Btt_Salir
         '
         Me.Btt_Salir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Btt_Salir.Image = Global.HORMIGONERA.My.Resources.Resources._131885___close_door_exit_log_out_logout_user_logout
         Me.Btt_Salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_Salir.Location = New System.Drawing.Point(275, 266)
+        Me.Btt_Salir.Location = New System.Drawing.Point(272, 303)
         Me.Btt_Salir.Name = "Btt_Salir"
         Me.Btt_Salir.Size = New System.Drawing.Size(101, 49)
         Me.Btt_Salir.TabIndex = 243
@@ -2890,7 +3500,7 @@ Partial Class Proceso_Andina
         Me.Sym_Torn_Cem_Carga.FillColor = System.Drawing.Color.Silver
         Me.Sym_Torn_Cem_Carga.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
         Me.Sym_Torn_Cem_Carga.Flip = SymbolFactoryNetEngine.FlipOptions.Horizontal
-        Me.Sym_Torn_Cem_Carga.Location = New System.Drawing.Point(1132, 319)
+        Me.Sym_Torn_Cem_Carga.Location = New System.Drawing.Point(1132, 346)
         Me.Sym_Torn_Cem_Carga.Name = "Sym_Torn_Cem_Carga"
         Me.Sym_Torn_Cem_Carga.Size = New System.Drawing.Size(265, 244)
         Me.Sym_Torn_Cem_Carga.SymbolHandle = CType(1286531200, Long)
@@ -2911,7 +3521,7 @@ Partial Class Proceso_Andina
         Me.Sym_Torn_Cem_Desc.FillColor = System.Drawing.Color.Silver
         Me.Sym_Torn_Cem_Desc.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
         Me.Sym_Torn_Cem_Desc.Flip = SymbolFactoryNetEngine.FlipOptions.Horizontal
-        Me.Sym_Torn_Cem_Desc.Location = New System.Drawing.Point(825, 368)
+        Me.Sym_Torn_Cem_Desc.Location = New System.Drawing.Point(825, 395)
         Me.Sym_Torn_Cem_Desc.Name = "Sym_Torn_Cem_Desc"
         Me.Sym_Torn_Cem_Desc.Size = New System.Drawing.Size(313, 243)
         Me.Sym_Torn_Cem_Desc.SymbolHandle = CType(1286531200, Long)
@@ -2925,7 +3535,7 @@ Partial Class Proceso_Andina
         '
         Me.Tim_Wd_PLC.Interval = 300
         '
-        'Proceso
+        'Proceso_Andina
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -2973,12 +3583,12 @@ Partial Class Proceso_Andina
         CType(Me.Pil_DescargaT2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_Banda, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_Bomba, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pil_PLC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_DesCemento, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_CargaCemento, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_DescargaT1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_Setpoints, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_Dosifica, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Pil_PLC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
         CType(Me.Sym_MotorBanda, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2989,21 +3599,28 @@ Partial Class Proceso_Andina
         CType(Me.Sym_Arena, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        CType(Me.Sym_Piedra, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Gbx_ConfigCarg_Cemento.ResumeLayout(False)
-        Me.Gbx_ConfigCarg_Cemento.PerformLayout()
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel2.PerformLayout()
+        Me.GroupBox8.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
         Me.GBx_Preparacion.ResumeLayout(False)
         Me.GBx_Preparacion.PerformLayout()
         CType(Me.Num_BatchPlanificacion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Num_Hum_Ripio, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Num_Hum_Arena, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        Me.Gbx_ConfigCarg_Cemento.ResumeLayout(False)
+        Me.Gbx_ConfigCarg_Cemento.PerformLayout()
+        Me.Gb_OrdenDespacho.ResumeLayout(False)
+        Me.Gb_OrdenDespacho.PerformLayout()
+        CType(Me.Sym_Piedra, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.StandardControl8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Cemento, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.StandardControl3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Bomba_G4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Bomba_G7, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
         CType(Me.Sym_Torn_Cem_Carga, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3202,9 +3819,56 @@ Partial Class Proceso_Andina
     Friend WithEvents Num_BatchPlanificacion As NumericUpDown
     Friend WithEvents Txt_CodOrdenDespacho As TextBox
     Friend WithEvents Btt_BuscarOrdDespacho As Button
-    Friend WithEvents Label47 As Label
     Friend WithEvents Lbl_Operador As Label
     Friend WithEvents Lbl_NombreFormula As Label
     Friend WithEvents Sym_Piedra As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Txt_NumM3 As TextBox
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Friend WithEvents Button1 As Button
+    Friend WithEvents MaskedTextBox4 As MaskedTextBox
+    Friend WithEvents MaskedTextBox3 As MaskedTextBox
+    Friend WithEvents MaskedTextBox2 As MaskedTextBox
+    Friend WithEvents MaskedTextBox1 As MaskedTextBox
+    Friend WithEvents Label54 As Label
+    Friend WithEvents Label57 As Label
+    Friend WithEvents ProgressBar2 As ProgressBar
+    Friend WithEvents ProgressBar3 As ProgressBar
+    Friend WithEvents Label61 As Label
+    Friend WithEvents ProgressBar4 As ProgressBar
+    Friend WithEvents ProgressBar5 As ProgressBar
+    Friend WithEvents Label63 As Label
+    Friend WithEvents Label66 As Label
+    Friend WithEvents Label77 As Label
+    Friend WithEvents Label47 As Label
+    Friend WithEvents Label67 As Label
+    Friend WithEvents Label68 As Label
+    Friend WithEvents Label55 As Label
+    Friend WithEvents Label58 As Label
+    Friend WithEvents Label62 As Label
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Button6 As Button
+    Friend WithEvents Button7 As Button
+    Private WithEvents Label65 As Label
+    Friend WithEvents MaskedTextBox5 As MaskedTextBox
+    Private WithEvents Label69 As Label
+    Private WithEvents Label70 As Label
+    Friend WithEvents GroupBox8 As GroupBox
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Label64 As Label
+    Friend WithEvents Label52 As Label
+    Friend WithEvents lblcomprobante As Label
+    Friend WithEvents Gb_OrdenDespacho As GroupBox
+    Friend WithEvents Btt_Sel_Mixer As Button
+    Friend WithEvents Label53 As Label
+    Friend WithEvents Btt_Sel_Producto As Button
+    Friend WithEvents txtobservaciones As TextBox
+    Friend WithEvents Label59 As Label
+    Friend WithEvents Label60 As Label
+    Friend WithEvents btnagregar As Button
+    Friend WithEvents Label71 As Label
+    Public WithEvents txtNomMixer As TextBox
+    Public WithEvents txtidMixer As TextBox
+    Public WithEvents nomProducto As TextBox
+    Public WithEvents codProducto As TextBox
+    Public WithEvents txtPlaca As TextBox
 End Class

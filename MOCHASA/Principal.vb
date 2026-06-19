@@ -177,21 +177,16 @@ Public Class Principal
 
     Private Sub Btt_Proceso_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btt_Proceso.Click
         If Funciones.IsFormOpen(Me.ListaFormularios) = False Then
+            Me.Panel1.Visible = False
             Panel2.Controls.Clear()
-            Dim frm As New Proceso_Andina
-            frm.TopLevel = False
-            frm.FormBorderStyle = FormBorderStyle.None
-            frm.Dock = DockStyle.Fill
+            Proceso_Andina.TopLevel = False
+            Proceso_Andina.FormBorderStyle = FormBorderStyle.None
+            Proceso_Andina.Dock = DockStyle.Fill
 
-            Panel2.Controls.Add(frm)
-            frm.BringToFront()
-            frm.Show()
-            frm.Dock = DockStyle.None
-            frm.Dock = DockStyle.Fill
+            Panel2.Controls.Add(Proceso_Andina)
+            Proceso_Andina.BringToFront()
+            Proceso_Andina.Show()
         End If
-        'frmObtenerDatos.TopLevel = False
-        'Panel2.Controls.Add(frmObtenerDatos)
-        'frmObtenerDatos.Show()
     End Sub
 
     Private Sub btt_Con_Indicador_Click(sender As Object, e As EventArgs) Handles btt_Con_Indicador.Click

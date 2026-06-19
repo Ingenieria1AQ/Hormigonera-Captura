@@ -187,6 +187,23 @@ Public Class listas
         If destinoLista = "FReportesOrdenDespacho" Then
             frmReportes.txtOrdenDespacho.Text = DataGridView1.CurrentRow.Cells(0).Value
         End If
+
+        'Andina de Hormigones ---------------------------------------------------------
+        If destinoLista = "Proceso_Cl" Then
+            Proceso_Andina.codCliente.Text = DataGridView1.CurrentRow.Cells(0).Value
+            Proceso_Andina.nomCliente.Text = DataGridView1.CurrentRow.Cells(1).Value
+        End If
+        If destinoLista = "Proceso_Pr" Then
+            Proceso_Andina.codProducto.Text = DataGridView1.CurrentRow.Cells(0).Value
+            Proceso_Andina.nomProducto.Text = DataGridView1.CurrentRow.Cells(1).Value
+        End If
+        If destinoLista = "Proceso_Mx" Then
+            Proceso_Andina.txtidMixer.Text = DataGridView1.CurrentRow.Cells(0).Value
+            Proceso_Andina.txtNomMixer.Text = DataGridView1.CurrentRow.Cells(2).Value
+            Proceso_Andina.txtPlaca.Text = DataGridView1.CurrentRow.Cells(1).Value
+        End If
+        '-------------------------------------------------------------------------------
+
         'If destinoLista = "TransaccionesVariasT1" Then
         '    EgresoSalida.lblcomprobante.Text = DataGridView1.CurrentRow.Cells(2).Value
         '    EgresoSalida.txtplaca.Text = DataGridView1.CurrentRow.Cells(4).Value

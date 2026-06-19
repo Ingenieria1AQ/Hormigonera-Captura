@@ -8,7 +8,7 @@ Imports System.Text
 Public Class Proceso_Andina
     'Llamar a la clase de indicador Serial
     Private IndicadorTolv1 As Indicador_Serial
-    Private IndicadorTolv2 As Indicador_Serial
+    Private IndicadorTolv2 As Indicador_Serial 'CLIENTE USA UN INDICADOR PARA ARIDOS
     Private IndicadorCemento As Indicador_Serial
 
     'Variables de Formulacion
@@ -17,7 +17,7 @@ Public Class Proceso_Andina
 
     Private da As OleDbDataAdapter
     Private ds As New DataSet
-    Private numTolvas_Serial As Integer = 3
+    Private numTolvas_Serial As Integer = 2
     Private registros As Integer = 4  'Numero total de registros de la tabla NumeroTolvasTanques
     Private tbTolvas As New DataTable
     Private font_Rtxt As System.Drawing.Font = New System.Drawing.Font("MicrosoftSansSerif", 8)
@@ -93,16 +93,23 @@ Public Class Proceso_Andina
     Private VersionFinal As Integer
     Private CabeceraImpr As String = "EUFRATES "
 
+    '**VARIABLES: CAMBIOS PARA ANDINA DE HORMIGONES
+    Dim tipoTrans As String = "Entra"
+    Dim codigoOD As Long
+    Private flagTolva1Ser_Iniciada As Boolean = False
+    Private flagTolva2Ser_Iniciada As Boolean = False
+    Private flagTolvaCementoSer_Iniciada As Boolean = False
 
     '*-*-*-*-**-*-*-*-*-*-*-*
     Private Sub Proceso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Obtener variables de la tabla de configuracion
         Me.WindowState = WindowState.Maximized
-        Principal.Panel1.Visible = False
+        'Principal.Panel1.Visible = False
         Lbl_Info.Text = String.Empty
         Lbl_NombreFormula.Text = String.Empty
         Lbl_Operador.Text = Variables.nomOperador
 
+        'Leer tabla de configuracion
         nombreImpresora = Funciones.Obtener_Valor_Configuracion("Nombre_Impresora")
         flagUsaImpresora = Convert.ToBoolean(Funciones.Obtener_Valor_Configuracion("UsaImpresora") = "1")
         DirPLC = Funciones.Obtener_Valor_Configuracion("PLC_IP")
@@ -114,12 +121,21 @@ Public Class Proceso_Andina
         Lbl_IpAdd.Text = DirPLC
         Lbl_Puerto.Text = PuertoPLC.ToString
 
-        CargaProductos()
+        'CargaProductos() --No se usa para A.Hormigones
         flagConfigPLC = Configura_Inicializa_PLC()
         Pil_PLC.DiscreteValue1 = flagConfigPLC
-        LimpiarLabelsFormula()
+        'LimpiarLabelsFormula() --No se usa para A.Hormigones
         'Configuracion serial y Extrae Puntos de corte de las tolvas
-        Cargar_y_Configurar_Tolvas()
+        If Cargar_y_Configurar_Tolvas() = True Then
+            flagTolva1Ser_Iniciada = True
+            'flagTolva2Ser_Iniciada = True
+            flagTolvaCementoSer_Iniciada = True
+        Else
+            MessageBox.Show("Error en la configuración de puerto serial de las tolvas consulte con el administrador", "Error de Configuración", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            flagTolva1Ser_Iniciada = False
+            'flagTolva2Ser_Iniciada = False
+            flagTolvaCementoSer_Iniciada = False
+        End If
 
         If flagConfigPLC Then
             Tim_ReadHR.Enabled = True
@@ -248,7 +264,7 @@ Public Class Proceso_Andina
         End Try
     End Sub
 
-    Private Sub Cargar_y_Configurar_Tolvas()
+    Private Function Cargar_y_Configurar_Tolvas() As Boolean
         Try
             '1: Cargar configuracion de tolvas
             Dim cmdTxt As String = "SELECT * FROM NumeroTolvasTanques ORDER BY id"
@@ -262,33 +278,48 @@ Public Class Proceso_Andina
                 "Error en la configuración de Tolvas. Consulte con el administrador del sistema" & Environment.NewLine,
                 Drawing.Color.Red,
                 font_Rtxt)
+                Return False
             End If
 
-            corteT1 = Double.Parse(Funciones.Obtener_Valor_Configuracion("CortePiedra"))
-            corteT2 = Double.Parse(Funciones.Obtener_Valor_Configuracion("CorteArena"))
-            corteCemento = Double.Parse(Funciones.Obtener_Valor_Configuracion("CorteCemento"))
-            corteAgua = Double.Parse(Funciones.Obtener_Valor_Configuracion("CorteAgua"))
+            'Validar puertos COM configurados
+            For Each fila As DataRow In tbTolvas.Rows
+                If IsDBNull(fila.Item("PuertoCOM")) OrElse fila.Item("PuertoCOM") = String.Empty Then
+                    Rtx_Mensajes.AppendColoredText(
+                    $"Error de configuración serial en la Tolva {fila.Item("descripcion")}" & Environment.NewLine,
+                    Drawing.Color.Red,
+                    font_Rtxt)
+                    Return False
+                End If
+            Next
 
 
-            'corteT1 = Convert.ToDouble(tbTolvas.Rows(0).Item("Corte"))
-            'corteT2 = Convert.ToDouble(tbTolvas.Rows(1).Item("Corte"))
-            'corteCemento = Convert.ToDouble(tbTolvas.Rows(2).Item("Corte"))
-            'corteAgua = Convert.ToDouble(tbTolvas.Rows(3).Item("Corte"))
+            'Habilitar si se requiere obtener los valores de corte
+            'corteT1 = Double.Parse(Funciones.Obtener_Valor_Configuracion("CortePiedra"))
+            'corteT2 = Double.Parse(Funciones.Obtener_Valor_Configuracion("CorteArena"))
+            'corteCemento = Double.Parse(Funciones.Obtener_Valor_Configuracion("CorteCemento"))
+            'corteAgua = Double.Parse(Funciones.Obtener_Valor_Configuracion("CorteAgua"))
+
+            'Andina de hormigones no controla Cortes
+            corteT1 = 0.0
+            corteT2 = 0.0
+            corteCemento = 0.0
+            corteAgua = 0.0
 
             IndicadorTolv1 = New Indicador_Serial(tbTolvas.Rows(0).Item("PuertoCOM"), Convert.ToInt32(tbTolvas.Rows(0).Item("BaudRate")), tbTolvas.Rows(0).Item("TipoIndicador"))
-            IndicadorTolv2 = New Indicador_Serial(tbTolvas.Rows(1).Item("PuertoCOM"), Convert.ToInt32(tbTolvas.Rows(1).Item("BaudRate")), tbTolvas.Rows(1).Item("TipoIndicador"))
+            'No usa A. Hormigones
+            'IndicadorTolv2 = New Indicador_Serial(tbTolvas.Rows(1).Item("PuertoCOM"), Convert.ToInt32(tbTolvas.Rows(1).Item("BaudRate")), tbTolvas.Rows(1).Item("TipoIndicador"))
             IndicadorCemento = New Indicador_Serial(tbTolvas.Rows(2).Item("PuertoCOM"), Convert.ToInt32(tbTolvas.Rows(2).Item("BaudRate")), tbTolvas.Rows(2).Item("TipoIndicador"))
 
             AddHandler IndicadorTolv1.PesoRecibido, AddressOf PesoT1_Recibido
-            AddHandler IndicadorTolv2.PesoRecibido, AddressOf PesoT2_Recibido
+            'AddHandler IndicadorTolv2.PesoRecibido, AddressOf PesoT2_Recibido --'No usa A. Hormigones
             AddHandler IndicadorCemento.PesoRecibido, AddressOf pesoCem_Recibido
 
             AddHandler IndicadorTolv1.EstadoCambiado, AddressOf EstadoT1
-            AddHandler IndicadorTolv2.EstadoCambiado, AddressOf EstadoT2
+            'AddHandler IndicadorTolv2.EstadoCambiado, AddressOf EstadoT2 'No usa A. Hormigones
             AddHandler IndicadorCemento.EstadoCambiado, AddressOf EstadoCemento
 
             IndicadorTolv1.Conectar()
-            IndicadorTolv2.Conectar()
+            'IndicadorTolv2.Conectar() -- 'No usa A. Hormigones
             IndicadorCemento.Conectar()
             'Dim errores As New List(Of String)
             'If Not SerTol1_ok Then errores.Add("Tolva 1 - " & SerialTolva1.PortName)
@@ -299,14 +330,16 @@ Public Class Proceso_Andina
             'Rtx_Mensajes.AppendColoredText(msg & Environment.NewLine,
             '        Drawing.Color.Red,
             '        font_Rtxt)
+            Return True
         Catch ex As Exception
             MessageBox.Show(
             ex.Message,
             "Excepción: Carga y Configuración de Tolvas",
             MessageBoxButtons.OK,
             MessageBoxIcon.Error)
+            Return False
         End Try
-    End Sub
+    End Function
 
 
 
@@ -568,9 +601,16 @@ Public Class Proceso_Andina
     End Sub
     Private Sub Btt_Salir_Click(sender As Object, e As EventArgs) Handles Btt_Salir.Click
         Try
-            IndicadorTolv1.Desconectar()
-            IndicadorTolv2.Desconectar()
-            IndicadorCemento.Desconectar()
+            Me.Panel1.Visible = True
+            If flagTolva1Ser_Iniciada Then
+                IndicadorTolv1.Desconectar()
+            End If
+            'If flagTolva2Ser_Iniciada Then
+            '    IndicadorTolv2.Desconectar()
+            'End If
+            If flagTolvaCementoSer_Iniciada Then
+                IndicadorCemento.Desconectar()
+            End If
 
             If PLC_LOGO.Connected Then
                 PLC_LOGO.Disconnect()
@@ -1488,9 +1528,59 @@ Public Class Proceso_Andina
             FinalizaBatch()
         End If
     End Sub
-    Private Sub LimpiaControlesFormula()
 
+    Private Sub btnagregar_Click(sender As Object, e As EventArgs) Handles btnagregar.Click
+        LimpiarControlesOD()
+        Gb_OrdenDespacho.Enabled = True
+        tipoTrans = "Entra"
+        codigoOD = leerconsecutivo("Despacho")
+        lblcomprobante.Text = CStr(codigoOD)
     End Sub
+
+    Private Sub LimpiarControlesOD()
+        lblcomprobante.Text = "-"
+        codCliente.Text = ""
+        nomCliente.Text = ""
+        codProducto.Text = ""
+        nomProducto.Text = ""
+        txtidMixer.Text = ""
+        txtNomMixer.Text = ""
+        txtPlaca.Text = ""
+    End Sub
+
+    Private Sub Btt_Sel_Producto_Click(sender As Object, e As EventArgs) Handles Btt_Sel_Producto.Click
+        tipoLista = "PRODUCTOS"
+        destinoLista = "Proceso_Pr"
+        listas.Show()
+    End Sub
+
+    Private Sub Btt_Sel_Mixer_Click(sender As Object, e As EventArgs) Handles Btt_Sel_Mixer.Click
+        tipoLista = "MIXERS"
+        destinoLista = "Proceso_Mx"
+        listas.Show()
+    End Sub
+
+    Public Function leerconsecutivo(ByVal descripcion As String) As Long
+        Dim con As New OleDbConnection(sConnString)
+        Dim cmd As OleDbCommand
+        Try
+            cmd = New OleDb.OleDbCommand
+            con.Open()
+            cmd.Connection = con
+            cmd.CommandText = "select consecutivo from Consecutivos where Descripcion = '" & descripcion & "'"
+            If IsDBNull(cmd.ExecuteScalar) = False Then
+                leerconsecutivo = cmd.ExecuteScalar
+            Else
+                leerconsecutivo = 0
+            End If
+            con.Close()
+        Catch ex As Exception
+            leerconsecutivo = 0
+        Finally
+            con.Close()
+        End Try
+    End Function
+
     Private Sub FinalizaBatch()
         If batchPendientes = 0 Then
             DetenerProceso()
