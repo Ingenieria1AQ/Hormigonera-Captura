@@ -189,10 +189,6 @@ Public Class listas
         End If
 
         'Andina de Hormigones ---------------------------------------------------------
-        If destinoLista = "Proceso_Cl" Then
-            Proceso_Andina.codCliente.Text = DataGridView1.CurrentRow.Cells(0).Value
-            Proceso_Andina.nomCliente.Text = DataGridView1.CurrentRow.Cells(1).Value
-        End If
         If destinoLista = "Proceso_Pr" Then
             Proceso_Andina.codProducto.Text = DataGridView1.CurrentRow.Cells(0).Value
             Proceso_Andina.nomProducto.Text = DataGridView1.CurrentRow.Cells(1).Value

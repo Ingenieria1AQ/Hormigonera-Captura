@@ -185,18 +185,10 @@ Partial Class Proceso_Andina
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btnagregar = New System.Windows.Forms.Button()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.MaskedTextBox4 = New System.Windows.Forms.MaskedTextBox()
-        Me.MaskedTextBox3 = New System.Windows.Forms.MaskedTextBox()
-        Me.MaskedTextBox2 = New System.Windows.Forms.MaskedTextBox()
-        Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox()
+        Me.Btt_RegPiedra = New System.Windows.Forms.Button()
         Me.Label54 = New System.Windows.Forms.Label()
         Me.Label57 = New System.Windows.Forms.Label()
-        Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
-        Me.ProgressBar3 = New System.Windows.Forms.ProgressBar()
         Me.Label61 = New System.Windows.Forms.Label()
-        Me.ProgressBar4 = New System.Windows.Forms.ProgressBar()
-        Me.ProgressBar5 = New System.Windows.Forms.ProgressBar()
         Me.Label63 = New System.Windows.Forms.Label()
         Me.Label66 = New System.Windows.Forms.Label()
         Me.Label77 = New System.Windows.Forms.Label()
@@ -206,13 +198,12 @@ Partial Class Proceso_Andina
         Me.Label55 = New System.Windows.Forms.Label()
         Me.Label58 = New System.Windows.Forms.Label()
         Me.Label62 = New System.Windows.Forms.Label()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Label65 = New System.Windows.Forms.Label()
-        Me.MaskedTextBox5 = New System.Windows.Forms.MaskedTextBox()
-        Me.Label69 = New System.Windows.Forms.Label()
-        Me.Label70 = New System.Windows.Forms.Label()
+        Me.Btt_RegArena = New System.Windows.Forms.Button()
+        Me.Btt_RegCemento = New System.Windows.Forms.Button()
+        Me.Btt_RegAgua = New System.Windows.Forms.Button()
+        Me.Lbl_Cap_Piedra = New System.Windows.Forms.Label()
+        Me.Lbl_Cap_Arena = New System.Windows.Forms.Label()
+        Me.Lbl_Cap_Cemento = New System.Windows.Forms.Label()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.GBx_Preparacion = New System.Windows.Forms.GroupBox()
@@ -265,6 +256,11 @@ Partial Class Proceso_Andina
         Me.Sym_Torn_Cem_Desc = New SymbolFactoryDotNet.StandardControl()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Tim_Wd_PLC = New System.Windows.Forms.Timer(Me.components)
+        Me.Num_TeoPiedra = New System.Windows.Forms.NumericUpDown()
+        Me.Num_TeoArena = New System.Windows.Forms.NumericUpDown()
+        Me.Num_TeoCemento = New System.Windows.Forms.NumericUpDown()
+        Me.Num_TeoAgua = New System.Windows.Forms.NumericUpDown()
+        Me.Num_RealAgua = New System.Windows.Forms.NumericUpDown()
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -332,6 +328,11 @@ Partial Class Proceso_Andina
         CType(Me.Sym_Torn_Cem_Carga, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_TeoPiedra, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_TeoArena, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_TeoCemento, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_TeoAgua, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_RealAgua, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label9
@@ -618,7 +619,7 @@ Partial Class Proceso_Andina
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(19, 25)
+        Me.Label14.Location = New System.Drawing.Point(201, 227)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(133, 16)
         Me.Label14.TabIndex = 213
@@ -633,7 +634,7 @@ Partial Class Proceso_Andina
         Me.Btt_Detener.Name = "Btt_Detener"
         Me.Btt_Detener.Size = New System.Drawing.Size(85, 49)
         Me.Btt_Detener.TabIndex = 214
-        Me.Btt_Detener.Text = "DETENER"
+        Me.Btt_Detener.Text = "FINALIZAR"
         Me.Btt_Detener.UseVisualStyleBackColor = False
         '
         'cmbproductos
@@ -2446,14 +2447,17 @@ Partial Class Proceso_Andina
         Me.Panel2.AutoScroll = True
         Me.Panel2.BackColor = System.Drawing.SystemColors.Control
         Me.Panel2.Controls.Add(Me.btnagregar)
+        Me.Panel2.Controls.Add(Me.Txt_CodOrdenDespacho)
         Me.Panel2.Controls.Add(Me.TableLayoutPanel2)
         Me.Panel2.Controls.Add(Me.GroupBox8)
         Me.Panel2.Controls.Add(Me.Label64)
+        Me.Panel2.Controls.Add(Me.Btt_ImprimirGuia)
         Me.Panel2.Controls.Add(Me.Label52)
         Me.Panel2.Controls.Add(Me.lblcomprobante)
         Me.Panel2.Controls.Add(Me.Gb_OrdenDespacho)
         Me.Panel2.Controls.Add(Me.Sym_Piedra)
         Me.Panel2.Controls.Add(Me.Lbl_Operador)
+        Me.Panel2.Controls.Add(Me.Label14)
         Me.Panel2.Controls.Add(Me.Label50)
         Me.Panel2.Controls.Add(Me.Label46)
         Me.Panel2.Controls.Add(Me.Lbl_Info)
@@ -2538,18 +2542,10 @@ Partial Class Proceso_Andina
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.71259!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.68221!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanel2.Controls.Add(Me.Button1, 5, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.MaskedTextBox4, 2, 3)
-        Me.TableLayoutPanel2.Controls.Add(Me.MaskedTextBox3, 2, 2)
-        Me.TableLayoutPanel2.Controls.Add(Me.MaskedTextBox2, 2, 1)
-        Me.TableLayoutPanel2.Controls.Add(Me.MaskedTextBox1, 2, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Btt_RegPiedra, 5, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label54, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label57, 1, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar2, 6, 3)
-        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar3, 6, 2)
         Me.TableLayoutPanel2.Controls.Add(Me.Label61, 0, 1)
-        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar4, 6, 1)
-        Me.TableLayoutPanel2.Controls.Add(Me.ProgressBar5, 6, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label63, 0, 2)
         Me.TableLayoutPanel2.Controls.Add(Me.Label66, 0, 3)
         Me.TableLayoutPanel2.Controls.Add(Me.Label77, 3, 0)
@@ -2559,13 +2555,17 @@ Partial Class Proceso_Andina
         Me.TableLayoutPanel2.Controls.Add(Me.Label55, 3, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.Label58, 3, 2)
         Me.TableLayoutPanel2.Controls.Add(Me.Label62, 3, 3)
-        Me.TableLayoutPanel2.Controls.Add(Me.Button5, 5, 1)
-        Me.TableLayoutPanel2.Controls.Add(Me.Button6, 5, 2)
-        Me.TableLayoutPanel2.Controls.Add(Me.Button7, 5, 3)
-        Me.TableLayoutPanel2.Controls.Add(Me.Label65, 4, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.MaskedTextBox5, 4, 3)
-        Me.TableLayoutPanel2.Controls.Add(Me.Label69, 4, 1)
-        Me.TableLayoutPanel2.Controls.Add(Me.Label70, 4, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.Btt_RegArena, 5, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.Btt_RegCemento, 5, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.Btt_RegAgua, 5, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.Lbl_Cap_Piedra, 4, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Lbl_Cap_Arena, 4, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.Lbl_Cap_Cemento, 4, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.Num_TeoPiedra, 2, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Num_TeoArena, 2, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.Num_TeoCemento, 2, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.Num_TeoAgua, 2, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.Num_RealAgua, 4, 3)
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(514, 121)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 4
@@ -2576,55 +2576,16 @@ Partial Class Proceso_Andina
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(614, 142)
         Me.TableLayoutPanel2.TabIndex = 292
         '
-        'Button1
+        'Btt_RegPiedra
         '
-        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Button1.Location = New System.Drawing.Point(412, 6)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(82, 23)
-        Me.Button1.TabIndex = 293
-        Me.Button1.Text = "Capturar"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'MaskedTextBox4
-        '
-        Me.MaskedTextBox4.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.MaskedTextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MaskedTextBox4.Location = New System.Drawing.Point(173, 112)
-        Me.MaskedTextBox4.Mask = "99999.99"
-        Me.MaskedTextBox4.Name = "MaskedTextBox4"
-        Me.MaskedTextBox4.Size = New System.Drawing.Size(71, 22)
-        Me.MaskedTextBox4.TabIndex = 296
-        '
-        'MaskedTextBox3
-        '
-        Me.MaskedTextBox3.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.MaskedTextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MaskedTextBox3.Location = New System.Drawing.Point(173, 76)
-        Me.MaskedTextBox3.Mask = "99999.99"
-        Me.MaskedTextBox3.Name = "MaskedTextBox3"
-        Me.MaskedTextBox3.Size = New System.Drawing.Size(71, 22)
-        Me.MaskedTextBox3.TabIndex = 295
-        '
-        'MaskedTextBox2
-        '
-        Me.MaskedTextBox2.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.MaskedTextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MaskedTextBox2.Location = New System.Drawing.Point(173, 41)
-        Me.MaskedTextBox2.Mask = "99999.99"
-        Me.MaskedTextBox2.Name = "MaskedTextBox2"
-        Me.MaskedTextBox2.Size = New System.Drawing.Size(71, 22)
-        Me.MaskedTextBox2.TabIndex = 294
-        '
-        'MaskedTextBox1
-        '
-        Me.MaskedTextBox1.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.MaskedTextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MaskedTextBox1.Location = New System.Drawing.Point(173, 6)
-        Me.MaskedTextBox1.Mask = "99999.99"
-        Me.MaskedTextBox1.Name = "MaskedTextBox1"
-        Me.MaskedTextBox1.Size = New System.Drawing.Size(71, 22)
-        Me.MaskedTextBox1.TabIndex = 293
+        Me.Btt_RegPiedra.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Btt_RegPiedra.Enabled = False
+        Me.Btt_RegPiedra.Location = New System.Drawing.Point(516, 6)
+        Me.Btt_RegPiedra.Name = "Btt_RegPiedra"
+        Me.Btt_RegPiedra.Size = New System.Drawing.Size(82, 23)
+        Me.Btt_RegPiedra.TabIndex = 293
+        Me.Btt_RegPiedra.Text = "Capturar"
+        Me.Btt_RegPiedra.UseVisualStyleBackColor = True
         '
         'Label54
         '
@@ -2632,7 +2593,7 @@ Partial Class Proceso_Andina
         Me.Label54.AutoSize = True
         Me.Label54.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label54.ForeColor = System.Drawing.Color.Black
-        Me.Label54.Location = New System.Drawing.Point(10, 11)
+        Me.Label54.Location = New System.Drawing.Point(18, 11)
         Me.Label54.Name = "Label54"
         Me.Label54.Size = New System.Drawing.Size(47, 13)
         Me.Label54.TabIndex = 5
@@ -2644,27 +2605,11 @@ Partial Class Proceso_Andina
         Me.Label57.AutoSize = True
         Me.Label57.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label57.ForeColor = System.Drawing.Color.Black
-        Me.Label57.Location = New System.Drawing.Point(80, 11)
+        Me.Label57.Location = New System.Drawing.Point(107, 11)
         Me.Label57.Name = "Label57"
         Me.Label57.Size = New System.Drawing.Size(74, 13)
         Me.Label57.TabIndex = 6
         Me.Label57.Text = "Cant. Teórica:"
-        '
-        'ProgressBar2
-        '
-        Me.ProgressBar2.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.ProgressBar2.Location = New System.Drawing.Point(501, 116)
-        Me.ProgressBar2.Name = "ProgressBar2"
-        Me.ProgressBar2.Size = New System.Drawing.Size(109, 14)
-        Me.ProgressBar2.TabIndex = 233
-        '
-        'ProgressBar3
-        '
-        Me.ProgressBar3.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.ProgressBar3.Location = New System.Drawing.Point(501, 80)
-        Me.ProgressBar3.Name = "ProgressBar3"
-        Me.ProgressBar3.Size = New System.Drawing.Size(109, 14)
-        Me.ProgressBar3.TabIndex = 232
         '
         'Label61
         '
@@ -2672,28 +2617,11 @@ Partial Class Proceso_Andina
         Me.Label61.AutoSize = True
         Me.Label61.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label61.ForeColor = System.Drawing.Color.Black
-        Me.Label61.Location = New System.Drawing.Point(12, 46)
+        Me.Label61.Location = New System.Drawing.Point(19, 46)
         Me.Label61.Name = "Label61"
         Me.Label61.Size = New System.Drawing.Size(44, 13)
         Me.Label61.TabIndex = 10
         Me.Label61.Text = "ARENA"
-        '
-        'ProgressBar4
-        '
-        Me.ProgressBar4.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.ProgressBar4.Location = New System.Drawing.Point(501, 45)
-        Me.ProgressBar4.Name = "ProgressBar4"
-        Me.ProgressBar4.Size = New System.Drawing.Size(109, 14)
-        Me.ProgressBar4.TabIndex = 235
-        '
-        'ProgressBar5
-        '
-        Me.ProgressBar5.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.ProgressBar5.Location = New System.Drawing.Point(501, 10)
-        Me.ProgressBar5.Maximum = 1000
-        Me.ProgressBar5.Name = "ProgressBar5"
-        Me.ProgressBar5.Size = New System.Drawing.Size(109, 14)
-        Me.ProgressBar5.TabIndex = 231
         '
         'Label63
         '
@@ -2701,7 +2629,7 @@ Partial Class Proceso_Andina
         Me.Label63.AutoSize = True
         Me.Label63.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label63.ForeColor = System.Drawing.Color.Black
-        Me.Label63.Location = New System.Drawing.Point(4, 81)
+        Me.Label63.Location = New System.Drawing.Point(11, 81)
         Me.Label63.Name = "Label63"
         Me.Label63.Size = New System.Drawing.Size(60, 13)
         Me.Label63.TabIndex = 15
@@ -2713,7 +2641,7 @@ Partial Class Proceso_Andina
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label66.ForeColor = System.Drawing.Color.Black
-        Me.Label66.Location = New System.Drawing.Point(15, 117)
+        Me.Label66.Location = New System.Drawing.Point(23, 117)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(37, 13)
         Me.Label66.TabIndex = 20
@@ -2725,7 +2653,7 @@ Partial Class Proceso_Andina
         Me.Label77.AutoSize = True
         Me.Label77.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label77.ForeColor = System.Drawing.Color.Black
-        Me.Label77.Location = New System.Drawing.Point(258, 11)
+        Me.Label77.Location = New System.Drawing.Point(324, 11)
         Me.Label77.Name = "Label77"
         Me.Label77.Size = New System.Drawing.Size(60, 13)
         Me.Label77.TabIndex = 8
@@ -2737,7 +2665,7 @@ Partial Class Proceso_Andina
         Me.Label47.AutoSize = True
         Me.Label47.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label47.ForeColor = System.Drawing.Color.Black
-        Me.Label47.Location = New System.Drawing.Point(80, 46)
+        Me.Label47.Location = New System.Drawing.Point(107, 46)
         Me.Label47.Name = "Label47"
         Me.Label47.Size = New System.Drawing.Size(74, 13)
         Me.Label47.TabIndex = 266
@@ -2749,7 +2677,7 @@ Partial Class Proceso_Andina
         Me.Label67.AutoSize = True
         Me.Label67.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label67.ForeColor = System.Drawing.Color.Black
-        Me.Label67.Location = New System.Drawing.Point(80, 81)
+        Me.Label67.Location = New System.Drawing.Point(107, 81)
         Me.Label67.Name = "Label67"
         Me.Label67.Size = New System.Drawing.Size(74, 13)
         Me.Label67.TabIndex = 267
@@ -2761,7 +2689,7 @@ Partial Class Proceso_Andina
         Me.Label68.AutoSize = True
         Me.Label68.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label68.ForeColor = System.Drawing.Color.Black
-        Me.Label68.Location = New System.Drawing.Point(80, 117)
+        Me.Label68.Location = New System.Drawing.Point(107, 117)
         Me.Label68.Name = "Label68"
         Me.Label68.Size = New System.Drawing.Size(74, 13)
         Me.Label68.TabIndex = 268
@@ -2773,7 +2701,7 @@ Partial Class Proceso_Andina
         Me.Label55.AutoSize = True
         Me.Label55.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label55.ForeColor = System.Drawing.Color.Black
-        Me.Label55.Location = New System.Drawing.Point(258, 46)
+        Me.Label55.Location = New System.Drawing.Point(324, 46)
         Me.Label55.Name = "Label55"
         Me.Label55.Size = New System.Drawing.Size(60, 13)
         Me.Label55.TabIndex = 8
@@ -2785,7 +2713,7 @@ Partial Class Proceso_Andina
         Me.Label58.AutoSize = True
         Me.Label58.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label58.ForeColor = System.Drawing.Color.Black
-        Me.Label58.Location = New System.Drawing.Point(258, 81)
+        Me.Label58.Location = New System.Drawing.Point(324, 81)
         Me.Label58.Name = "Label58"
         Me.Label58.Size = New System.Drawing.Size(60, 13)
         Me.Label58.TabIndex = 8
@@ -2797,98 +2725,89 @@ Partial Class Proceso_Andina
         Me.Label62.AutoSize = True
         Me.Label62.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label62.ForeColor = System.Drawing.Color.Black
-        Me.Label62.Location = New System.Drawing.Point(258, 117)
+        Me.Label62.Location = New System.Drawing.Point(324, 117)
         Me.Label62.Name = "Label62"
         Me.Label62.Size = New System.Drawing.Size(60, 13)
         Me.Label62.TabIndex = 8
         Me.Label62.Text = "Cant. Real:"
         '
-        'Button5
+        'Btt_RegArena
         '
-        Me.Button5.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Button5.Location = New System.Drawing.Point(412, 41)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(82, 23)
-        Me.Button5.TabIndex = 293
-        Me.Button5.Text = "Capturar"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.Btt_RegArena.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Btt_RegArena.Enabled = False
+        Me.Btt_RegArena.Location = New System.Drawing.Point(516, 41)
+        Me.Btt_RegArena.Name = "Btt_RegArena"
+        Me.Btt_RegArena.Size = New System.Drawing.Size(82, 23)
+        Me.Btt_RegArena.TabIndex = 293
+        Me.Btt_RegArena.Text = "Capturar"
+        Me.Btt_RegArena.UseVisualStyleBackColor = True
         '
-        'Button6
+        'Btt_RegCemento
         '
-        Me.Button6.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Button6.Location = New System.Drawing.Point(412, 76)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(82, 23)
-        Me.Button6.TabIndex = 293
-        Me.Button6.Text = "Capturar"
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.Btt_RegCemento.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Btt_RegCemento.Enabled = False
+        Me.Btt_RegCemento.Location = New System.Drawing.Point(516, 76)
+        Me.Btt_RegCemento.Name = "Btt_RegCemento"
+        Me.Btt_RegCemento.Size = New System.Drawing.Size(82, 23)
+        Me.Btt_RegCemento.TabIndex = 293
+        Me.Btt_RegCemento.Text = "Capturar"
+        Me.Btt_RegCemento.UseVisualStyleBackColor = True
         '
-        'Button7
+        'Btt_RegAgua
         '
-        Me.Button7.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Button7.Location = New System.Drawing.Point(412, 112)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(82, 23)
-        Me.Button7.TabIndex = 293
-        Me.Button7.Text = "Capturar"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.Btt_RegAgua.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Btt_RegAgua.Enabled = False
+        Me.Btt_RegAgua.Location = New System.Drawing.Point(516, 112)
+        Me.Btt_RegAgua.Name = "Btt_RegAgua"
+        Me.Btt_RegAgua.Size = New System.Drawing.Size(82, 23)
+        Me.Btt_RegAgua.TabIndex = 293
+        Me.Btt_RegAgua.Text = "Capturar"
+        Me.Btt_RegAgua.UseVisualStyleBackColor = True
         '
-        'Label65
+        'Lbl_Cap_Piedra
         '
-        Me.Label65.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label65.AutoSize = True
-        Me.Label65.BackColor = System.Drawing.Color.Gainsboro
-        Me.Label65.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label65.ForeColor = System.Drawing.Color.SteelBlue
-        Me.Label65.Location = New System.Drawing.Point(332, 7)
-        Me.Label65.MinimumSize = New System.Drawing.Size(70, 20)
-        Me.Label65.Name = "Label65"
-        Me.Label65.Size = New System.Drawing.Size(70, 20)
-        Me.Label65.TabIndex = 249
-        Me.Label65.Text = "0,000"
-        Me.Label65.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl_Cap_Piedra.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Lbl_Cap_Piedra.AutoSize = True
+        Me.Lbl_Cap_Piedra.BackColor = System.Drawing.Color.Gainsboro
+        Me.Lbl_Cap_Piedra.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Cap_Piedra.ForeColor = System.Drawing.Color.SteelBlue
+        Me.Lbl_Cap_Piedra.Location = New System.Drawing.Point(417, 7)
+        Me.Lbl_Cap_Piedra.MinimumSize = New System.Drawing.Size(70, 20)
+        Me.Lbl_Cap_Piedra.Name = "Lbl_Cap_Piedra"
+        Me.Lbl_Cap_Piedra.Size = New System.Drawing.Size(70, 20)
+        Me.Lbl_Cap_Piedra.TabIndex = 249
+        Me.Lbl_Cap_Piedra.Text = "0,000"
+        Me.Lbl_Cap_Piedra.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'MaskedTextBox5
+        'Lbl_Cap_Arena
         '
-        Me.MaskedTextBox5.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.MaskedTextBox5.BackColor = System.Drawing.Color.Gainsboro
-        Me.MaskedTextBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MaskedTextBox5.ForeColor = System.Drawing.Color.SteelBlue
-        Me.MaskedTextBox5.Location = New System.Drawing.Point(332, 113)
-        Me.MaskedTextBox5.Mask = "99999.99"
-        Me.MaskedTextBox5.Name = "MaskedTextBox5"
-        Me.MaskedTextBox5.Size = New System.Drawing.Size(71, 21)
-        Me.MaskedTextBox5.TabIndex = 296
+        Me.Lbl_Cap_Arena.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Lbl_Cap_Arena.AutoSize = True
+        Me.Lbl_Cap_Arena.BackColor = System.Drawing.Color.Gainsboro
+        Me.Lbl_Cap_Arena.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Cap_Arena.ForeColor = System.Drawing.Color.SteelBlue
+        Me.Lbl_Cap_Arena.Location = New System.Drawing.Point(417, 42)
+        Me.Lbl_Cap_Arena.MinimumSize = New System.Drawing.Size(70, 20)
+        Me.Lbl_Cap_Arena.Name = "Lbl_Cap_Arena"
+        Me.Lbl_Cap_Arena.Size = New System.Drawing.Size(70, 20)
+        Me.Lbl_Cap_Arena.TabIndex = 249
+        Me.Lbl_Cap_Arena.Text = "0,000"
+        Me.Lbl_Cap_Arena.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Label69
+        'Lbl_Cap_Cemento
         '
-        Me.Label69.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label69.AutoSize = True
-        Me.Label69.BackColor = System.Drawing.Color.Gainsboro
-        Me.Label69.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label69.ForeColor = System.Drawing.Color.SteelBlue
-        Me.Label69.Location = New System.Drawing.Point(332, 42)
-        Me.Label69.MinimumSize = New System.Drawing.Size(70, 20)
-        Me.Label69.Name = "Label69"
-        Me.Label69.Size = New System.Drawing.Size(70, 20)
-        Me.Label69.TabIndex = 249
-        Me.Label69.Text = "0,000"
-        Me.Label69.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label70
-        '
-        Me.Label70.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label70.AutoSize = True
-        Me.Label70.BackColor = System.Drawing.Color.Gainsboro
-        Me.Label70.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label70.ForeColor = System.Drawing.Color.SteelBlue
-        Me.Label70.Location = New System.Drawing.Point(332, 77)
-        Me.Label70.MinimumSize = New System.Drawing.Size(70, 20)
-        Me.Label70.Name = "Label70"
-        Me.Label70.Size = New System.Drawing.Size(70, 20)
-        Me.Label70.TabIndex = 249
-        Me.Label70.Text = "0,000"
-        Me.Label70.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl_Cap_Cemento.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Lbl_Cap_Cemento.AutoSize = True
+        Me.Lbl_Cap_Cemento.BackColor = System.Drawing.Color.Gainsboro
+        Me.Lbl_Cap_Cemento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Cap_Cemento.ForeColor = System.Drawing.Color.SteelBlue
+        Me.Lbl_Cap_Cemento.Location = New System.Drawing.Point(417, 77)
+        Me.Lbl_Cap_Cemento.MinimumSize = New System.Drawing.Size(70, 20)
+        Me.Lbl_Cap_Cemento.Name = "Lbl_Cap_Cemento"
+        Me.Lbl_Cap_Cemento.Size = New System.Drawing.Size(70, 20)
+        Me.Lbl_Cap_Cemento.TabIndex = 249
+        Me.Lbl_Cap_Cemento.Text = "0,000"
+        Me.Lbl_Cap_Cemento.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'GroupBox8
         '
@@ -2909,7 +2828,6 @@ Partial Class Proceso_Andina
         Me.Panel3.Controls.Add(Me.GBx_Preparacion)
         Me.Panel3.Controls.Add(Me.Btt_ReCon_T2)
         Me.Panel3.Controls.Add(Me.GroupBox5)
-        Me.Panel3.Controls.Add(Me.Btt_ImprimirGuia)
         Me.Panel3.Controls.Add(Me.Panel1)
         Me.Panel3.Controls.Add(Me.Gbx_ConfigCarg_Cemento)
         Me.Panel3.Controls.Add(Me.GroupBox4)
@@ -2926,7 +2844,6 @@ Partial Class Proceso_Andina
         'GBx_Preparacion
         '
         Me.GBx_Preparacion.Controls.Add(Me.Txt_NumM3)
-        Me.GBx_Preparacion.Controls.Add(Me.Txt_CodOrdenDespacho)
         Me.GBx_Preparacion.Controls.Add(Me.Btt_BuscarOrdDespacho)
         Me.GBx_Preparacion.Controls.Add(Me.Num_BatchPlanificacion)
         Me.GBx_Preparacion.Controls.Add(Me.Num_Hum_Ripio)
@@ -2936,7 +2853,6 @@ Partial Class Proceso_Andina
         Me.GBx_Preparacion.Controls.Add(Me.NumericM3)
         Me.GBx_Preparacion.Controls.Add(Me.Label15)
         Me.GBx_Preparacion.Controls.Add(Me.cmbproductos)
-        Me.GBx_Preparacion.Controls.Add(Me.Label14)
         Me.GBx_Preparacion.Location = New System.Drawing.Point(109, 5)
         Me.GBx_Preparacion.Name = "GBx_Preparacion"
         Me.GBx_Preparacion.Size = New System.Drawing.Size(392, 123)
@@ -2955,9 +2871,9 @@ Partial Class Proceso_Andina
         '
         'Txt_CodOrdenDespacho
         '
-        Me.Txt_CodOrdenDespacho.Location = New System.Drawing.Point(158, 21)
+        Me.Txt_CodOrdenDespacho.Location = New System.Drawing.Point(204, 246)
         Me.Txt_CodOrdenDespacho.Name = "Txt_CodOrdenDespacho"
-        Me.Txt_CodOrdenDespacho.Size = New System.Drawing.Size(100, 21)
+        Me.Txt_CodOrdenDespacho.Size = New System.Drawing.Size(100, 22)
         Me.Txt_CodOrdenDespacho.TabIndex = 286
         '
         'Btt_BuscarOrdDespacho
@@ -3030,7 +2946,7 @@ Partial Class Proceso_Andina
         Me.Btt_ImprimirGuia.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Btt_ImprimirGuia.Image = Global.HORMIGONERA.My.Resources.Resources.printer
         Me.Btt_ImprimirGuia.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_ImprimirGuia.Location = New System.Drawing.Point(414, 132)
+        Me.Btt_ImprimirGuia.Location = New System.Drawing.Point(340, 225)
         Me.Btt_ImprimirGuia.Name = "Btt_ImprimirGuia"
         Me.Btt_ImprimirGuia.Size = New System.Drawing.Size(84, 40)
         Me.Btt_ImprimirGuia.TabIndex = 282
@@ -3535,6 +3451,57 @@ Partial Class Proceso_Andina
         '
         Me.Tim_Wd_PLC.Interval = 300
         '
+        'Num_TeoPiedra
+        '
+        Me.Num_TeoPiedra.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Num_TeoPiedra.DecimalPlaces = 2
+        Me.Num_TeoPiedra.Location = New System.Drawing.Point(208, 7)
+        Me.Num_TeoPiedra.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Num_TeoPiedra.Name = "Num_TeoPiedra"
+        Me.Num_TeoPiedra.Size = New System.Drawing.Size(96, 22)
+        Me.Num_TeoPiedra.TabIndex = 297
+        '
+        'Num_TeoArena
+        '
+        Me.Num_TeoArena.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Num_TeoArena.DecimalPlaces = 2
+        Me.Num_TeoArena.Location = New System.Drawing.Point(208, 41)
+        Me.Num_TeoArena.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Num_TeoArena.Name = "Num_TeoArena"
+        Me.Num_TeoArena.Size = New System.Drawing.Size(96, 22)
+        Me.Num_TeoArena.TabIndex = 297
+        '
+        'Num_TeoCemento
+        '
+        Me.Num_TeoCemento.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Num_TeoCemento.DecimalPlaces = 2
+        Me.Num_TeoCemento.Location = New System.Drawing.Point(208, 76)
+        Me.Num_TeoCemento.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Num_TeoCemento.Name = "Num_TeoCemento"
+        Me.Num_TeoCemento.Size = New System.Drawing.Size(96, 22)
+        Me.Num_TeoCemento.TabIndex = 297
+        '
+        'Num_TeoAgua
+        '
+        Me.Num_TeoAgua.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Num_TeoAgua.DecimalPlaces = 2
+        Me.Num_TeoAgua.Location = New System.Drawing.Point(208, 112)
+        Me.Num_TeoAgua.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Num_TeoAgua.Name = "Num_TeoAgua"
+        Me.Num_TeoAgua.Size = New System.Drawing.Size(96, 22)
+        Me.Num_TeoAgua.TabIndex = 297
+        '
+        'Num_RealAgua
+        '
+        Me.Num_RealAgua.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Num_RealAgua.DecimalPlaces = 2
+        Me.Num_RealAgua.Location = New System.Drawing.Point(415, 112)
+        Me.Num_RealAgua.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Num_RealAgua.Name = "Num_RealAgua"
+        Me.Num_RealAgua.Size = New System.Drawing.Size(74, 22)
+        Me.Num_RealAgua.TabIndex = 297
+        Me.Num_RealAgua.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'Proceso_Andina
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3624,6 +3591,11 @@ Partial Class Proceso_Andina
         CType(Me.Sym_Torn_Cem_Carga, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_TeoPiedra, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_TeoArena, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_TeoCemento, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_TeoAgua, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_RealAgua, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3824,18 +3796,10 @@ Partial Class Proceso_Andina
     Friend WithEvents Sym_Piedra As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Txt_NumM3 As TextBox
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
-    Friend WithEvents Button1 As Button
-    Friend WithEvents MaskedTextBox4 As MaskedTextBox
-    Friend WithEvents MaskedTextBox3 As MaskedTextBox
-    Friend WithEvents MaskedTextBox2 As MaskedTextBox
-    Friend WithEvents MaskedTextBox1 As MaskedTextBox
+    Friend WithEvents Btt_RegPiedra As Button
     Friend WithEvents Label54 As Label
     Friend WithEvents Label57 As Label
-    Friend WithEvents ProgressBar2 As ProgressBar
-    Friend WithEvents ProgressBar3 As ProgressBar
     Friend WithEvents Label61 As Label
-    Friend WithEvents ProgressBar4 As ProgressBar
-    Friend WithEvents ProgressBar5 As ProgressBar
     Friend WithEvents Label63 As Label
     Friend WithEvents Label66 As Label
     Friend WithEvents Label77 As Label
@@ -3845,13 +3809,12 @@ Partial Class Proceso_Andina
     Friend WithEvents Label55 As Label
     Friend WithEvents Label58 As Label
     Friend WithEvents Label62 As Label
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button7 As Button
-    Private WithEvents Label65 As Label
-    Friend WithEvents MaskedTextBox5 As MaskedTextBox
-    Private WithEvents Label69 As Label
-    Private WithEvents Label70 As Label
+    Friend WithEvents Btt_RegArena As Button
+    Friend WithEvents Btt_RegCemento As Button
+    Friend WithEvents Btt_RegAgua As Button
+    Private WithEvents Lbl_Cap_Piedra As Label
+    Private WithEvents Lbl_Cap_Arena As Label
+    Private WithEvents Lbl_Cap_Cemento As Label
     Friend WithEvents GroupBox8 As GroupBox
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label64 As Label
@@ -3871,4 +3834,9 @@ Partial Class Proceso_Andina
     Public WithEvents nomProducto As TextBox
     Public WithEvents codProducto As TextBox
     Public WithEvents txtPlaca As TextBox
+    Friend WithEvents Num_TeoPiedra As NumericUpDown
+    Friend WithEvents Num_TeoArena As NumericUpDown
+    Friend WithEvents Num_TeoCemento As NumericUpDown
+    Friend WithEvents Num_TeoAgua As NumericUpDown
+    Friend WithEvents Num_RealAgua As NumericUpDown
 End Class

@@ -267,7 +267,13 @@ Public Class Proceso_Andina
     Private Function Cargar_y_Configurar_Tolvas() As Boolean
         Try
             '1: Cargar configuracion de tolvas
-            Dim cmdTxt As String = "SELECT * FROM NumeroTolvasTanques ORDER BY id"
+            Dim cmdTxt As String = ""
+            Select Case Variables.tipoBD
+                Case "ACCESS"
+                    cmdTxt = "SELECT * FROM NumeroTolvasTanques WHERE UsaSerial=True  ORDER BY id"
+                Case "SQLSERVER"
+                    cmdTxt = "SELECT * FROM NumeroTolvasTanques WHERE UsaSerial=1  ORDER BY id"
+            End Select
             Using da As New OleDbDataAdapter(cmdTxt, sConnString)
                 tbTolvas.Clear()
                 da.Fill(tbTolvas)
@@ -283,12 +289,14 @@ Public Class Proceso_Andina
 
             'Validar puertos COM configurados
             For Each fila As DataRow In tbTolvas.Rows
-                If IsDBNull(fila.Item("PuertoCOM")) OrElse fila.Item("PuertoCOM") = String.Empty Then
-                    Rtx_Mensajes.AppendColoredText(
-                    $"Error de configuración serial en la Tolva {fila.Item("descripcion")}" & Environment.NewLine,
-                    Drawing.Color.Red,
-                    font_Rtxt)
-                    Return False
+                If Convert.ToInt32(fila.Item("id")) <> 2 Then
+                    If IsDBNull(fila.Item("PuertoCOM")) Or fila.Item("PuertoCOM") = String.Empty Then
+                        Rtx_Mensajes.AppendColoredText(
+                        $"Error de configuración serial en la Tolva {fila.Item("descripcion")}" & Environment.NewLine,
+                        Drawing.Color.Red,
+                        font_Rtxt)
+                        Return False
+                    End If
                 End If
             Next
 
@@ -650,93 +658,135 @@ Public Class Proceso_Andina
             Dim Preparado As Boolean = False
 
             ValorInicialT1 = Convert.ToDouble(Lbl_Peso_T1.Text)
-            ValorInicialT2 = Convert.ToDouble(Lbl_Peso_T2.Text)
+            'ValorInicialT2 = Convert.ToDouble(Lbl_Peso_T2.Text) -- No se usa para A. Hormigones
             ValorInicialCemento = Convert.ToDouble(Lbl_Peso_Cem.Text)
-            'ACTIVAR
-            If ValorInicialT1 < pesoSet1 Then
-                MessageBox.Show("El peso en la Tolva 1 es menor al necesario, agregue más peso", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Rtx_Mensajes.AppendColoredText("Peso de Tolva 1 inferior al necesario" & Environment.NewLine,
-                    Drawing.Color.Black,
-                    font_Rtxt)
-                Exit Sub
-            End If
-            If ValorInicialT2 < pesoSet2 Then
-                MessageBox.Show("El peso en la Tolva 2 es menor al necesario, agregue más peso", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Rtx_Mensajes.AppendColoredText("Peso de Tolva 2 inferior al necesario" & Environment.NewLine,
-                    Drawing.Color.Black,
-                    font_Rtxt)
-                Exit Sub
-            End If
-            If ValorInicialCemento < 0 Then
-                MessageBox.Show("El peso en la Tolva Cemento es menor a 0, encere la balanza", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Rtx_Mensajes.AppendColoredText("Peso de Tolva Cemento negativo" & Environment.NewLine,
-                    Drawing.Color.Black,
-                    font_Rtxt)
-                Exit Sub
-            End If
-            If ValorInicialCemento > 20 Then
-                MessageBox.Show("Debe encerar la balanza de Cemento", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Rtx_Mensajes.AppendColoredText("Se quiere encerar la balanza de cemento" & Environment.NewLine,
-                    Drawing.Color.Black,
-                    font_Rtxt)
-                Exit Sub
-            End If
-            'Validacion de version final 
-            VersionFinal = ObtieneVersionActual(ID_OrdenDespacho)
-            If VersionInicial <> VersionFinal Then
-                MessageBox.Show("La Orden fue modificada desde oficina, vuelva a ingresar la OP para aplicar los cambios", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Txt_CodOrdenDespacho.Text = String.Empty
-                flagVersiones = False
-                DetenerProceso()
-                LimpiarLabelsFormula()
+            'Acivar si la dosificación es por descarga
+            'If ValorInicialT1 < pesoSet1 Then
+            '    MessageBox.Show("El peso en la Tolva 1 es menor al necesario, agregue más peso", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            '    Rtx_Mensajes.AppendColoredText("Peso de Tolva 1 inferior al necesario" & Environment.NewLine,
+            '        Drawing.Color.Black,
+            '        font_Rtxt)
+            '    Exit Sub
+            'End If
+            'If ValorInicialT2 < pesoSet2 Then
+            '    MessageBox.Show("El peso en la Tolva 2 es menor al necesario, agregue más peso", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            '    Rtx_Mensajes.AppendColoredText("Peso de Tolva 2 inferior al necesario" & Environment.NewLine,
+            '        Drawing.Color.Black,
+            '        font_Rtxt)
+            '    Exit Sub
+            'End If
+            'If ValorInicialCemento < 0 Then
+            '    MessageBox.Show("El peso en la Tolva Cemento es menor a 0, encere la balanza", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            '    Rtx_Mensajes.AppendColoredText("Peso de Tolva Cemento negativo" & Environment.NewLine,
+            '        Drawing.Color.Black,
+            '        font_Rtxt)
+            '    Exit Sub
+            'End If
+            'If ValorInicialCemento > 20 Then
+            '    MessageBox.Show("Debe encerar la balanza de Cemento", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            '    Rtx_Mensajes.AppendColoredText("Se quiere encerar la balanza de cemento" & Environment.NewLine,
+            '        Drawing.Color.Black,
+            '        font_Rtxt)
+            '    Exit Sub
+            'End If
+            'Validacion de version final -- No se usa para A. Hormigones
+            'VersionFinal = ObtieneVersionActual(ID_OrdenDespacho) 
+            'If VersionInicial <> VersionFinal Then
+            '    MessageBox.Show("La Orden fue modificada desde oficina, vuelva a ingresar la OP para aplicar los cambios", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            '    Txt_CodOrdenDespacho.Text = String.Empty
+            '    flagVersiones = False
+            '    DetenerProceso()
+            '    LimpiarLabelsFormula()
+            'Else
+            '    flagVersiones = True
+            'End If
+            'If flagConfigPLC And flagConfigSetpoints And SerTol1_ok And SerTol2_ok And SerCemento_ok And flagVersiones Then
+            '    Preparado = True
+            'End If
+            'Registrar encabezado de Orden de despacho
+            Dim complete As Integer
+            complete = guardarEncabezadoOD(lblcomprobante.Text, "DESPACHO", Variables.codOperador, Date.Today, Date.Now, 0, codProducto.Text,
+                                           "", txtPlaca.Text, 0, txtobservaciones.Text, 0, "", "", "", "", Convert.ToInt32(txtidMixer.Text), False)
+            If complete = 1 Then
+                Dim csave As Integer
+                csave = guardarconsecutivo("Despacho", codigoOD)
+                Rtx_Mensajes.AppendColoredText("La información se ha almacenado con exito" & Environment.NewLine,
+                   Drawing.Color.Black,
+                   font_Rtxt)
+                Gb_OrdenDespacho.Enabled = False
             Else
-                flagVersiones = True
+                Rtx_Mensajes.AppendColoredText("No se pudo almacenar la transaccion compruebe los datos" & Environment.NewLine,
+                  Drawing.Color.Red,
+                  font_Rtxt)
+                Exit Sub
             End If
-            If flagConfigPLC And flagConfigSetpoints And SerTol1_ok And SerTol2_ok And SerCemento_ok And flagVersiones Then
+
+            'Nuevo para A. Hormigones
+            'Verifica que existan datos teóricos para la dosificación
+            'If Not verificaDatosTeoricos Then
+            '    Rtx_Mensajes.AppendColoredText("Ingrese todos los valores de dosificación teórica" & Environment.NewLine,
+            '      Drawing.Color.Red,
+            '      font_Rtxt)
+            '    Exit Sub
+            'End If
+
+            If flagConfigPLC And SerTol1_ok And SerCemento_ok Then
                 Preparado = True
             End If
+
             'Borrar- Solo para pruebas
-            'Preparado = True
+            Preparado = True
             If Preparado Then
+                'Habilitar controles para el registro de datos
+                Btt_RegPiedra.Enabled = True
+                Btt_RegArena.Enabled = True
+                Btt_RegCemento.Enabled = True
+                Btt_RegAgua.Enabled = True
+                'Deshabilita boton para crear un nuevo registro de OD
+                btnagregar.Enabled = False
 
                 'Limpiar controles de dosificacion
                 Lbl_Dosif_T1.Text = "0.00"
                 Lbl_Dosif_T2.Text = "0.00"
                 Lbl_Dosif_Agua.Text = "0.00"
                 Lbl_Dosif_Cemento.Text = "0.00"
-
+                'No se usa para A. Hormigones
                 GBx_Preparacion.Enabled = False
                 Gbx_ConfigCarg_Cemento.Enabled = False
+
                 'Extrae el numero de batch de la base
                 consecutivoBatch = Convert.ToInt32(Funciones.Obtener_Valor_Configuracion("ConsecutivoBatch"))
-                For i As Integer = 1 To registros
-                    CambiaEstado_Label(i, "PREPARADO", Color.Black)
-                Next
+                'No se usa para A. Hormigones
+                'For i As Integer = 1 To registros
+                '    CambiaEstado_Label(i, "PREPARADO", Color.Black)
+                'Next
 
                 Panel2.BackColor = Color.DarkSeaGreen
                 running = True
-                'Cambiar estado de la Orden Para que no pueda ser modificada desde oficina
-                CambiaEstadodeOD(ID_OrdenDespacho)
+                'Cambiar estado de la Orden Para que no pueda ser modificada desde oficina -- No se usa para A. Hormigones
+                'CambiaEstadodeOD(ID_OrdenDespacho)
 
                 'Aumenta el numero consecutivo del batch
                 consecutivoBatch += 1
                 'Guardamos el valor del Batch Actual
                 Funciones.Actualizar_Valor_Configuracion("ConsecutivoBatch", consecutivoBatch)
-                'Configura valores limites
-                LimiteT1 = pesoSet1 - corteT1
-                LimiteT2 = pesoSet2 - corteT2
-                LimiteCemento = pesoSet3 - corteCemento
-                LimiteAgua = pesoSet4 - corteAgua
+
+                'Configura valores limites -- No se usa para A. Hormigones
+                'LimiteT1 = pesoSet1 - corteT1
+                'LimiteT2 = pesoSet2 - corteT2
+                'LimiteCemento = pesoSet3 - corteCemento
+                'LimiteAgua = pesoSet4 - corteAgua
 
                 batchActual += 1
                 batchPendientes = NumBatchPlanificacion - batchActual
-                'Reset todas las señales
-                ResetTodasSignals()
+                'Reset todas las señales -- No se usa para A. Hormigones
+                'ResetTodasSignals()
                 'Inicia timer de WD 
                 Tim_Wd_PLC.Enabled = True
-                'DAR SEÑAL de ARRANQUE
+                'DAR SEÑAL de ARRANQUE 
                 PLC_LOGO.WriteSingleCoil(Variables.coil_Paro, False)
                 PLC_LOGO.WriteSingleCoil(Variables.coil_Arranque, True)
+
                 Pil_Dosifica.DiscreteValue1 = True 'Revisar para enlazarse con los coils del PLC
                 'Ingresar aqui Rutina WD
                 Lbl_Info.Text = $"Iniciando Dosificación Batch {batchActual} de {NumBatchPlanificacion}"
@@ -745,15 +795,16 @@ Public Class Proceso_Andina
                     font_Rtxt)
 
                 'Iniciar carga del parcial del agua
-                IniciarCargaParcialAgua()
+                'IniciarCargaParcialAgua()
                 'Iniciar carga de cemento
-                IniciarCargaCemento()
-                'Encender banda transportadora
-                Iniciar_Apagar_Banda(True)
-                'Dar retardo  --Ver otras opciones de retardo
-                Await DelayMs(4000) ' 4 segundos sin bloquear
+                'IniciarCargaCemento()
+                'Encender banda transportadora 
+                'Iniciar_Apagar_Banda(True)
+                '-- No se usa para A. Hormigones
+                'Dar retardo  --Ver otras opciones de retardo 
+                'Await DelayMs(4000) ' 4 segundos sin bloquear
                 'Iniciar descarga de piedra
-                IniciarDescargaParcialT1()
+                'IniciarDescargaParcialT1()
                 'Deshabilita boton incio
                 Btt_Iniciar.Enabled = False
                 Btt_Detener.Enabled = True
@@ -762,10 +813,10 @@ Public Class Proceso_Andina
                 MessageBox.Show("Sistema no cumple con los requisitos para iniciar, revise el estado de las señales", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Dim errores As New List(Of String)
                 If Not SerTol1_ok Then errores.Add("Tolva 1 - " & SerialTolva1.PortName)
-                If Not SerTol2_ok Then errores.Add("Tolva 2 - " & SerialTolva2.PortName)
+                'If Not SerTol2_ok Then errores.Add("Tolva 2 - " & SerialTolva2.PortName) -- No se usa para A. Hormigones
                 If Not SerCemento_ok Then errores.Add("Tolva Cemento - " & SerialCemento.PortName)
-                If Not flagConfigSetpoints Then errores.Add("No se ha seleccionado Ninguna Fórmula")
-                If Not flagVersiones Then errores.Add("Orden Modificada desde oficina")
+                'If Not flagConfigSetpoints Then errores.Add("No se ha seleccionado Ninguna Fórmula") -- No se usa para A. Hormigones
+                'If Not flagVersiones Then errores.Add("Orden Modificada desde oficina") -- No se usa para A. Hormigones
                 Dim msg As String = "Error en el arranque de la Dosificación:" & vbCrLf &
                 "- " & String.Join(vbCrLf & "- ", errores)
                 Rtx_Mensajes.AppendColoredText(msg & Environment.NewLine,
@@ -779,6 +830,94 @@ Public Class Proceso_Andina
         End Try
 
     End Sub
+    Public Function guardarEncabezadoOD(
+    ByVal IdTran As String,
+    ByVal Tipo As String,
+    ByVal CodOperador As String,
+    ByVal Fecha As Date,
+    ByVal Hora As Date,
+    ByVal CodCliente As Integer,
+    ByVal CodProducto As String,
+    ByVal Documento As String,
+    ByVal Placa As String,
+    ByVal CodChofer As Integer,
+    ByVal Observaciones As String,
+    ByVal NetoM3 As Double,
+    ByVal MotTraslado As String,
+    ByVal PtoPartida As String,
+    ByVal PtoLlegada As String,
+    ByVal Obra As String,
+    ByVal idMixer As Integer,
+    ByVal eliminado As Boolean) As Integer
+
+        Try
+            'Variables fijas
+            Dim estado As Boolean = True
+            Dim version As Integer = 1
+            Using con As New OleDb.OleDbConnection(sConnString)
+                Using cmd As New OleDb.OleDbCommand()
+
+                    cmd.Connection = con
+                    cmd.CommandText = "INSERT INTO CabeceraTransacciones 
+                                        (Id, Tipo, CodOperador, Fecha, Hora, CodCliente, CodProducto, Documento, CodChofer, Observaciones, NetoM3, MotTraslado, PtoPartida, PtoLlegada, Obra, idMixer, Eliminado, Estado, Version)
+                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)"
+
+                    ' Parámetros en orden 
+                    cmd.Parameters.AddWithValue("?", IdTran)                                'ID
+                    cmd.Parameters.AddWithValue("?", Tipo)                                  'Tipo
+                    cmd.Parameters.AddWithValue("?", CodOperador)                           'CodOperador
+                    cmd.Parameters.Add("?", OleDb.OleDbType.Date).Value = Fecha             'Fecha
+                    cmd.Parameters.Add("?", OleDb.OleDbType.Date).Value = Hora              'Hora
+                    cmd.Parameters.AddWithValue("?", CodCliente)                            'CodCliente
+                    cmd.Parameters.AddWithValue("?", CodProducto)                           'CodProducto
+                    cmd.Parameters.AddWithValue("?", Documento)                             'Documento
+                    cmd.Parameters.AddWithValue("?", CodChofer)                             'CodChofer
+                    cmd.Parameters.AddWithValue("?", Observaciones)                         'Observaciones
+                    cmd.Parameters.AddWithValue("?", NetoM3)                                'NetoM3    
+                    cmd.Parameters.AddWithValue("?", MotTraslado)                           'MotTraslado
+                    cmd.Parameters.AddWithValue("?", PtoPartida)                            'PtoPartida
+                    cmd.Parameters.AddWithValue("?", PtoLlegada)                            'PtoLlegada
+                    cmd.Parameters.AddWithValue("?", Obra)                                  'Obra
+                    cmd.Parameters.AddWithValue("?", idMixer)                               'idMixer
+                    If Variables.tipoBD = "ACCESS" Then
+                        cmd.Parameters.AddWithValue("?", eliminado)                         'Eliminado
+                        cmd.Parameters.AddWithValue("?", estado)                            'Estado se crea con valor true o 1
+                    Else
+                        cmd.Parameters.AddWithValue("?", If(eliminado, 1, 0))               'Eliminado
+                        cmd.Parameters.AddWithValue("?", If(estado, 1, 0))                  'Estado se crea con valor true o 1
+                    End If
+                    cmd.Parameters.AddWithValue("?", version)                               'version se crea con valor 1
+                    con.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+
+            Return 1
+
+        Catch ex As Exception
+            MessageBox.Show("Error al guardar Transacción: " & ex.Message)
+            Return 0
+
+        End Try
+
+    End Function
+    Public Function guardarconsecutivo(ByVal descripcion As String, ByVal valor As Long) As Integer
+        Dim con As New OleDbConnection(sConnString)
+        Dim cmd As OleDbCommand
+        Try
+            cmd = New OleDb.OleDbCommand
+            con.Open()
+            cmd.Connection = con
+            cmd.CommandText = "update Consecutivos set consecutivo = " & valor + 1 & " where Descripcion = '" & descripcion & "'"
+            cmd.ExecuteNonQuery()
+            con.Close()
+            guardarconsecutivo = 1
+        Catch ex As Exception
+            guardarconsecutivo = 0
+        Finally
+            con.Close()
+        End Try
+    End Function
     Private Sub CambiaEstado_Label(index As Integer, Valor As String, Color As Color)
         Try
             Dim lblEstado As Label = BuscarLabel("Lbl_Estado" & index)
@@ -1061,9 +1200,16 @@ Public Class Proceso_Andina
         If running Then
             If MessageBox.Show("Desea finalizar el proceso", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 DetenerProceso()
-                LimpiarLabelsFormula()
+                'LimpiarLabelsFormula() -- No se usa para A. Hormigones
+                LimpiarControlesOD()
+                btnagregar.Enabled = True
                 Gbx_ConfigCarg_Cemento.Enabled = True
                 GBx_Preparacion.Enabled = True
+                'Habilitar controles para el registro de datos
+                Btt_RegPiedra.Enabled = False
+                Btt_RegArena.Enabled = False
+                Btt_RegCemento.Enabled = False
+                Btt_RegAgua.Enabled = False
             End If
         End If
 
@@ -1539,8 +1685,6 @@ Public Class Proceso_Andina
 
     Private Sub LimpiarControlesOD()
         lblcomprobante.Text = "-"
-        codCliente.Text = ""
-        nomCliente.Text = ""
         codProducto.Text = ""
         nomProducto.Text = ""
         txtidMixer.Text = ""
@@ -1558,6 +1702,21 @@ Public Class Proceso_Andina
         tipoLista = "MIXERS"
         destinoLista = "Proceso_Mx"
         listas.Show()
+    End Sub
+
+    Private Sub Btt_RegPiedra_Click(sender As Object, e As EventArgs) Handles Btt_RegPiedra.Click
+        flagFinTolv1 = True
+        'Procesar guardar peso -- Se guarda registro por descarga
+        pesoReal1 = ValorInicialT1 - Convert.ToDouble(Lbl_Peso_T1.Text)
+        'Dim Diferencia As Double = pesoSet1 - pesoReal1
+        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, "Hormigon 180", IIf(IsNothing(Variables.CodigIngrediente_T1), "", Variables.CodigIngrediente_T1), "PIEDRA",
+                                pesoSet1, pesoReal1, Variables.Factor, codigoOD)
+        'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
+        '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
+        Rtx_Mensajes.AppendColoredText($"Registrado --> Peso Piedra= {pesoReal1.ToString("N2")}" & Environment.NewLine,
+                Drawing.Color.Black,
+                font_Rtxt)
+        Lbl_Dosif_T1.Text = pesoReal1.ToString("N2")
     End Sub
 
     Public Function leerconsecutivo(ByVal descripcion As String) As Long
