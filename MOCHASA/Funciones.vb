@@ -364,7 +364,8 @@ Module Funciones
 
     Public Function GuardarPesada(NomOperador As String, batch As Integer, CodProducto As String, NomProducto As String,
                                   CodIngrediente As String, NomIngrediente As String, Cant_Seteada As Double, Cant_Real As Double, Factor As Double, idCabecera As String) As Boolean
-        Dim Hora As TimeSpan = TimeSpan.Parse(DateTime.Now.ToString("HH:mm:ss"))
+        'Dim Hora As TimeSpan = TimeSpan.Parse(DateTime.Now.ToString("HH:mm:ss"))
+        Dim Hora As Date = Date.Now
         Dim Fecha As Date = Date.Today
         Dim rpta As Boolean = False
         Try
@@ -374,8 +375,8 @@ Module Funciones
                     cmd.CommandText = "INSERT INTO Transacciones (Nom_Operador,Hora,Fecha,batch,Cod_Producto, Nom_Producto,Cod_Ingrediente,Nom_Ingrediente,
                                    Cant_Seteada, Peso_Real,Fact_Multi,Id_Cabecera) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
                     cmd.Parameters.AddWithValue("?", NomOperador)
-                    cmd.Parameters.AddWithValue("?", Hora)
-                    cmd.Parameters.AddWithValue("?", Fecha)
+                    cmd.Parameters.Add("?", OleDb.OleDbType.Date).Value = Hora
+                    cmd.Parameters.Add("?", OleDb.OleDbType.Date).Value = Fecha
                     cmd.Parameters.AddWithValue("?", batch)
                     cmd.Parameters.AddWithValue("?", CodProducto)
                     cmd.Parameters.AddWithValue("?", NomProducto)

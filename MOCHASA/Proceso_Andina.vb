@@ -1707,16 +1707,71 @@ Public Class Proceso_Andina
     Private Sub Btt_RegPiedra_Click(sender As Object, e As EventArgs) Handles Btt_RegPiedra.Click
         flagFinTolv1 = True
         'Procesar guardar peso -- Se guarda registro por descarga
-        pesoReal1 = ValorInicialT1 - Convert.ToDouble(Lbl_Peso_T1.Text)
+        'pesoReal1 = ValorInicialT1 - Convert.ToDouble(Lbl_Peso_T1.Text)
+        pesoReal1 = Convert.ToDouble(Lbl_Peso_T1.Text) * -1
+        pesoSet1 = Num_TeoPiedra.Value
         'Dim Diferencia As Double = pesoSet1 - pesoReal1
-        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, "Hormigon 180", IIf(IsNothing(Variables.CodigIngrediente_T1), "", Variables.CodigIngrediente_T1), "PIEDRA",
+        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, IIf(IsNothing(Variables.CodigIngrediente_T1), "", Variables.CodigIngrediente_T1), "PIEDRA",
                                 pesoSet1, pesoReal1, Variables.Factor, codigoOD)
         'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
         '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
-        Rtx_Mensajes.AppendColoredText($"Registrado --> Peso Piedra= {pesoReal1.ToString("N2")}" & Environment.NewLine,
+        Rtx_Mensajes.AppendColoredText($"Registrado --> Valor Piedra= {pesoReal1.ToString("N2")}" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
+        Lbl_Cap_Piedra.Text = pesoReal1.ToString("N2")
         Lbl_Dosif_T1.Text = pesoReal1.ToString("N2")
+    End Sub
+
+    Private Sub Btt_RegArena_Click(sender As Object, e As EventArgs) Handles Btt_RegArena.Click
+        flagFinTolv2 = True
+        'Procesar guardar peso -- Se guarda registro por descarga
+        'pesoReal2 = ValorInicialT2 - Convert.ToDouble(Lbl_Peso_T1.Text)
+        pesoReal2 = Convert.ToDouble(Lbl_Peso_T1.Text) * -1
+        pesoSet2 = Num_TeoArena.Value
+        'Dim Diferencia As Double = pesoSet1 - pesoReal1
+        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, IIf(IsNothing(Variables.CodigIngrediente_T2), "", Variables.CodigIngrediente_T2), "ARENA",
+                                pesoSet2, pesoReal2, Variables.Factor, codigoOD)
+        'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
+        '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
+        Rtx_Mensajes.AppendColoredText($"Registrado --> Valor Arena= {pesoReal2.ToString("N2")}" & Environment.NewLine,
+                Drawing.Color.Black,
+                font_Rtxt)
+        Lbl_Cap_Arena.Text = pesoReal2.ToString("N2")
+        Lbl_Dosif_T2.Text = pesoReal2.ToString("N2")
+    End Sub
+
+    Private Sub Btt_RegCemento_Click(sender As Object, e As EventArgs) Handles Btt_RegCemento.Click
+        flagFinDesCargaCemento = True
+        'Procesar guardar peso -- Se guarda registro por descarga
+        'pesoReal3 = ValorInicialCemento - Convert.ToDouble(Lbl_Peso_Cem.Text)
+        pesoReal3 = Convert.ToDouble(Lbl_Peso_Cem.Text) * -1
+        pesoSet3 = Num_TeoCemento.Value
+        'Dim Diferencia As Double = pesoSet1 - pesoReal1
+        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, IIf(IsNothing(Variables.CodigIngrediente_T2), "", Variables.CodigIngrediente_T2), "CEMENTO",
+                                pesoSet3, pesoReal3, Variables.Factor, codigoOD)
+        'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
+        '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
+        Rtx_Mensajes.AppendColoredText($"Registrado --> Valor Cemento= {pesoReal3.ToString("N2")}" & Environment.NewLine,
+                Drawing.Color.Black,
+                font_Rtxt)
+        Lbl_Cap_Cemento.Text = pesoReal3.ToString("N2")
+        Lbl_Dosif_Cemento.Text = pesoReal3.ToString("N2")
+    End Sub
+
+    Private Sub Btt_RegAgua_Click(sender As Object, e As EventArgs) Handles Btt_RegAgua.Click
+        flagFinAgua = True
+        'Procesar guardar peso -- Se guarda registro por descarga
+        pesoReal4 = Num_RealAgua.Value
+        pesoSet4 = Num_TeoAgua.Value
+        'Dim Diferencia As Double = pesoSet1 - pesoReal1
+        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, IIf(IsNothing(Variables.CodigIngrediente_T2), "", Variables.CodigIngrediente_T2), "AGUA",
+                                pesoSet4, pesoReal4, Variables.Factor, codigoOD)
+        'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
+        '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
+        Rtx_Mensajes.AppendColoredText($"Registrado --> Valor Agua= {pesoReal4.ToString("N2")}" & Environment.NewLine,
+                Drawing.Color.Black,
+                font_Rtxt)
+        Lbl_Dosif_Agua.Text = pesoReal4.ToString("N2")
     End Sub
 
     Public Function leerconsecutivo(ByVal descripcion As String) As Long

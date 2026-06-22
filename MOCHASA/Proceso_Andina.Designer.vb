@@ -52,6 +52,7 @@ Partial Class Proceso_Andina
         Me.Lbl_Peso_T1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Lbl_Est_T1 = New System.Windows.Forms.Label()
+        Me.Pil_Tolv1 = New SymbolFactoryDotNet.StandardControl()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Lbl_Est_T2 = New System.Windows.Forms.Label()
         Me.Lbl_Peso_T2 = New System.Windows.Forms.Label()
@@ -59,6 +60,7 @@ Partial Class Proceso_Andina
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.Lbl_Est_Cem = New System.Windows.Forms.Label()
         Me.Lbl_Peso_Cem = New System.Windows.Forms.Label()
+        Me.Pil_TolvCemento = New SymbolFactoryDotNet.StandardControl()
         Me.Btt_ReCon_Cemento = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Lbl_Estado5 = New System.Windows.Forms.Label()
@@ -112,6 +114,7 @@ Partial Class Proceso_Andina
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Label44 = New System.Windows.Forms.Label()
         Me.Pil_ApagaT2 = New SymbolFactoryDotNet.StandardControl()
+        Me.Pil_Tolv2 = New SymbolFactoryDotNet.StandardControl()
         Me.Label45 = New System.Windows.Forms.Label()
         Me.Pil_ActivaT2 = New SymbolFactoryDotNet.StandardControl()
         Me.Label43 = New System.Windows.Forms.Label()
@@ -128,11 +131,8 @@ Partial Class Proceso_Andina
         Me.Label28 = New System.Windows.Forms.Label()
         Me.Pil_CargaCemTor = New SymbolFactoryDotNet.StandardControl()
         Me.Label30 = New System.Windows.Forms.Label()
-        Me.Pil_Tolv2 = New SymbolFactoryDotNet.StandardControl()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.Pil_TolvCemento = New SymbolFactoryDotNet.StandardControl()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.Pil_Tolv1 = New SymbolFactoryDotNet.StandardControl()
         Me.Pil_DescargaT2 = New SymbolFactoryDotNet.StandardControl()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Pil_Banda = New SymbolFactoryDotNet.StandardControl()
@@ -184,6 +184,7 @@ Partial Class Proceso_Andina
         Me.Tim_ReadHR = New System.Windows.Forms.Timer(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btnagregar = New System.Windows.Forms.Button()
+        Me.Txt_CodOrdenDespacho = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Btt_RegPiedra = New System.Windows.Forms.Button()
         Me.Label54 = New System.Windows.Forms.Label()
@@ -204,18 +205,21 @@ Partial Class Proceso_Andina
         Me.Lbl_Cap_Piedra = New System.Windows.Forms.Label()
         Me.Lbl_Cap_Arena = New System.Windows.Forms.Label()
         Me.Lbl_Cap_Cemento = New System.Windows.Forms.Label()
+        Me.Num_TeoPiedra = New System.Windows.Forms.NumericUpDown()
+        Me.Num_TeoArena = New System.Windows.Forms.NumericUpDown()
+        Me.Num_TeoCemento = New System.Windows.Forms.NumericUpDown()
+        Me.Num_TeoAgua = New System.Windows.Forms.NumericUpDown()
+        Me.Num_RealAgua = New System.Windows.Forms.NumericUpDown()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.GBx_Preparacion = New System.Windows.Forms.GroupBox()
         Me.Txt_NumM3 = New System.Windows.Forms.TextBox()
-        Me.Txt_CodOrdenDespacho = New System.Windows.Forms.TextBox()
         Me.Btt_BuscarOrdDespacho = New System.Windows.Forms.Button()
         Me.Num_BatchPlanificacion = New System.Windows.Forms.NumericUpDown()
         Me.Num_Hum_Ripio = New System.Windows.Forms.NumericUpDown()
         Me.Label51 = New System.Windows.Forms.Label()
         Me.Num_Hum_Arena = New System.Windows.Forms.NumericUpDown()
         Me.Label48 = New System.Windows.Forms.Label()
-        Me.Btt_ImprimirGuia = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Lbl_NombreFormula = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
@@ -225,6 +229,7 @@ Partial Class Proceso_Andina
         Me.RBtt_CargCemTornillo = New System.Windows.Forms.RadioButton()
         Me.Label49 = New System.Windows.Forms.Label()
         Me.Label64 = New System.Windows.Forms.Label()
+        Me.Btt_ImprimirGuia = New System.Windows.Forms.Button()
         Me.Label52 = New System.Windows.Forms.Label()
         Me.lblcomprobante = New System.Windows.Forms.Label()
         Me.Gb_OrdenDespacho = New System.Windows.Forms.GroupBox()
@@ -256,11 +261,6 @@ Partial Class Proceso_Andina
         Me.Sym_Torn_Cem_Desc = New SymbolFactoryDotNet.StandardControl()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Tim_Wd_PLC = New System.Windows.Forms.Timer(Me.components)
-        Me.Num_TeoPiedra = New System.Windows.Forms.NumericUpDown()
-        Me.Num_TeoArena = New System.Windows.Forms.NumericUpDown()
-        Me.Num_TeoCemento = New System.Windows.Forms.NumericUpDown()
-        Me.Num_TeoAgua = New System.Windows.Forms.NumericUpDown()
-        Me.Num_RealAgua = New System.Windows.Forms.NumericUpDown()
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -271,8 +271,10 @@ Partial Class Proceso_Andina
         CType(Me.Sym_DescT1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericM3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.Pil_Tolv1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        CType(Me.Pil_TolvCemento, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.StandardControl15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_DescT2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -282,6 +284,7 @@ Partial Class Proceso_Andina
         CType(Me.Sym_Bomba_G5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         CType(Me.Pil_ApagaT2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Pil_Tolv2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_ActivaT2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_ApagaT1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_ActivaT1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -289,9 +292,6 @@ Partial Class Proceso_Andina
         CType(Me.Pil_Desc_Cem_Tornillo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_Carga_Cem_Compuerta, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_CargaCemTor, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pil_Tolv2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pil_TolvCemento, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pil_Tolv1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_DescargaT2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_Banda, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pil_Bomba, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -310,6 +310,11 @@ Partial Class Proceso_Andina
         CType(Me.Sym_Arena, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
+        CType(Me.Num_TeoPiedra, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_TeoArena, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_TeoCemento, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_TeoAgua, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Num_RealAgua, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox8.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.GBx_Preparacion.SuspendLayout()
@@ -328,11 +333,6 @@ Partial Class Proceso_Andina
         CType(Me.Sym_Torn_Cem_Carga, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Num_TeoPiedra, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Num_TeoArena, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Num_TeoCemento, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Num_TeoAgua, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Num_RealAgua, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label9
@@ -737,6 +737,25 @@ Partial Class Proceso_Andina
         Me.Lbl_Est_T1.TabIndex = 243
         Me.Lbl_Est_T1.Text = "Desconectado"
         '
+        'Pil_Tolv1
+        '
+        Me.Pil_Tolv1.AnalogIntValue1 = CType(0, Short)
+        Me.Pil_Tolv1.AnalogValue1 = 0R
+        Me.Pil_Tolv1.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Pil_Tolv1.BackColor = System.Drawing.Color.Transparent
+        Me.Pil_Tolv1.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Pil_Tolv1.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Pil_Tolv1.BlinkColor = System.Drawing.Color.Red
+        Me.Pil_Tolv1.Category = "1Btn.cat2"
+        Me.Pil_Tolv1.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pil_Tolv1.DebugData"))
+        Me.Pil_Tolv1.FillColor = System.Drawing.Color.Gray
+        Me.Pil_Tolv1.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Pil_Tolv1.Location = New System.Drawing.Point(85, 43)
+        Me.Pil_Tolv1.Name = "Pil_Tolv1"
+        Me.Pil_Tolv1.Size = New System.Drawing.Size(20, 15)
+        Me.Pil_Tolv1.SymbolHandle = CType(480163100, Long)
+        Me.Pil_Tolv1.TabIndex = 115
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Lbl_Est_T2)
@@ -821,6 +840,25 @@ Partial Class Proceso_Andina
         Me.Lbl_Peso_Cem.Size = New System.Drawing.Size(70, 16)
         Me.Lbl_Peso_Cem.TabIndex = 0
         Me.Lbl_Peso_Cem.Text = "0.00"
+        '
+        'Pil_TolvCemento
+        '
+        Me.Pil_TolvCemento.AnalogIntValue1 = CType(0, Short)
+        Me.Pil_TolvCemento.AnalogValue1 = 0R
+        Me.Pil_TolvCemento.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Pil_TolvCemento.BackColor = System.Drawing.Color.Transparent
+        Me.Pil_TolvCemento.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Pil_TolvCemento.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Pil_TolvCemento.BlinkColor = System.Drawing.Color.Red
+        Me.Pil_TolvCemento.Category = "1Btn.cat2"
+        Me.Pil_TolvCemento.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pil_TolvCemento.DebugData"))
+        Me.Pil_TolvCemento.FillColor = System.Drawing.Color.Gray
+        Me.Pil_TolvCemento.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Pil_TolvCemento.Location = New System.Drawing.Point(86, 44)
+        Me.Pil_TolvCemento.Name = "Pil_TolvCemento"
+        Me.Pil_TolvCemento.Size = New System.Drawing.Size(20, 15)
+        Me.Pil_TolvCemento.SymbolHandle = CType(480163100, Long)
+        Me.Pil_TolvCemento.TabIndex = 117
         '
         'Btt_ReCon_Cemento
         '
@@ -1561,6 +1599,25 @@ Partial Class Proceso_Andina
         Me.Pil_ApagaT2.SymbolHandle = CType(480163100, Long)
         Me.Pil_ApagaT2.TabIndex = 135
         '
+        'Pil_Tolv2
+        '
+        Me.Pil_Tolv2.AnalogIntValue1 = CType(0, Short)
+        Me.Pil_Tolv2.AnalogValue1 = 0R
+        Me.Pil_Tolv2.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.Pil_Tolv2.BackColor = System.Drawing.Color.Transparent
+        Me.Pil_Tolv2.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.Pil_Tolv2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
+        Me.Pil_Tolv2.BlinkColor = System.Drawing.Color.Red
+        Me.Pil_Tolv2.Category = "1Btn.cat2"
+        Me.Pil_Tolv2.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pil_Tolv2.DebugData"))
+        Me.Pil_Tolv2.FillColor = System.Drawing.Color.Gray
+        Me.Pil_Tolv2.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.Pil_Tolv2.Location = New System.Drawing.Point(8, 66)
+        Me.Pil_Tolv2.Name = "Pil_Tolv2"
+        Me.Pil_Tolv2.Size = New System.Drawing.Size(20, 15)
+        Me.Pil_Tolv2.SymbolHandle = CType(480163100, Long)
+        Me.Pil_Tolv2.TabIndex = 119
+        '
         'Label45
         '
         Me.Label45.AutoSize = True
@@ -1793,25 +1850,6 @@ Partial Class Proceso_Andina
         Me.Label30.TabIndex = 118
         Me.Label30.Text = "Tolva 2 Ripio"
         '
-        'Pil_Tolv2
-        '
-        Me.Pil_Tolv2.AnalogIntValue1 = CType(0, Short)
-        Me.Pil_Tolv2.AnalogValue1 = 0R
-        Me.Pil_Tolv2.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pil_Tolv2.BackColor = System.Drawing.Color.Transparent
-        Me.Pil_Tolv2.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pil_Tolv2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pil_Tolv2.BlinkColor = System.Drawing.Color.Red
-        Me.Pil_Tolv2.Category = "1Btn.cat2"
-        Me.Pil_Tolv2.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pil_Tolv2.DebugData"))
-        Me.Pil_Tolv2.FillColor = System.Drawing.Color.Gray
-        Me.Pil_Tolv2.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pil_Tolv2.Location = New System.Drawing.Point(8, 66)
-        Me.Pil_Tolv2.Name = "Pil_Tolv2"
-        Me.Pil_Tolv2.Size = New System.Drawing.Size(20, 15)
-        Me.Pil_Tolv2.SymbolHandle = CType(480163100, Long)
-        Me.Pil_Tolv2.TabIndex = 119
-        '
         'Label20
         '
         Me.Label20.AutoSize = True
@@ -1823,25 +1861,6 @@ Partial Class Proceso_Andina
         Me.Label20.TabIndex = 116
         Me.Label20.Text = "Tolva 3 Cemento"
         '
-        'Pil_TolvCemento
-        '
-        Me.Pil_TolvCemento.AnalogIntValue1 = CType(0, Short)
-        Me.Pil_TolvCemento.AnalogValue1 = 0R
-        Me.Pil_TolvCemento.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pil_TolvCemento.BackColor = System.Drawing.Color.Transparent
-        Me.Pil_TolvCemento.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pil_TolvCemento.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pil_TolvCemento.BlinkColor = System.Drawing.Color.Red
-        Me.Pil_TolvCemento.Category = "1Btn.cat2"
-        Me.Pil_TolvCemento.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pil_TolvCemento.DebugData"))
-        Me.Pil_TolvCemento.FillColor = System.Drawing.Color.Gray
-        Me.Pil_TolvCemento.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pil_TolvCemento.Location = New System.Drawing.Point(86, 44)
-        Me.Pil_TolvCemento.Name = "Pil_TolvCemento"
-        Me.Pil_TolvCemento.Size = New System.Drawing.Size(20, 15)
-        Me.Pil_TolvCemento.SymbolHandle = CType(480163100, Long)
-        Me.Pil_TolvCemento.TabIndex = 117
-        '
         'Label18
         '
         Me.Label18.AutoSize = True
@@ -1852,25 +1871,6 @@ Partial Class Proceso_Andina
         Me.Label18.Size = New System.Drawing.Size(81, 15)
         Me.Label18.TabIndex = 114
         Me.Label18.Text = "Tolva 1 Arena"
-        '
-        'Pil_Tolv1
-        '
-        Me.Pil_Tolv1.AnalogIntValue1 = CType(0, Short)
-        Me.Pil_Tolv1.AnalogValue1 = 0R
-        Me.Pil_Tolv1.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.Pil_Tolv1.BackColor = System.Drawing.Color.Transparent
-        Me.Pil_Tolv1.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Pil_Tolv1.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Solid, System.Drawing.Color.Lime, "Band1"))
-        Me.Pil_Tolv1.BlinkColor = System.Drawing.Color.Red
-        Me.Pil_Tolv1.Category = "1Btn.cat2"
-        Me.Pil_Tolv1.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pil_Tolv1.DebugData"))
-        Me.Pil_Tolv1.FillColor = System.Drawing.Color.Gray
-        Me.Pil_Tolv1.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pil_Tolv1.Location = New System.Drawing.Point(85, 43)
-        Me.Pil_Tolv1.Name = "Pil_Tolv1"
-        Me.Pil_Tolv1.Size = New System.Drawing.Size(20, 15)
-        Me.Pil_Tolv1.SymbolHandle = CType(480163100, Long)
-        Me.Pil_Tolv1.TabIndex = 115
         '
         'Pil_DescargaT2
         '
@@ -2532,6 +2532,13 @@ Partial Class Proceso_Andina
         Me.btnagregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnagregar.UseVisualStyleBackColor = True
         '
+        'Txt_CodOrdenDespacho
+        '
+        Me.Txt_CodOrdenDespacho.Location = New System.Drawing.Point(204, 246)
+        Me.Txt_CodOrdenDespacho.Name = "Txt_CodOrdenDespacho"
+        Me.Txt_CodOrdenDespacho.Size = New System.Drawing.Size(100, 22)
+        Me.Txt_CodOrdenDespacho.TabIndex = 286
+        '
         'TableLayoutPanel2
         '
         Me.TableLayoutPanel2.ColumnCount = 7
@@ -2809,6 +2816,57 @@ Partial Class Proceso_Andina
         Me.Lbl_Cap_Cemento.Text = "0,000"
         Me.Lbl_Cap_Cemento.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'Num_TeoPiedra
+        '
+        Me.Num_TeoPiedra.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Num_TeoPiedra.DecimalPlaces = 2
+        Me.Num_TeoPiedra.Location = New System.Drawing.Point(208, 6)
+        Me.Num_TeoPiedra.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Num_TeoPiedra.Name = "Num_TeoPiedra"
+        Me.Num_TeoPiedra.Size = New System.Drawing.Size(96, 22)
+        Me.Num_TeoPiedra.TabIndex = 297
+        '
+        'Num_TeoArena
+        '
+        Me.Num_TeoArena.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Num_TeoArena.DecimalPlaces = 2
+        Me.Num_TeoArena.Location = New System.Drawing.Point(208, 41)
+        Me.Num_TeoArena.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Num_TeoArena.Name = "Num_TeoArena"
+        Me.Num_TeoArena.Size = New System.Drawing.Size(96, 22)
+        Me.Num_TeoArena.TabIndex = 297
+        '
+        'Num_TeoCemento
+        '
+        Me.Num_TeoCemento.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Num_TeoCemento.DecimalPlaces = 2
+        Me.Num_TeoCemento.Location = New System.Drawing.Point(208, 76)
+        Me.Num_TeoCemento.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Num_TeoCemento.Name = "Num_TeoCemento"
+        Me.Num_TeoCemento.Size = New System.Drawing.Size(96, 22)
+        Me.Num_TeoCemento.TabIndex = 297
+        '
+        'Num_TeoAgua
+        '
+        Me.Num_TeoAgua.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Num_TeoAgua.DecimalPlaces = 2
+        Me.Num_TeoAgua.Location = New System.Drawing.Point(208, 112)
+        Me.Num_TeoAgua.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Num_TeoAgua.Name = "Num_TeoAgua"
+        Me.Num_TeoAgua.Size = New System.Drawing.Size(96, 22)
+        Me.Num_TeoAgua.TabIndex = 297
+        '
+        'Num_RealAgua
+        '
+        Me.Num_RealAgua.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Num_RealAgua.DecimalPlaces = 2
+        Me.Num_RealAgua.Location = New System.Drawing.Point(415, 112)
+        Me.Num_RealAgua.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.Num_RealAgua.Name = "Num_RealAgua"
+        Me.Num_RealAgua.Size = New System.Drawing.Size(74, 22)
+        Me.Num_RealAgua.TabIndex = 297
+        Me.Num_RealAgua.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'GroupBox8
         '
         Me.GroupBox8.Controls.Add(Me.Panel3)
@@ -2868,13 +2926,6 @@ Partial Class Proceso_Andina
         Me.Txt_NumM3.ReadOnly = True
         Me.Txt_NumM3.Size = New System.Drawing.Size(90, 21)
         Me.Txt_NumM3.TabIndex = 287
-        '
-        'Txt_CodOrdenDespacho
-        '
-        Me.Txt_CodOrdenDespacho.Location = New System.Drawing.Point(204, 246)
-        Me.Txt_CodOrdenDespacho.Name = "Txt_CodOrdenDespacho"
-        Me.Txt_CodOrdenDespacho.Size = New System.Drawing.Size(100, 22)
-        Me.Txt_CodOrdenDespacho.TabIndex = 286
         '
         'Btt_BuscarOrdDespacho
         '
@@ -2940,20 +2991,6 @@ Partial Class Proceso_Andina
         Me.Label48.Size = New System.Drawing.Size(95, 16)
         Me.Label48.TabIndex = 218
         Me.Label48.Text = "F. Hum. Arena:"
-        '
-        'Btt_ImprimirGuia
-        '
-        Me.Btt_ImprimirGuia.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Btt_ImprimirGuia.Image = Global.HORMIGONERA.My.Resources.Resources.printer
-        Me.Btt_ImprimirGuia.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_ImprimirGuia.Location = New System.Drawing.Point(340, 225)
-        Me.Btt_ImprimirGuia.Name = "Btt_ImprimirGuia"
-        Me.Btt_ImprimirGuia.Size = New System.Drawing.Size(84, 40)
-        Me.Btt_ImprimirGuia.TabIndex = 282
-        Me.Btt_ImprimirGuia.Text = "Imprimir" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " Guía"
-        Me.Btt_ImprimirGuia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_ImprimirGuia.UseVisualStyleBackColor = True
-        Me.Btt_ImprimirGuia.Visible = False
         '
         'Panel1
         '
@@ -3058,6 +3095,20 @@ Partial Class Proceso_Andina
         Me.Label64.Size = New System.Drawing.Size(67, 18)
         Me.Label64.TabIndex = 291
         Me.Label64.Text = "Usuario:"
+        '
+        'Btt_ImprimirGuia
+        '
+        Me.Btt_ImprimirGuia.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btt_ImprimirGuia.Image = Global.HORMIGONERA.My.Resources.Resources.printer
+        Me.Btt_ImprimirGuia.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Btt_ImprimirGuia.Location = New System.Drawing.Point(340, 225)
+        Me.Btt_ImprimirGuia.Name = "Btt_ImprimirGuia"
+        Me.Btt_ImprimirGuia.Size = New System.Drawing.Size(84, 40)
+        Me.Btt_ImprimirGuia.TabIndex = 282
+        Me.Btt_ImprimirGuia.Text = "Imprimir" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " Guía"
+        Me.Btt_ImprimirGuia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btt_ImprimirGuia.UseVisualStyleBackColor = True
+        Me.Btt_ImprimirGuia.Visible = False
         '
         'Label52
         '
@@ -3451,57 +3502,6 @@ Partial Class Proceso_Andina
         '
         Me.Tim_Wd_PLC.Interval = 300
         '
-        'Num_TeoPiedra
-        '
-        Me.Num_TeoPiedra.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Num_TeoPiedra.DecimalPlaces = 2
-        Me.Num_TeoPiedra.Location = New System.Drawing.Point(208, 7)
-        Me.Num_TeoPiedra.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
-        Me.Num_TeoPiedra.Name = "Num_TeoPiedra"
-        Me.Num_TeoPiedra.Size = New System.Drawing.Size(96, 22)
-        Me.Num_TeoPiedra.TabIndex = 297
-        '
-        'Num_TeoArena
-        '
-        Me.Num_TeoArena.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Num_TeoArena.DecimalPlaces = 2
-        Me.Num_TeoArena.Location = New System.Drawing.Point(208, 41)
-        Me.Num_TeoArena.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
-        Me.Num_TeoArena.Name = "Num_TeoArena"
-        Me.Num_TeoArena.Size = New System.Drawing.Size(96, 22)
-        Me.Num_TeoArena.TabIndex = 297
-        '
-        'Num_TeoCemento
-        '
-        Me.Num_TeoCemento.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Num_TeoCemento.DecimalPlaces = 2
-        Me.Num_TeoCemento.Location = New System.Drawing.Point(208, 76)
-        Me.Num_TeoCemento.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
-        Me.Num_TeoCemento.Name = "Num_TeoCemento"
-        Me.Num_TeoCemento.Size = New System.Drawing.Size(96, 22)
-        Me.Num_TeoCemento.TabIndex = 297
-        '
-        'Num_TeoAgua
-        '
-        Me.Num_TeoAgua.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Num_TeoAgua.DecimalPlaces = 2
-        Me.Num_TeoAgua.Location = New System.Drawing.Point(208, 112)
-        Me.Num_TeoAgua.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
-        Me.Num_TeoAgua.Name = "Num_TeoAgua"
-        Me.Num_TeoAgua.Size = New System.Drawing.Size(96, 22)
-        Me.Num_TeoAgua.TabIndex = 297
-        '
-        'Num_RealAgua
-        '
-        Me.Num_RealAgua.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Num_RealAgua.DecimalPlaces = 2
-        Me.Num_RealAgua.Location = New System.Drawing.Point(415, 112)
-        Me.Num_RealAgua.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
-        Me.Num_RealAgua.Name = "Num_RealAgua"
-        Me.Num_RealAgua.Size = New System.Drawing.Size(74, 22)
-        Me.Num_RealAgua.TabIndex = 297
-        Me.Num_RealAgua.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
         'Proceso_Andina
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3522,10 +3522,12 @@ Partial Class Proceso_Andina
         CType(Me.NumericM3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.Pil_Tolv1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.Pil_TolvCemento, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         CType(Me.StandardControl15, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3537,6 +3539,7 @@ Partial Class Proceso_Andina
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         CType(Me.Pil_ApagaT2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Pil_Tolv2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_ActivaT2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_ApagaT1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_ActivaT1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3544,9 +3547,6 @@ Partial Class Proceso_Andina
         CType(Me.Pil_Desc_Cem_Tornillo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_Carga_Cem_Compuerta, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_CargaCemTor, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pil_Tolv2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pil_TolvCemento, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pil_Tolv1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_DescargaT2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_Banda, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pil_Bomba, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3568,6 +3568,11 @@ Partial Class Proceso_Andina
         Me.Panel2.PerformLayout()
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
+        CType(Me.Num_TeoPiedra, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_TeoArena, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_TeoCemento, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_TeoAgua, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Num_RealAgua, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox8.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
@@ -3591,11 +3596,6 @@ Partial Class Proceso_Andina
         CType(Me.Sym_Torn_Cem_Carga, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Num_TeoPiedra, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Num_TeoArena, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Num_TeoCemento, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Num_TeoAgua, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Num_RealAgua, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
