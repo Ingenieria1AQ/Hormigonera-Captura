@@ -1692,7 +1692,7 @@ Public Class Proceso_Andina
         txtPlaca.Text = ""
     End Sub
 
-    Private Sub Btt_Sel_Producto_Click(sender As Object, e As EventArgs) Handles Btt_Sel_Producto.Click
+    Private Sub Btt_Sel_Producto_Click(sender As Object, e As EventArgs) Handles Btt_Sel_Producto.Click, Btt_Sel_OD.Click
         tipoLista = "PRODUCTOS"
         destinoLista = "Proceso_Pr"
         listas.Show()

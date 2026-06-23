@@ -5,7 +5,9 @@ Imports System.Drawing.Printing
 
 Public Class frmConfiguracion_Andina
     Private dtConfigTol As New DataTable
+    Private tbIngredientes As DataTable
     Private ArenaPage As TabPage
+
     Private Sub Init()
         'Load Serial Comm settings...
         Me.cboSerialPort1.DataSource = System.IO.Ports.SerialPort.GetPortNames()
@@ -23,16 +25,36 @@ Public Class frmConfiguracion_Andina
     End Sub
     Private Sub frmConexion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Init()
-        'Deshabilitar tabControl1-configuracion Arena
-        'Me.TabControl1.TabPages(1).Visible = False
-        ArenaPage = TP_Tolv2
-        TabControl1.TabPages.Remove(ArenaPage)
-        'TabControl1.TabPages(1).Enabled = False
-
-
-        dtConfigTol = ObtenerConfiguracion()
-        CargarImpresorasDisponibles()
         Try
+            'Deshabilitar tabControl1-configuracion Arena
+            'Me.TabControl1.TabPages(1).Visible = False
+            ArenaPage = TP_Tolv2
+            TabControl1.TabPages.Remove(ArenaPage)
+            'TabControl1.TabPages(1).Enabled = False
+            Dim bsIngredPriedra As New BindingSource
+            Dim bsIngredArena As New BindingSource
+            Dim bdIngredCemento As New BindingSource
+            tbIngredientes = ObtenerIngredientes()
+
+            'Llenar combobox con los valores de ingredientes
+            bsIngredPriedra.DataSource = tbIngredientes
+            bsIngredArena.DataSource = tbIngredientes
+            bdIngredCemento.DataSource = tbIngredientes
+
+            Cbx_Ing1.DataSource = bsIngredPriedra
+            Cbx_Ing1.DisplayMember = "Descripcion"
+            Cbx_Ing1.ValueMember = "Id_ingrediente"
+
+            Cbx_Ing2.DataSource = bsIngredArena
+            Cbx_Ing2.DisplayMember = "Descripcion"
+            Cbx_Ing2.ValueMember = "Id_ingrediente"
+
+            Cbx_IngCem.DataSource = bdIngredCemento
+            Cbx_IngCem.DisplayMember = "Descripcion"
+            Cbx_IngCem.ValueMember = "Id_ingrediente"
+
+            dtConfigTol = ObtenerConfiguracion()
+            CargarImpresorasDisponibles()
             If dtConfigTol Is Nothing OrElse dtConfigTol.Rows.Count = 0 Then
                 Exit Sub
             End If
@@ -50,6 +72,10 @@ Public Class frmConfiguracion_Andina
             Num_CAgua.Value = Decimal.Parse(Funciones.Obtener_Valor_Configuracion("CorteAgua"))
             Num_FactAgua.Value = Decimal.Parse(Funciones.Obtener_Valor_Configuracion("FactorAgua"))
 
+            Cbx_Ing1.SelectedItem = IIf(String.IsNullOrEmpty(Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_T1")), "NADA", Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_T1"))
+            Cbx_Ing2.SelectedItem = IIf(String.IsNullOrEmpty(Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_T2")), "NADA", Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_T2"))
+            Cbx_IngCem.SelectedItem = IIf(String.IsNullOrEmpty(Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_Cem")), "NADA", Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_Cem"))
+
             Dim idx As Integer
             idx = cbx_impresora.FindString(Funciones.Obtener_Valor_Configuracion("Nombre_Impresora").ToString())
             If idx >= 0 Then cbx_impresora.SelectedIndex = idx
@@ -59,7 +85,24 @@ Public Class frmConfiguracion_Andina
             MessageBox.Show(ex.Message, "Excepcion: Load", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
+    Private Function ObtenerIngredientes() As DataTable
+        Dim dt As New DataTable
+        Try
+            Using conection As New OleDbConnection(sConnString)
+                Using cmd As New OleDbCommand
+                    cmd.Connection = conection
+                    cmd.CommandText = "SELECT * FROM Ingredientes ORDER BY Id_Ingrediente"
+                    Using da As New OleDbDataAdapter(cmd)
+                        da.Fill(dt)
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return dt
+        End Try
+        Return dt
+    End Function
     Private Sub CargarImpresorasDisponibles()
         Dim lista As New List(Of String)
 
@@ -266,6 +309,7 @@ Public Class frmConfiguracion_Andina
             End Using
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return dt
         End Try
         Return dt
     End Function

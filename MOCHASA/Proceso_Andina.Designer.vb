@@ -41,7 +41,6 @@ Partial Class Proceso_Andina
         Me.Sym_Bomba_G2 = New SymbolFactoryDotNet.StandardControl()
         Me.Sym_DescT1 = New SymbolFactoryDotNet.StandardControl()
         Me.Btt_Iniciar = New System.Windows.Forms.Button()
-        Me.Label14 = New System.Windows.Forms.Label()
         Me.Btt_Detener = New System.Windows.Forms.Button()
         Me.cmbproductos = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -261,6 +260,8 @@ Partial Class Proceso_Andina
         Me.Sym_Torn_Cem_Desc = New SymbolFactoryDotNet.StandardControl()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Tim_Wd_PLC = New System.Windows.Forms.Timer(Me.components)
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Btt_Sel_OD = New System.Windows.Forms.Button()
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -614,16 +615,6 @@ Partial Class Proceso_Andina
         Me.Btt_Iniciar.TabIndex = 211
         Me.Btt_Iniciar.Text = "INICIAR"
         Me.Btt_Iniciar.UseVisualStyleBackColor = False
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(201, 227)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(133, 16)
-        Me.Label14.TabIndex = 213
-        Me.Label14.Text = "Orden de Despacho:"
         '
         'Btt_Detener
         '
@@ -2452,12 +2443,12 @@ Partial Class Proceso_Andina
         Me.Panel2.Controls.Add(Me.GroupBox8)
         Me.Panel2.Controls.Add(Me.Label64)
         Me.Panel2.Controls.Add(Me.Btt_ImprimirGuia)
+        Me.Panel2.Controls.Add(Me.Btt_Sel_OD)
         Me.Panel2.Controls.Add(Me.Label52)
         Me.Panel2.Controls.Add(Me.lblcomprobante)
         Me.Panel2.Controls.Add(Me.Gb_OrdenDespacho)
         Me.Panel2.Controls.Add(Me.Sym_Piedra)
         Me.Panel2.Controls.Add(Me.Lbl_Operador)
-        Me.Panel2.Controls.Add(Me.Label14)
         Me.Panel2.Controls.Add(Me.Label50)
         Me.Panel2.Controls.Add(Me.Label46)
         Me.Panel2.Controls.Add(Me.Lbl_Info)
@@ -2534,7 +2525,7 @@ Partial Class Proceso_Andina
         '
         'Txt_CodOrdenDespacho
         '
-        Me.Txt_CodOrdenDespacho.Location = New System.Drawing.Point(204, 246)
+        Me.Txt_CodOrdenDespacho.Location = New System.Drawing.Point(237, 28)
         Me.Txt_CodOrdenDespacho.Name = "Txt_CodOrdenDespacho"
         Me.Txt_CodOrdenDespacho.Size = New System.Drawing.Size(100, 22)
         Me.Txt_CodOrdenDespacho.TabIndex = 286
@@ -2598,13 +2589,14 @@ Partial Class Proceso_Andina
         '
         Me.Label54.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label54.AutoSize = True
-        Me.Label54.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label54.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label54.ForeColor = System.Drawing.Color.Black
-        Me.Label54.Location = New System.Drawing.Point(18, 11)
+        Me.Label54.Location = New System.Drawing.Point(13, 10)
         Me.Label54.Name = "Label54"
-        Me.Label54.Size = New System.Drawing.Size(47, 13)
+        Me.Label54.Size = New System.Drawing.Size(57, 15)
         Me.Label54.TabIndex = 5
         Me.Label54.Text = "PIEDRA"
+        Me.Label54.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label57
         '
@@ -2622,37 +2614,40 @@ Partial Class Proceso_Andina
         '
         Me.Label61.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label61.AutoSize = True
-        Me.Label61.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label61.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label61.ForeColor = System.Drawing.Color.Black
-        Me.Label61.Location = New System.Drawing.Point(19, 46)
+        Me.Label61.Location = New System.Drawing.Point(15, 45)
         Me.Label61.Name = "Label61"
-        Me.Label61.Size = New System.Drawing.Size(44, 13)
+        Me.Label61.Size = New System.Drawing.Size(52, 15)
         Me.Label61.TabIndex = 10
         Me.Label61.Text = "ARENA"
+        Me.Label61.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label63
         '
         Me.Label63.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label63.AutoSize = True
-        Me.Label63.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label63.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label63.ForeColor = System.Drawing.Color.Black
-        Me.Label63.Location = New System.Drawing.Point(11, 81)
+        Me.Label63.Location = New System.Drawing.Point(4, 80)
         Me.Label63.Name = "Label63"
-        Me.Label63.Size = New System.Drawing.Size(60, 13)
+        Me.Label63.Size = New System.Drawing.Size(74, 15)
         Me.Label63.TabIndex = 15
         Me.Label63.Text = "CEMENTO"
+        Me.Label63.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label66
         '
         Me.Label66.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label66.AutoSize = True
-        Me.Label66.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label66.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label66.ForeColor = System.Drawing.Color.Black
-        Me.Label66.Location = New System.Drawing.Point(23, 117)
+        Me.Label66.Location = New System.Drawing.Point(20, 116)
         Me.Label66.Name = "Label66"
-        Me.Label66.Size = New System.Drawing.Size(37, 13)
+        Me.Label66.Size = New System.Drawing.Size(43, 15)
         Me.Label66.TabIndex = 20
         Me.Label66.Text = "AGUA"
+        Me.Label66.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label77
         '
@@ -2893,6 +2888,7 @@ Partial Class Proceso_Andina
         Me.Panel3.Controls.Add(Me.Label9)
         Me.Panel3.Controls.Add(Me.standardControl10)
         Me.Panel3.Controls.Add(Me.Sym_CargaCem)
+        Me.Panel3.Controls.Add(Me.Label14)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(3, 17)
         Me.Panel3.Name = "Panel3"
@@ -3502,6 +3498,25 @@ Partial Class Proceso_Andina
         '
         Me.Tim_Wd_PLC.Interval = 300
         '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(6, 115)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(133, 16)
+        Me.Label14.TabIndex = 213
+        Me.Label14.Text = "Orden de Despacho:"
+        '
+        'Btt_Sel_OD
+        '
+        Me.Btt_Sel_OD.Location = New System.Drawing.Point(343, 28)
+        Me.Btt_Sel_OD.Name = "Btt_Sel_OD"
+        Me.Btt_Sel_OD.Size = New System.Drawing.Size(27, 21)
+        Me.Btt_Sel_OD.TabIndex = 5
+        Me.Btt_Sel_OD.Text = "..."
+        Me.Btt_Sel_OD.UseVisualStyleBackColor = True
+        '
         'Proceso_Andina
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3617,7 +3632,6 @@ Partial Class Proceso_Andina
     Friend WithEvents Sym_Bomba_G2 As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Sym_DescT1 As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Btt_Iniciar As Button
-    Friend WithEvents Label14 As Label
     Friend WithEvents Btt_Detener As Button
     Friend WithEvents cmbproductos As ComboBox
     Friend WithEvents Label15 As Label
@@ -3839,4 +3853,6 @@ Partial Class Proceso_Andina
     Friend WithEvents Num_TeoCemento As NumericUpDown
     Friend WithEvents Num_TeoAgua As NumericUpDown
     Friend WithEvents Num_RealAgua As NumericUpDown
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Btt_Sel_OD As Button
 End Class
