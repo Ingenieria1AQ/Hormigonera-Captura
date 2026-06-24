@@ -115,6 +115,32 @@ Public Class Proceso_Andina
         DirPLC = Funciones.Obtener_Valor_Configuracion("PLC_IP")
         PuertoPLC = Convert.ToInt32(Funciones.Obtener_Valor_Configuracion("PLC_Puerto"))
         FactorAgua = Convert.ToDouble(Funciones.Obtener_Valor_Configuracion("FactorAgua"))
+
+
+        Variables.CodigIngrediente_T1 = Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_T1")  '--Codigo Ingrediente 1
+        Variables.CodigIngrediente_T2 = Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_T2")  '--Codigo Ingrediente 2
+        Variables.CodigIngrediente_T3 = Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_Cem")  '--Codigo Ingrediente 3
+        Variables.CodigIngrediente_T4 = Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_Agua")  '--Codigo Ingrediente 4
+
+        'Lee nombres de ingredientes en tolvas
+        Variables.NombreIngrediente_T1 = Funciones.Obtener_NomIngrediente_x_ID(CodigIngrediente_T1)     '--Nombre Ingrediente 1
+        Variables.NombreIngrediente_T2 = Funciones.Obtener_NomIngrediente_x_ID(CodigIngrediente_T2)     '--Nombre Ingrediente 2
+        Variables.NombreIngrediente_T3 = Funciones.Obtener_NomIngrediente_x_ID(CodigIngrediente_T3)     '--Nombre Ingrediente 3
+        Variables.NombreIngrediente_T4 = Funciones.Obtener_NomIngrediente_x_ID(CodigIngrediente_T4)     '--Nombre Ingrediente 4
+        'Asigna nombres a Controles
+        Lbl_IngInfT1.Text = NombreIngrediente_T1
+        Lbl_IngNomT1.Text = NombreIngrediente_T1
+
+        Lbl_IngNomT2.Text = NombreIngrediente_T2
+        NombreIngrediente_T2 = NombreIngrediente_T2
+
+        Lbl_IngNomT3.Text = NombreIngrediente_T3
+        NombreIngrediente_T3 = NombreIngrediente_T3
+
+        Lbl_IngNomT4.Text = NombreIngrediente_T4
+        NombreIngrediente_T4 = NombreIngrediente_T4
+
+
         'consecutivoBatch = Convert.ToInt32(Funciones.Obtener_Valor_Configuracion("ConsecutivoBatch"))
 
         'Muestra IP del PLC
@@ -704,6 +730,13 @@ Public Class Proceso_Andina
             '    Preparado = True
             'End If
             'Registrar encabezado de Orden de despacho
+
+            If flagConfigPLC And SerTol1_ok And SerCemento_ok Then
+                Preparado = True
+            Else
+                Exit Sub
+            End If
+
             Dim complete As Integer
             complete = guardarEncabezadoOD(lblcomprobante.Text, "DESPACHO", Variables.codOperador, Date.Today, Date.Now, 0, codProducto.Text,
                                            "", txtPlaca.Text, 0, txtobservaciones.Text, 0, "", "", "", "", Convert.ToInt32(txtidMixer.Text), False)
@@ -730,12 +763,10 @@ Public Class Proceso_Andina
             '    Exit Sub
             'End If
 
-            If flagConfigPLC And SerTol1_ok And SerCemento_ok Then
-                Preparado = True
-            End If
 
-            'Borrar- Solo para pruebas
-            Preparado = True
+
+            'Borrar- Solo para pruebas .- IMPORTANTE
+            'Preparado = True
             If Preparado Then
                 'Habilitar controles para el registro de datos
                 Btt_RegPiedra.Enabled = True
@@ -750,6 +781,11 @@ Public Class Proceso_Andina
                 Lbl_Dosif_T2.Text = "0.00"
                 Lbl_Dosif_Agua.Text = "0.00"
                 Lbl_Dosif_Cemento.Text = "0.00"
+                Lbl_Cap_Piedra.Text = "0.00"
+                Lbl_Cap_Arena.Text = "0.00"
+                Lbl_Cap_Cemento.Text = "0.00"
+                Num_RealAgua.Value = 0.00
+
                 'No se usa para A. Hormigones
                 GBx_Preparacion.Enabled = False
                 Gbx_ConfigCarg_Cemento.Enabled = False
@@ -761,15 +797,8 @@ Public Class Proceso_Andina
                 '    CambiaEstado_Label(i, "PREPARADO", Color.Black)
                 'Next
 
-                Panel2.BackColor = Color.DarkSeaGreen
-                running = True
                 'Cambiar estado de la Orden Para que no pueda ser modificada desde oficina -- No se usa para A. Hormigones
                 'CambiaEstadodeOD(ID_OrdenDespacho)
-
-                'Aumenta el numero consecutivo del batch
-                consecutivoBatch += 1
-                'Guardamos el valor del Batch Actual
-                Funciones.Actualizar_Valor_Configuracion("ConsecutivoBatch", consecutivoBatch)
 
                 'Configura valores limites -- No se usa para A. Hormigones
                 'LimiteT1 = pesoSet1 - corteT1
@@ -782,14 +811,29 @@ Public Class Proceso_Andina
                 'Reset todas las señales -- No se usa para A. Hormigones
                 'ResetTodasSignals()
                 'Inicia timer de WD 
-                Tim_Wd_PLC.Enabled = True
-                'DAR SEÑAL de ARRANQUE 
-                PLC_LOGO.WriteSingleCoil(Variables.coil_Paro, False)
-                PLC_LOGO.WriteSingleCoil(Variables.coil_Arranque, True)
 
-                Pil_Dosifica.DiscreteValue1 = True 'Revisar para enlazarse con los coils del PLC
+                'DAR SEÑAL de ARRANQUE 
+                If Not EscribeCoil_Controlada(Variables.coil_Paro, False) Or Not EscribeCoil_Controlada(Variables.coil_Arranque, True) Then
+                    'Habilitar controles para el registro de datos
+                    Btt_RegPiedra.Enabled = False
+                    Btt_RegArena.Enabled = False
+                    Btt_RegCemento.Enabled = False
+                    Btt_RegAgua.Enabled = False
+                    'Deshabilita boton para crear un nuevo registro de OD
+                    btnagregar.Enabled = True
+                    Exit Sub
+                End If
+
+                'Aumenta el numero consecutivo del batch
+                consecutivoBatch += 1
+                'Guardamos el valor del Batch Actual
+                Funciones.Actualizar_Valor_Configuracion("ConsecutivoBatch", consecutivoBatch)
+                Tim_Wd_PLC.Enabled = True
+
+
+                'Pil_Dosifica.DiscreteValue1 = True 'Revisar para enlazarse con los coils del PLC
                 'Ingresar aqui Rutina WD
-                Lbl_Info.Text = $"Iniciando Dosificación Batch {batchActual} de {NumBatchPlanificacion}"
+                Lbl_Info.Text = $"Iniciando Dosificación Orden # {codigoOD} Batch {batchActual} de {NumBatchPlanificacion}"
                 Rtx_Mensajes.AppendColoredText($"Iniciando Dosificación Batch {batchActual} de {NumBatchPlanificacion}" & Environment.NewLine,
                     Drawing.Color.DarkGreen,
                     font_Rtxt)
@@ -809,6 +853,21 @@ Public Class Proceso_Andina
                 Btt_Iniciar.Enabled = False
                 Btt_Detener.Enabled = True
                 Btt_Salir.Enabled = False
+
+                'NUEVO PARA ANDINA
+                'Visualiza animacion de controles
+                Sym_Piedra.Visible = True
+                Sym_Piedra.DiscreteValue1 = True
+                SymTolva1.DiscreteValue1 = True
+                Sym_Arena.Visible = True
+                Sym_Arena.DiscreteValue1 = True
+                ValvulaDescarga.DiscreteValue1 = True
+                Sym_DescargaCem.DiscreteValue1 = True
+
+                Panel2.BackColor = Color.DarkSeaGreen
+                running = True
+
+
             Else
                 MessageBox.Show("Sistema no cumple con los requisitos para iniciar, revise el estado de las señales", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Dim errores As New List(Of String)
@@ -937,6 +996,18 @@ Public Class Proceso_Andina
 
         End Try
     End Sub
+    Private Function EscribeCoil_Controlada(Direccion As Integer, Valor As Boolean) As Boolean
+        If PLC_LOGO.Connected Then
+
+            PLC_LOGO.WriteSingleCoil(Direccion, Valor)
+            Return True
+        Else
+            Rtx_Mensajes.AppendColoredText($"PLC no conectado, no es posible configurar coil={Direccion} con valor={Valor} " & Environment.NewLine,
+                Drawing.Color.Red,
+                font_Rtxt)
+            Return False
+        End If
+    End Function
     Private Sub ResetTodasSignals()
         If PLC_LOGO.Connected Then
             Dim coils() As Boolean = {False, True, False, False, False, False, False, False, False, False, False, False, False, False}
@@ -1205,7 +1276,7 @@ Public Class Proceso_Andina
                 btnagregar.Enabled = True
                 Gbx_ConfigCarg_Cemento.Enabled = True
                 GBx_Preparacion.Enabled = True
-                'Habilitar controles para el registro de datos
+                'Deshabilitar controles para el registro de datos
                 Btt_RegPiedra.Enabled = False
                 Btt_RegArena.Enabled = False
                 Btt_RegCemento.Enabled = False
@@ -1224,7 +1295,7 @@ Public Class Proceso_Andina
                 Tim_Carga_Agua.Enabled = False
                 'Envia señal de parada al PLC
                 ResetTodasSignals()
-                PLC_LOGO.WriteSingleCoil(Variables.coil_Paro, True)
+                EscribeCoil_Controlada(Variables.coil_Paro, True)
                 'Detiene el timer de WD 
                 Tim_Wd_PLC.Enabled = False
                 running = False
@@ -1453,10 +1524,10 @@ Public Class Proceso_Andina
     End Sub
 
     Private Sub Btt_ImprimirGuia_Click(sender As Object, e As EventArgs) Handles Btt_ImprimirGuia.Click
-        If Txt_CodOrdenDespacho.Text IsNot String.Empty And running = False Then
-            idDespacho = Txt_CodOrdenDespacho.Text
-            Despacho_frm.Show()
-        End If
+        'If Txt_CodOrdenDespacho.Text IsNot String.Empty And running = False Then
+        '    idDespacho = Txt_CodOrdenDespacho.Text
+        '    Despacho_frm.Show()
+        'End If
     End Sub
 
     Private Sub Tim_Wd_PLC_Tick(sender As Object, e As EventArgs) Handles Tim_Wd_PLC.Tick
@@ -1471,9 +1542,9 @@ Public Class Proceso_Andina
         '    Not TypeOf cmbproductos.SelectedValue Is DataRowView Then
         '    ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
         'End If
-        If Txt_CodOrdenDespacho.Text IsNot String.Empty Then
-            ObtieneFormulaxProducto(ID_ProductoFormula)
-        End If
+        'If Txt_CodOrdenDespacho.Text IsNot String.Empty Then
+        '    ObtieneFormulaxProducto(ID_ProductoFormula)
+        'End If
 
     End Sub
 
@@ -1482,9 +1553,9 @@ Public Class Proceso_Andina
         '    Not TypeOf cmbproductos.SelectedValue Is DataRowView Then
         '    ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
         'End If
-        If Txt_CodOrdenDespacho.Text IsNot String.Empty Then
-            ObtieneFormulaxProducto(ID_ProductoFormula)
-        End If
+        'If Txt_CodOrdenDespacho.Text IsNot String.Empty Then
+        '    ObtieneFormulaxProducto(ID_ProductoFormula)
+        'End If
     End Sub
 
     Private Sub Num_Hum_Ripio_ValueChanged(sender As Object, e As EventArgs) Handles Num_Hum_Ripio.ValueChanged
@@ -1492,14 +1563,14 @@ Public Class Proceso_Andina
         '    Not TypeOf cmbproductos.SelectedValue Is DataRowView Then
         '    ObtieneFormulaxProducto(cmbproductos.SelectedValue.ToString)
         'End If
-        If Txt_CodOrdenDespacho.Text IsNot String.Empty Then
-            ObtieneFormulaxProducto(ID_ProductoFormula)
-        End If
+        'If Txt_CodOrdenDespacho.Text IsNot String.Empty Then
+        '    ObtieneFormulaxProducto(ID_ProductoFormula)
+        'End If
     End Sub
 
     Private Sub Btt_BuscarOrdDespacho_Click(sender As Object, e As EventArgs) Handles Btt_BuscarOrdDespacho.Click
         Try
-            ID_OrdenDespacho = Txt_CodOrdenDespacho.Text
+            'ID_OrdenDespacho = Txt_CodOrdenDespacho.Text
             If ID_OrdenDespacho = String.Empty Then
                 Rtx_Mensajes.AppendColoredText("Ingrese el número de la órden de despacho " & Environment.NewLine,
                     Drawing.Color.Red,
@@ -1692,7 +1763,7 @@ Public Class Proceso_Andina
         txtPlaca.Text = ""
     End Sub
 
-    Private Sub Btt_Sel_Producto_Click(sender As Object, e As EventArgs) Handles Btt_Sel_Producto.Click, Btt_Sel_OD.Click
+    Private Sub Btt_Sel_Producto_Click(sender As Object, e As EventArgs) Handles Btt_Sel_Producto.Click
         tipoLista = "PRODUCTOS"
         destinoLista = "Proceso_Pr"
         listas.Show()
@@ -1708,34 +1779,43 @@ Public Class Proceso_Andina
         flagFinTolv1 = True
         'Procesar guardar peso -- Se guarda registro por descarga
         'pesoReal1 = ValorInicialT1 - Convert.ToDouble(Lbl_Peso_T1.Text)
+        Sym_Piedra.Visible = False
+        Sym_Piedra.DiscreteValue1 = False
+
         pesoReal1 = Convert.ToDouble(Lbl_Peso_T1.Text) * -1
         pesoSet1 = Num_TeoPiedra.Value
         'Dim Diferencia As Double = pesoSet1 - pesoReal1
-        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, IIf(IsNothing(Variables.CodigIngrediente_T1), "", Variables.CodigIngrediente_T1), "PIEDRA",
+        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, Variables.CodigIngrediente_T1, Variables.NombreIngrediente_T1,
                                 pesoSet1, pesoReal1, Variables.Factor, codigoOD)
         'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
         '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
-        Rtx_Mensajes.AppendColoredText($"Registrado --> Valor Piedra= {pesoReal1.ToString("N2")}" & Environment.NewLine,
+        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T1} = {pesoReal1.ToString("N2")}" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
+        Console.Beep()
         Lbl_Cap_Piedra.Text = pesoReal1.ToString("N2")
         Lbl_Dosif_T1.Text = pesoReal1.ToString("N2")
+
     End Sub
 
     Private Sub Btt_RegArena_Click(sender As Object, e As EventArgs) Handles Btt_RegArena.Click
         flagFinTolv2 = True
         'Procesar guardar peso -- Se guarda registro por descarga
         'pesoReal2 = ValorInicialT2 - Convert.ToDouble(Lbl_Peso_T1.Text)
+        Sym_Arena.Visible = False
+        Sym_Arena.DiscreteValue1 = False
+
         pesoReal2 = Convert.ToDouble(Lbl_Peso_T1.Text) * -1
         pesoSet2 = Num_TeoArena.Value
         'Dim Diferencia As Double = pesoSet1 - pesoReal1
-        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, IIf(IsNothing(Variables.CodigIngrediente_T2), "", Variables.CodigIngrediente_T2), "ARENA",
+        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, Variables.CodigIngrediente_T2, Variables.NombreIngrediente_T2,
                                 pesoSet2, pesoReal2, Variables.Factor, codigoOD)
         'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
         '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
-        Rtx_Mensajes.AppendColoredText($"Registrado --> Valor Arena= {pesoReal2.ToString("N2")}" & Environment.NewLine,
+        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T2} = {pesoReal2.ToString("N2")}" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
+        Console.Beep()
         Lbl_Cap_Arena.Text = pesoReal2.ToString("N2")
         Lbl_Dosif_T2.Text = pesoReal2.ToString("N2")
     End Sub
@@ -1744,16 +1824,19 @@ Public Class Proceso_Andina
         flagFinDesCargaCemento = True
         'Procesar guardar peso -- Se guarda registro por descarga
         'pesoReal3 = ValorInicialCemento - Convert.ToDouble(Lbl_Peso_Cem.Text)
+        Sym_DescargaCem.DiscreteValue1 = False
+
         pesoReal3 = Convert.ToDouble(Lbl_Peso_Cem.Text) * -1
         pesoSet3 = Num_TeoCemento.Value
         'Dim Diferencia As Double = pesoSet1 - pesoReal1
-        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, IIf(IsNothing(Variables.CodigIngrediente_T2), "", Variables.CodigIngrediente_T2), "CEMENTO",
+        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, Variables.CodigIngrediente_T3, Variables.NombreIngrediente_T3,
                                 pesoSet3, pesoReal3, Variables.Factor, codigoOD)
         'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
         '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
-        Rtx_Mensajes.AppendColoredText($"Registrado --> Valor Cemento= {pesoReal3.ToString("N2")}" & Environment.NewLine,
+        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T3} = {pesoReal3.ToString("N2")}" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
+        Console.Beep()
         Lbl_Cap_Cemento.Text = pesoReal3.ToString("N2")
         Lbl_Dosif_Cemento.Text = pesoReal3.ToString("N2")
     End Sub
@@ -1761,16 +1844,19 @@ Public Class Proceso_Andina
     Private Sub Btt_RegAgua_Click(sender As Object, e As EventArgs) Handles Btt_RegAgua.Click
         flagFinAgua = True
         'Procesar guardar peso -- Se guarda registro por descarga
+        ValvulaDescarga.DiscreteValue1 = False
+
         pesoReal4 = Num_RealAgua.Value
         pesoSet4 = Num_TeoAgua.Value
         'Dim Diferencia As Double = pesoSet1 - pesoReal1
-        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, IIf(IsNothing(Variables.CodigIngrediente_T2), "", Variables.CodigIngrediente_T2), "AGUA",
+        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, Variables.CodigIngrediente_T4, Variables.NombreIngrediente_T4,
                                 pesoSet4, pesoReal4, Variables.Factor, codigoOD)
         'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
         '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
-        Rtx_Mensajes.AppendColoredText($"Registrado --> Valor Agua= {pesoReal4.ToString("N2")}" & Environment.NewLine,
+        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T4} = {pesoReal4.ToString("N2")}" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
+        Console.Beep()
         Lbl_Dosif_Agua.Text = pesoReal4.ToString("N2")
     End Sub
 

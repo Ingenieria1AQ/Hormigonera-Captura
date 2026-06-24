@@ -156,8 +156,30 @@ Module Funciones
                     da.Fill(tbDatos)
                 End Using
             End Using
-            If tbDatos IsNot Nothing OrElse tbDatos.Rows.Count = 0 Then
+            If tbDatos IsNot Nothing OrElse tbDatos.Rows.Count = 1 Then
                 rpta = tbDatos.Rows(0).Item("Valor")
+            Else
+                rpta = ""
+            End If
+        End Using
+        Return rpta
+    End Function
+    Public Function Obtener_NomIngrediente_x_ID(ID As String) As String
+        Dim tbDatos As New DataTable
+        Dim rpta As String
+        Using conection As New OleDbConnection(sConnString)
+            Using cmd As New OleDbCommand
+                cmd.Connection = conection
+                cmd.CommandText = "SELECT Descripcion FROM Ingredientes WHERE Id_Ingrediente = ?  "
+                cmd.Parameters.AddWithValue("?", ID)
+
+                conection.Open()
+                Using da As New OleDbDataAdapter(cmd)
+                    da.Fill(tbDatos)
+                End Using
+            End Using
+            If tbDatos IsNot Nothing OrElse tbDatos.Rows.Count = 1 Then
+                rpta = tbDatos.Rows(0).Item("Descripcion")
             Else
                 rpta = ""
             End If

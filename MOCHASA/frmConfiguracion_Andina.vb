@@ -22,6 +22,35 @@ Public Class frmConfiguracion_Andina
         Me.cboFlowControl1.DataSource = System.Enum.GetNames(GetType(System.IO.Ports.Handshake))
         Me.cboFlowControl2.DataSource = System.Enum.GetNames(GetType(System.IO.Ports.Handshake))
         Me.cboFlowControl3.DataSource = System.Enum.GetNames(GetType(System.IO.Ports.Handshake))
+
+        'Configura Inicialmente Combobox de ingredientes
+        Dim bsIngredPriedra As New BindingSource
+        Dim bsIngredArena As New BindingSource
+        Dim bdIngredCemento As New BindingSource
+        Dim bdIngredAgua As New BindingSource
+        tbIngredientes = ObtenerIngredientes()
+
+        'Llenar combobox con los valores de ingredientes
+        bsIngredPriedra.DataSource = tbIngredientes
+        bsIngredArena.DataSource = tbIngredientes
+        bdIngredCemento.DataSource = tbIngredientes
+        bdIngredAgua.DataSource = tbIngredientes
+
+        Cbx_Ing1.DataSource = bsIngredPriedra
+        Cbx_Ing1.DisplayMember = "Descripcion"
+        Cbx_Ing1.ValueMember = "Id_ingrediente"
+
+        Cbx_Ing2.DataSource = bsIngredArena
+        Cbx_Ing2.DisplayMember = "Descripcion"
+        Cbx_Ing2.ValueMember = "Id_ingrediente"
+
+        Cbx_IngCem.DataSource = bdIngredCemento
+        Cbx_IngCem.DisplayMember = "Descripcion"
+        Cbx_IngCem.ValueMember = "Id_ingrediente"
+
+        Cbx_IngAgua.DataSource = bdIngredAgua
+        Cbx_IngAgua.DisplayMember = "Descripcion"
+        Cbx_IngAgua.ValueMember = "Id_ingrediente"
     End Sub
     Private Sub frmConexion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Init()
@@ -31,27 +60,7 @@ Public Class frmConfiguracion_Andina
             ArenaPage = TP_Tolv2
             TabControl1.TabPages.Remove(ArenaPage)
             'TabControl1.TabPages(1).Enabled = False
-            Dim bsIngredPriedra As New BindingSource
-            Dim bsIngredArena As New BindingSource
-            Dim bdIngredCemento As New BindingSource
-            tbIngredientes = ObtenerIngredientes()
 
-            'Llenar combobox con los valores de ingredientes
-            bsIngredPriedra.DataSource = tbIngredientes
-            bsIngredArena.DataSource = tbIngredientes
-            bdIngredCemento.DataSource = tbIngredientes
-
-            Cbx_Ing1.DataSource = bsIngredPriedra
-            Cbx_Ing1.DisplayMember = "Descripcion"
-            Cbx_Ing1.ValueMember = "Id_ingrediente"
-
-            Cbx_Ing2.DataSource = bsIngredArena
-            Cbx_Ing2.DisplayMember = "Descripcion"
-            Cbx_Ing2.ValueMember = "Id_ingrediente"
-
-            Cbx_IngCem.DataSource = bdIngredCemento
-            Cbx_IngCem.DisplayMember = "Descripcion"
-            Cbx_IngCem.ValueMember = "Id_ingrediente"
 
             dtConfigTol = ObtenerConfiguracion()
             CargarImpresorasDisponibles()
@@ -72,9 +81,10 @@ Public Class frmConfiguracion_Andina
             Num_CAgua.Value = Decimal.Parse(Funciones.Obtener_Valor_Configuracion("CorteAgua"))
             Num_FactAgua.Value = Decimal.Parse(Funciones.Obtener_Valor_Configuracion("FactorAgua"))
 
-            Cbx_Ing1.SelectedItem = IIf(String.IsNullOrEmpty(Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_T1")), "NADA", Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_T1"))
-            Cbx_Ing2.SelectedItem = IIf(String.IsNullOrEmpty(Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_T2")), "NADA", Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_T2"))
-            Cbx_IngCem.SelectedItem = IIf(String.IsNullOrEmpty(Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_Cem")), "NADA", Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_Cem"))
+            Cbx_Ing1.SelectedValue = Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_T1")
+            Cbx_Ing2.SelectedValue = Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_T2")
+            Cbx_IngCem.SelectedValue = Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_Cem")
+            Cbx_IngAgua.SelectedValue = Funciones.Obtener_Valor_Configuracion("ID_Ingrediente_Agua")
 
             Dim idx As Integer
             idx = cbx_impresora.FindString(Funciones.Obtener_Valor_Configuracion("Nombre_Impresora").ToString())
@@ -169,6 +179,10 @@ Public Class frmConfiguracion_Andina
             Dim corteCemento As Decimal = 0.0
             Dim corteAgua As Decimal = 0.0
             Dim PresAgua As Decimal = 1.0
+            Dim idIngredienteT1 As Integer = 0
+            Dim idIngredienteT2 As Integer = 0
+            Dim idIngredienteCem As Integer = 0
+            Dim idIngredienteAgua As Integer = 0
 
             Select Case TabControl1.SelectedTab.Name
                 Case "TP_Tolv1"
@@ -213,10 +227,14 @@ Public Class frmConfiguracion_Andina
                     corteCemento = Convert.ToDecimal(Num_CCemento.Value)
                     corteAgua = Convert.ToDecimal(Num_CAgua.Value)
                     PresAgua = Convert.ToDecimal(Num_FactAgua.Value)
+                    idIngredienteT1 = Cbx_Ing1.SelectedValue
+                    idIngredienteT2 = Cbx_Ing2.SelectedValue
+                    idIngredienteCem = Cbx_IngCem.SelectedValue
+                    idIngredienteAgua = Cbx_IngAgua.SelectedValue
 
             End Select
             ActualizarConfiguracion(idTolva, NombreCom, Baud, bitsDatos, paridad, bitsParada, controlFlujo, NombreIndicador, tipo, IP_PLC, Puerto_PLC,
-                                    nombreImpresora, usaImpresora, cortePiedra, corteArena, corteCemento, corteAgua, PresAgua)
+                                    nombreImpresora, usaImpresora, cortePiedra, corteArena, corteCemento, corteAgua, PresAgua, idIngredienteT1, idIngredienteT2, idIngredienteCem, idIngredienteAgua)
 
         Catch ex As Exception
             MsgBox("Exepción Actualizar: " & ex.Message)
@@ -230,7 +248,8 @@ Public Class frmConfiguracion_Andina
     Private Sub ActualizarConfiguracion(idTolva As Integer, PuertoSerie As String, Baudrate As Integer, BitsDatos As String, Paridad As String,
                                         BitsParada As String, ControlFlujo As String, nombreIndicador As String, tipo As String, IP As String,
                                         Puerto As String, nombreImpresora As String, usaImp As Integer, cortePiedra As Decimal, corteArena As Decimal,
-                                        corteCemento As Decimal, corteAgua As Decimal, PrEscalaAgua As Decimal)
+                                        corteCemento As Decimal, corteAgua As Decimal, PrEscalaAgua As Decimal, idIngrd_T1 As String, idIngrd_T2 As String,
+                                        idIngrd_Cem As String, idIngrd_Agua As String)
         Try
             Select Case tipo
                 Case "PLC"
@@ -277,6 +296,10 @@ Public Class frmConfiguracion_Andina
                     'Configura Impresora
                     If Funciones.Actualizar_Valor_Configuracion("Nombre_Impresora", nombreImpresora) Then mensajesPar.Add("Impresora Guardado") Else mensajesPar.Add("Impresora No Guardado")
                     If Funciones.Actualizar_Valor_Configuracion("UsaImpresora", usaImp) Then mensajesPar.Add("Usa Impresora Guardado") Else mensajesPar.Add("Usa Impresora No Guardado")
+                    If Funciones.Actualizar_Valor_Configuracion("ID_Ingrediente_T1", idIngrd_T1) Then mensajesPar.Add("Ingrediente Tolva 1 Guardado") Else mensajesPar.Add("Ingrediente Tolva 1 No Guardado")
+                    If Funciones.Actualizar_Valor_Configuracion("ID_Ingrediente_T2", idIngrd_T2) Then mensajesPar.Add("Ingrediente Tolva 2 Guardado") Else mensajesPar.Add("Ingrediente Tolva 1 No Guardado")
+                    If Funciones.Actualizar_Valor_Configuracion("ID_Ingrediente_Cem", idIngrd_Cem) Then mensajesPar.Add("Ingrediente Tolva Cemento Guardado") Else mensajesPar.Add("Ingrediente Tolva Cemento No Guardado")
+                    If Funciones.Actualizar_Valor_Configuracion("ID_Ingrediente_Agua", idIngrd_Agua) Then mensajesPar.Add("Ingrediente de Agua Guardado") Else mensajesPar.Add("Ingrediente de Agua No Guardado")
                     'Configurar PreScaler agua
                     'If Funciones.Actualizar_Valor_Configuracion("FactorAgua", PrEscalaAgua) Then mensajesPar.Add("Prescala Agua Guardado") Else mensajesPar.Add("Prescala Agua No Guardado")
 

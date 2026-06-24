@@ -30,11 +30,8 @@ Partial Class frmConfiguracion_Andina
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label34 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Btt_ActPuerto1 = New System.Windows.Forms.Button()
-        Me.Cbx_Ing2 = New System.Windows.Forms.ComboBox()
-        Me.Cbx_Ing1 = New System.Windows.Forms.ComboBox()
         Me.cboTipoInd1 = New System.Windows.Forms.ComboBox()
         Me.cboFlowControl1 = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -81,6 +78,15 @@ Partial Class frmConfiguracion_Andina
         Me.label11 = New System.Windows.Forms.Label()
         Me.label12 = New System.Windows.Forms.Label()
         Me.TP_Parametros = New System.Windows.Forms.TabPage()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.Cbx_IngAgua = New System.Windows.Forms.ComboBox()
+        Me.Cbx_IngCem = New System.Windows.Forms.ComboBox()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Cbx_Ing2 = New System.Windows.Forms.ComboBox()
+        Me.Cbx_Ing1 = New System.Windows.Forms.ComboBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label33 = New System.Windows.Forms.Label()
@@ -104,15 +110,13 @@ Partial Class frmConfiguracion_Andina
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Btt_Cancelar = New System.Windows.Forms.Button()
         Me.Btt_Conectar = New System.Windows.Forms.Button()
-        Me.Label35 = New System.Windows.Forms.Label()
-        Me.Label36 = New System.Windows.Forms.Label()
-        Me.Cbx_IngCem = New System.Windows.Forms.ComboBox()
         Me.TabControl1.SuspendLayout()
         Me.TP_Tolv1.SuspendLayout()
         Me.TP_Tolv2.SuspendLayout()
         Me.TP_Cemento.SuspendLayout()
         Me.TP_PLC.SuspendLayout()
         Me.TP_Parametros.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Num_FactAgua, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,12 +160,8 @@ Partial Class frmConfiguracion_Andina
         Me.TP_Tolv1.Controls.Add(Me.Label15)
         Me.TP_Tolv1.Controls.Add(Me.Label16)
         Me.TP_Tolv1.Controls.Add(Me.Label17)
-        Me.TP_Tolv1.Controls.Add(Me.Label35)
-        Me.TP_Tolv1.Controls.Add(Me.Label34)
         Me.TP_Tolv1.Controls.Add(Me.Label5)
         Me.TP_Tolv1.Controls.Add(Me.Btt_ActPuerto1)
-        Me.TP_Tolv1.Controls.Add(Me.Cbx_Ing2)
-        Me.TP_Tolv1.Controls.Add(Me.Cbx_Ing1)
         Me.TP_Tolv1.Controls.Add(Me.cboTipoInd1)
         Me.TP_Tolv1.Controls.Add(Me.cboFlowControl1)
         Me.TP_Tolv1.Controls.Add(Me.Label1)
@@ -206,16 +206,6 @@ Partial Class frmConfiguracion_Andina
         Me.Label17.TabIndex = 25
         Me.Label17.Text = "Puerto serie"
         '
-        'Label34
-        '
-        Me.Label34.AutoSize = True
-        Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label34.Location = New System.Drawing.Point(20, 213)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(151, 13)
-        Me.Label34.TabIndex = 24
-        Me.Label34.Text = "Ingrediente Tolva Piedra:"
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -238,26 +228,6 @@ Partial Class frmConfiguracion_Andina
         Me.Btt_ActPuerto1.TabIndex = 24
         Me.Btt_ActPuerto1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_ActPuerto1.UseVisualStyleBackColor = True
-        '
-        'Cbx_Ing2
-        '
-        Me.Cbx_Ing2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.Cbx_Ing2.FormattingEnabled = True
-        Me.Cbx_Ing2.Items.AddRange(New Object() {"Estandar", "EDS"})
-        Me.Cbx_Ing2.Location = New System.Drawing.Point(181, 237)
-        Me.Cbx_Ing2.Name = "Cbx_Ing2"
-        Me.Cbx_Ing2.Size = New System.Drawing.Size(231, 21)
-        Me.Cbx_Ing2.TabIndex = 23
-        '
-        'Cbx_Ing1
-        '
-        Me.Cbx_Ing1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.Cbx_Ing1.FormattingEnabled = True
-        Me.Cbx_Ing1.Items.AddRange(New Object() {"Estandar", "EDS"})
-        Me.Cbx_Ing1.Location = New System.Drawing.Point(181, 210)
-        Me.Cbx_Ing1.Name = "Cbx_Ing1"
-        Me.Cbx_Ing1.Size = New System.Drawing.Size(231, 21)
-        Me.Cbx_Ing1.TabIndex = 23
         '
         'cboTipoInd1
         '
@@ -503,8 +473,6 @@ Partial Class frmConfiguracion_Andina
         '
         'TP_Cemento
         '
-        Me.TP_Cemento.Controls.Add(Me.Label36)
-        Me.TP_Cemento.Controls.Add(Me.Cbx_IngCem)
         Me.TP_Cemento.Controls.Add(Me.Label21)
         Me.TP_Cemento.Controls.Add(Me.Label22)
         Me.TP_Cemento.Controls.Add(Me.Label23)
@@ -697,6 +665,7 @@ Partial Class frmConfiguracion_Andina
         '
         'TP_Parametros
         '
+        Me.TP_Parametros.Controls.Add(Me.GroupBox4)
         Me.TP_Parametros.Controls.Add(Me.GroupBox3)
         Me.TP_Parametros.Controls.Add(Me.GroupBox2)
         Me.TP_Parametros.Controls.Add(Me.GroupBox1)
@@ -707,6 +676,99 @@ Partial Class frmConfiguracion_Andina
         Me.TP_Parametros.Text = "PARÁMETROS"
         Me.TP_Parametros.UseVisualStyleBackColor = True
         '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.Label37)
+        Me.GroupBox4.Controls.Add(Me.Cbx_IngAgua)
+        Me.GroupBox4.Controls.Add(Me.Cbx_IngCem)
+        Me.GroupBox4.Controls.Add(Me.Label36)
+        Me.GroupBox4.Controls.Add(Me.Label35)
+        Me.GroupBox4.Controls.Add(Me.Label34)
+        Me.GroupBox4.Controls.Add(Me.Cbx_Ing2)
+        Me.GroupBox4.Controls.Add(Me.Cbx_Ing1)
+        Me.GroupBox4.Location = New System.Drawing.Point(11, 9)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(426, 152)
+        Me.GroupBox4.TabIndex = 40
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Ingredientes en Tolvas"
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label37.Location = New System.Drawing.Point(58, 112)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(40, 13)
+        Me.Label37.TabIndex = 37
+        Me.Label37.Text = "Agua:"
+        '
+        'Cbx_IngAgua
+        '
+        Me.Cbx_IngAgua.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Cbx_IngAgua.FormattingEnabled = True
+        Me.Cbx_IngAgua.Location = New System.Drawing.Point(108, 109)
+        Me.Cbx_IngAgua.Name = "Cbx_IngAgua"
+        Me.Cbx_IngAgua.Size = New System.Drawing.Size(231, 21)
+        Me.Cbx_IngAgua.TabIndex = 36
+        '
+        'Cbx_IngCem
+        '
+        Me.Cbx_IngCem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Cbx_IngCem.FormattingEnabled = True
+        Me.Cbx_IngCem.Location = New System.Drawing.Point(108, 79)
+        Me.Cbx_IngCem.Name = "Cbx_IngCem"
+        Me.Cbx_IngCem.Size = New System.Drawing.Size(231, 21)
+        Me.Cbx_IngCem.TabIndex = 36
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label36.Location = New System.Drawing.Point(4, 82)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(96, 13)
+        Me.Label36.TabIndex = 27
+        Me.Label36.Text = "Tolva Cemento:"
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label35.Location = New System.Drawing.Point(44, 55)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(54, 13)
+        Me.Label35.TabIndex = 27
+        Me.Label35.Text = "Tolva 2:"
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label34.Location = New System.Drawing.Point(44, 25)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(54, 13)
+        Me.Label34.TabIndex = 28
+        Me.Label34.Text = "Tolva 1:"
+        '
+        'Cbx_Ing2
+        '
+        Me.Cbx_Ing2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Cbx_Ing2.FormattingEnabled = True
+        Me.Cbx_Ing2.Location = New System.Drawing.Point(108, 52)
+        Me.Cbx_Ing2.Name = "Cbx_Ing2"
+        Me.Cbx_Ing2.Size = New System.Drawing.Size(231, 21)
+        Me.Cbx_Ing2.TabIndex = 25
+        '
+        'Cbx_Ing1
+        '
+        Me.Cbx_Ing1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Cbx_Ing1.FormattingEnabled = True
+        Me.Cbx_Ing1.Location = New System.Drawing.Point(108, 22)
+        Me.Cbx_Ing1.Name = "Cbx_Ing1"
+        Me.Cbx_Ing1.Size = New System.Drawing.Size(231, 21)
+        Me.Cbx_Ing1.TabIndex = 26
+        '
         'GroupBox3
         '
         Me.GroupBox3.Controls.Add(Me.PictureBox1)
@@ -714,9 +776,9 @@ Partial Class frmConfiguracion_Andina
         Me.GroupBox3.Controls.Add(Me.Label31)
         Me.GroupBox3.Controls.Add(Me.Label32)
         Me.GroupBox3.Controls.Add(Me.Num_FactAgua)
-        Me.GroupBox3.Location = New System.Drawing.Point(17, 241)
+        Me.GroupBox3.Location = New System.Drawing.Point(11, 286)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(426, 76)
+        Me.GroupBox3.Size = New System.Drawing.Size(426, 31)
         Me.GroupBox3.TabIndex = 39
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Factor de Agua"
@@ -777,7 +839,7 @@ Partial Class frmConfiguracion_Andina
         Me.GroupBox2.Controls.Add(Me.chBox_Hab_Imp)
         Me.GroupBox2.Controls.Add(Me.Label24)
         Me.GroupBox2.Controls.Add(Me.cbx_impresora)
-        Me.GroupBox2.Location = New System.Drawing.Point(17, 11)
+        Me.GroupBox2.Location = New System.Drawing.Point(11, 169)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(426, 84)
         Me.GroupBox2.TabIndex = 38
@@ -810,7 +872,6 @@ Partial Class frmConfiguracion_Andina
         '
         Me.cbx_impresora.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbx_impresora.FormattingEnabled = True
-        Me.cbx_impresora.Items.AddRange(New Object() {"ZM301", "ZM201", "QW", "GW", "EDS"})
         Me.cbx_impresora.Location = New System.Drawing.Point(118, 15)
         Me.cbx_impresora.Name = "cbx_impresora"
         Me.cbx_impresora.Size = New System.Drawing.Size(231, 21)
@@ -828,9 +889,9 @@ Partial Class frmConfiguracion_Andina
         Me.GroupBox1.Controls.Add(Me.Label26)
         Me.GroupBox1.Controls.Add(Me.Num_CPiedra)
         Me.GroupBox1.Controls.Add(Me.Label25)
-        Me.GroupBox1.Location = New System.Drawing.Point(17, 100)
+        Me.GroupBox1.Location = New System.Drawing.Point(11, 259)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(426, 138)
+        Me.GroupBox1.Size = New System.Drawing.Size(426, 21)
         Me.GroupBox1.TabIndex = 37
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Valores de Corte"
@@ -970,36 +1031,6 @@ Partial Class frmConfiguracion_Andina
         Me.Btt_Conectar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Btt_Conectar.UseVisualStyleBackColor = False
         '
-        'Label35
-        '
-        Me.Label35.AutoSize = True
-        Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label35.Location = New System.Drawing.Point(20, 240)
-        Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(148, 13)
-        Me.Label35.TabIndex = 24
-        Me.Label35.Text = "Ingrediente Tolva Arena:"
-        '
-        'Label36
-        '
-        Me.Label36.AutoSize = True
-        Me.Label36.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label36.Location = New System.Drawing.Point(20, 213)
-        Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(164, 13)
-        Me.Label36.TabIndex = 35
-        Me.Label36.Text = "Ingrediente Tolva Cemento:"
-        '
-        'Cbx_IngCem
-        '
-        Me.Cbx_IngCem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.Cbx_IngCem.FormattingEnabled = True
-        Me.Cbx_IngCem.Items.AddRange(New Object() {"Estandar", "EDS"})
-        Me.Cbx_IngCem.Location = New System.Drawing.Point(190, 210)
-        Me.Cbx_IngCem.Name = "Cbx_IngCem"
-        Me.Cbx_IngCem.Size = New System.Drawing.Size(222, 21)
-        Me.Cbx_IngCem.TabIndex = 34
-        '
         'frmConfiguracion_Andina
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1021,6 +1052,8 @@ Partial Class frmConfiguracion_Andina
         Me.TP_PLC.ResumeLayout(False)
         Me.TP_PLC.PerformLayout()
         Me.TP_Parametros.ResumeLayout(False)
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1114,10 +1147,13 @@ Partial Class frmConfiguracion_Andina
     Friend WithEvents Label14 As Label
     Friend WithEvents cboSerialPort2 As ComboBox
     Private WithEvents Btt_ActPuerto2 As Button
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents Label37 As Label
+    Friend WithEvents Cbx_IngAgua As ComboBox
+    Friend WithEvents Cbx_IngCem As ComboBox
+    Friend WithEvents Label36 As Label
+    Friend WithEvents Label35 As Label
     Friend WithEvents Label34 As Label
     Friend WithEvents Cbx_Ing2 As ComboBox
     Friend WithEvents Cbx_Ing1 As ComboBox
-    Friend WithEvents Label35 As Label
-    Friend WithEvents Label36 As Label
-    Friend WithEvents Cbx_IngCem As ComboBox
 End Class
