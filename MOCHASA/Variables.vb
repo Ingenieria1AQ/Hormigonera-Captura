@@ -52,6 +52,8 @@ Module Variables
     Public CodigIngrediente_T4 As String
     Public Factor As Double = 1.0
 
+    'Andina de hormigones
+    Public TipoOD As String = "" 'Puede ser Nuevo o Editar
 
     ''Variables de label de estado 
     Public Const reg_Lbl_Tolv1 As Integer = 1

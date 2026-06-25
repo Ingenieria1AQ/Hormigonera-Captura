@@ -678,6 +678,9 @@ Public Class Proceso_Andina
                     font_Rtxt)
                 Exit Sub
             End If
+            'Captura Id de la Orden de Despacho
+            codigoOD = lblcomprobante.Text
+
             'HABILITAR ESTA OPCION para controlar número de batch
             'NumBatchPlanificacion = Num_BatchPlanificacion.Value
             NumBatchPlanificacion = 1   'EUFRATES SOLAMENTE HACE UN BATCH
@@ -733,26 +736,43 @@ Public Class Proceso_Andina
 
             If flagConfigPLC And SerTol1_ok And SerCemento_ok Then
                 Preparado = True
-            Else
-                Exit Sub
             End If
 
-            Dim complete As Integer
-            complete = guardarEncabezadoOD(lblcomprobante.Text, "DESPACHO", Variables.codOperador, Date.Today, Date.Now, 0, codProducto.Text,
-                                           "", txtPlaca.Text, 0, txtobservaciones.Text, 0, "", "", "", "", Convert.ToInt32(txtidMixer.Text), False)
-            If complete = 1 Then
-                Dim csave As Integer
-                csave = guardarconsecutivo("Despacho", codigoOD)
-                Rtx_Mensajes.AppendColoredText("La información se ha almacenado con exito" & Environment.NewLine,
-                   Drawing.Color.Black,
-                   font_Rtxt)
-                Gb_OrdenDespacho.Enabled = False
-            Else
-                Rtx_Mensajes.AppendColoredText("No se pudo almacenar la transaccion compruebe los datos" & Environment.NewLine,
-                  Drawing.Color.Red,
-                  font_Rtxt)
-                Exit Sub
-            End If
+            Select Case Variables.TipoOD
+                Case "Nuevo"
+                    Dim complete As Integer
+                    complete = guardarEncabezadoOD(lblcomprobante.Text, "DESPACHO", Variables.codOperador, Date.Today, Date.Now, 0, codProducto.Text,
+                                                   "", txtPlaca.Text, 0, txtobservaciones.Text, 0, "", "", "", "", Convert.ToInt32(txtidMixer.Text), False)
+                    If complete = 1 Then
+                        Dim csave As Integer
+                        csave = guardarconsecutivo("Despacho", codigoOD)
+                        Rtx_Mensajes.AppendColoredText("La información se ha almacenado con éxito" & Environment.NewLine,
+                           Drawing.Color.Black,
+                           font_Rtxt)
+                        Gb_OrdenDespacho.Enabled = False
+                    Else
+                        Rtx_Mensajes.AppendColoredText("No se pudo almacenar la transaccion compruebe los datos" & Environment.NewLine,
+                          Drawing.Color.Red,
+                          font_Rtxt)
+                        Exit Sub
+                    End If
+                Case "Editar"
+                    Dim complete As Integer
+                    complete = actualizaEncabezadoOD(lblcomprobante.Text, "DESPACHO", "0", Convert.ToInt32(codProducto.Text), "", 0, txtobservaciones.Text, 0.0, "", "", "", "", Convert.ToInt32(txtidMixer.Text))
+                    If complete = 1 Then
+                        Rtx_Mensajes.AppendColoredText("La información se ha actualizado con éxito" & Environment.NewLine,
+                           Drawing.Color.Black,
+                           font_Rtxt)
+                        Gb_OrdenDespacho.Enabled = False
+                    Else
+                        Rtx_Mensajes.AppendColoredText("No se pudo almacenar la transaccion compruebe los datos" & Environment.NewLine,
+                          Drawing.Color.Red,
+                          font_Rtxt)
+                        Exit Sub
+                    End If
+                Case Else
+            End Select
+
 
             'Nuevo para A. Hormigones
             'Verifica que existan datos teóricos para la dosificación
@@ -775,6 +795,7 @@ Public Class Proceso_Andina
                 Btt_RegAgua.Enabled = True
                 'Deshabilita boton para crear un nuevo registro de OD
                 btnagregar.Enabled = False
+                Btt_Sel_OD.Enabled = False
 
                 'Limpiar controles de dosificacion
                 Lbl_Dosif_T1.Text = "0.00"
@@ -859,6 +880,8 @@ Public Class Proceso_Andina
                 Sym_Piedra.Visible = True
                 Sym_Piedra.DiscreteValue1 = True
                 SymTolva1.DiscreteValue1 = True
+                SymTolva2.DiscreteValue1 = True
+                SymTolvaCem.DiscreteValue1 = True
                 Sym_Arena.Visible = True
                 Sym_Arena.DiscreteValue1 = True
                 ValvulaDescarga.DiscreteValue1 = True
@@ -959,6 +982,71 @@ Public Class Proceso_Andina
 
         End Try
 
+    End Function
+
+    Public Function actualizaEncabezadoOD(
+     ByVal IdTran As String,
+     ByVal Tipo As String,
+     ByVal CodCliente As String,
+     ByVal CodProducto As Integer,
+     ByVal Documento As String,
+     ByVal CodChofer As Integer,
+     ByVal Observaciones As String,
+     ByVal NetoM3 As Decimal,
+     ByVal MotTraslado As String,
+     ByVal PtoPartida As String,
+     ByVal PtoLlegada As String,
+     ByVal Obra As String,
+     ByVal idMixer As Integer) As Integer
+
+        Try
+            Using con As New OleDbConnection(sConnString)
+                con.Open()
+                'Actualizar registro
+                Using cmd As New OleDb.OleDbCommand()
+
+                    cmd.Connection = con
+
+                    cmd.CommandText =
+                    "UPDATE CabeceraTransacciones SET " &
+                    "Tipo = ?, " &
+                    "CodCliente = ?, " &
+                    "CodProducto = ?, " &
+                    "Documento = ?, " &
+                    "CodChofer = ?, " &
+                    "Observaciones = ?, " &
+                    "NetoM3 = ?, " &
+                    "MotTraslado = ?, " &
+                    "PtoPartida = ?, " &
+                    "PtoLlegada = ?, " &
+                    "Obra = ?, " &
+                    "idMixer = ? " &
+                    "WHERE Id = ?"
+
+                    cmd.Parameters.AddWithValue("?", Tipo)
+                    cmd.Parameters.AddWithValue("?", CodCliente)
+                    cmd.Parameters.AddWithValue("?", CodProducto)
+                    cmd.Parameters.AddWithValue("?", Documento)
+                    cmd.Parameters.AddWithValue("?", CodChofer)
+                    cmd.Parameters.AddWithValue("?", Observaciones)
+                    cmd.Parameters.AddWithValue("?", NetoM3)
+                    cmd.Parameters.AddWithValue("?", MotTraslado)
+                    cmd.Parameters.AddWithValue("?", PtoPartida)
+                    cmd.Parameters.AddWithValue("?", PtoLlegada)
+                    cmd.Parameters.AddWithValue("?", Obra)
+                    cmd.Parameters.AddWithValue("?", idMixer)
+                    cmd.Parameters.AddWithValue("?", IdTran)
+                    If cmd.ExecuteNonQuery() > 0 Then
+                        Return 1
+                    Else
+                        Return 0
+                    End If
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error al guardar Transacción: " & ex.Message)
+            Return 0
+        End Try
     End Function
     Public Function guardarconsecutivo(ByVal descripcion As String, ByVal valor As Long) As Integer
         Dim con As New OleDbConnection(sConnString)
@@ -1274,6 +1362,7 @@ Public Class Proceso_Andina
                 'LimpiarLabelsFormula() -- No se usa para A. Hormigones
                 LimpiarControlesOD()
                 btnagregar.Enabled = True
+                Btt_Sel_OD.Enabled = True
                 Gbx_ConfigCarg_Cemento.Enabled = True
                 GBx_Preparacion.Enabled = True
                 'Deshabilitar controles para el registro de datos
@@ -1281,6 +1370,7 @@ Public Class Proceso_Andina
                 Btt_RegArena.Enabled = False
                 Btt_RegCemento.Enabled = False
                 Btt_RegAgua.Enabled = False
+                Variables.TipoOD = String.Empty
             End If
         End If
 
@@ -1750,8 +1840,8 @@ Public Class Proceso_Andina
         LimpiarControlesOD()
         Gb_OrdenDespacho.Enabled = True
         tipoTrans = "Entra"
-        codigoOD = leerconsecutivo("Despacho")
-        lblcomprobante.Text = CStr(codigoOD)
+        lblcomprobante.Text = leerconsecutivo("Despacho")
+        Variables.TipoOD = "Nuevo"
     End Sub
 
     Private Sub LimpiarControlesOD()
@@ -1781,6 +1871,7 @@ Public Class Proceso_Andina
         'pesoReal1 = ValorInicialT1 - Convert.ToDouble(Lbl_Peso_T1.Text)
         Sym_Piedra.Visible = False
         Sym_Piedra.DiscreteValue1 = False
+        SymTolva1.DiscreteValue1 = False
 
         pesoReal1 = Convert.ToDouble(Lbl_Peso_T1.Text) * -1
         pesoSet1 = Num_TeoPiedra.Value
@@ -1804,6 +1895,7 @@ Public Class Proceso_Andina
         'pesoReal2 = ValorInicialT2 - Convert.ToDouble(Lbl_Peso_T1.Text)
         Sym_Arena.Visible = False
         Sym_Arena.DiscreteValue1 = False
+        SymTolva2.DiscreteValue1 = False
 
         pesoReal2 = Convert.ToDouble(Lbl_Peso_T1.Text) * -1
         pesoSet2 = Num_TeoArena.Value
@@ -1825,6 +1917,7 @@ Public Class Proceso_Andina
         'Procesar guardar peso -- Se guarda registro por descarga
         'pesoReal3 = ValorInicialCemento - Convert.ToDouble(Lbl_Peso_Cem.Text)
         Sym_DescargaCem.DiscreteValue1 = False
+        SymTolvaCem.DiscreteValue1 = False
 
         pesoReal3 = Convert.ToDouble(Lbl_Peso_Cem.Text) * -1
         pesoSet3 = Num_TeoCemento.Value
@@ -1858,6 +1951,12 @@ Public Class Proceso_Andina
                 font_Rtxt)
         Console.Beep()
         Lbl_Dosif_Agua.Text = pesoReal4.ToString("N2")
+    End Sub
+
+    Private Sub Btt_Sel_OD_Click(sender As Object, e As EventArgs) Handles Btt_Sel_OD.Click
+        tipoLista = "OD_PROCESO"
+        destinoLista = "Proceso_Od"
+        listas.Show()
     End Sub
 
     Public Function leerconsecutivo(ByVal descripcion As String) As Long

@@ -64,6 +64,34 @@ Public Class listas
                 Call cargarDatos("SELECT * FROM CabeceraTransacciones")
                 campoCodigo = "Id"
                 campoNombre = "Id"
+            Case "OD_PROCESO"
+                Call cargarDatos("SELECT
+                                Cb.Id,
+                                Cb.Fecha,
+                                Cb.Hora,
+                                Cb.CodProducto,
+                                Pr.Descripcion AS NomProducto,
+                                Cb.idMixer AS IdMixer,
+                                Mx.NombreMixer AS NomMixer,
+                                Mx.Placa AS PlacaMixer,
+                                Cb.Observaciones
+                            FROM
+                                (
+                                    CabeceraTransacciones AS Cb
+                                    LEFT JOIN Productos AS Pr ON Cb.CodProducto = Pr.Id_Producto
+                                )
+                                LEFT JOIN Mixers AS Mx ON Cb.idMixer = Mx.Id
+                            WHERE
+                                NOT EXISTS (
+                                    SELECT
+                                        *
+                                    FROM
+                                        Transacciones AS T
+                                    WHERE
+                                        T.Id_Cabecera = Cb.Id
+                                );")
+                campoCodigo = "Id"
+                campoNombre = "Id"
         End Select
         'Call cargarproductos("SELECT * FROM Productos")
 
@@ -197,6 +225,21 @@ Public Class listas
             Proceso_Andina.txtidMixer.Text = DataGridView1.CurrentRow.Cells(0).Value
             Proceso_Andina.txtNomMixer.Text = DataGridView1.CurrentRow.Cells(2).Value
             Proceso_Andina.txtPlaca.Text = DataGridView1.CurrentRow.Cells(1).Value
+        End If
+        If destinoLista = "Proceso_Od" Then
+            Try
+                Proceso_Andina.lblcomprobante.Text = DataGridView1.CurrentRow.Cells("Id").Value
+                Proceso_Andina.codProducto.Text = DataGridView1.CurrentRow.Cells("CodProducto").Value
+                Proceso_Andina.nomProducto.Text = DataGridView1.CurrentRow.Cells("NomProducto").Value
+                Proceso_Andina.txtidMixer.Text = DataGridView1.CurrentRow.Cells("IdMixer").Value
+                Proceso_Andina.txtNomMixer.Text = DataGridView1.CurrentRow.Cells("NomMixer").Value
+                Proceso_Andina.txtPlaca.Text = DataGridView1.CurrentRow.Cells("PlacaMixer").Value
+                Proceso_Andina.txtobservaciones.Text = DataGridView1.CurrentRow.Cells("Observaciones").Value
+                Proceso_Andina.Gb_OrdenDespacho.Enabled = True
+                Variables.TipoOD = "Editar"
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, "Excepcion: Proceso_Od", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
         End If
         '-------------------------------------------------------------------------------
 

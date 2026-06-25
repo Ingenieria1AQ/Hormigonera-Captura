@@ -33,7 +33,7 @@ Partial Class Proceso_Andina
         Me.Lbl_IngNomT2 = New System.Windows.Forms.Label()
         Me.Lbl_Dosif_T1 = New System.Windows.Forms.Label()
         Me.standardControl10 = New SymbolFactoryDotNet.StandardControl()
-        Me.standardControl9 = New SymbolFactoryDotNet.StandardControl()
+        Me.SymTolva2 = New SymbolFactoryDotNet.StandardControl()
         Me.Sym_Bomba = New SymbolFactoryDotNet.StandardControl()
         Me.standardControl6 = New SymbolFactoryDotNet.StandardControl()
         Me.Sym_Banda = New SymbolFactoryDotNet.StandardControl()
@@ -181,6 +181,7 @@ Partial Class Proceso_Andina
         Me.Tim_Carga_Agua = New System.Windows.Forms.Timer(Me.components)
         Me.Tim_ReadHR = New System.Windows.Forms.Timer(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Btt_Sel_OD = New System.Windows.Forms.Button()
         Me.btnagregar = New System.Windows.Forms.Button()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Btt_RegPiedra = New System.Windows.Forms.Button()
@@ -256,12 +257,11 @@ Partial Class Proceso_Andina
         Me.Sym_Bomba_G7 = New SymbolFactoryDotNet.StandardControl()
         Me.Btt_Salir = New System.Windows.Forms.Button()
         Me.Sym_Torn_Cem_Desc = New SymbolFactoryDotNet.StandardControl()
-        Me.StandardControl3 = New SymbolFactoryDotNet.StandardControl()
+        Me.SymTolvaCem = New SymbolFactoryDotNet.StandardControl()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Tim_Wd_PLC = New System.Windows.Forms.Timer(Me.components)
-        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SymTolva2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.standardControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Banda, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -329,7 +329,7 @@ Partial Class Proceso_Andina
         CType(Me.Sym_Bomba_G4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba_G7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.StandardControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SymTolvaCem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -460,27 +460,27 @@ Partial Class Proceso_Andina
         Me.standardControl10.SymbolHandle = CType(649651336, Long)
         Me.standardControl10.TabIndex = 201
         '
-        'standardControl9
+        'SymTolva2
         '
-        Me.standardControl9.AnalogIntValue1 = CType(0, Short)
-        Me.standardControl9.AnalogValue1 = 0R
-        Me.standardControl9.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.standardControl9.BackColor = System.Drawing.Color.Transparent
-        Me.standardControl9.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.standardControl9.BandsCollection.Add(New SymbolFactoryNetEngine.Band(90.0R, 90, False, SymbolFactoryNetEngine.BandStyleOptions.Original, System.Drawing.Color.Red, "Band1"))
-        Me.standardControl9.BandsCollection.Add(New SymbolFactoryNetEngine.Band(80.0R, 80, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band2"))
-        Me.standardControl9.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.Red, "Band3"))
-        Me.standardControl9.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band4"))
-        Me.standardControl9.BlinkColor = System.Drawing.Color.Red
-        Me.standardControl9.Category = "1MH.cat2"
-        Me.standardControl9.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("standardControl9.DebugData"))
-        Me.standardControl9.FillColor = System.Drawing.Color.Silver
-        Me.standardControl9.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.standardControl9.Location = New System.Drawing.Point(525, 343)
-        Me.standardControl9.Name = "standardControl9"
-        Me.standardControl9.Size = New System.Drawing.Size(148, 128)
-        Me.standardControl9.SymbolHandle = CType(649651336, Long)
-        Me.standardControl9.TabIndex = 200
+        Me.SymTolva2.AnalogIntValue1 = CType(0, Short)
+        Me.SymTolva2.AnalogValue1 = 0R
+        Me.SymTolva2.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.SymTolva2.BackColor = System.Drawing.Color.Transparent
+        Me.SymTolva2.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.SymTolva2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(90.0R, 90, False, SymbolFactoryNetEngine.BandStyleOptions.Original, System.Drawing.Color.Red, "Band1"))
+        Me.SymTolva2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(80.0R, 80, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band2"))
+        Me.SymTolva2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.Red, "Band3"))
+        Me.SymTolva2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band4"))
+        Me.SymTolva2.BlinkColor = System.Drawing.Color.Red
+        Me.SymTolva2.Category = "1MH.cat2"
+        Me.SymTolva2.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("SymTolva2.DebugData"))
+        Me.SymTolva2.FillColor = System.Drawing.Color.Silver
+        Me.SymTolva2.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
+        Me.SymTolva2.Location = New System.Drawing.Point(525, 343)
+        Me.SymTolva2.Name = "SymTolva2"
+        Me.SymTolva2.Size = New System.Drawing.Size(148, 128)
+        Me.SymTolva2.SymbolHandle = CType(649651336, Long)
+        Me.SymTolva2.TabIndex = 200
         '
         'Sym_Bomba
         '
@@ -2414,7 +2414,7 @@ Partial Class Proceso_Andina
         '
         Me.Panel2.AutoScroll = True
         Me.Panel2.BackColor = System.Drawing.SystemColors.Control
-        Me.Panel2.Controls.Add(Me.Button1)
+        Me.Panel2.Controls.Add(Me.Btt_Sel_OD)
         Me.Panel2.Controls.Add(Me.btnagregar)
         Me.Panel2.Controls.Add(Me.TableLayoutPanel2)
         Me.Panel2.Controls.Add(Me.GroupBox8)
@@ -2461,20 +2461,33 @@ Partial Class Proceso_Andina
         Me.Panel2.Controls.Add(Me.label3)
         Me.Panel2.Controls.Add(Me.label2)
         Me.Panel2.Controls.Add(Me.Lbl_Dosif_T2)
-        Me.Panel2.Controls.Add(Me.standardControl9)
+        Me.Panel2.Controls.Add(Me.SymTolva2)
         Me.Panel2.Controls.Add(Me.Sym_DescargaCem)
         Me.Panel2.Controls.Add(Me.Sym_DescT2)
         Me.Panel2.Controls.Add(Me.Sym_Bomba_G2)
         Me.Panel2.Controls.Add(Me.Sym_Torn_Cem_Desc)
         Me.Panel2.Controls.Add(Me.SymTolva1)
         Me.Panel2.Controls.Add(Me.Sym_DescT1)
-        Me.Panel2.Controls.Add(Me.StandardControl3)
+        Me.Panel2.Controls.Add(Me.SymTolvaCem)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1338, 565)
         Me.Panel2.TabIndex = 259
+        '
+        'Btt_Sel_OD
+        '
+        Me.Btt_Sel_OD.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Btt_Sel_OD.Image = CType(resources.GetObject("Btt_Sel_OD.Image"), System.Drawing.Image)
+        Me.Btt_Sel_OD.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btt_Sel_OD.Location = New System.Drawing.Point(132, 221)
+        Me.Btt_Sel_OD.Name = "Btt_Sel_OD"
+        Me.Btt_Sel_OD.Size = New System.Drawing.Size(120, 40)
+        Me.Btt_Sel_OD.TabIndex = 294
+        Me.Btt_Sel_OD.Text = "Seleccionar"
+        Me.Btt_Sel_OD.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Btt_Sel_OD.UseVisualStyleBackColor = True
         '
         'btnagregar
         '
@@ -3446,27 +3459,27 @@ Partial Class Proceso_Andina
         Me.Sym_Torn_Cem_Desc.SymbolHandle = CType(1286531200, Long)
         Me.Sym_Torn_Cem_Desc.TabIndex = 276
         '
-        'StandardControl3
+        'SymTolvaCem
         '
-        Me.StandardControl3.AnalogIntValue1 = CType(0, Short)
-        Me.StandardControl3.AnalogValue1 = 0R
-        Me.StandardControl3.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
-        Me.StandardControl3.BackColor = System.Drawing.Color.Transparent
-        Me.StandardControl3.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.StandardControl3.BandsCollection.Add(New SymbolFactoryNetEngine.Band(90.0R, 90, False, SymbolFactoryNetEngine.BandStyleOptions.Original, System.Drawing.Color.Red, "Band1"))
-        Me.StandardControl3.BandsCollection.Add(New SymbolFactoryNetEngine.Band(80.0R, 80, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band2"))
-        Me.StandardControl3.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.Red, "Band3"))
-        Me.StandardControl3.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band4"))
-        Me.StandardControl3.BlinkColor = System.Drawing.Color.Red
-        Me.StandardControl3.Category = "1MH.cat2"
-        Me.StandardControl3.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("StandardControl3.DebugData"))
-        Me.StandardControl3.FillColor = System.Drawing.Color.Silver
-        Me.StandardControl3.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Shaded
-        Me.StandardControl3.Location = New System.Drawing.Point(1075, 287)
-        Me.StandardControl3.Name = "StandardControl3"
-        Me.StandardControl3.Size = New System.Drawing.Size(123, 274)
-        Me.StandardControl3.SymbolHandle = CType(760670432, Long)
-        Me.StandardControl3.TabIndex = 269
+        Me.SymTolvaCem.AnalogIntValue1 = CType(0, Short)
+        Me.SymTolvaCem.AnalogValue1 = 0R
+        Me.SymTolvaCem.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
+        Me.SymTolvaCem.BackColor = System.Drawing.Color.Transparent
+        Me.SymTolvaCem.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
+        Me.SymTolvaCem.BandsCollection.Add(New SymbolFactoryNetEngine.Band(90.0R, 90, False, SymbolFactoryNetEngine.BandStyleOptions.Original, System.Drawing.Color.Red, "Band1"))
+        Me.SymTolvaCem.BandsCollection.Add(New SymbolFactoryNetEngine.Band(80.0R, 80, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band2"))
+        Me.SymTolvaCem.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.Red, "Band3"))
+        Me.SymTolvaCem.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band4"))
+        Me.SymTolvaCem.BlinkColor = System.Drawing.Color.Red
+        Me.SymTolvaCem.Category = "1MH.cat2"
+        Me.SymTolvaCem.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("SymTolvaCem.DebugData"))
+        Me.SymTolvaCem.FillColor = System.Drawing.Color.Silver
+        Me.SymTolvaCem.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Shaded
+        Me.SymTolvaCem.Location = New System.Drawing.Point(1075, 287)
+        Me.SymTolvaCem.Name = "SymTolvaCem"
+        Me.SymTolvaCem.Size = New System.Drawing.Size(123, 274)
+        Me.SymTolvaCem.SymbolHandle = CType(760670432, Long)
+        Me.SymTolvaCem.TabIndex = 269
         '
         'ErrorProvider1
         '
@@ -3475,19 +3488,6 @@ Partial Class Proceso_Andina
         'Tim_Wd_PLC
         '
         Me.Tim_Wd_PLC.Interval = 300
-        '
-        'Button1
-        '
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
-        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.Location = New System.Drawing.Point(132, 221)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(120, 40)
-        Me.Button1.TabIndex = 294
-        Me.Button1.Text = "Seleccionar"
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'Proceso_Andina
         '
@@ -3499,7 +3499,7 @@ Partial Class Proceso_Andina
         Me.Name = "Proceso_Andina"
         Me.Text = "Proceso Andina"
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.standardControl9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SymTolva2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Bomba, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.standardControl6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Banda, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3580,7 +3580,7 @@ Partial Class Proceso_Andina
         CType(Me.Sym_Bomba_G4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Bomba_G7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.StandardControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SymTolvaCem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -3595,7 +3595,7 @@ Partial Class Proceso_Andina
     Private WithEvents Lbl_IngNomT2 As Label
     Private WithEvents Lbl_Dosif_T1 As Label
     Friend WithEvents standardControl10 As SymbolFactoryDotNet.StandardControl
-    Friend WithEvents standardControl9 As SymbolFactoryDotNet.StandardControl
+    Friend WithEvents SymTolva2 As SymbolFactoryDotNet.StandardControl
     Private WithEvents Sym_Bomba As SymbolFactoryDotNet.StandardControl
     Private WithEvents standardControl6 As SymbolFactoryDotNet.StandardControl
     Private WithEvents Sym_Banda As SymbolFactoryDotNet.StandardControl
@@ -3737,7 +3737,7 @@ Partial Class Proceso_Andina
     Friend WithEvents StandardControl8 As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Sym_Cemento As SymbolFactoryDotNet.StandardControl
     Private WithEvents Label21 As Label
-    Friend WithEvents StandardControl3 As SymbolFactoryDotNet.StandardControl
+    Friend WithEvents SymTolvaCem As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Sym_Bomba_G4 As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Sym_Bomba_G7 As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Label27 As Label
@@ -3823,5 +3823,5 @@ Partial Class Proceso_Andina
     Friend WithEvents Num_TeoAgua As NumericUpDown
     Friend WithEvents Num_RealAgua As NumericUpDown
     Friend WithEvents Label14 As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents Btt_Sel_OD As Button
 End Class
