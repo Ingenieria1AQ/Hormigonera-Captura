@@ -44,7 +44,7 @@ Public Class Login
 
             'Cargar_imagen()
         Catch ex As Exception
-            MessageBox.Show("Excepción", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show(ex.ToString, Application.ProductName & ": Excepción-Load Login ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Me.Close()
         End Try
 

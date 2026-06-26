@@ -540,7 +540,7 @@ Module Funciones
         permitidos(4) = "F4B5201C4C77"  'PC EUFRATES 2
         permitidos(5) = "80CE62510B25"  'KEVIN PC
         permitidos(6) = "846993700C32"  'PC HP INGE1
-        permitidos(7) = ""
+        permitidos(7) = "320102444368"  'PC DESKTOP-3DS3G4J -- ANDICA DE HORMIGONES
         permitidos(8) = ""
         permitidos(9) = ""
         permitidos(10) = ""
