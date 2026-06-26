@@ -20,6 +20,7 @@ Partial Class frmReportes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Btt_PrintOD = New System.Windows.Forms.Button()
         Me.btnOrdenDespacho = New System.Windows.Forms.Button()
         Me.txtOrdenDespacho = New System.Windows.Forms.TextBox()
         Me.cbOrdenDespacho = New System.Windows.Forms.CheckBox()
@@ -47,7 +48,6 @@ Partial Class frmReportes
         Me.dtpfehasta = New System.Windows.Forms.DateTimePicker()
         Me.Salir = New System.Windows.Forms.Button()
         Me.Reporte = New System.Windows.Forms.Button()
-        Me.Btt_PrintOD = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -79,6 +79,18 @@ Partial Class frmReportes
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(364, 344)
         Me.Panel1.TabIndex = 11
+        '
+        'Btt_PrintOD
+        '
+        Me.Btt_PrintOD.Enabled = False
+        Me.Btt_PrintOD.Image = Global.HORMIGONERA.My.Resources.Resources.printer
+        Me.Btt_PrintOD.Location = New System.Drawing.Point(254, 28)
+        Me.Btt_PrintOD.Name = "Btt_PrintOD"
+        Me.Btt_PrintOD.Size = New System.Drawing.Size(36, 33)
+        Me.Btt_PrintOD.TabIndex = 33
+        Me.Btt_PrintOD.Text = "..."
+        Me.Btt_PrintOD.UseVisualStyleBackColor = True
+        Me.Btt_PrintOD.Visible = False
         '
         'btnOrdenDespacho
         '
@@ -338,17 +350,6 @@ Partial Class frmReportes
         Me.Reporte.Text = "Reporte"
         Me.Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Reporte.UseVisualStyleBackColor = True
-        '
-        'Btt_PrintOD
-        '
-        Me.Btt_PrintOD.Enabled = False
-        Me.Btt_PrintOD.Image = Global.HORMIGONERA.My.Resources.Resources.printer
-        Me.Btt_PrintOD.Location = New System.Drawing.Point(254, 28)
-        Me.Btt_PrintOD.Name = "Btt_PrintOD"
-        Me.Btt_PrintOD.Size = New System.Drawing.Size(36, 33)
-        Me.Btt_PrintOD.TabIndex = 33
-        Me.Btt_PrintOD.Text = "..."
-        Me.Btt_PrintOD.UseVisualStyleBackColor = True
         '
         'frmReportes
         '

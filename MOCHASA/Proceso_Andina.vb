@@ -676,10 +676,24 @@ Public Class Proceso_Andina
                 Rtx_Mensajes.AppendColoredText("Dosificacion en proceso" & Environment.NewLine,
                     Drawing.Color.Black,
                     font_Rtxt)
+
+            End If
+            If MessageBox.Show("¿Desea continuar con la dosificación?" & vbCrLf & "Verifique que las balanzas se encuentren enceradas",
+                               "Confirmación", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
+                'Usuario Cancela la dosificacion
                 Exit Sub
             End If
             'Captura Id de la Orden de Despacho
-            codigoOD = lblcomprobante.Text
+            If lblcomprobante.Text = "--" Or String.IsNullOrWhiteSpace(lblcomprobante.Text) Then
+                Rtx_Mensajes.AppendColoredText("Cree o seleccione una orden de despacho" & Environment.NewLine,
+                    Drawing.Color.Red,
+                    font_Rtxt)
+                MessageBox.Show("Cree o seleccione una orden de despacho", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            Else
+                codigoOD = lblcomprobante.Text
+            End If
+
 
             'HABILITAR ESTA OPCION para controlar número de batch
             'NumBatchPlanificacion = Num_BatchPlanificacion.Value
@@ -1371,6 +1385,7 @@ Public Class Proceso_Andina
                 Btt_RegCemento.Enabled = False
                 Btt_RegAgua.Enabled = False
                 Variables.TipoOD = String.Empty
+                Lbl_Info.Text = "Dosificación Finalizada"
             End If
         End If
 
@@ -1443,6 +1458,12 @@ Public Class Proceso_Andina
                 Sym_Torn_Cem_Carga.DiscreteValue1 = False
                 Sym_DescargaCem.DiscreteValue1 = False
                 Sym_Torn_Cem_Desc.DiscreteValue1 = False
+
+                SymTolva1.DiscreteValue1 = False
+                SymTolva2.DiscreteValue1 = False
+                SymTolvaCem.DiscreteValue1 = False
+                ValvulaDescarga.DiscreteValue1 = False
+
                 'Resetea valores de controles 
                 'Lbl_Dosif_T1.Text = "0.00"
                 'Lbl_Dosif_T2.Text = "0.00"

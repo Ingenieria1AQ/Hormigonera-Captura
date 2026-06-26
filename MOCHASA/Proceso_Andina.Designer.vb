@@ -467,10 +467,7 @@ Partial Class Proceso_Andina
         Me.SymTolva2.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
         Me.SymTolva2.BackColor = System.Drawing.Color.Transparent
         Me.SymTolva2.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.SymTolva2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(90.0R, 90, False, SymbolFactoryNetEngine.BandStyleOptions.Original, System.Drawing.Color.Red, "Band1"))
-        Me.SymTolva2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(80.0R, 80, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band2"))
-        Me.SymTolva2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.Red, "Band3"))
-        Me.SymTolva2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band4"))
+        Me.SymTolva2.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.Lime, "Band1"))
         Me.SymTolva2.BlinkColor = System.Drawing.Color.Red
         Me.SymTolva2.Category = "1MH.cat2"
         Me.SymTolva2.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("SymTolva2.DebugData"))
@@ -1384,7 +1381,7 @@ Partial Class Proceso_Andina
         Me.SymTolva1.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
         Me.SymTolva1.BackColor = System.Drawing.Color.Transparent
         Me.SymTolva1.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.SymTolva1.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(64, Byte), Integer)), "Band1"))
+        Me.SymTolva1.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.Lime, "Band1"))
         Me.SymTolva1.BlinkColor = System.Drawing.Color.Red
         Me.SymTolva1.Category = "1MH.cat2"
         Me.SymTolva1.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("SymTolva1.DebugData"))
@@ -2223,7 +2220,7 @@ Partial Class Proceso_Andina
         Me.Sym_DescargaCem.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
         Me.Sym_DescargaCem.BackColor = System.Drawing.Color.Transparent
         Me.Sym_DescargaCem.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.Sym_DescargaCem.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer)), "Band1"))
+        Me.Sym_DescargaCem.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.Lime, "Band1"))
         Me.Sym_DescargaCem.BlinkColor = System.Drawing.Color.Red
         Me.Sym_DescargaCem.Category = "1SENS.cat2"
         Me.Sym_DescargaCem.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Sym_DescargaCem.DebugData"))
@@ -3233,6 +3230,7 @@ Partial Class Proceso_Andina
         Me.txtPlaca.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPlaca.Location = New System.Drawing.Point(111, 68)
         Me.txtPlaca.Name = "txtPlaca"
+        Me.txtPlaca.ReadOnly = True
         Me.txtPlaca.Size = New System.Drawing.Size(128, 20)
         Me.txtPlaca.TabIndex = 25
         '
@@ -3251,6 +3249,7 @@ Partial Class Proceso_Andina
         Me.txtNomMixer.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNomMixer.Location = New System.Drawing.Point(188, 41)
         Me.txtNomMixer.Name = "txtNomMixer"
+        Me.txtNomMixer.ReadOnly = True
         Me.txtNomMixer.Size = New System.Drawing.Size(238, 21)
         Me.txtNomMixer.TabIndex = 22
         '
@@ -3260,6 +3259,7 @@ Partial Class Proceso_Andina
         Me.txtidMixer.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtidMixer.Location = New System.Drawing.Point(111, 41)
         Me.txtidMixer.Name = "txtidMixer"
+        Me.txtidMixer.ReadOnly = True
         Me.txtidMixer.Size = New System.Drawing.Size(70, 21)
         Me.txtidMixer.TabIndex = 21
         '
@@ -3288,6 +3288,7 @@ Partial Class Proceso_Andina
         Me.nomProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.nomProducto.Location = New System.Drawing.Point(188, 14)
         Me.nomProducto.Name = "nomProducto"
+        Me.nomProducto.ReadOnly = True
         Me.nomProducto.Size = New System.Drawing.Size(238, 21)
         Me.nomProducto.TabIndex = 3
         '
@@ -3297,6 +3298,7 @@ Partial Class Proceso_Andina
         Me.codProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.codProducto.Location = New System.Drawing.Point(111, 14)
         Me.codProducto.Name = "codProducto"
+        Me.codProducto.ReadOnly = True
         Me.codProducto.Size = New System.Drawing.Size(70, 21)
         Me.codProducto.TabIndex = 2
         '
@@ -3466,10 +3468,7 @@ Partial Class Proceso_Andina
         Me.SymTolvaCem.AnimationMode = SymbolFactoryNetEngine.AnimationModeOptions.DiscreteColorFill
         Me.SymTolvaCem.BackColor = System.Drawing.Color.Transparent
         Me.SymTolvaCem.BackStyle = SymbolFactoryNetEngine.BackStyleOptions.Transparent
-        Me.SymTolvaCem.BandsCollection.Add(New SymbolFactoryNetEngine.Band(90.0R, 90, False, SymbolFactoryNetEngine.BandStyleOptions.Original, System.Drawing.Color.Red, "Band1"))
-        Me.SymTolvaCem.BandsCollection.Add(New SymbolFactoryNetEngine.Band(80.0R, 80, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band2"))
-        Me.SymTolvaCem.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.Red, "Band3"))
-        Me.SymTolvaCem.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.Shaded, System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer)), "Band4"))
+        Me.SymTolvaCem.BandsCollection.Add(New SymbolFactoryNetEngine.Band(0R, 0, False, SymbolFactoryNetEngine.BandStyleOptions.BlinkShaded, System.Drawing.Color.Lime, "Band1"))
         Me.SymTolvaCem.BlinkColor = System.Drawing.Color.Red
         Me.SymTolvaCem.Category = "1MH.cat2"
         Me.SymTolvaCem.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("SymTolvaCem.DebugData"))
