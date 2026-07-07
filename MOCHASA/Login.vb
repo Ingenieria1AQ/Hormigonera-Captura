@@ -7,8 +7,8 @@ Public Class Login
 
             Me.CenterToScreen()
             'Aplicar cierre de aplicación - Eliminar para quitar validacion
-            Dim fechaLimite As New DateTime(2026, 9, 20)
-            Funciones.AplicacionVigente(fechaLimite)
+            'Dim fechaLimite As New DateTime(2026, 9, 20)
+            'Funciones.AplicacionVigente(fechaLimite)
 
             'Control de licencia al iniciar el programa
             Funciones.verifica_mac()

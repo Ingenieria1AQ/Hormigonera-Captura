@@ -679,24 +679,23 @@ Partial Class Proceso_Andina
         '
         Me.Btt_ReCon_T1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Btt_ReCon_T1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_ReCon_T1.Location = New System.Drawing.Point(774, 83)
+        Me.Btt_ReCon_T1.Location = New System.Drawing.Point(1053, 20)
         Me.Btt_ReCon_T1.Name = "Btt_ReCon_T1"
         Me.Btt_ReCon_T1.Size = New System.Drawing.Size(71, 26)
         Me.Btt_ReCon_T1.TabIndex = 226
-        Me.Btt_ReCon_T1.Text = "Reconectar"
+        Me.Btt_ReCon_T1.Text = "Reconectar Aridos"
         Me.Btt_ReCon_T1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_ReCon_T1.UseVisualStyleBackColor = True
         Me.Btt_ReCon_T1.Visible = False
         '
         'Lbl_Peso_T1
         '
-        Me.Lbl_Peso_T1.BackColor = System.Drawing.Color.SteelBlue
-        Me.Lbl_Peso_T1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Peso_T1.ForeColor = System.Drawing.Color.Black
-        Me.Lbl_Peso_T1.Location = New System.Drawing.Point(6, 24)
-        Me.Lbl_Peso_T1.MaximumSize = New System.Drawing.Size(70, 16)
+        Me.Lbl_Peso_T1.BackColor = System.Drawing.Color.Black
+        Me.Lbl_Peso_T1.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Peso_T1.ForeColor = System.Drawing.Color.Red
+        Me.Lbl_Peso_T1.Location = New System.Drawing.Point(6, 42)
         Me.Lbl_Peso_T1.Name = "Lbl_Peso_T1"
-        Me.Lbl_Peso_T1.Size = New System.Drawing.Size(70, 16)
+        Me.Lbl_Peso_T1.Size = New System.Drawing.Size(105, 29)
         Me.Lbl_Peso_T1.TabIndex = 0
         Me.Lbl_Peso_T1.Text = "0.00"
         '
@@ -708,7 +707,7 @@ Partial Class Proceso_Andina
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(774, 15)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(131, 63)
+        Me.GroupBox1.Size = New System.Drawing.Size(131, 84)
         Me.GroupBox1.TabIndex = 227
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "BLZ. ARIDOS"
@@ -718,7 +717,7 @@ Partial Class Proceso_Andina
         Me.Lbl_Est_T1.AutoSize = True
         Me.Lbl_Est_T1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_Est_T1.ForeColor = System.Drawing.Color.DarkRed
-        Me.Lbl_Est_T1.Location = New System.Drawing.Point(32, 46)
+        Me.Lbl_Est_T1.Location = New System.Drawing.Point(34, 21)
         Me.Lbl_Est_T1.Name = "Lbl_Est_T1"
         Me.Lbl_Est_T1.Size = New System.Drawing.Size(77, 13)
         Me.Lbl_Est_T1.TabIndex = 243
@@ -737,7 +736,7 @@ Partial Class Proceso_Andina
         Me.Pil_Tolv1.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pil_Tolv1.DebugData"))
         Me.Pil_Tolv1.FillColor = System.Drawing.Color.Gray
         Me.Pil_Tolv1.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pil_Tolv1.Location = New System.Drawing.Point(6, 45)
+        Me.Pil_Tolv1.Location = New System.Drawing.Point(8, 20)
         Me.Pil_Tolv1.Name = "Pil_Tolv1"
         Me.Pil_Tolv1.Size = New System.Drawing.Size(20, 15)
         Me.Pil_Tolv1.SymbolHandle = CType(480163100, Long)
@@ -800,7 +799,7 @@ Partial Class Proceso_Andina
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(911, 14)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(136, 63)
+        Me.GroupBox3.Size = New System.Drawing.Size(136, 85)
         Me.GroupBox3.TabIndex = 228
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "BLZ. CEMENTO"
@@ -810,7 +809,7 @@ Partial Class Proceso_Andina
         Me.Lbl_Est_Cem.AutoSize = True
         Me.Lbl_Est_Cem.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl_Est_Cem.ForeColor = System.Drawing.Color.DarkRed
-        Me.Lbl_Est_Cem.Location = New System.Drawing.Point(31, 45)
+        Me.Lbl_Est_Cem.Location = New System.Drawing.Point(31, 23)
         Me.Lbl_Est_Cem.Name = "Lbl_Est_Cem"
         Me.Lbl_Est_Cem.Size = New System.Drawing.Size(77, 13)
         Me.Lbl_Est_Cem.TabIndex = 245
@@ -818,13 +817,13 @@ Partial Class Proceso_Andina
         '
         'Lbl_Peso_Cem
         '
-        Me.Lbl_Peso_Cem.BackColor = System.Drawing.Color.IndianRed
-        Me.Lbl_Peso_Cem.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Peso_Cem.ForeColor = System.Drawing.Color.Black
-        Me.Lbl_Peso_Cem.Location = New System.Drawing.Point(6, 24)
+        Me.Lbl_Peso_Cem.BackColor = System.Drawing.Color.Black
+        Me.Lbl_Peso_Cem.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Peso_Cem.ForeColor = System.Drawing.Color.Red
+        Me.Lbl_Peso_Cem.Location = New System.Drawing.Point(6, 44)
         Me.Lbl_Peso_Cem.MinimumSize = New System.Drawing.Size(70, 16)
         Me.Lbl_Peso_Cem.Name = "Lbl_Peso_Cem"
-        Me.Lbl_Peso_Cem.Size = New System.Drawing.Size(70, 16)
+        Me.Lbl_Peso_Cem.Size = New System.Drawing.Size(114, 29)
         Me.Lbl_Peso_Cem.TabIndex = 0
         Me.Lbl_Peso_Cem.Text = "0.00"
         '
@@ -841,7 +840,7 @@ Partial Class Proceso_Andina
         Me.Pil_TolvCemento.DebugData = New SymbolFactoryDotNet.DebugClass(resources.GetString("Pil_TolvCemento.DebugData"))
         Me.Pil_TolvCemento.FillColor = System.Drawing.Color.Gray
         Me.Pil_TolvCemento.FillColorMode = SymbolFactoryNetEngine.FillColorModeOptions.Solid
-        Me.Pil_TolvCemento.Location = New System.Drawing.Point(7, 44)
+        Me.Pil_TolvCemento.Location = New System.Drawing.Point(7, 22)
         Me.Pil_TolvCemento.Name = "Pil_TolvCemento"
         Me.Pil_TolvCemento.Size = New System.Drawing.Size(20, 15)
         Me.Pil_TolvCemento.SymbolHandle = CType(480163100, Long)
@@ -851,11 +850,11 @@ Partial Class Proceso_Andina
         '
         Me.Btt_ReCon_Cemento.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Btt_ReCon_Cemento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btt_ReCon_Cemento.Location = New System.Drawing.Point(911, 82)
+        Me.Btt_ReCon_Cemento.Location = New System.Drawing.Point(1053, 52)
         Me.Btt_ReCon_Cemento.Name = "Btt_ReCon_Cemento"
         Me.Btt_ReCon_Cemento.Size = New System.Drawing.Size(71, 26)
         Me.Btt_ReCon_Cemento.TabIndex = 226
-        Me.Btt_ReCon_Cemento.Text = "Reconectar"
+        Me.Btt_ReCon_Cemento.Text = "Reconectar Cemento"
         Me.Btt_ReCon_Cemento.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Btt_ReCon_Cemento.UseVisualStyleBackColor = True
         Me.Btt_ReCon_Cemento.Visible = False
@@ -2106,9 +2105,9 @@ Partial Class Proceso_Andina
         Me.GroupBox6.Controls.Add(Me.Btt_ReconectaPLC)
         Me.GroupBox6.Controls.Add(Me.Pil_PLC)
         Me.GroupBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox6.Location = New System.Drawing.Point(513, 20)
+        Me.GroupBox6.Location = New System.Drawing.Point(513, 16)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(255, 79)
+        Me.GroupBox6.Size = New System.Drawing.Size(255, 83)
         Me.GroupBox6.TabIndex = 241
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Info Comunicación PLC"

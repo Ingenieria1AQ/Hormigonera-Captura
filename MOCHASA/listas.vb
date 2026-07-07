@@ -89,7 +89,8 @@ Public Class listas
                                         Transacciones AS T
                                     WHERE
                                         T.Id_Cabecera = Cb.Id
-                                );")
+                                )
+                            ORDER BY Cb.Hora DESC;")
                 campoCodigo = "Id"
                 campoNombre = "Id"
         End Select

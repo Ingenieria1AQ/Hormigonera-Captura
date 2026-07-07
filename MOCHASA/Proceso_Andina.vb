@@ -172,17 +172,17 @@ Public Class Proceso_Andina
 
     Private Sub PesoT1_Recibido(peso As Decimal)
         BeginInvoke(Sub()
-                        Lbl_Peso_T1.Text = peso.ToString("N2") 'Peso con 2 decimales
+                        Lbl_Peso_T1.Text = peso.ToString("N0") 'Peso con 2 decimales
                     End Sub)
     End Sub
     Private Sub PesoT2_Recibido(peso As Decimal)
         BeginInvoke(Sub()
-                        Lbl_Peso_T2.Text = peso.ToString("N2") 'Peso con 2 decimales
+                        Lbl_Peso_T2.Text = peso.ToString("N0") 'Peso con 2 decimales
                     End Sub)
     End Sub
     Private Sub pesoCem_Recibido(peso As Decimal)
         BeginInvoke(Sub()
-                        Lbl_Peso_Cem.Text = peso.ToString("N2") 'Peso con 2 decimales
+                        Lbl_Peso_Cem.Text = peso.ToString("N0") 'Peso con 2 decimales
                     End Sub)
     End Sub
     Private Sub EstadoT1(conectado As Boolean, mensaje As String)
@@ -382,7 +382,7 @@ Public Class Proceso_Andina
             Block_lectura_HR = PLC_LOGO.ReadHoldingRegisters(0, 3)
             Dim litros As Decimal
             litros = Block_lectura_HR(Variables.dir_ContadorFlujometro) * FactorAgua
-            Lbl_Agua.Text = litros.ToString("N2") 'Litros con 2 decimales
+            Lbl_Agua.Text = litros.ToString("N0") 'Litros con 2 decimales
         Catch ex As Exception
             If PLC_LOGO.Connected Then
                 PLC_LOGO.Disconnect()
@@ -464,7 +464,7 @@ Public Class Proceso_Andina
             'Else
             '    Pb_Tol4.Value = Pb_Tol4.Maximum
             'End If
-            Lbl_Dosif_Agua.Text = ValActual.ToString("N2")
+            Lbl_Dosif_Agua.Text = ValActual.ToString("N0")
             If flagFinParcialAgua = False Then
                 'Carga Parcial
                 Dim Compara As Double = (LimiteAgua + corteAgua) * FactorParcialAgua / 100
@@ -508,7 +508,7 @@ Public Class Proceso_Andina
             '    Pb_Tol3.Value = Pb_Tol3.Maximum
             'End If
 
-            Lbl_Dosif_Cemento.Text = valActual.ToString("N2")
+            Lbl_Dosif_Cemento.Text = valActual.ToString("N0")
             Dim Compara As Double = LimiteCemento
             If valActual >= Compara Then
                 Tim_Carga_Cem.Enabled = False
@@ -553,7 +553,7 @@ Public Class Proceso_Andina
     Private Sub Tim_DescargaT1_Tick(sender As Object, e As EventArgs) Handles Tim_DescargaT1.Tick
         Try
             Dim ValProceso As Double = ValorInicialT1 - Convert.ToDouble(Lbl_Peso_T1.Text)
-            Lbl_Dosif_T1.Text = ValProceso.ToString("N2")
+            Lbl_Dosif_T1.Text = ValProceso.ToString("N0")
             'Validacion de ProgressBar
             If ValProceso <= Pb_Tol1.Maximum And ValProceso >= Pb_Tol1.Minimum Then
                 Pb_Tol1.Value = ValProceso
@@ -600,7 +600,7 @@ Public Class Proceso_Andina
     Private Sub Tim_DescargaT2_Tick(sender As Object, e As EventArgs) Handles Tim_DescargaT2.Tick
         Try
             Dim ValProceso As Double = ValorInicialT2 - Convert.ToDouble(Lbl_Peso_T2.Text)
-            Lbl_Dosif_T2.Text = ValProceso.ToString("N2")
+            Lbl_Dosif_T2.Text = ValProceso.ToString("N0")
             'Validacion de ProgressBar
             If ValProceso <= Pb_Tol2.Maximum And ValProceso >= Pb_Tol2.Minimum Then
                 Pb_Tol2.Value = ValProceso
@@ -1219,8 +1219,8 @@ Public Class Proceso_Andina
                                     pesoSet4, pesoReal4, Variables.Factor, ID_OrdenDespacho)
             Pb_Tol4.Maximum = pesoReal4
             Pb_Tol4.Value = pesoReal4
-            Lbl_Dosif_Agua.Text = pesoReal4.ToString("N2")
-            CambiaProceso_Labels(Variables.reg_Lbl_Agua, pesoReal4.ToString("N2"), Diferencia.ToString("N2"))
+            Lbl_Dosif_Agua.Text = pesoReal4.ToString("N0")
+            CambiaProceso_Labels(Variables.reg_Lbl_Agua, pesoReal4.ToString("N0"), Diferencia.ToString("N0"))
             CambiaEstado_Label(Variables.reg_Lbl_Agua, "FINALIZADO", Color.Red)
             'Verificar si es el ultimo ing
             If flagFinTolv2 And flagFinAgua And flagFinDesCargaCemento Then
@@ -1291,8 +1291,8 @@ Public Class Proceso_Andina
                                         pesoSet3, pesoReal3, Variables.Factor, ID_OrdenDespacho)
             Pb_Tol3.Maximum = CInt(pesoReal3)
             Pb_Tol3.Value = CInt(pesoReal3)
-            Lbl_Dosif_Cemento.Text = pesoReal3.ToString("N2")
-            CambiaProceso_Labels(Variables.reg_Lbl_Cem, pesoReal3.ToString("N2"), Diferencia.ToString("N2"))
+            Lbl_Dosif_Cemento.Text = pesoReal3.ToString("N0")
+            CambiaProceso_Labels(Variables.reg_Lbl_Cem, pesoReal3.ToString("N0"), Diferencia.ToString("N0"))
             CambiaEstado_Label(Variables.reg_Lbl_Cem, "FIN CARGA", Color.DarkGreen)
             Rtx_Mensajes.AppendColoredText("Carga de cemento finalizada" & Environment.NewLine,
                     Drawing.Color.Black,
@@ -1612,8 +1612,8 @@ Public Class Proceso_Andina
             Rtx_Mensajes.AppendColoredText("Peso T1 Registrado" & Environment.NewLine,
                     Drawing.Color.Black,
                     font_Rtxt)
-            Lbl_Dosif_T1.Text = pesoReal1.ToString("N2")
-            CambiaProceso_Labels(Variables.reg_Lbl_Tolv1, pesoReal1.ToString("N2"), Diferencia.ToString("N2"))
+            Lbl_Dosif_T1.Text = pesoReal1.ToString("N0")
+            CambiaProceso_Labels(Variables.reg_Lbl_Tolv1, pesoReal1.ToString("N0"), Diferencia.ToString("N0"))
             'Espera 4 segundos para activar la dosificacion parcial de T2
             Await DelayMs(4000)
             IniciarDescargaParcialT2()
@@ -1840,8 +1840,8 @@ Public Class Proceso_Andina
         'Guardar registro de pesada
         Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T2, Variables.NombreIngrediente_T2,
                                     pesoSet2, pesoReal2, Variables.Factor, ID_OrdenDespacho)
-        Lbl_Dosif_T2.Text = pesoReal2.ToString("N2")
-        CambiaProceso_Labels(Variables.reg_Lbl_Tolv2, pesoReal2.ToString("N2"), Diferencia.ToString("N2"))
+        Lbl_Dosif_T2.Text = pesoReal2.ToString("N0")
+        CambiaProceso_Labels(Variables.reg_Lbl_Tolv2, pesoReal2.ToString("N0"), Diferencia.ToString("N0"))
         CambiaEstado_Label(Variables.reg_Lbl_Tolv2, "FINALIZADO", Color.Red)
         flagFinTolv2 = True
         Rtx_Mensajes.AppendColoredText("Descarga Total de Tolva 2 Finalizada" & Environment.NewLine,
@@ -1901,12 +1901,12 @@ Public Class Proceso_Andina
                                 pesoSet1, pesoReal1, Variables.Factor, codigoOD)
         'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
         '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
-        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T1} = {pesoReal1.ToString("N2")}" & Environment.NewLine,
+        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T1} = {pesoReal1.ToString("N0")}" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
         Console.Beep()
-        Lbl_Cap_Piedra.Text = pesoReal1.ToString("N2")
-        Lbl_Dosif_T1.Text = pesoReal1.ToString("N2")
+        Lbl_Cap_Piedra.Text = pesoReal1.ToString("N0")
+        Lbl_Dosif_T1.Text = pesoReal1.ToString("N0")
 
     End Sub
 
@@ -1925,15 +1925,20 @@ Public Class Proceso_Andina
                                 pesoSet2, pesoReal2, Variables.Factor, codigoOD)
         'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
         '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
-        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T2} = {pesoReal2.ToString("N2")}" & Environment.NewLine,
+        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T2} = {pesoReal2.ToString("N0")}" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
         Console.Beep()
-        Lbl_Cap_Arena.Text = pesoReal2.ToString("N2")
-        Lbl_Dosif_T2.Text = pesoReal2.ToString("N2")
+        Lbl_Cap_Arena.Text = pesoReal2.ToString("N0")
+        Lbl_Dosif_T2.Text = pesoReal2.ToString("N0")
     End Sub
 
     Private Sub Btt_RegCemento_Click(sender As Object, e As EventArgs) Handles Btt_RegCemento.Click
+        If MessageBox.Show("¿Desea registrar la cantidad de cemento?" & vbCrLf & "Esta acción deshabilitará la descarga de cemento hasta la creación de una nueva orden",
+                               "Confirmación", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
+            'Usuario Cancela la dosificacion
+            Exit Sub
+        End If
         flagFinDesCargaCemento = True
         'Procesar guardar peso -- Se guarda registro por descarga
         'pesoReal3 = ValorInicialCemento - Convert.ToDouble(Lbl_Peso_Cem.Text)
@@ -1947,12 +1952,15 @@ Public Class Proceso_Andina
                                 pesoSet3, pesoReal3, Variables.Factor, codigoOD)
         'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
         '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
-        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T3} = {pesoReal3.ToString("N2")}" & Environment.NewLine,
+        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T3} = {pesoReal3.ToString("N0")}" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
         Console.Beep()
-        Lbl_Cap_Cemento.Text = pesoReal3.ToString("N2")
-        Lbl_Dosif_Cemento.Text = pesoReal3.ToString("N2")
+        Lbl_Cap_Cemento.Text = pesoReal3.ToString("N0")
+        Lbl_Dosif_Cemento.Text = pesoReal3.ToString("N0")
+        'Deshabilitar descarga de cemento
+        ResetTodasSignals()
+        EscribeCoil_Controlada(Variables.coil_Paro, True)
     End Sub
 
     Private Sub Btt_RegAgua_Click(sender As Object, e As EventArgs) Handles Btt_RegAgua.Click
@@ -1967,11 +1975,11 @@ Public Class Proceso_Andina
                                 pesoSet4, pesoReal4, Variables.Factor, codigoOD)
         'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
         '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
-        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T4} = {pesoReal4.ToString("N2")}" & Environment.NewLine,
+        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T4} = {pesoReal4.ToString("N0")}" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
         Console.Beep()
-        Lbl_Dosif_Agua.Text = pesoReal4.ToString("N2")
+        Lbl_Dosif_Agua.Text = pesoReal4.ToString("N0")
     End Sub
 
     Private Sub Btt_Sel_OD_Click(sender As Object, e As EventArgs) Handles Btt_Sel_OD.Click

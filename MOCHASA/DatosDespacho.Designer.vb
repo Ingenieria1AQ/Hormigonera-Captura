@@ -125,17 +125,18 @@ Partial Class DatosDespacho
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(19, 16)
+        Me.Label2.Location = New System.Drawing.Point(19, 387)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(42, 13)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Cliente:"
+        Me.Label2.Visible = False
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(19, 43)
+        Me.Label4.Location = New System.Drawing.Point(41, 24)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(53, 13)
         Me.Label4.TabIndex = 1
@@ -145,11 +146,12 @@ Partial Class DatosDespacho
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(19, 74)
+        Me.Label6.Location = New System.Drawing.Point(19, 411)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(41, 13)
         Me.Label6.TabIndex = 3
         Me.Label6.Text = "Chofer:"
+        Me.Label6.Visible = False
         '
         'Label7
         '
@@ -195,7 +197,7 @@ Partial Class DatosDespacho
         '
         Me.txtPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtPlaca.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPlaca.Location = New System.Drawing.Point(606, 100)
+        Me.txtPlaca.Location = New System.Drawing.Point(132, 104)
         Me.txtPlaca.Name = "txtPlaca"
         Me.txtPlaca.Size = New System.Drawing.Size(128, 20)
         Me.txtPlaca.TabIndex = 10
@@ -212,7 +214,7 @@ Partial Class DatosDespacho
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(521, 103)
+        Me.Label9.Location = New System.Drawing.Point(57, 107)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(37, 13)
         Me.Label9.TabIndex = 8
@@ -231,7 +233,7 @@ Partial Class DatosDespacho
         'txtobservaciones
         '
         Me.txtobservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtobservaciones.Location = New System.Drawing.Point(132, 162)
+        Me.txtobservaciones.Location = New System.Drawing.Point(131, 142)
         Me.txtobservaciones.Name = "txtobservaciones"
         Me.txtobservaciones.Size = New System.Drawing.Size(602, 20)
         Me.txtobservaciones.TabIndex = 11
@@ -240,7 +242,7 @@ Partial Class DatosDespacho
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(19, 161)
+        Me.Label11.Location = New System.Drawing.Point(12, 142)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(81, 13)
         Me.Label11.TabIndex = 4
@@ -248,24 +250,13 @@ Partial Class DatosDespacho
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.NumericM3)
         Me.GroupBox2.Controls.Add(Me.Button4)
         Me.GroupBox2.Controls.Add(Me.txtNomMixer)
         Me.GroupBox2.Controls.Add(Me.txtidMixer)
         Me.GroupBox2.Controls.Add(Me.Label13)
-        Me.GroupBox2.Controls.Add(Me.Label12)
-        Me.GroupBox2.Controls.Add(Me.txtm3)
-        Me.GroupBox2.Controls.Add(Me.Label5)
         Me.GroupBox2.Controls.Add(Me.Button3)
         Me.GroupBox2.Controls.Add(Me.nomProducto)
         Me.GroupBox2.Controls.Add(Me.codProducto)
-        Me.GroupBox2.Controls.Add(Me.Button2)
-        Me.GroupBox2.Controls.Add(Me.nomCliente)
-        Me.GroupBox2.Controls.Add(Me.codCliente)
-        Me.GroupBox2.Controls.Add(Me.Button1)
-        Me.GroupBox2.Controls.Add(Me.nomChofer)
-        Me.GroupBox2.Controls.Add(Me.codChofer)
-        Me.GroupBox2.Controls.Add(Me.Label2)
         Me.GroupBox2.Controls.Add(Me.Label9)
         Me.GroupBox2.Controls.Add(Me.Label10)
         Me.GroupBox2.Controls.Add(Me.txtdocumento)
@@ -277,7 +268,6 @@ Partial Class DatosDespacho
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.Label7)
         Me.GroupBox2.Controls.Add(Me.Label8)
-        Me.GroupBox2.Controls.Add(Me.Label6)
         Me.GroupBox2.Location = New System.Drawing.Point(0, 115)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(754, 197)
@@ -288,17 +278,18 @@ Partial Class DatosDespacho
         '
         Me.NumericM3.DecimalPlaces = 1
         Me.NumericM3.Increment = New Decimal(New Integer() {5, 0, 0, 65536})
-        Me.NumericM3.Location = New System.Drawing.Point(606, 126)
+        Me.NumericM3.Location = New System.Drawing.Point(623, 407)
         Me.NumericM3.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.NumericM3.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NumericM3.Name = "NumericM3"
         Me.NumericM3.Size = New System.Drawing.Size(71, 20)
         Me.NumericM3.TabIndex = 218
         Me.NumericM3.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.NumericM3.Visible = False
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(443, 104)
+        Me.Button4.Location = New System.Drawing.Point(464, 67)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(27, 21)
         Me.Button4.TabIndex = 23
@@ -309,7 +300,7 @@ Partial Class DatosDespacho
         '
         Me.txtNomMixer.BackColor = System.Drawing.Color.White
         Me.txtNomMixer.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNomMixer.Location = New System.Drawing.Point(188, 103)
+        Me.txtNomMixer.Location = New System.Drawing.Point(209, 66)
         Me.txtNomMixer.Name = "txtNomMixer"
         Me.txtNomMixer.Size = New System.Drawing.Size(238, 20)
         Me.txtNomMixer.TabIndex = 22
@@ -318,7 +309,7 @@ Partial Class DatosDespacho
         '
         Me.txtidMixer.BackColor = System.Drawing.Color.White
         Me.txtidMixer.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtidMixer.Location = New System.Drawing.Point(111, 103)
+        Me.txtidMixer.Location = New System.Drawing.Point(132, 66)
         Me.txtidMixer.Name = "txtidMixer"
         Me.txtidMixer.Size = New System.Drawing.Size(70, 20)
         Me.txtidMixer.TabIndex = 21
@@ -327,7 +318,7 @@ Partial Class DatosDespacho
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(19, 103)
+        Me.Label13.Location = New System.Drawing.Point(57, 71)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(35, 13)
         Me.Label13.TabIndex = 20
@@ -337,17 +328,18 @@ Partial Class DatosDespacho
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(683, 130)
+        Me.Label12.Location = New System.Drawing.Point(700, 411)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(21, 13)
         Me.Label12.TabIndex = 19
         Me.Label12.Text = "m3"
+        Me.Label12.Visible = False
         '
         'txtm3
         '
         Me.txtm3.BackColor = System.Drawing.Color.White
         Me.txtm3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtm3.Location = New System.Drawing.Point(429, 136)
+        Me.txtm3.Location = New System.Drawing.Point(622, 431)
         Me.txtm3.Name = "txtm3"
         Me.txtm3.Size = New System.Drawing.Size(70, 20)
         Me.txtm3.TabIndex = 18
@@ -357,15 +349,16 @@ Partial Class DatosDespacho
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(521, 130)
+        Me.Label5.Location = New System.Drawing.Point(538, 411)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(52, 13)
         Me.Label5.TabIndex = 17
         Me.Label5.Text = "Cantidad:"
+        Me.Label5.Visible = False
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(443, 43)
+        Me.Button3.Location = New System.Drawing.Point(464, 22)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(27, 21)
         Me.Button3.TabIndex = 5
@@ -376,7 +369,7 @@ Partial Class DatosDespacho
         '
         Me.nomProducto.BackColor = System.Drawing.Color.White
         Me.nomProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nomProducto.Location = New System.Drawing.Point(188, 42)
+        Me.nomProducto.Location = New System.Drawing.Point(209, 21)
         Me.nomProducto.Name = "nomProducto"
         Me.nomProducto.Size = New System.Drawing.Size(238, 20)
         Me.nomProducto.TabIndex = 3
@@ -385,64 +378,70 @@ Partial Class DatosDespacho
         '
         Me.codProducto.BackColor = System.Drawing.Color.White
         Me.codProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.codProducto.Location = New System.Drawing.Point(111, 42)
+        Me.codProducto.Location = New System.Drawing.Point(132, 21)
         Me.codProducto.Name = "codProducto"
         Me.codProducto.Size = New System.Drawing.Size(70, 20)
         Me.codProducto.TabIndex = 2
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(443, 14)
+        Me.Button2.Location = New System.Drawing.Point(443, 385)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(27, 21)
         Me.Button2.TabIndex = 2
         Me.Button2.Text = "..."
         Me.Button2.UseVisualStyleBackColor = True
+        Me.Button2.Visible = False
         '
         'nomCliente
         '
         Me.nomCliente.BackColor = System.Drawing.Color.White
         Me.nomCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nomCliente.Location = New System.Drawing.Point(188, 13)
+        Me.nomCliente.Location = New System.Drawing.Point(188, 384)
         Me.nomCliente.Name = "nomCliente"
         Me.nomCliente.Size = New System.Drawing.Size(238, 20)
         Me.nomCliente.TabIndex = 1
+        Me.nomCliente.Visible = False
         '
         'codCliente
         '
         Me.codCliente.BackColor = System.Drawing.Color.White
         Me.codCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.codCliente.Location = New System.Drawing.Point(111, 13)
+        Me.codCliente.Location = New System.Drawing.Point(111, 384)
         Me.codCliente.Name = "codCliente"
         Me.codCliente.Size = New System.Drawing.Size(70, 20)
         Me.codCliente.TabIndex = 0
+        Me.codCliente.Visible = False
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(443, 75)
+        Me.Button1.Location = New System.Drawing.Point(443, 412)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(27, 21)
         Me.Button1.TabIndex = 16
         Me.Button1.Text = "..."
         Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'nomChofer
         '
         Me.nomChofer.BackColor = System.Drawing.Color.White
         Me.nomChofer.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nomChofer.Location = New System.Drawing.Point(188, 74)
+        Me.nomChofer.Location = New System.Drawing.Point(188, 411)
         Me.nomChofer.Name = "nomChofer"
         Me.nomChofer.Size = New System.Drawing.Size(238, 20)
         Me.nomChofer.TabIndex = 6
+        Me.nomChofer.Visible = False
         '
         'codChofer
         '
         Me.codChofer.BackColor = System.Drawing.Color.White
         Me.codChofer.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.codChofer.Location = New System.Drawing.Point(111, 74)
+        Me.codChofer.Location = New System.Drawing.Point(111, 411)
         Me.codChofer.Name = "codChofer"
         Me.codChofer.Size = New System.Drawing.Size(70, 20)
         Me.codChofer.TabIndex = 5
+        Me.codChofer.Visible = False
         '
         'Label16
         '
@@ -582,15 +581,27 @@ Partial Class DatosDespacho
         '
         'tab2
         '
+        Me.tab2.Controls.Add(Me.NumericM3)
         Me.tab2.Controls.Add(Me.lbloperador)
         Me.tab2.Controls.Add(Me.Label3)
         Me.tab2.Controls.Add(Me.Label16)
         Me.tab2.Controls.Add(Me.Label1)
         Me.tab2.Controls.Add(Me.btnokclave)
+        Me.tab2.Controls.Add(Me.Label12)
+        Me.tab2.Controls.Add(Me.Label5)
         Me.tab2.Controls.Add(Me.lbltipo)
+        Me.tab2.Controls.Add(Me.txtm3)
         Me.tab2.Controls.Add(Me.lblcomprobante)
         Me.tab2.Controls.Add(Me.btnguardar)
         Me.tab2.Controls.Add(Me.GroupBox2)
+        Me.tab2.Controls.Add(Me.Button1)
+        Me.tab2.Controls.Add(Me.Label6)
+        Me.tab2.Controls.Add(Me.Button2)
+        Me.tab2.Controls.Add(Me.Label2)
+        Me.tab2.Controls.Add(Me.nomCliente)
+        Me.tab2.Controls.Add(Me.codChofer)
+        Me.tab2.Controls.Add(Me.codCliente)
+        Me.tab2.Controls.Add(Me.nomChofer)
         Me.tab2.Location = New System.Drawing.Point(4, 22)
         Me.tab2.Name = "tab2"
         Me.tab2.Padding = New System.Windows.Forms.Padding(3)

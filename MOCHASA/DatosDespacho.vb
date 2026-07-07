@@ -22,33 +22,29 @@ Public Class DatosDespacho
     Private Sub cargarGrid()
         Try
             Dim con As New OleDbConnection(sConnString)
-            Dim cmdTxt As String = "SELECT CT.[Id]
-                                  ,CT.[Tipo]
-                                  ,CT.[Fecha]
-                                  ,CT.[Hora]
-	                              ,CT.CodCliente AS [Código Cliente]
-                                  ,Cli.Nombre AS [Cliente]
-	                              ,CT.CodProducto as [Código Producto]
-                                  ,Prod.Descripcion as [Producto]
-                                  ,CT.[Documento]
-	                              ,CT.CodChofer as [Código Chofer]
-                                  ,Chf.Nombre as [Chofer]
-                                  ,CT.[Observaciones]
-                                  ,CT.[NetoM3] AS [Neto m^3]
-                                  ,CT.[MotTraslado] AS [Motivo de Traslado]
-                                  ,CT.[PtoPartida] AS [Punto de Partida]
-                                  ,CT.[PtoLlegada] AS [Punto de LLegada]
-                                  ,CT.[Obra] 
-	                              ,CT.idMixer as [Código Mixer]
-                                  ,Mx.NombreMixer AS [Mixer]
-	                              ,Mx.Placa AS [Placa Mixer]
-                                  ,CT.[Eliminado]
-                                  ,CT.[Estado]
-                              FROM [CabeceraTransacciones] CT INNER JOIN Clientes Cli ON CT.CodCliente = Cli.CodCliente 
-                              INNER JOIN Productos Prod ON CT.CodProducto = Prod.Id_Producto
-                              INNER JOIN Choferes Chf ON CT.CodChofer = Chf.CodChofer 
-                              INNER JOIN Mixers Mx ON CT.idMixer = Mx.Id
-                              ORDER BY CT.Id DESC"
+            Dim cmdTxt As String = "SELECT
+                                    CT.Id,
+                                    CT.Tipo,
+                                    CT.Fecha,
+                                    CT.Hora,
+                                    CT.CodProducto AS [Código Producto],
+                                    Prod.Descripcion AS Producto,
+                                    CT.Documento,
+                                    CT.Observaciones,
+                                    CT.Obra,
+                                    CT.idMixer AS [Código Mixer],
+                                    Mx.NombreMixer AS Mixer,
+                                    Mx.Placa AS [Placa Mixer],
+                                    CT.Eliminado,
+                                    CT.Estado
+                                FROM
+                                    (
+                                        CabeceraTransacciones AS CT
+                                        INNER JOIN Productos AS Prod ON CT.CodProducto = Prod.Id_Producto
+                                    )
+                                    INNER JOIN Mixers AS Mx ON CT.idMixer = Mx.Id
+                                ORDER BY
+                                    CT.Hora DESC;"
             Dim da As New OleDbDataAdapter(cmdTxt, con)
             Dim tabl_Datos As New DataTable
             da.Fill(tabl_Datos)
@@ -215,6 +211,8 @@ Public Class DatosDespacho
         txtidMixer.Text = ""
         txtNomMixer.Text = ""
         txtPlaca.Text = ""
+        txtobservaciones.Text = ""
+        txtdocumento.Text = ""
         codCliente.Enabled = False
         codProducto.Enabled = False
         codChofer.Enabled = False
@@ -257,13 +255,13 @@ Public Class DatosDespacho
             txtm3.Text = 0.0
         End If
         If tipotrans = "Entra" Then
-            If Me.codChofer.Text <> "" And Me.codCliente.Text <> "" And Me.codProducto.Text <> "" And Me.txtidMixer.Text <> "" Then
+            If Me.codProducto.Text <> "" And Me.txtidMixer.Text <> "" Then
                 Try
                     Select Case opcion
                         Case 1
                             'complete = guardartransaccion(lblcomprobante.Text, lbltipo.Text, codOperador, txtfecha.Text, txthora.Text, codCliente.Text, codProducto.Text, txtdocumento.Text, txtPlaca.Text, codChofer.Text, txtobservaciones.Text, txtm3.Text, "", "", "", "", txtidMixer.Text, False)
-                            complete = guardartransaccion(lblcomprobante.Text, "DESPACHO", codOperador, Date.Today, Date.Now, Convert.ToInt32(codCliente.Text), codProducto.Text, txtdocumento.Text,
-                                                          txtPlaca.Text, Convert.ToInt32(codChofer.Text), txtobservaciones.Text, NumericM3.Value, "", "", "", "", Convert.ToInt32(txtidMixer.Text), False)
+                            complete = guardartransaccion(lblcomprobante.Text, "DESPACHO", Variables.codOperador, Date.Today, Date.Now, "0", codProducto.Text, txtdocumento.Text,
+                                                          txtPlaca.Text, 0, txtobservaciones.Text, 0, "", "", "", "", Convert.ToInt32(txtidMixer.Text), False)
                             If complete = 1 Then
                                 Dim csave As Integer
                                 csave = guardarconsecutivo("Despacho", codigo)
@@ -273,8 +271,8 @@ Public Class DatosDespacho
                                 MessageBox.Show("No se pudo almacenar la transaccion compruebe los datos", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
                             End If
                         Case 2
-                            complete = ActualizarTransaccion(lblcomprobante.Text, "DESPACHO", Convert.ToInt32(codCliente.Text), codProducto.Text, txtdocumento.Text,
-                                                            Convert.ToInt32(codChofer.Text), txtobservaciones.Text, NumericM3.Value, "", "", "", "", Convert.ToInt32(txtidMixer.Text), VersionActual)
+                            complete = ActualizarTransaccion(lblcomprobante.Text, "DESPACHO", "0", codProducto.Text, txtdocumento.Text,
+                                                            0, txtobservaciones.Text, 0, "", "", "", "", Convert.ToInt32(txtidMixer.Text), VersionActual)
                             If complete = 1 Then
                                 LimpiarControles()
                                 MessageBox.Show("La información se ha actualizado con exito", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -593,8 +591,13 @@ Public Class DatosDespacho
                     cmd.Parameters.AddWithValue("?", PtoLlegada)                            'PtoLlegada
                     cmd.Parameters.AddWithValue("?", Obra)                                  'Obra
                     cmd.Parameters.AddWithValue("?", idMixer)                               'idMixer
-                    cmd.Parameters.AddWithValue("?", If(eliminado, 1, 0))                   'Eliminado
-                    cmd.Parameters.AddWithValue("?", estado)                                'Estado se crea con valor true o 1
+                    If Variables.tipoBD = "ACCESS" Then
+                        cmd.Parameters.AddWithValue("?", eliminado)                         'Eliminado
+                        cmd.Parameters.AddWithValue("?", estado)                            'Estado se crea con valor true o 1
+                    Else
+                        cmd.Parameters.AddWithValue("?", If(eliminado, 1, 0))               'Eliminado
+                        cmd.Parameters.AddWithValue("?", If(estado, 1, 0))                  'Estado se crea con valor true o 1
+                    End If
                     cmd.Parameters.AddWithValue("?", version)                               'version se crea con valor 1
                     con.Open()
                     cmd.ExecuteNonQuery()
@@ -805,17 +808,17 @@ Public Class DatosDespacho
                 TabControl1.SelectedTab = tab2
                 TabControl1.TabPages(1).Enabled = True
                 If IsDBNull(DataGridView1.Rows(cod).Cells("Id").Value) = False Then lblcomprobante.Text = DataGridView1.Rows(cod).Cells("Id").Value
-                If IsDBNull(DataGridView1.Rows(cod).Cells("Código Cliente").Value) = False Then codCliente.Text = DataGridView1.Rows(cod).Cells("Código Cliente").Value
-                If IsDBNull(DataGridView1.Rows(cod).Cells("Cliente").Value) = False Then nomCliente.Text = DataGridView1.Rows(cod).Cells("Cliente").Value
+                'If IsDBNull(DataGridView1.Rows(cod).Cells("Código Cliente").Value) = False Then codCliente.Text = DataGridView1.Rows(cod).Cells("Código Cliente").Value
+                'If IsDBNull(DataGridView1.Rows(cod).Cells("Cliente").Value) = False Then nomCliente.Text = DataGridView1.Rows(cod).Cells("Cliente").Value
                 If IsDBNull(DataGridView1.Rows(cod).Cells("Código Producto").Value) = False Then codProducto.Text = DataGridView1.Rows(cod).Cells("Código Producto").Value
                 If IsDBNull(DataGridView1.Rows(cod).Cells("Producto").Value) = False Then nomProducto.Text = DataGridView1.Rows(cod).Cells("Producto").Value
-                If IsDBNull(DataGridView1.Rows(cod).Cells("Código Chofer").Value) = False Then codChofer.Text = DataGridView1.Rows(cod).Cells("Código Chofer").Value
-                If IsDBNull(DataGridView1.Rows(cod).Cells("Chofer").Value) = False Then nomChofer.Text = DataGridView1.Rows(cod).Cells("Chofer").Value
+                'If IsDBNull(DataGridView1.Rows(cod).Cells("Código Chofer").Value) = False Then codChofer.Text = DataGridView1.Rows(cod).Cells("Código Chofer").Value
+                'If IsDBNull(DataGridView1.Rows(cod).Cells("Chofer").Value) = False Then nomChofer.Text = DataGridView1.Rows(cod).Cells("Chofer").Value
                 If IsDBNull(DataGridView1.Rows(cod).Cells("Código Mixer").Value) = False Then txtidMixer.Text = DataGridView1.Rows(cod).Cells("Código Mixer").Value
                 If IsDBNull(DataGridView1.Rows(cod).Cells("Mixer").Value) = False Then txtNomMixer.Text = DataGridView1.Rows(cod).Cells("Mixer").Value
                 If IsDBNull(DataGridView1.Rows(cod).Cells("Documento").Value) = False Then txtdocumento.Text = DataGridView1.Rows(cod).Cells("Documento").Value
                 If IsDBNull(DataGridView1.Rows(cod).Cells("Placa Mixer").Value) = False Then txtPlaca.Text = DataGridView1.Rows(cod).Cells("Placa Mixer").Value
-                If IsDBNull(DataGridView1.Rows(cod).Cells("Neto m^3").Value) = False Then NumericM3.Value = Convert.ToInt32(DataGridView1.Rows(cod).Cells("Neto m^3").Value)
+                'If IsDBNull(DataGridView1.Rows(cod).Cells("Neto m^3").Value) = False Then NumericM3.Value = Convert.ToInt32(DataGridView1.Rows(cod).Cells("Neto m^3").Value)
                 If IsDBNull(DataGridView1.Rows(cod).Cells("Observaciones").Value) = False Then txtobservaciones.Text = DataGridView1.Rows(cod).Cells("Observaciones").Value
 
             Else
