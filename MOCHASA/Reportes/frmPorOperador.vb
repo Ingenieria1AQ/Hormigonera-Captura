@@ -17,6 +17,7 @@ Public Class frmPorOperador
             dr("Ingrediente") = filtroingredienter
             dr("NomProducto") = NomProducto1
             dr("NomIngrediente") = NomIngrediente1
+            dr("Mixer") = NomMixer1
             dr("OrdenDespacho") = filtroOrdenDespachor
             dr("NombreEmpresa") = Variables.nombreEmpresa
             dr("RUC") = Variables.RUCEmpresa

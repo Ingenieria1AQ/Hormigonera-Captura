@@ -27,6 +27,8 @@
               <xs:element name="Peso_Real" msprop:Generator_ColumnVarNameInTable="columnPeso_Real" msprop:Generator_ColumnPropNameInRow="Peso_Real" msprop:Generator_ColumnPropNameInTable="Peso_RealColumn" msprop:Generator_UserColumnName="Peso_Real" type="xs:double" minOccurs="0" />
               <xs:element name="Fact_Multi" msprop:Generator_ColumnVarNameInTable="columnFact_Multi" msprop:Generator_ColumnPropNameInRow="Fact_Multi" msprop:Generator_ColumnPropNameInTable="Fact_MultiColumn" msprop:Generator_UserColumnName="Fact_Multi" type="xs:double" minOccurs="0" />
               <xs:element name="Id_Cabecera" msprop:Generator_ColumnVarNameInTable="columnId_Cabecera" msprop:Generator_ColumnPropNameInRow="Id_Cabecera" msprop:Generator_ColumnPropNameInTable="Id_CabeceraColumn" msprop:Generator_UserColumnName="Id_Cabecera" type="xs:string" minOccurs="0" />
+              <xs:element name="idMixer" msprop:Generator_ColumnVarNameInTable="columnidMixer" msprop:Generator_ColumnPropNameInRow="idMixer" msprop:Generator_ColumnPropNameInTable="idMixerColumn" msprop:Generator_UserColumnName="idMixer" type="xs:int" minOccurs="0" />
+              <xs:element name="NombreMixer" msprop:Generator_ColumnVarNameInTable="columnNombreMixer" msprop:Generator_ColumnPropNameInRow="NombreMixer" msprop:Generator_ColumnPropNameInTable="NombreMixerColumn" msprop:Generator_UserColumnName="NombreMixer" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -43,6 +45,7 @@
               <xs:element name="RUC" msprop:Generator_ColumnVarNameInTable="columnRUC" msprop:Generator_ColumnPropNameInRow="RUC" msprop:Generator_ColumnPropNameInTable="RUCColumn" msprop:Generator_UserColumnName="RUC" type="xs:string" minOccurs="0" />
               <xs:element name="ImagenEmpresa" msprop:Generator_ColumnVarNameInTable="columnImagenEmpresa" msprop:Generator_ColumnPropNameInRow="ImagenEmpresa" msprop:Generator_ColumnPropNameInTable="ImagenEmpresaColumn" msprop:Generator_UserColumnName="ImagenEmpresa" type="xs:base64Binary" minOccurs="0" />
               <xs:element name="OrdenDespacho" msprop:Generator_ColumnVarNameInTable="columnOrdenDespacho" msprop:Generator_ColumnPropNameInRow="OrdenDespacho" msprop:Generator_ColumnPropNameInTable="OrdenDespachoColumn" msprop:Generator_UserColumnName="OrdenDespacho" type="xs:string" minOccurs="0" />
+              <xs:element name="Mixer" msprop:Generator_ColumnVarNameInTable="columnMixer" msprop:Generator_ColumnPropNameInRow="Mixer" msprop:Generator_ColumnPropNameInTable="MixerColumn" msprop:Generator_UserColumnName="Mixer" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

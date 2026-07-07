@@ -541,7 +541,7 @@ Module Funciones
         permitidos(5) = "80CE62510B25"  'KEVIN PC
         permitidos(6) = "846993700C32"  'PC HP INGE1
         permitidos(7) = "320102444368"  'PC DESKTOP-3DS3G4J -- ANDICA DE HORMIGONES
-        permitidos(8) = ""
+        permitidos(8) = "7C8334BB5C54"  'PC OFICINA -- ANDINA DE HORMIGONES
         permitidos(9) = ""
         permitidos(10) = ""
         permitidos(11) = ""

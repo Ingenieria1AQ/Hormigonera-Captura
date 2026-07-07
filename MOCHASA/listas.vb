@@ -216,7 +216,10 @@ Public Class listas
         If destinoLista = "FReportesOrdenDespacho" Then
             frmReportes.txtOrdenDespacho.Text = DataGridView1.CurrentRow.Cells(0).Value
         End If
-
+        If destinoLista = "FReportesMixers" Then
+            frmReportes.txtMixer.Text = DataGridView1.CurrentRow.Cells(0).Value
+            frmReportes.Txt_NomMixer.Text = DataGridView1.CurrentRow.Cells(2).Value
+        End If
         'Andina de Hormigones ---------------------------------------------------------
         If destinoLista = "Proceso_Pr" Then
             Proceso_Andina.codProducto.Text = DataGridView1.CurrentRow.Cells(0).Value

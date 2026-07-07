@@ -15,6 +15,8 @@ Module Variables
     Public filtroingredienter As String
     Public NomProducto1 As String
     Public NomIngrediente1 As String
+    Public filtroMixersr As String
+    Public NomMixer1 As String
     'AQ
     Public IdOrdenDespacho As String
     Public nombreEmpresa As String

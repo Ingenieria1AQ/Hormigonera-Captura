@@ -20,11 +20,14 @@ Partial Class frmReportes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Salir = New System.Windows.Forms.Button()
         Me.Btt_PrintOD = New System.Windows.Forms.Button()
+        Me.Reporte = New System.Windows.Forms.Button()
         Me.btnOrdenDespacho = New System.Windows.Forms.Button()
         Me.txtOrdenDespacho = New System.Windows.Forms.TextBox()
         Me.cbOrdenDespacho = New System.Windows.Forms.CheckBox()
         Me.txtNomIngrediente = New System.Windows.Forms.TextBox()
+        Me.Txt_NomMixer = New System.Windows.Forms.TextBox()
         Me.txtNomProducto = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
@@ -33,11 +36,14 @@ Partial Class frmReportes
         Me.rboperador = New System.Windows.Forms.RadioButton()
         Me.btnproducto = New System.Windows.Forms.Button()
         Me.btningrediente = New System.Windows.Forms.Button()
+        Me.Btt_Mixer = New System.Windows.Forms.Button()
         Me.btnoperador = New System.Windows.Forms.Button()
         Me.txtproducto = New System.Windows.Forms.TextBox()
+        Me.txtMixer = New System.Windows.Forms.TextBox()
         Me.txtingrediente = New System.Windows.Forms.TextBox()
         Me.txtoperador = New System.Windows.Forms.TextBox()
         Me.cbproducto = New System.Windows.Forms.CheckBox()
+        Me.Chbx_Mixer = New System.Windows.Forms.CheckBox()
         Me.cbingrediente = New System.Windows.Forms.CheckBox()
         Me.cboperador = New System.Windows.Forms.CheckBox()
         Me.cbfechas = New System.Windows.Forms.CheckBox()
@@ -46,8 +52,6 @@ Partial Class frmReportes
         Me.Label3 = New System.Windows.Forms.Label()
         Me.dtpfedesde = New System.Windows.Forms.DateTimePicker()
         Me.dtpfehasta = New System.Windows.Forms.DateTimePicker()
-        Me.Salir = New System.Windows.Forms.Button()
-        Me.Reporte = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -55,30 +59,49 @@ Partial Class frmReportes
         '
         'Panel1
         '
+        Me.Panel1.AutoScroll = True
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.Salir)
         Me.Panel1.Controls.Add(Me.Btt_PrintOD)
+        Me.Panel1.Controls.Add(Me.Reporte)
         Me.Panel1.Controls.Add(Me.btnOrdenDespacho)
         Me.Panel1.Controls.Add(Me.txtOrdenDespacho)
         Me.Panel1.Controls.Add(Me.cbOrdenDespacho)
         Me.Panel1.Controls.Add(Me.txtNomIngrediente)
+        Me.Panel1.Controls.Add(Me.Txt_NomMixer)
         Me.Panel1.Controls.Add(Me.txtNomProducto)
         Me.Panel1.Controls.Add(Me.Label5)
         Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.btnproducto)
         Me.Panel1.Controls.Add(Me.btningrediente)
+        Me.Panel1.Controls.Add(Me.Btt_Mixer)
         Me.Panel1.Controls.Add(Me.btnoperador)
         Me.Panel1.Controls.Add(Me.txtproducto)
+        Me.Panel1.Controls.Add(Me.txtMixer)
         Me.Panel1.Controls.Add(Me.txtingrediente)
         Me.Panel1.Controls.Add(Me.txtoperador)
         Me.Panel1.Controls.Add(Me.cbproducto)
+        Me.Panel1.Controls.Add(Me.Chbx_Mixer)
         Me.Panel1.Controls.Add(Me.cbingrediente)
         Me.Panel1.Controls.Add(Me.cboperador)
         Me.Panel1.Controls.Add(Me.cbfechas)
         Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Location = New System.Drawing.Point(12, 12)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(364, 344)
+        Me.Panel1.Size = New System.Drawing.Size(364, 452)
         Me.Panel1.TabIndex = 11
+        '
+        'Salir
+        '
+        Me.Salir.Image = Global.HORMIGONERA.My.Resources.Resources.cerrar_chiquito
+        Me.Salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Salir.Location = New System.Drawing.Point(241, 405)
+        Me.Salir.Name = "Salir"
+        Me.Salir.Size = New System.Drawing.Size(92, 37)
+        Me.Salir.TabIndex = 13
+        Me.Salir.Text = "Salir"
+        Me.Salir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Salir.UseVisualStyleBackColor = True
         '
         'Btt_PrintOD
         '
@@ -91,6 +114,18 @@ Partial Class frmReportes
         Me.Btt_PrintOD.Text = "..."
         Me.Btt_PrintOD.UseVisualStyleBackColor = True
         Me.Btt_PrintOD.Visible = False
+        '
+        'Reporte
+        '
+        Me.Reporte.Image = Global.HORMIGONERA.My.Resources.Resources.book_go
+        Me.Reporte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Reporte.Location = New System.Drawing.Point(133, 405)
+        Me.Reporte.Name = "Reporte"
+        Me.Reporte.Size = New System.Drawing.Size(92, 37)
+        Me.Reporte.TabIndex = 12
+        Me.Reporte.Text = "Reporte"
+        Me.Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Reporte.UseVisualStyleBackColor = True
         '
         'btnOrdenDespacho
         '
@@ -128,6 +163,14 @@ Partial Class frmReportes
         Me.txtNomIngrediente.Size = New System.Drawing.Size(229, 20)
         Me.txtNomIngrediente.TabIndex = 29
         '
+        'Txt_NomMixer
+        '
+        Me.Txt_NomMixer.Enabled = False
+        Me.Txt_NomMixer.Location = New System.Drawing.Point(116, 300)
+        Me.Txt_NomMixer.Name = "Txt_NomMixer"
+        Me.Txt_NomMixer.Size = New System.Drawing.Size(228, 20)
+        Me.Txt_NomMixer.TabIndex = 28
+        '
         'txtNomProducto
         '
         Me.txtNomProducto.Enabled = False
@@ -139,7 +182,7 @@ Partial Class frmReportes
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(15, 267)
+        Me.Label5.Location = New System.Drawing.Point(15, 323)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(76, 13)
         Me.Label5.TabIndex = 12
@@ -150,7 +193,7 @@ Partial Class frmReportes
         Me.Panel3.Controls.Add(Me.rbproducto)
         Me.Panel3.Controls.Add(Me.rbingrediente)
         Me.Panel3.Controls.Add(Me.rboperador)
-        Me.Panel3.Location = New System.Drawing.Point(18, 283)
+        Me.Panel3.Location = New System.Drawing.Point(18, 344)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(327, 46)
         Me.Panel3.TabIndex = 27
@@ -207,6 +250,16 @@ Partial Class frmReportes
         Me.btningrediente.Text = "..."
         Me.btningrediente.UseVisualStyleBackColor = True
         '
+        'Btt_Mixer
+        '
+        Me.Btt_Mixer.Enabled = False
+        Me.Btt_Mixer.Location = New System.Drawing.Point(223, 272)
+        Me.Btt_Mixer.Name = "Btt_Mixer"
+        Me.Btt_Mixer.Size = New System.Drawing.Size(25, 23)
+        Me.Btt_Mixer.TabIndex = 23
+        Me.Btt_Mixer.Text = "..."
+        Me.Btt_Mixer.UseVisualStyleBackColor = True
+        '
         'btnoperador
         '
         Me.btnoperador.Enabled = False
@@ -224,6 +277,14 @@ Partial Class frmReportes
         Me.txtproducto.Name = "txtproducto"
         Me.txtproducto.Size = New System.Drawing.Size(100, 20)
         Me.txtproducto.TabIndex = 20
+        '
+        'txtMixer
+        '
+        Me.txtMixer.Enabled = False
+        Me.txtMixer.Location = New System.Drawing.Point(117, 274)
+        Me.txtMixer.Name = "txtMixer"
+        Me.txtMixer.Size = New System.Drawing.Size(100, 20)
+        Me.txtMixer.TabIndex = 18
         '
         'txtingrediente
         '
@@ -250,6 +311,16 @@ Partial Class frmReportes
         Me.cbproducto.TabIndex = 15
         Me.cbproducto.Text = "Por Producto"
         Me.cbproducto.UseVisualStyleBackColor = True
+        '
+        'Chbx_Mixer
+        '
+        Me.Chbx_Mixer.AutoSize = True
+        Me.Chbx_Mixer.Location = New System.Drawing.Point(18, 274)
+        Me.Chbx_Mixer.Name = "Chbx_Mixer"
+        Me.Chbx_Mixer.Size = New System.Drawing.Size(70, 17)
+        Me.Chbx_Mixer.TabIndex = 13
+        Me.Chbx_Mixer.Text = "Por Mixer"
+        Me.Chbx_Mixer.UseVisualStyleBackColor = True
         '
         'cbingrediente
         '
@@ -327,37 +398,11 @@ Partial Class frmReportes
         Me.dtpfehasta.Size = New System.Drawing.Size(87, 20)
         Me.dtpfehasta.TabIndex = 2
         '
-        'Salir
-        '
-        Me.Salir.Image = Global.HORMIGONERA.My.Resources.Resources.cerrar_chiquito
-        Me.Salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Salir.Location = New System.Drawing.Point(284, 362)
-        Me.Salir.Name = "Salir"
-        Me.Salir.Size = New System.Drawing.Size(92, 37)
-        Me.Salir.TabIndex = 13
-        Me.Salir.Text = "Salir"
-        Me.Salir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Salir.UseVisualStyleBackColor = True
-        '
-        'Reporte
-        '
-        Me.Reporte.Image = Global.HORMIGONERA.My.Resources.Resources.book_go
-        Me.Reporte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Reporte.Location = New System.Drawing.Point(169, 362)
-        Me.Reporte.Name = "Reporte"
-        Me.Reporte.Size = New System.Drawing.Size(92, 37)
-        Me.Reporte.TabIndex = 12
-        Me.Reporte.Text = "Reporte"
-        Me.Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Reporte.UseVisualStyleBackColor = True
-        '
         'frmReportes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(391, 410)
-        Me.Controls.Add(Me.Salir)
-        Me.Controls.Add(Me.Reporte)
+        Me.ClientSize = New System.Drawing.Size(391, 475)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "frmReportes"
         Me.Text = "Reportes"
@@ -399,4 +444,8 @@ Partial Class frmReportes
     Friend WithEvents txtOrdenDespacho As TextBox
     Friend WithEvents cbOrdenDespacho As CheckBox
     Friend WithEvents Btt_PrintOD As Button
+    Friend WithEvents Txt_NomMixer As TextBox
+    Friend WithEvents Btt_Mixer As Button
+    Friend WithEvents txtMixer As TextBox
+    Friend WithEvents Chbx_Mixer As CheckBox
 End Class

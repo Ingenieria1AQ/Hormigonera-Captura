@@ -377,6 +377,10 @@ Partial Public Class datosreportes
         
         Private columnId_Cabecera As Global.System.Data.DataColumn
         
+        Private columnidMixer As Global.System.Data.DataColumn
+        
+        Private columnNombreMixer As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -509,6 +513,22 @@ Partial Public Class datosreportes
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property idMixerColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnidMixer
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property NombreMixerColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNombreMixer
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -545,9 +565,9 @@ Partial Public Class datosreportes
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddTransaccionesRow(ByVal Nom_Operador As String, ByVal Hora As Date, ByVal Fecha As Date, ByVal batch As String, ByVal Cod_Producto As String, ByVal Nom_Producto As String, ByVal Cod_Ingrediente As String, ByVal Nom_Ingrediente As String, ByVal Cant_Seteada As Double, ByVal Peso_Real As Double, ByVal Fact_Multi As Double, ByVal Id_Cabecera As String) As TransaccionesRow
+        Public Overloads Function AddTransaccionesRow(ByVal Nom_Operador As String, ByVal Hora As Date, ByVal Fecha As Date, ByVal batch As String, ByVal Cod_Producto As String, ByVal Nom_Producto As String, ByVal Cod_Ingrediente As String, ByVal Nom_Ingrediente As String, ByVal Cant_Seteada As Double, ByVal Peso_Real As Double, ByVal Fact_Multi As Double, ByVal Id_Cabecera As String, ByVal idMixer As Integer, ByVal NombreMixer As String) As TransaccionesRow
             Dim rowTransaccionesRow As TransaccionesRow = CType(Me.NewRow,TransaccionesRow)
-            Dim columnValuesArray() As Object = New Object() {Nom_Operador, Hora, Fecha, batch, Cod_Producto, Nom_Producto, Cod_Ingrediente, Nom_Ingrediente, Cant_Seteada, Peso_Real, Fact_Multi, Id_Cabecera}
+            Dim columnValuesArray() As Object = New Object() {Nom_Operador, Hora, Fecha, batch, Cod_Producto, Nom_Producto, Cod_Ingrediente, Nom_Ingrediente, Cant_Seteada, Peso_Real, Fact_Multi, Id_Cabecera, idMixer, NombreMixer}
             rowTransaccionesRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTransaccionesRow)
             Return rowTransaccionesRow
@@ -582,6 +602,8 @@ Partial Public Class datosreportes
             Me.columnPeso_Real = MyBase.Columns("Peso_Real")
             Me.columnFact_Multi = MyBase.Columns("Fact_Multi")
             Me.columnId_Cabecera = MyBase.Columns("Id_Cabecera")
+            Me.columnidMixer = MyBase.Columns("idMixer")
+            Me.columnNombreMixer = MyBase.Columns("NombreMixer")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -611,6 +633,10 @@ Partial Public Class datosreportes
             MyBase.Columns.Add(Me.columnFact_Multi)
             Me.columnId_Cabecera = New Global.System.Data.DataColumn("Id_Cabecera", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnId_Cabecera)
+            Me.columnidMixer = New Global.System.Data.DataColumn("idMixer", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnidMixer)
+            Me.columnNombreMixer = New Global.System.Data.DataColumn("NombreMixer", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNombreMixer)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -768,6 +794,8 @@ Partial Public Class datosreportes
         
         Private columnOrdenDespacho As Global.System.Data.DataColumn
         
+        Private columnMixer As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -884,6 +912,14 @@ Partial Public Class datosreportes
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property MixerColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMixer
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -920,9 +956,9 @@ Partial Public Class datosreportes
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddEncabezadoRow(ByVal Operador As String, ByVal Fecha As String, ByVal Producto As String, ByVal Ingrediente As String, ByVal NomProducto As String, ByVal NomIngrediente As String, ByVal NombreEmpresa As String, ByVal RUC As String, ByVal ImagenEmpresa() As Byte, ByVal OrdenDespacho As String) As EncabezadoRow
+        Public Overloads Function AddEncabezadoRow(ByVal Operador As String, ByVal Fecha As String, ByVal Producto As String, ByVal Ingrediente As String, ByVal NomProducto As String, ByVal NomIngrediente As String, ByVal NombreEmpresa As String, ByVal RUC As String, ByVal ImagenEmpresa() As Byte, ByVal OrdenDespacho As String, ByVal Mixer As String) As EncabezadoRow
             Dim rowEncabezadoRow As EncabezadoRow = CType(Me.NewRow,EncabezadoRow)
-            Dim columnValuesArray() As Object = New Object() {Operador, Fecha, Producto, Ingrediente, NomProducto, NomIngrediente, NombreEmpresa, RUC, ImagenEmpresa, OrdenDespacho}
+            Dim columnValuesArray() As Object = New Object() {Operador, Fecha, Producto, Ingrediente, NomProducto, NomIngrediente, NombreEmpresa, RUC, ImagenEmpresa, OrdenDespacho, Mixer}
             rowEncabezadoRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowEncabezadoRow)
             Return rowEncabezadoRow
@@ -955,6 +991,7 @@ Partial Public Class datosreportes
             Me.columnRUC = MyBase.Columns("RUC")
             Me.columnImagenEmpresa = MyBase.Columns("ImagenEmpresa")
             Me.columnOrdenDespacho = MyBase.Columns("OrdenDespacho")
+            Me.columnMixer = MyBase.Columns("Mixer")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -980,6 +1017,8 @@ Partial Public Class datosreportes
             MyBase.Columns.Add(Me.columnImagenEmpresa)
             Me.columnOrdenDespacho = New Global.System.Data.DataColumn("OrdenDespacho", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOrdenDespacho)
+            Me.columnMixer = New Global.System.Data.DataColumn("Mixer", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMixer)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1867,6 +1906,36 @@ Partial Public Class datosreportes
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property idMixer() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableTransacciones.idMixerColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'idMixer' de la tabla 'Transacciones' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTransacciones.idMixerColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property NombreMixer() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTransacciones.NombreMixerColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'NombreMixer' de la tabla 'Transacciones' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTransacciones.NombreMixerColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsNom_OperadorNull() As Boolean
             Return Me.IsNull(Me.tableTransacciones.Nom_OperadorColumn)
         End Function
@@ -2007,6 +2076,30 @@ Partial Public Class datosreportes
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetId_CabeceraNull()
             Me(Me.tableTransacciones.Id_CabeceraColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsidMixerNull() As Boolean
+            Return Me.IsNull(Me.tableTransacciones.idMixerColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetidMixerNull()
+            Me(Me.tableTransacciones.idMixerColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsNombreMixerNull() As Boolean
+            Return Me.IsNull(Me.tableTransacciones.NombreMixerColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetNombreMixerNull()
+            Me(Me.tableTransacciones.NombreMixerColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -2177,6 +2270,21 @@ Partial Public Class datosreportes
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Mixer() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableEncabezado.MixerColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Mixer' de la tabla 'Encabezado' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableEncabezado.MixerColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsOperadorNull() As Boolean
             Return Me.IsNull(Me.tableEncabezado.OperadorColumn)
         End Function
@@ -2293,6 +2401,18 @@ Partial Public Class datosreportes
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetOrdenDespachoNull()
             Me(Me.tableEncabezado.OrdenDespachoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsMixerNull() As Boolean
+            Return Me.IsNull(Me.tableEncabezado.MixerColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetMixerNull()
+            Me(Me.tableEncabezado.MixerColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

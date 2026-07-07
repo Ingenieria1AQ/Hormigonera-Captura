@@ -58,29 +58,54 @@ Public Class frmReportes
         Dim filtroproducto As String = ""
         'AQ
         Dim filtroOrdenDespacho As String = ""
+        Dim filtroMixer As String = ""
 
         filtrofechasr = "Todas"
         filtrooperadorr = "Todos"
         filtroproductor = "Todos"
         filtroingredienter = "Todos"
         filtroOrdenDespachor = "Todos"
+        filtroMixersr = "Todos"
+        Variables.NomMixer1 = "Todos"
 
         NomIngrediente1 = ""
         NomProducto1 = ""
         Dim antes As Integer
-        Dim cadena1 As String = "SELECT distinct * from Transacciones"
+        'Dim cadena1 As String = "SELECT distinct * from Transacciones"
+        Dim cadena1 As String = "SELECT DISTINCT
+                                Tr.Nom_Operador,
+                                Tr.Hora,
+                                Tr.Fecha,
+                                Tr.batch,
+                                Tr.Cod_Producto,
+                                Tr.Nom_Producto,
+                                Tr.Cod_Ingrediente,
+                                Tr.Nom_Ingrediente,
+                                Tr.Cant_Seteada,
+                                Tr.Peso_Real,
+                                Tr.Fact_Multi,
+                                Tr.Id_Cabecera,
+                                CT.idMixer,
+                                Mx.NombreMixer
+                            FROM
+                                (
+                                    CabeceraTransacciones AS CT
+                                    INNER JOIN Transacciones AS Tr ON CT.id = Tr.Id_Cabecera
+                                )
+                                INNER JOIN Mixers Mx ON CT.idMixer = Mx.id"
+
         Dim cadena2 As String
 
 
         If cbfechas.Checked Then
             Select Case tipoBD
                 Case "ACCESS"
-                    filtrofecha = "((Fecha) Between #" & dtpfedesde.Value.Date & "# And #" & dtpfehasta.Value.Date & "#)"
-                    filtrofecha = "((Fecha) Between # " & dtpfedesde.Value.Date.Month & "/" & dtpfedesde.Value.Date.Day & "/" & dtpfedesde.Value.Date.Year & "# And #" & dtpfehasta.Value.Date.Month & "/" & dtpfehasta.Value.Date.Day & "/" & dtpfehasta.Value.Date.Year & "#)"
+                    filtrofecha = "((Tr.Fecha) Between #" & dtpfedesde.Value.Date & "# And #" & dtpfehasta.Value.Date & "#)"
+                    filtrofecha = "((Tr.Fecha) Between # " & dtpfedesde.Value.Date.Month & "/" & dtpfedesde.Value.Date.Day & "/" & dtpfedesde.Value.Date.Year & "# And #" & dtpfehasta.Value.Date.Month & "/" & dtpfehasta.Value.Date.Day & "/" & dtpfehasta.Value.Date.Year & "#)"
                     filtrofechasr = " desde " & dtpfedesde.Value.Date & " hasta " & dtpfehasta.Value.Date
                 Case Else
                     'SQLSERVER
-                    filtrofecha = String.Format("(Fecha >= '{0:yyyy-MM-dd}' AND Fecha < '{1:yyyy-MM-dd}')", dtpfedesde.Value.Date, dtpfehasta.Value.Date.AddDays(1))
+                    filtrofecha = String.Format("(Tr.Fecha >= '{0:yyyy-MM-dd}' AND Tr.Fecha < '{1:yyyy-MM-dd}')", dtpfedesde.Value.Date, dtpfehasta.Value.Date.AddDays(1))
                     filtrofechasr = " desde " & dtpfedesde.Value.ToShortDateString() & " hasta " & dtpfehasta.Value.ToShortDateString()
             End Select
         End If
@@ -103,8 +128,13 @@ Public Class frmReportes
             filtroOrdenDespachor = txtOrdenDespacho.Text
             'Variables.IdOrdenDespacho = txtOrdenDespacho.Text
         End If
+        If Chbx_Mixer.Checked = True Then
+            filtroMixer = "((CT.idMixer)=" & Convert.ToInt32(txtMixer.Text) & ")"
+            filtroMixersr = txtMixer.Text
+            NomMixer1 = Txt_NomMixer.Text
+        End If
         cadena2 = cadena1
-        If filtrofecha <> "" Or filtrooperador <> "" Or filtroingrediente <> "" Or filtroproducto <> "" Or filtroOrdenDespacho <> "" Then
+        If filtrofecha <> "" Or filtrooperador <> "" Or filtroingrediente <> "" Or filtroproducto <> "" Or filtroOrdenDespacho <> "" Or filtroMixer <> "" Then
             cadena2 = cadena2 & " WHERE "
         End If
         antes = 0
@@ -147,6 +177,14 @@ Public Class frmReportes
             End If
             antes = 1
         End If
+        If filtroMixer <> "" Then
+            If antes = 1 Then
+                cadena2 = cadena2 & " AND " & filtroMixer
+            Else
+                cadena2 = cadena2 & filtroMixer
+            End If
+            antes = 1
+        End If
 
         cadenaseleccion = cadena2
         If rboperador.Checked = True Then
@@ -185,9 +223,6 @@ Public Class frmReportes
         frmIngredientes.Show()
     End Sub
 
-    Private Sub frmReportes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 
     Private Sub cbOrdenDespacho_CheckedChanged(sender As Object, e As EventArgs) Handles cbOrdenDespacho.CheckedChanged
         If cbOrdenDespacho.Checked = True Then
@@ -213,6 +248,28 @@ Public Class frmReportes
         If txtOrdenDespacho.Text IsNot String.Empty Then
             idDespacho = txtOrdenDespacho.Text
             Despacho_frm.Show()
+        End If
+    End Sub
+
+    Private Sub Btt_Mixer_Click(sender As Object, e As EventArgs) Handles Btt_Mixer.Click
+        tipoLista = "MIXERS"
+        destinoLista = "FReportesMixers"
+
+        'listas.MdiParent = Principal
+        listas.Show()
+    End Sub
+
+    Private Sub Chbx_Mixer_CheckedChanged(sender As Object, e As EventArgs) Handles Chbx_Mixer.CheckedChanged
+        If Chbx_Mixer.Checked = True Then
+            txtMixer.Enabled = True
+            Txt_NomMixer.Enabled = True
+            Btt_Mixer.Enabled = True
+        Else
+            txtMixer.Enabled = False
+            txtMixer.Text = ""
+            Txt_NomMixer.Enabled = False
+            Txt_NomMixer.Text = ""
+            Btt_Mixer.Enabled = False
         End If
     End Sub
 End Class
