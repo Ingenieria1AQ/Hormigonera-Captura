@@ -1933,34 +1933,42 @@ Public Class Proceso_Andina
         Lbl_Dosif_T2.Text = pesoReal2.ToString("N0")
     End Sub
 
-    Private Sub Btt_RegCemento_Click(sender As Object, e As EventArgs) Handles Btt_RegCemento.Click
-        If MessageBox.Show("¿Desea registrar la cantidad de cemento?" & vbCrLf & "Esta acción deshabilitará la descarga de cemento hasta la creación de una nueva orden",
+    Private Async Sub Btt_RegCemento_Click(sender As Object, e As EventArgs) Handles Btt_RegCemento.Click
+        If flagFinDesCargaCemento = False Then
+            If MessageBox.Show("¿Desea registrar la cantidad de cemento?" & vbCrLf & "Esta acción deshabilitará la descarga de cemento hasta la creación de una nueva orden",
                                "Confirmación", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
-            'Usuario Cancela la dosificacion
-            Exit Sub
-        End If
-        flagFinDesCargaCemento = True
-        'Procesar guardar peso -- Se guarda registro por descarga
-        'pesoReal3 = ValorInicialCemento - Convert.ToDouble(Lbl_Peso_Cem.Text)
-        Sym_DescargaCem.DiscreteValue1 = False
-        SymTolvaCem.DiscreteValue1 = False
+                'Usuario Cancela la dosificacion
+                Exit Sub
+            End If
+            flagFinDesCargaCemento = True
+            'Procesar guardar peso -- Se guarda registro por descarga
+            'pesoReal3 = ValorInicialCemento - Convert.ToDouble(Lbl_Peso_Cem.Text)
+            Sym_DescargaCem.DiscreteValue1 = False
+            SymTolvaCem.DiscreteValue1 = False
 
-        pesoReal3 = Convert.ToDouble(Lbl_Peso_Cem.Text) * -1
-        pesoSet3 = Num_TeoCemento.Value
-        'Dim Diferencia As Double = pesoSet1 - pesoReal1
-        Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, Variables.CodigIngrediente_T3, Variables.NombreIngrediente_T3,
-                                pesoSet3, pesoReal3, Variables.Factor, codigoOD)
-        'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
-        '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
-        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T3} = {pesoReal3.ToString("N0")}" & Environment.NewLine,
-                Drawing.Color.Black,
-                font_Rtxt)
-        Console.Beep()
-        Lbl_Cap_Cemento.Text = pesoReal3.ToString("N0")
-        Lbl_Dosif_Cemento.Text = pesoReal3.ToString("N0")
-        'Deshabilitar descarga de cemento
-        ResetTodasSignals()
-        EscribeCoil_Controlada(Variables.coil_Paro, True)
+            'Deshabilitar descarga de cemento
+            ResetTodasSignals()
+            EscribeCoil_Controlada(Variables.coil_Paro, True)
+            Await DelayMs(4000) '---Espera estabilidad del peso
+            pesoReal3 = Convert.ToDouble(Lbl_Peso_Cem.Text) * -1
+            pesoSet3 = Num_TeoCemento.Value
+            'Dim Diferencia As Double = pesoSet1 - pesoReal1
+            Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, codProducto.Text, nomProducto.Text, Variables.CodigIngrediente_T3, Variables.NombreIngrediente_T3,
+                                    pesoSet3, pesoReal3, Variables.Factor, codigoOD)
+            'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
+            '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
+            Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T3} = {pesoReal3.ToString("N0")}" & Environment.NewLine,
+                    Drawing.Color.Black,
+                    font_Rtxt)
+            Console.Beep()
+            Lbl_Cap_Cemento.Text = pesoReal3.ToString("N0")
+            Lbl_Dosif_Cemento.Text = pesoReal3.ToString("N0")
+
+        Else
+            MessageBox.Show("El ingrediente ya tiene un registro de Cemento",
+                              "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+
     End Sub
 
     Private Sub Btt_RegAgua_Click(sender As Object, e As EventArgs) Handles Btt_RegAgua.Click

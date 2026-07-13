@@ -110,28 +110,38 @@ Public Class frmReportes
             End Select
         End If
         If cboperador.Checked = True Then
-            filtrooperador = "((Nom_Operador)='" & txtoperador.Text & "')"
-            filtrooperadorr = txtoperador.Text
+            If Not String.IsNullOrWhiteSpace(txtoperador.Text) Then
+                filtrooperador = "((Nom_Operador)='" & txtoperador.Text & "')"
+                filtrooperadorr = txtoperador.Text
+            End If
         End If
         If cbingrediente.Checked = True Then
-            filtroingrediente = "((Cod_Ingrediente)='" & txtingrediente.Text & "')"
-            filtroingredienter = txtingrediente.Text
-            NomIngrediente1 = txtNomIngrediente.Text
+            If Not String.IsNullOrWhiteSpace(txtingrediente.Text) Then
+                filtroingrediente = "((Cod_Ingrediente)='" & txtingrediente.Text & "')"
+                filtroingredienter = txtingrediente.Text
+                NomIngrediente1 = txtNomIngrediente.Text
+            End If
         End If
         If cbproducto.Checked = True Then
-            filtroproducto = "((Cod_Producto)='" & txtproducto.Text & "')"
-            filtroproductor = txtproducto.Text
-            NomProducto1 = txtNomProducto.Text
+            If Not String.IsNullOrWhiteSpace(txtproducto.Text) Then
+                filtroproducto = "((Cod_Producto)='" & txtproducto.Text & "')"
+                filtroproductor = txtproducto.Text
+                NomProducto1 = txtNomProducto.Text
+            End If
         End If
         If cbOrdenDespacho.Checked = True Then
-            filtroOrdenDespacho = "((Id_Cabecera)='" & txtOrdenDespacho.Text & "')"
-            filtroOrdenDespachor = txtOrdenDespacho.Text
-            'Variables.IdOrdenDespacho = txtOrdenDespacho.Text
+            If Not String.IsNullOrWhiteSpace(txtOrdenDespacho.Text) Then
+                filtroOrdenDespacho = "((Id_Cabecera)='" & txtOrdenDespacho.Text & "')"
+                filtroOrdenDespachor = txtOrdenDespacho.Text
+                'Variables.IdOrdenDespacho = txtOrdenDespacho.Text
+            End If
         End If
         If Chbx_Mixer.Checked = True Then
-            filtroMixer = "((CT.idMixer)=" & Convert.ToInt32(txtMixer.Text) & ")"
-            filtroMixersr = txtMixer.Text
-            NomMixer1 = Txt_NomMixer.Text
+            If Not String.IsNullOrWhiteSpace(txtMixer.Text) Then
+                filtroMixer = "((CT.idMixer)=" & Convert.ToInt32(txtMixer.Text) & ")"
+                filtroMixersr = txtMixer.Text
+                NomMixer1 = Txt_NomMixer.Text
+            End If
         End If
         cadena2 = cadena1
         If filtrofecha <> "" Or filtrooperador <> "" Or filtroingrediente <> "" Or filtroproducto <> "" Or filtroOrdenDespacho <> "" Or filtroMixer <> "" Then
