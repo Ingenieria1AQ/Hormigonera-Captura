@@ -61,7 +61,7 @@ Public Class listas
                 campoCodigo = "id"
                 campoNombre = "NombreMixer"
             Case "ORDEN_DESPACHO"
-                Call cargarDatos("SELECT * FROM CabeceraTransacciones")
+                Call cargarDatos("SELECT * FROM CabeceraTransacciones ORDER BY Hora DESC;")
                 campoCodigo = "Id"
                 campoNombre = "Id"
             Case "OD_PROCESO"
@@ -91,8 +91,8 @@ Public Class listas
                                         T.Id_Cabecera = Cb.Id
                                 )
                             ORDER BY Cb.Hora DESC;")
-                campoCodigo = "Id"
-                campoNombre = "Id"
+                campoCodigo = "Cb.Id"
+                campoNombre = "Cb.Id"
         End Select
         'Call cargarproductos("SELECT * FROM Productos")
 
@@ -343,6 +343,35 @@ Public Class listas
                     Call cargarDatos("SELECT * FROM CabeceraTransacciones")
                     campoCodigo = "Id"
                     campoNombre = "Id"
+                Case "OD_PROCESO"
+                    Call cargarDatos("SELECT
+                                Cb.Id,
+                                Cb.Fecha,
+                                Cb.Hora,
+                                Cb.CodProducto,
+                                Pr.Descripcion AS NomProducto,
+                                Cb.idMixer AS IdMixer,
+                                Mx.NombreMixer AS NomMixer,
+                                Mx.Placa AS PlacaMixer,
+                                Cb.Observaciones
+                            FROM
+                                (
+                                    CabeceraTransacciones AS Cb
+                                    LEFT JOIN Productos AS Pr ON Cb.CodProducto = Pr.Id_Producto
+                                )
+                                LEFT JOIN Mixers AS Mx ON Cb.idMixer = Mx.Id
+                            WHERE
+                                NOT EXISTS (
+                                    SELECT
+                                        *
+                                    FROM
+                                        Transacciones AS T
+                                    WHERE
+                                        T.Id_Cabecera = Cb.Id
+                                )
+                            ORDER BY Cb.Hora DESC;")
+                    campoCodigo = "Cb.Id"
+                    campoNombre = "Cb.Id"
             End Select
 
         End If
@@ -354,6 +383,35 @@ Public Class listas
             Button4.Text = "Filtrar"
             If tipoLista = "CHOFERES" Then
                 Call cargarDatos("SELECT * FROM " & tipoLista & " WHERE HABILITADO=1 order by nombre")
+            ElseIf tipoLista = "ORDEN_DESPACHO" Then
+                Call cargarDatos("SELECT * FROM CabeceraTransacciones ORDER BY Hora DESC;")
+            ElseIf tipoLista = "OD_PROCESO" Then
+                Call cargarDatos("SELECT
+                                Cb.Id,
+                                Cb.Fecha,
+                                Cb.Hora,
+                                Cb.CodProducto,
+                                Pr.Descripcion AS NomProducto,
+                                Cb.idMixer AS IdMixer,
+                                Mx.NombreMixer AS NomMixer,
+                                Mx.Placa AS PlacaMixer,
+                                Cb.Observaciones
+                            FROM
+                                (
+                                    CabeceraTransacciones AS Cb
+                                    LEFT JOIN Productos AS Pr ON Cb.CodProducto = Pr.Id_Producto
+                                )
+                                LEFT JOIN Mixers AS Mx ON Cb.idMixer = Mx.Id
+                            WHERE
+                                NOT EXISTS (
+                                    SELECT
+                                        *
+                                    FROM
+                                        Transacciones AS T
+                                    WHERE
+                                        T.Id_Cabecera = Cb.Id
+                                )
+                            ORDER BY Cb.Hora DESC;")
             Else
                 Call cargarDatos("SELECT * FROM " & tipoLista & " order by nombre")
             End If
@@ -362,18 +420,109 @@ Public Class listas
             If RadioButton4.Checked = True Then
                 If tipoLista = "choferes" Then
                     Call cargarDatos("SELECT * FROM " & tipoLista & " where HABILITADO=1 and " & campoCodigo & " like '%" & TextBox1.Text & "%' order by nombre")
+                ElseIf tipoLista = "ORDEN_DESPACHO" Then
+                    Call cargarDatos("SELECT * FROM CabeceraTransacciones where " & campoCodigo & " like '%" & TextBox1.Text & "%' ORDER BY Hora DESC;")
+                ElseIf tipoLista = "OD_PROCESO" Then
+                    'Call cargarDatos("SELECT * FROM CabeceraTransacciones where " & campoCodigo & " like '%" & TextBox1.Text & "%' ORDER BY Hora DESC;")
+                    Call cargarDatos("SELECT
+                                Cb.Id,
+                                Cb.Fecha,
+                                Cb.Hora,
+                                Cb.CodProducto,
+                                Pr.Descripcion AS NomProducto,
+                                Cb.idMixer AS IdMixer,
+                                Mx.NombreMixer AS NomMixer,
+                                Mx.Placa AS PlacaMixer,
+                                Cb.Observaciones
+                            FROM
+                                (
+                                    CabeceraTransacciones AS Cb
+                                    LEFT JOIN Productos AS Pr ON Cb.CodProducto = Pr.Id_Producto
+                                )
+                                LEFT JOIN Mixers AS Mx ON Cb.idMixer = Mx.Id
+                            WHERE
+                                NOT EXISTS (
+                                    SELECT
+                                        *
+                                    FROM
+                                        Transacciones AS T
+                                    WHERE
+                                        T.Id_Cabecera = Cb.Id
+                                ) AND " & campoCodigo & " like '%" & TextBox1.Text & "%' 
+                            ORDER BY Cb.Hora DESC;")
                 Else
                     Call cargarDatos("SELECT * FROM " & tipoLista & " where " & campoCodigo & " like '%" & TextBox1.Text & "%' order by nombre")
                 End If
+
             ElseIf RadioButton6.Checked = True Then
                 If tipoLista = "choferes" Then
                     Call cargarDatos("SELECT * FROM " & tipoLista & " where HABILITADO=1 and " & campoNombre & " like '%" & TextBox1.Text & "%' order by nombre")
+                ElseIf tipoLista = "ORDEN_DESPACHO" Then
+                    Call cargarDatos("SELECT * FROM CabeceraTransacciones where " & campoNombre & " like '%" & TextBox1.Text & "%' ORDER BY Hora DESC;")
+                ElseIf tipoLista = "OD_PROCESO" Then
+                    'Call cargarDatos("SELECT * FROM CabeceraTransacciones where " & campoNombre & " like '%" & TextBox1.Text & "%' ORDER BY Hora DESC;")
+                    Call cargarDatos("SELECT
+                                Cb.Id,
+                                Cb.Fecha,
+                                Cb.Hora,
+                                Cb.CodProducto,
+                                Pr.Descripcion AS NomProducto,
+                                Cb.idMixer AS IdMixer,
+                                Mx.NombreMixer AS NomMixer,
+                                Mx.Placa AS PlacaMixer,
+                                Cb.Observaciones
+                            FROM
+                                (
+                                    CabeceraTransacciones AS Cb
+                                    LEFT JOIN Productos AS Pr ON Cb.CodProducto = Pr.Id_Producto
+                                )
+                                LEFT JOIN Mixers AS Mx ON Cb.idMixer = Mx.Id
+                            WHERE
+                                NOT EXISTS (
+                                    SELECT
+                                        *
+                                    FROM
+                                        Transacciones AS T
+                                    WHERE
+                                        T.Id_Cabecera = Cb.Id
+                                ) AND " & campoNombre & " like '%" & TextBox1.Text & "%' 
+                            ORDER BY Cb.Hora DESC;")
                 Else
                     Call cargarDatos("SELECT * FROM " & tipoLista & " where " & campoNombre & " like '%" & TextBox1.Text & "%' order by nombre")
                 End If
             ElseIf RadioButton1.Checked = True Then
                 If tipoLista = "choferes" Then
                     Call cargarDatos("SELECT * FROM " & tipoLista & " where HABILITADO=1 and " & campoRUC & " like '%" & TextBox1.Text & "%' order by nombre")
+                ElseIf tipoLista = "ORDEN_DESPACHO" Then
+                    Call cargarDatos("SELECT * FROM CabeceraTransacciones where " & campoRUC & " like '%" & TextBox1.Text & "%' ORDER BY Hora DESC;")
+                ElseIf tipoLista = "OD_PROCESO" Then
+                    'Call cargarDatos("SELECT * FROM CabeceraTransacciones where " & campoRUC & " like '%" & TextBox1.Text & "%' ORDER BY Hora DESC;")
+                    Call cargarDatos("SELECT
+                                Cb.Id,
+                                Cb.Fecha,
+                                Cb.Hora,
+                                Cb.CodProducto,
+                                Pr.Descripcion AS NomProducto,
+                                Cb.idMixer AS IdMixer,
+                                Mx.NombreMixer AS NomMixer,
+                                Mx.Placa AS PlacaMixer,
+                                Cb.Observaciones
+                            FROM
+                                (
+                                    CabeceraTransacciones AS Cb
+                                    LEFT JOIN Productos AS Pr ON Cb.CodProducto = Pr.Id_Producto
+                                )
+                                LEFT JOIN Mixers AS Mx ON Cb.idMixer = Mx.Id
+                            WHERE
+                                NOT EXISTS (
+                                    SELECT
+                                        *
+                                    FROM
+                                        Transacciones AS T
+                                    WHERE
+                                        T.Id_Cabecera = Cb.Id
+                                ) AND " & campoRUC & " like '%" & TextBox1.Text & "%' 
+                            ORDER BY Cb.Hora DESC;")
                 Else
                     Call cargarDatos("SELECT * FROM " & tipoLista & " where " & campoRUC & " like '%" & TextBox1.Text & "%' order by nombre")
                 End If

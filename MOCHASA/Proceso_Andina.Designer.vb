@@ -663,6 +663,7 @@ Partial Class Proceso_Andina
         '
         Me.Rtx_Mensajes.Location = New System.Drawing.Point(10, 403)
         Me.Rtx_Mensajes.Name = "Rtx_Mensajes"
+        Me.Rtx_Mensajes.ReadOnly = True
         Me.Rtx_Mensajes.Size = New System.Drawing.Size(363, 244)
         Me.Rtx_Mensajes.TabIndex = 219
         Me.Rtx_Mensajes.Text = ""
@@ -3503,7 +3504,7 @@ Partial Class Proceso_Andina
         '
         Me.Lbl_Estabilidad.AutoSize = True
         Me.Lbl_Estabilidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbl_Estabilidad.Location = New System.Drawing.Point(1123, 177)
+        Me.Lbl_Estabilidad.Location = New System.Drawing.Point(1121, 165)
         Me.Lbl_Estabilidad.Name = "Lbl_Estabilidad"
         Me.Lbl_Estabilidad.Size = New System.Drawing.Size(189, 15)
         Me.Lbl_Estabilidad.TabIndex = 296

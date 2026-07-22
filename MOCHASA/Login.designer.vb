@@ -34,6 +34,7 @@ Partial Class Login
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Pcb_Login = New System.Windows.Forms.PictureBox()
         Me.Btt_Acceder = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,7 +84,7 @@ Partial Class Login
         '
         Me.Btt_Salir.Image = Global.HORMIGONERA.My.Resources.Resources._131885___close_door_exit_log_out_logout_user_logout
         Me.Btt_Salir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_Salir.Location = New System.Drawing.Point(206, 243)
+        Me.Btt_Salir.Location = New System.Drawing.Point(207, 233)
         Me.Btt_Salir.Name = "Btt_Salir"
         Me.Btt_Salir.Size = New System.Drawing.Size(99, 42)
         Me.Btt_Salir.TabIndex = 5
@@ -128,13 +129,22 @@ Partial Class Login
         '
         Me.Btt_Acceder.Image = Global.HORMIGONERA.My.Resources.Resources._131823___arrow_forward_next_right
         Me.Btt_Acceder.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Btt_Acceder.Location = New System.Drawing.Point(81, 243)
+        Me.Btt_Acceder.Location = New System.Drawing.Point(81, 233)
         Me.Btt_Acceder.Name = "Btt_Acceder"
         Me.Btt_Acceder.Size = New System.Drawing.Size(92, 42)
         Me.Btt_Acceder.TabIndex = 4
         Me.Btt_Acceder.Text = "Acceder"
         Me.Btt_Acceder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Btt_Acceder.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(12, 285)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(63, 13)
+        Me.Label3.TabIndex = 9
+        Me.Label3.Text = "Versión: 2.1"
         '
         'Login
         '
@@ -143,6 +153,7 @@ Partial Class Login
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(376, 307)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Pcb_Login)
@@ -175,4 +186,5 @@ Partial Class Login
     Friend WithEvents ErrorProvider1 As ErrorProvider
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Label3 As Label
 End Class

@@ -680,7 +680,7 @@ Public Class Proceso_Andina
                     font_Rtxt)
 
             End If
-            If MessageBox.Show("¿Desea continuar con la dosificación?" & vbCrLf & "Verifique que las balanzas se encuentren enceradas",
+            If MessageBox.Show("¿Desea iniciar con la dosificación?" & vbCrLf & "Verifique que las balanzas se encuentren enceradas",
                                "Confirmación", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
                 'Usuario Cancela la dosificacion
                 Exit Sub
@@ -1876,7 +1876,7 @@ Public Class Proceso_Andina
     End Sub
 
     Private Sub LimpiarControlesOD()
-        lblcomprobante.Text = "-"
+        lblcomprobante.Text = "--"
         codProducto.Text = ""
         nomProducto.Text = ""
         txtidMixer.Text = ""
@@ -1974,7 +1974,8 @@ Public Class Proceso_Andina
             Console.Beep()
             Lbl_Cap_Cemento.Text = pesoReal3.ToString("N0")
             Lbl_Dosif_Cemento.Text = pesoReal3.ToString("N0")
-
+            'Limpiar errores
+            ErrP1.Clear()
         Else
             MessageBox.Show("El ingrediente ya tiene un registro de Cemento",
                               "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -1999,9 +2000,9 @@ Public Class Proceso_Andina
             Dim restante As Double = (total - t) / 1000.0
 
             Lbl_Estabilidad.Text =
-            $"Esperando estabilidad del peso..." &
+            $"No encere ni cargue producto en la Tolva" &
             Environment.NewLine &
-            $"{restante:0.0} s"
+            $"{restante:0.0} s...Esperando estabilidad del peso"
 
         Next
 
@@ -2021,7 +2022,7 @@ Public Class Proceso_Andina
                                 pesoSet4, pesoReal4, Variables.Factor, codigoOD)
         'Funciones.GuardarPesada(Variables.nomOperador, consecutivoBatch, Variables.CodigProducto, Variables.NombreProducto, Variables.CodigIngrediente_T1, "PIEDRA",
         '                        pesoSet1, pesoReal1, Variables.Factor, codigoOD)
-        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T4} = {pesoReal4.ToString("N0")}" & Environment.NewLine,
+        Rtx_Mensajes.AppendColoredText($"Registrado Orden # {codigoOD} --> Valor { Variables.NombreIngrediente_T4} = {pesoReal4.ToString("N2")}" & Environment.NewLine,
                 Drawing.Color.Black,
                 font_Rtxt)
         Console.Beep()
