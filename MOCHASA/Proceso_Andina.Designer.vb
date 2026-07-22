@@ -258,8 +258,10 @@ Partial Class Proceso_Andina
         Me.Btt_Salir = New System.Windows.Forms.Button()
         Me.Sym_Torn_Cem_Desc = New SymbolFactoryDotNet.StandardControl()
         Me.SymTolvaCem = New SymbolFactoryDotNet.StandardControl()
-        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.ErrP1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Tim_Wd_PLC = New System.Windows.Forms.Timer(Me.components)
+        Me.Prg_Estabilidad = New System.Windows.Forms.ProgressBar()
+        Me.Lbl_Estabilidad = New System.Windows.Forms.Label()
         CType(Me.standardControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SymTolva2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Bomba, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -330,7 +332,7 @@ Partial Class Proceso_Andina
         CType(Me.Sym_Bomba_G7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SymTolvaCem, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ErrP1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Lbl_IngNomT3
@@ -2184,7 +2186,7 @@ Partial Class Proceso_Andina
         'btn_impresion
         '
         Me.btn_impresion.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_impresion.Location = New System.Drawing.Point(1155, 227)
+        Me.btn_impresion.Location = New System.Drawing.Point(1153, 76)
         Me.btn_impresion.Name = "btn_impresion"
         Me.btn_impresion.Size = New System.Drawing.Size(121, 23)
         Me.btn_impresion.TabIndex = 241
@@ -2410,6 +2412,8 @@ Partial Class Proceso_Andina
         '
         Me.Panel2.AutoScroll = True
         Me.Panel2.BackColor = System.Drawing.SystemColors.Control
+        Me.Panel2.Controls.Add(Me.Lbl_Estabilidad)
+        Me.Panel2.Controls.Add(Me.Prg_Estabilidad)
         Me.Panel2.Controls.Add(Me.Btt_Sel_OD)
         Me.Panel2.Controls.Add(Me.btnagregar)
         Me.Panel2.Controls.Add(Me.TableLayoutPanel2)
@@ -2532,7 +2536,7 @@ Partial Class Proceso_Andina
         Me.TableLayoutPanel2.Controls.Add(Me.Num_TeoCemento, 2, 2)
         Me.TableLayoutPanel2.Controls.Add(Me.Num_TeoAgua, 2, 3)
         Me.TableLayoutPanel2.Controls.Add(Me.Num_RealAgua, 4, 3)
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(514, 121)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(503, 121)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 4
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
@@ -2834,9 +2838,9 @@ Partial Class Proceso_Andina
         '
         Me.GroupBox8.Controls.Add(Me.Panel3)
         Me.GroupBox8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox8.Location = New System.Drawing.Point(1151, 6)
+        Me.GroupBox8.Location = New System.Drawing.Point(1156, 16)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(326, 213)
+        Me.GroupBox8.Size = New System.Drawing.Size(128, 55)
         Me.GroupBox8.TabIndex = 266
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "Controles omitidos"
@@ -2869,7 +2873,7 @@ Partial Class Proceso_Andina
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(3, 17)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(320, 193)
+        Me.Panel3.Size = New System.Drawing.Size(122, 35)
         Me.Panel3.TabIndex = 283
         '
         'GBx_Preparacion
@@ -3479,13 +3483,32 @@ Partial Class Proceso_Andina
         Me.SymTolvaCem.SymbolHandle = CType(760670432, Long)
         Me.SymTolvaCem.TabIndex = 269
         '
-        'ErrorProvider1
+        'ErrP1
         '
-        Me.ErrorProvider1.ContainerControl = Me
+        Me.ErrP1.ContainerControl = Me
         '
         'Tim_Wd_PLC
         '
         Me.Tim_Wd_PLC.Interval = 300
+        '
+        'Prg_Estabilidad
+        '
+        Me.Prg_Estabilidad.Location = New System.Drawing.Point(1124, 196)
+        Me.Prg_Estabilidad.Name = "Prg_Estabilidad"
+        Me.Prg_Estabilidad.Size = New System.Drawing.Size(100, 23)
+        Me.Prg_Estabilidad.TabIndex = 295
+        Me.Prg_Estabilidad.Visible = False
+        '
+        'Lbl_Estabilidad
+        '
+        Me.Lbl_Estabilidad.AutoSize = True
+        Me.Lbl_Estabilidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Estabilidad.Location = New System.Drawing.Point(1123, 177)
+        Me.Lbl_Estabilidad.Name = "Lbl_Estabilidad"
+        Me.Lbl_Estabilidad.Size = New System.Drawing.Size(189, 15)
+        Me.Lbl_Estabilidad.TabIndex = 296
+        Me.Lbl_Estabilidad.Text = "Esperando estabilidad del peso..."
+        Me.Lbl_Estabilidad.Visible = False
         '
         'Proceso_Andina
         '
@@ -3579,7 +3602,7 @@ Partial Class Proceso_Andina
         CType(Me.Sym_Bomba_G7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Sym_Torn_Cem_Desc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SymTolvaCem, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ErrP1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3731,7 +3754,7 @@ Partial Class Proceso_Andina
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Gbx_ConfigCarg_Cemento As GroupBox
-    Friend WithEvents ErrorProvider1 As ErrorProvider
+    Friend WithEvents ErrP1 As ErrorProvider
     Friend WithEvents StandardControl8 As SymbolFactoryDotNet.StandardControl
     Friend WithEvents Sym_Cemento As SymbolFactoryDotNet.StandardControl
     Private WithEvents Label21 As Label
@@ -3822,4 +3845,6 @@ Partial Class Proceso_Andina
     Friend WithEvents Num_RealAgua As NumericUpDown
     Friend WithEvents Label14 As Label
     Friend WithEvents Btt_Sel_OD As Button
+    Friend WithEvents Lbl_Estabilidad As Label
+    Friend WithEvents Prg_Estabilidad As ProgressBar
 End Class

@@ -4,6 +4,7 @@ Imports System.Drawing.Printing
 Imports System.IO.Ports
 Imports System.Text.RegularExpressions
 Imports System.Text
+Imports System.Threading.Tasks
 
 Public Class Proceso_Andina
     'Llamar a la clase de indicador Serial
@@ -168,6 +169,7 @@ Public Class Proceso_Andina
         Else
             'habilitar reconexion del PLC
         End If
+
     End Sub
 
     Private Sub PesoT1_Recibido(peso As Decimal)
@@ -1370,7 +1372,14 @@ Public Class Proceso_Andina
     End Sub
 
     Private Sub Btt_Detener_Click(sender As Object, e As EventArgs) Handles Btt_Detener.Click
+        'Limpia errores anteriores
+        ErrP1.Clear()
         If running Then
+            If Not flagFinDesCargaCemento Then
+                ErrP1.SetError(Lbl_IngInfT3, "Debe registrar el valor de cemento para finalizar la orden")
+                MessageBox.Show("Registre el valor de cemento para finalizar la orden", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
             If MessageBox.Show("Desea finalizar el proceso", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 DetenerProceso()
                 'LimpiarLabelsFormula() -- No se usa para A. Hormigones
@@ -1482,7 +1491,8 @@ Public Class Proceso_Andina
                 'Configuracion para Eufrates 1 solo batch
                 batchPendientes = 0
                 batchActual = 0
-
+                'Limpia errores
+                ErrP1.Clear()
             End If
         Catch ex As Exception
             Rtx_Mensajes.AppendColoredText("Excepcion: Detener" & ex.Message & Environment.NewLine,
@@ -1949,7 +1959,8 @@ Public Class Proceso_Andina
             'Deshabilitar descarga de cemento
             ResetTodasSignals()
             EscribeCoil_Controlada(Variables.coil_Paro, True)
-            Await DelayMs(4000) '---Espera estabilidad del peso
+            ''Await DelayMs(4000) '---Espera estabilidad del peso
+            Await EsperarEstabilidadAsync()
             pesoReal3 = Convert.ToDouble(Lbl_Peso_Cem.Text) * -1
             pesoSet3 = Num_TeoCemento.Value
             'Dim Diferencia As Double = pesoSet1 - pesoReal1
@@ -1971,6 +1982,33 @@ Public Class Proceso_Andina
 
     End Sub
 
+    Private Async Function EsperarEstabilidadAsync() As Task
+
+        Const total As Integer = 4000 '4 segundos
+        Const paso As Integer = 100
+
+        Prg_Estabilidad.Visible = True
+        Lbl_Estabilidad.Visible = True
+
+        For t As Integer = 0 To total Step paso
+
+            Await Task.Delay(paso)
+
+            Prg_Estabilidad.Value = CInt(t * 100 / total)
+
+            Dim restante As Double = (total - t) / 1000.0
+
+            Lbl_Estabilidad.Text =
+            $"Esperando estabilidad del peso..." &
+            Environment.NewLine &
+            $"{restante:0.0} s"
+
+        Next
+
+        Prg_Estabilidad.Visible = False
+        Lbl_Estabilidad.Visible = False
+
+    End Function
     Private Sub Btt_RegAgua_Click(sender As Object, e As EventArgs) Handles Btt_RegAgua.Click
         flagFinAgua = True
         'Procesar guardar peso -- Se guarda registro por descarga
