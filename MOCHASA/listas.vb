@@ -34,8 +34,8 @@ Public Class listas
                 campoRUC = "CedulaRUC"
             Case "PRODUCTOS"
                 Call cargarDatos("SELECT * FROM Productos")
-                campoCodigo = "CodProducto"
-                campoNombre = "Nombre"
+                campoCodigo = "Id_Producto"
+                campoNombre = "Descripcion"
             Case "OBRAS"
                 Call cargarDatos("SELECT * FROM Obras")
                 campoCodigo = "CodObra"
@@ -58,7 +58,7 @@ Public Class listas
 
             Case "MIXERS"
                 Call cargarDatos("SELECT * FROM Mixers")
-                campoCodigo = "id"
+                campoCodigo = "Id"
                 campoNombre = "NombreMixer"
             Case "ORDEN_DESPACHO"
                 Call cargarDatos("SELECT * FROM CabeceraTransacciones ORDER BY Hora DESC;")
@@ -333,8 +333,8 @@ Public Class listas
                     campoRUC = "CedulaRUC"
                 Case "PRODUCTOS"
                     Call cargarDatos("SELECT * FROM Productos")
-                    campoCodigo = "CodProducto"
-                    campoNombre = "Nombre"
+                    campoCodigo = "Id_Producto"
+                    campoNombre = "Descripcion"
                 Case "OBRAS"
                     Call cargarDatos("SELECT * FROM Obras")
                     campoCodigo = "CodObra"
@@ -343,6 +343,10 @@ Public Class listas
                     Call cargarDatos("SELECT * FROM CabeceraTransacciones")
                     campoCodigo = "Id"
                     campoNombre = "Id"
+                Case "MIXERS"
+                    Call cargarDatos("SELECT * FROM Mixers")
+                    campoCodigo = "Id"
+                    campoNombre = "NombreMixer"
                 Case "OD_PROCESO"
                     Call cargarDatos("SELECT
                                 Cb.Id,
@@ -385,6 +389,10 @@ Public Class listas
                 Call cargarDatos("SELECT * FROM " & tipoLista & " WHERE HABILITADO=1 order by nombre")
             ElseIf tipoLista = "ORDEN_DESPACHO" Then
                 Call cargarDatos("SELECT * FROM CabeceraTransacciones ORDER BY Hora DESC;")
+            ElseIf tipoLista = "PRODUCTOS" Then
+                Call cargarDatos("SELECT * FROM Productos")
+            ElseIf tipoLista = "MIXERS" Then
+                Call cargarDatos("SELECT * FROM Mixers")
             ElseIf tipoLista = "OD_PROCESO" Then
                 Call cargarDatos("SELECT
                                 Cb.Id,
@@ -422,6 +430,10 @@ Public Class listas
                     Call cargarDatos("SELECT * FROM " & tipoLista & " where HABILITADO=1 and " & campoCodigo & " like '%" & TextBox1.Text & "%' order by nombre")
                 ElseIf tipoLista = "ORDEN_DESPACHO" Then
                     Call cargarDatos("SELECT * FROM CabeceraTransacciones where " & campoCodigo & " like '%" & TextBox1.Text & "%' ORDER BY Hora DESC;")
+                ElseIf tipoLista = "PRODUCTOS" Then
+                    Call cargarDatos("SELECT * FROM Productos where " & campoCodigo & " like '%" & TextBox1.Text & "%';")
+                ElseIf tipoLista = "MIXERS" Then
+                    Call cargarDatos("SELECT * FROM Mixers where " & campoCodigo & " like '%" & TextBox1.Text & "%';")
                 ElseIf tipoLista = "OD_PROCESO" Then
                     'Call cargarDatos("SELECT * FROM CabeceraTransacciones where " & campoCodigo & " like '%" & TextBox1.Text & "%' ORDER BY Hora DESC;")
                     Call cargarDatos("SELECT
@@ -459,6 +471,10 @@ Public Class listas
                     Call cargarDatos("SELECT * FROM " & tipoLista & " where HABILITADO=1 and " & campoNombre & " like '%" & TextBox1.Text & "%' order by nombre")
                 ElseIf tipoLista = "ORDEN_DESPACHO" Then
                     Call cargarDatos("SELECT * FROM CabeceraTransacciones where " & campoNombre & " like '%" & TextBox1.Text & "%' ORDER BY Hora DESC;")
+                ElseIf tipoLista = "PRODUCTOS" Then
+                    Call cargarDatos("SELECT * FROM Productos where " & campoNombre & " like '%" & TextBox1.Text & "%';")
+                ElseIf tipoLista = "MIXERS" Then
+                    Call cargarDatos("SELECT * FROM Mixers where " & campoNombre & " like '%" & TextBox1.Text & "%';")
                 ElseIf tipoLista = "OD_PROCESO" Then
                     'Call cargarDatos("SELECT * FROM CabeceraTransacciones where " & campoNombre & " like '%" & TextBox1.Text & "%' ORDER BY Hora DESC;")
                     Call cargarDatos("SELECT
